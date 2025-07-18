@@ -1,32 +1,66 @@
 <?php
+require_once 'vendor/autoload.php';
+$config = new \releasecheck\Configuration();
+
 # Script to dump IdP:s info for import at metadata.swamid.se
-$db = new SQLite3("/var/www/tests/log/idpStatus");
-$testHandler = $db->prepare("SELECT * FROM idpStatus WHERE Test='anonymous' OR Test='pseudonymous' OR Test='personalized' OR Test='cocov2-1' OR Test='cocov1-1' OR Test='rands';");
+$testHandler = $config->getDb()->prepare(
+  "SELECT `idps`.`entityID`, `tests`.`time`, `tests`.`test`, `tests`.`testResult`
+  FROM `idps`, `testRuns`, `tests`
+  WHERE `idps`.`id` = `testRuns`.`idp_id`
+    AND `testRuns`.`id` = `tests`.`testRun_id`
+    AND (`test` = 'anonymous'
+      OR `test` = 'pseudonymous'
+      OR `test` = 'personalized'
+      OR `test` = 'cocov2-1'
+      OR `test` = 'cocov1-1'
+      OR `test` = 'rands')
+  ORDER BY `idps`.`entityID`, `tests`.`test`, `tests`.`time`  DESC;");
 
 $metaObj = new \stdClass();
 
-$testResults=$testHandler->execute();
-while ($testResult=$testResults->fetchArray(SQLITE3_ASSOC)) {
+$oldIdP = '';
+$oldTest = '';
+$testHandler->execute();
+while ($testResult = $testHandler->fetch(PDO::FETCH_ASSOC)) {
+  if ($oldIdP == $testResult['entityID'] && $oldTest == $testResult['test']) {
+    # Skip older results
+    continue;
+  }
   $partObj = new \stdClass();
-  $partObj->entityID = $testResult['Idp'];
-  $partObj->test = $testResult['Test'];
-  $partObj->time = $testResult['Time'];
-  $partObj->result = $testResult['TestResult'];
+  $partObj->entityID = $testResult['entityID'];
+  $partObj->test = $testResult['test'];
+  $partObj->time = $testResult['time'];
+  $partObj->result = $testResult['testResult'];
   $entityArray[] = $partObj;
   unset($partObj);
+  $oldIdP = $testResult['entityID'];
+  $oldTest = $testResult['test'];
 }
 
-$testESIHandler = $db->prepare("SELECT * FROM idpStatus WHERE Test='esi' OR Test='esi-stud' ORDER BY Idp, Test DESC;");
-$testESIResults=$testESIHandler->execute();
+$testESIHandler = $config->getDb()->prepare(
+  "SELECT `idps`.`entityID`, `tests`.`time`, `tests`.`test`, `tests`.`testResult`
+  FROM `idps`, `testRuns`, `tests`
+  WHERE `idps`.`id` = `testRuns`.`idp_id`
+    AND `testRuns`.`id` = `tests`.`testRun_id`
+    AND (`test` = 'esi'
+      OR `test` = 'esi-stud')
+  ORDER BY `idps`.`entityID`, `tests`.`test` DESC, `tests`.`time`  DESC;");
+$testESIHandler->execute();
+$oldIdP = '';
+$oldTest = '';
 $ESITestResult = '';
-while ($testResult=$testESIResults->fetchArray(SQLITE3_ASSOC)) {
-  if ($testResult['Test'] == 'esi') {
+while ($testResult = $testESIHandler->fetch(PDO::FETCH_ASSOC)) {
+  if ($oldIdP == $testResult['entityID'] && $oldTest == $testResult['test']) {
+    # Skip older results
+    continue;
+  }
+  if ($testResult['test'] == 'esi') {
     if ($ESITestResult == '' || $ESITestResult <> 'schacPersonalUniqueCode OK') {
-      $ESITime = $testResult['Time'];
-      $ESITestResult = $testResult['TestResult'];
+      $ESITime = $testResult['time'];
+      $ESITestResult = $testResult['testResult'];
     }
     $partObj = new \stdClass();
-    $partObj->entityID = $testResult['Idp'];
+    $partObj->entityID = $testResult['entityID'];
     $partObj->test = 'esi';
     $partObj->time = $ESITime;
     $partObj->result = $ESITestResult;
@@ -34,8 +68,8 @@ while ($testResult=$testESIResults->fetchArray(SQLITE3_ASSOC)) {
     unset($partObj);
     $ESITestResult = '';
   } else {
-    $ESITime = $testResult['Time'];
-    $ESITestResult = $testResult['TestResult'];
+    $ESITime = $testResult['time'];
+    $ESITestResult = $testResult['testResult'];
   }
 }
 
