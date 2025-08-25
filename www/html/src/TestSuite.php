@@ -317,6 +317,15 @@ class TestSuite {
   }
 
   /**
+   * Return the all tests configured.
+   *
+   * @return array
+   */
+  public function getTests() {
+    return $this->tests;
+  }
+
+  /**
    * Return the name for a specific test.
    *
    * @return string|false

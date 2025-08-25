@@ -79,7 +79,7 @@ if (! in_array($_SERVER['saml_eduPersonPrincipalName'], $config->getFederation()
 ?>
     <div class="row">
       <div class="col">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs" id="myTab">
           <li class="nav-item">
             <a class="nav-link<?=$randsActive?>" href="?tab=RandS">R&S</a>
           </li>
@@ -156,16 +156,18 @@ if (isset($_GET['tab'])) {
         showCoCo($tested_idps,2);
       break;
     case 'MFA' :
-      if (isset($_GET['idp']))
-        showResultsMFA($_GET['idp']);
-      else
+      if (isset($_GET['idp'])) {
+        showTestsIdP('mfa');
+      } else {
         showMFA($tested_idps);
+      }
       break;
     case 'ESI' :
-      if (isset($_GET['idp']))
-        showResultsESI($_GET['idp']);
-      else
+      if (isset($_GET['idp'])) {
+        showTestsIdP('esi');
+      } else {
         showESI($tested_idps);
+      }
       break;
     case 'AllTests' :
       if (isset($_GET['idp']))
@@ -177,7 +179,7 @@ if (isset($_GET['tab'])) {
       if (isset($_GET['idp']))
         showTestsIdP();
       else
-        showEcsStatus($tested_idps);
+        showEcsStatus();
       break;
   }
 }
@@ -1194,7 +1196,7 @@ function showAllTests() {
     </div><!-- End row-->\n";
 }
 
-function showEcsStatus($tested_idps) {
+function showEcsStatus() {
   global $config;
   $lastYear = date('Y-m-d', mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-1));
 
@@ -1315,10 +1317,10 @@ function showEcsStatus($tested_idps) {
     </div><!-- End row-->\n";
 }
 
-function showTestsIdP() {
+function showTestsIdP($test='entityCategory') {
   $display = new \releasecheck\Display();
   $idp = $_GET['idp'];
-  if ($testruns = $display->getTestruns($idp, 'entityCategory')) {
+  if ($testruns = $display->getTestruns($idp, $test)) {
     $testrun = $testruns[0];
     if (count($testruns) > 1) {
       print "          <h4>Other results</h4>
@@ -1335,6 +1337,17 @@ function showTestsIdP() {
   } else {
     $testrun = array ('id' => 0, 'time' => 'no run');
   }
-  $display->showResultsECTests($idp, $testrun['id']);
+  switch ($test) {
+    case 'mfa' :
+      $display->showResultsMFA($idp, $testrun['id']);
+      break;
+    case 'esi' :
+      $display->showResultsESI($idp, $testrun['id']);
+      break;
+    case 'entityCategory' :
+    default :
+      $display->showResultsECTests($idp, $testrun['id']);
+      break;
+  }
 }
 

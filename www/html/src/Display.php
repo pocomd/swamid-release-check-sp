@@ -94,7 +94,7 @@ class Display {
       isset($_SERVER['Meta-errorURL']) ? '<a href="' . $_SERVER['Meta-errorURL'] . '" target=”_blank”><span class="d-inline-block text-truncate" style="max-width: 900px;">' . $_SERVER['Meta-errorURL'] . '</span></a>' : '',
       isset($_SERVER['Meta-displayName']) ?  $_SERVER['Meta-displayName'] : '',
       isset($_SERVER['Meta-informationURL']) ? '<a href="' . $_SERVER['Meta-informationURL'] . '" target=”_blank”>' . $_SERVER['Meta-informationURL'] . '</a>' : '',
-      isset($_SERVER['Meta-Small-Logo']) ?  '<img src="' . $_SERVER['Meta-Small-Logo'] . '">' : '',
+      isset($_SERVER['Meta-Logo']) ?  $_SERVER['Meta-Logo'] : '',
       isset($_SERVER['Meta-organizationURL']) ? '<a href="' . $_SERVER['Meta-organizationURL'] . '" target="_blank">' . $_SERVER['Meta-organizationURL'] . '</a>' : '',
       isset($_SERVER['Meta-Support-Administrative']) ?  $_SERVER['Meta-Support-Administrative'] : '',
       isset($_SERVER['Meta-Support-Contact']) ?  $_SERVER['Meta-Support-Contact'] : '',

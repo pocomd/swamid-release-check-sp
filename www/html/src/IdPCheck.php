@@ -336,9 +336,9 @@ class IdPCheck {
   /**
    * Prints out a table based on values in attributeArray
    *
-   * @param $title Title of table
+   * @param string $title Title of table
    *
-   * @param $attributeArray an array with keys and values
+   * @param array $attributeArray an array with keys and values
    *
    * @return void
    */

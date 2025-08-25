@@ -171,7 +171,7 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
   $collapseIcons[] = "attributes-instructions";
 
   if ($result) {
-    printf (HTML_RESULT_FOR, $displayName,$IdP, '');
+    printf (HTML_RESULT_FOR, $displayName, $IdP, '');
     $display->showAttributeList();
     $display->showIdpMetadataInfo();
     $display->showIdpSessionInfo();
@@ -274,46 +274,47 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
     printf (HTML_RESULT_FOR, $displayName,$IdP, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
     $display->showResultsECTests($IdP, $testrun['id']);
   }
-?>
-      </div><!-- End tab-pane entityCategory -->
-      <div class="tab-pane fade<?=$mfaShow?><?=$mfaActive?>" id="mfa-check"
+  printf('      </div><!-- End tab-pane entityCategory -->
+      <div class="tab-pane fade%s%s" id="mfa-check"
         role="tabpanel" aria-labelledby="mfa-check-tab">
         <h2>SWAMID Best Practice MFA check</h2>
         <br>
         <div class="row">
           <div class="col">
-            <a href="https://mfa.<?=$config->basename()?>/<?=$result ? HTML_SHIBBOLETH_LOGIN . $IdP : ''?>">
+            <a href="https://mfa.%s/%s">
               <button type="button" class="btn btn-success">Run tests</button>
             </a>
-          </div>
-<?php if (! $result ) { ?>
-          <div class="col">
-            <a href="https://<?=$config->basename()?>/result/?tab=mfa">
+          </div>%s',
+    $mfaShow, $mfaActive, $config->basename(), $result ? HTML_SHIBBOLETH_LOGIN . $IdP : '', "\n");
+  if (! $result ) {
+    printf('          <div class="col">
+            <a href="https://%s/result/?tab=mfa">
               <button type="button" class="btn btn-success">Show results</button>
             </a>
-          </div><?php } ?>
-        </div>
+          </div>%s', $config->basename(), "\n");
+  }
+  printf('        </div>
         <h3>
-          <i id="mfa-instructions-icon" class="fas fa-chevron-circle-<?=$result ? "right" : "down"?>"></i>
-          <a data-toggle="collapse" href="#mfa-instructions" aria-expanded="<?=$instructionsSelected?>"
+          <i id="mfa-instructions-icon" class="fas fa-chevron-circle-%s"></i>
+          <a data-toggle="collapse" href="#mfa-instructions" aria-expanded="%s"
             aria-controls="mfa-instructions">
             Instructions
           </a>
         </h3>
-        <div class="collapse<?=$instructionsShow?> multi-collapse" id="mfa-instructions">
+        <div class="collapse%s multi-collapse" id="mfa-instructions">
           <p>SWAMID MFA test. This is a two part test<ol>
             <li>REFEDS MFA without forceAuthn</li>
             <li>REFEDS MFA with forceAuthn</li>
           </ol></p>
-        </div><!-- end collapse -->
-<?php
+        </div><!-- end collapse -->%s',
+    $result ? "right" : "down", $instructionsSelected, $instructionsShow, "\n");
   $collapseIcons[] = "mfa-instructions";
   if ($result) {
     if ($testruns = $display->getTestruns($IdP, 'mfa')) {
       $testrun = $testruns[0];
       if (count($testruns) > 1) {
         print "          <h4>Other results</h4>
-              <ul>\n";
+          <ul>\n";
         foreach($testruns as $run) {
           printf('            <li><a href="./?tab=mfa&id=%d">%s</a></li>%s', $run['id'], $run['time'], "\n");
           # Check if thus run is requested run. In that vase save this run
@@ -329,37 +330,39 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
     printf (HTML_RESULT_FOR, $displayName,$IdP, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
     $display->showResultsMFA($IdP, $testrun['id']);
   }
-?>
-      </div><!-- End tab-pane mfa-check -->
-      <div class="tab-pane fade<?=$esiShow?><?=$esiActive?>" id="esi" role="tabpanel" aria-labelledby="esi-tab">
+  printf('      </div><!-- End tab-pane mfa-check -->
+      <div class="tab-pane fade%s%s" id="esi" role="tabpanel" aria-labelledby="esi-tab">
         <h2>SWAMID Best Practice Attribute Release check</h2>
         <br>
         <div class="row">
           <div class="col">
-            <a href="https://esi.<?=$config->basename()?>/<?=$result ? HTML_SHIBBOLETH_LOGIN . $IdP : ''?>">
+            <a href="https://esi.%s/%s">
               <button type="button" class="btn btn-success">Run tests</button>
             </a>
-          </div>
-<?php if (! $result ) { ?>
-          <div class="col">
-            <a href="https://<?=$config->basename()?>/result/?tab=esi">
+          </div>%s',
+    $esiShow, $esiActive, $config->basename(), $result ? HTML_SHIBBOLETH_LOGIN . $IdP : '',
+    "\n");
+  if (! $result ) {
+    printf('          <div class="col">
+            <a href="https://%s/result/?tab=esi">
               <button type="button" class="btn btn-success">Show results</button>
             </a>
-          </div><?php } ?>
-        </div>
+          </div>%s', $config->basename(), "\n");
+  }
+  printf('        </div>
         <h3>
-          <i id="esi-instructions-icon" class="fas fa-chevron-circle-<?=$result ? "right" : "down"?>"></i>
-          <a data-toggle="collapse" href="#esi-instructions" aria-expanded="<?=$instructionsSelected?>"
+          <i id="esi-instructions-icon" class="fas fa-chevron-circle-%s"></i>
+          <a data-toggle="collapse" href="#esi-instructions" aria-expanded="%s"
             aria-controls="esi-instructions">
             Instructions
           </a>
         </h3>
-        <div class="collapse<?=$instructionsShow?> multi-collapse" id="esi-instructions">
+        <div class="collapse%s multi-collapse" id="esi-instructions">
           <p>European Student Identifier uses the entity category https://myacademicid.org/entity-categories/esi
-            for release of attributes from the user's identity provider. This test verifies that all required
+            for release of attributes from the user\'s identity provider. This test verifies that all required
             attributes are released during login.</p>
-        </div><!-- end collapse -->
-<?php
+        </div><!-- end collapse -->%s',
+    $result ? "right" : "down", $instructionsSelected, $instructionsShow, "\n");
   $collapseIcons[] = "esi-instructions";
   if ($result) {
     if ($testruns = $display->getTestruns($IdP, 'esi')) {
