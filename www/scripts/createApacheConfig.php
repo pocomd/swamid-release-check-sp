@@ -66,4 +66,3 @@ foreach ($testSuite->getTests() as $test => $testConfig) {
 
 print '
 </IfModule>';
-#$test = str_replace('.'.$config->basename(),'',strtolower($_SERVER['HTTP_HOST']));
