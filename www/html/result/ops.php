@@ -215,7 +215,6 @@ function showTab($tab, $data,$tested_idps) {
     case 'CoCov1' :
     case 'CoCov2' :
       printf('              <i class="fas fa-check"> = Only send reqested data or less</i><br>
-              <i class="fas fa-exclamation-triangle"> = Only send reqested data or less (not sending norEduPersonNIN)</i><br>
               <i class="fas fa-exclamation"> = Send to much data</i>%s', "\n");
       break;
     default :
@@ -263,66 +262,58 @@ function showTab($tab, $data,$tested_idps) {
     WHERE `tests`.`testRun_id` = `testRuns`.`id`
       AND `testRuns`.`idp_id` = `idps`.`id`
       AND `test` = :Test
-    ORDER BY `entityID`;');
+    ORDER BY `entityID`, `time` DESC;');
   $okData=0;
   $warnData=0;
   $failData=0;
   $okEC=0;
   $warnEC=0;
   $failEC=0;
+  $lastIdp = '';
   $testHandler->execute(array('Test' => $data['dbName']));
   while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
     $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
+    if ($lastIdp != $idp) {
+      $lastIdp = $idp;
+      $tested_idps[$idp] = true;
 
-    printf('            <tr>
+      printf('            <tr>
               <td><a href="?tab=%s&idp=%s">%s</a></td>
               <td>%s</td>%s', $tab, $idp, $idp, $testResult['time'], "\n");
-    switch ($testResult['testResult']) {
-      case $data['testResults']['OKOK'] :
-        if (($tab == 'CoCov1' || $tab == 'CoCov2') && ! sends($testResult['attr_OK'], 'norEduPersonNIN')) {
-          printf('              <td><i class="fas fa-exclamation-triangle">  </td>
-              <td><i class="fas fa-check">   </td>%s', "\n");
-          $warnData++;
-        } else {
+      switch ($testResult['testResult']) {
+        case $data['testResults']['OKOK'] :
           printf('              <td><i class="fas fa-check">   </td>
               <td><i class="fas fa-check">   </td>%s', "\n");
           $okData++;
-        }
-        $okEC++;
-        break;
-      case $data['testResults']['OKFail'] :
-        if (($tab == 'CoCov1' || $tab == 'CoCov2') && ! sends($testResult['attr_OK'], 'norEduPersonNIN')) {
-          printf('              <td><i class="fas fa-exclamation-triangle">  </td>
-              <td><i class="fas fa-exclamation-triangle">  </td>%s', "\n");
-          $warnData++;
-        } else {
+          $okEC++;
+          break;
+        case $data['testResults']['OKFail'] :
           printf('              <td><i class="fas fa-check">   </td>
               <td><i class="fas fa-exclamation-triangle">  </td>%s', "\n");
           $okData++;
-        }
-        $warnEC++;
-        break;
-      case $data['testResults']['Fail'] :
-        printf('              <td><i class="fas fa-exclamation"> </td>
+          $warnEC++;
+          break;
+        case $data['testResults']['Fail'] :
+          printf('              <td><i class="fas fa-exclamation"> </td>
               <td></td>%s', "\n");
-        $failData++;
-        break;
-      case $data['testResults']['FailFail'] :
-        printf('              <td><i class="fas fa-exclamation"> </td>
+          $failData++;
+          break;
+        case $data['testResults']['FailFail'] :
+          printf('              <td><i class="fas fa-exclamation"> </td>
               <td><i class="fas fa-exclamation"> </td>%s', "\n");
-        $failData++;
-        $failEC++;
-        break;
-      default :
-        printf('              <td>%s</td>
+          $failData++;
+          $failEC++;
+          break;
+        default :
+          printf('              <td>%s</td>
               <td></td>%s', $testResult['testResult'], "\n");
+      }
+      foreach ($data['expected'] as $SAML) {
+        printf('              <td><i class="fas fa-%s</td>%s',
+        sends($testResult['attr_OK'], $SAML) ? HTML_CHECK_SP : HTML_EXCLAMATION_SP, "\n");
+      }
+      printf('            </tr>%s', "\n");
     }
-    foreach ($data['expected'] as $SAML) {
-      printf('              <td><i class="fas fa-%s</td>%s',
-      sends($testResult['attr_OK'], $SAML) ? HTML_CHECK_SP : HTML_EXCLAMATION_SP, "\n");
-    }
-    printf('            </tr>%s', "\n");
   }
   printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC, $tested_idps);
 }
@@ -366,48 +357,52 @@ function showMFA($tested_idps) {
     WHERE `tests`.`testRun_id` = `testRuns`.`id`
       AND `testRuns`.`idp_id` = `idps`.`id`
       AND `test` = 'mfa'
-    ORDER BY `entityID`;");
+    ORDER BY `entityID`, `time` DESC;");
   $okMFA = 0;
   $okForceAuthn = 0;
   $failMFA = 0;
   $failForceAuthn = 0;
+  $lastIdp = '';
   $testHandler->execute();
   while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
     $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
+    if ($lastIdp != $idp) {
+      $lastIdp = $idp;
+      $tested_idps[$idp] = true;
 
-    printf('            <tr>
+      printf('            <tr>
               <td><a href="?tab=MFA&idp=%s">%s</a></td>
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
-    switch ($testResult['testResult']) {
-      case 'Supports REFEDS MFA and ForceAuthn.' :
-        printf('              <td><i class="fas fa-check"></i> OK</td>
+      switch ($testResult['testResult']) {
+        case 'Supports REFEDS MFA and ForceAuthn.' :
+          printf('              <td><i class="fas fa-check"></i> OK</td>
               <td><i class="fas fa-check"></i> OK</td>%s', "\n");
-        $okMFA++;
-        $okForceAuthn++;
-        break;
-      case 'Does support ForceAuthn but not REFEDS MFA.' :
-        printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
+          $okMFA++;
+          $okForceAuthn++;
+          break;
+        case 'Does support ForceAuthn but not REFEDS MFA.' :
+          printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
               <td><i class="fas fa-check"></i> OK</td>%s', "\n");
-        $failMFA++;
-        $okForceAuthn++;
-        break;
-      case 'Supports REFEDS MFA but not ForceAuthn.' :
-        printf('              <td><i class="fas fa-check"></i> OK</td>\n";
+          $failMFA++;
+          $okForceAuthn++;
+          break;
+        case 'Supports REFEDS MFA but not ForceAuthn.' :
+          printf('              <td><i class="fas fa-check"></i> OK</td>\n";
               <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
-        $okMFA++;
-        $failForceAuthn++;
-        break;
-      case 'Does neither support REFEDS MFA or ForceAuthn.' :
-        printf('              <td><i class="fas fa-exclamation"></i> Fail</td>\n";
+          $okMFA++;
+          $failForceAuthn++;
+          break;
+        case 'Does neither support REFEDS MFA or ForceAuthn.' :
+          printf('              <td><i class="fas fa-exclamation"></i> Fail</td>\n";
               <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
-        $failMFA++;
-        $failForceAuthn++;
-        break;
-      default :
-        printf('              <td>%s</td>%s',$testResult['testResult'], "\n");
+          $failMFA++;
+          $failForceAuthn++;
+          break;
+        default :
+          printf('              <td>%s</td>%s',$testResult['testResult'], "\n");
+      }
+      print "            </tr>\n";
     }
-    print "            </tr>\n";
   }
   printFooterSummary($okMFA, 0, $failMFA, $okForceAuthn, 0, $failForceAuthn, $tested_idps);
 }
@@ -441,7 +436,7 @@ function showESI($tested_idps) {
     WHERE `tests`.`testRun_id` = `testRuns`.`id`
       AND `testRuns`.`idp_id` = `idps`.`id`
       AND `test` = 'esi'
-    ORDER BY `entityID`;");
+    ORDER BY `entityID`, `time` DESC;");
   $testStudHandler = $config->getDB()->prepare(
     "SELECT `attr_OK`, `testResult`, `tests`.`time`
     FROM `tests` WHERE `testRun_id` = :testrun
@@ -454,79 +449,83 @@ function showESI($tested_idps) {
   $okStud=0;
   $warnStud=0;
   $failStud=0;
+  $lastIdp = '';
   $testHandler->execute();
   while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
     $idp = $testResult['entityID'];
-    $testRun = $testResult['testRun_id']; // NO SONAR bound above
-    $tested_idps[$idp] = true;
+    if ($lastIdp != $idp) {
+      $lastIdp = $idp;
+      $testRun = $testResult['testRun_id']; // NO SONAR bound above
+      $tested_idps[$idp] = true;
 
-    printf('            <tr>
+      printf('            <tr>
               <td><a href="?tab=ESI&idp=%s">%s</a></td>
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
-    switch ($testResult['testResult']) {
-      case 'schacPersonalUniqueCode OK':
-        print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
-        $ok++;
-        break;
-      case 'schacPersonalUniqueCode OK. BUT wrong case':
-        print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
-        $ok++;
-        break;
-      case 'Missing schacPersonalUniqueCode':
-        print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
-        $warn++;
-        break;
-      case 'More than one schacPersonalUniqueCode';
-        print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
-        $warn++;
-        break;
-      case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
-        print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
-        $fail++;
-        break;
-      case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
-        print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
-        $fail++;
-        break;
-      default :
-        print "              <td>" . $testResult['testResult'] . "</td>\n";
-    }
-    $testStudHandler->execute();
-    if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
-      printf("              <td>%s</td>\n",$testResult['time']);
       switch ($testResult['testResult']) {
         case 'schacPersonalUniqueCode OK':
           print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
-          $okStud++;
+          $ok++;
           break;
         case 'schacPersonalUniqueCode OK. BUT wrong case':
           print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
-          $okStud++;
+          $ok++;
           break;
         case 'Missing schacPersonalUniqueCode':
           print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
-          $warnStud++;
+          $warn++;
           break;
         case 'More than one schacPersonalUniqueCode';
           print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
-          $warnStud++;
+          $warn++;
           break;
         case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
           print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
-          $failStud++;
+          $fail++;
           break;
         case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
           print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
-          $failStud++;
+          $fail++;
           break;
         default :
           print "              <td>" . $testResult['testResult'] . "</td>\n";
       }
-    } else {
-      print '              <td>No test run as Student</td>
-              <td></td>' . "\n";
+      $testStudHandler->execute();
+      if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
+        printf("              <td>%s</td>\n",$testResult['time']);
+        switch ($testResult['testResult']) {
+          case 'schacPersonalUniqueCode OK':
+            print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
+            $okStud++;
+            break;
+          case 'schacPersonalUniqueCode OK. BUT wrong case':
+            print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
+            $okStud++;
+            break;
+          case 'Missing schacPersonalUniqueCode':
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
+            $warnStud++;
+            break;
+          case 'More than one schacPersonalUniqueCode';
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
+            $warnStud++;
+            break;
+          case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
+            print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
+            $failStud++;
+            break;
+          case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
+            print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
+            $failStud++;
+            break;
+          default :
+            print "              <td>" . $testResult['testResult'] . "</td>\n";
+        }
+      } else {
+        print '              <td>No test run as Student</td>
+                <td></td>' . "\n";
+      }
+      print "            </tr>\n";
     }
-    print "            </tr>\n";
   }
   printf('          </tbody>
           <tfooter>
