@@ -38,8 +38,8 @@ $tests = array(
     'fullName' => 'CoCov1',
     'dbName' => 'cocov1-1',
     'expected' => array (
-        'norEduPersonNIN' => 'norEduPersonNIN',
-        'personalIdentityNumber' => 'personalIdentityNumber',
+      'norEduPersonNIN' => 'norEduPersonNIN',
+      'personalIdentityNumber' => 'personalIdentityNumber',
     ),
     'testResults' => array(
       'OKOK' => 'CoCo OK, Entity Category Support OK',
@@ -52,24 +52,14 @@ $tests = array(
     'displayName' => 'CoCov2',
     'fullName' => 'CoCov2',
     'dbName' => 'cocov2-1',
-    'expected' => array (
-        'norEduPersonNIN' => 'norEduPersonNIN',
-        'personalIdentityNumber' => 'personalIdentityNumber',
-    ),
-    'testResults' => array(
-      'OKOK' => 'CoCo OK, Entity Category Support OK',
-      'OKFail' => 'CoCo OK, Entity Category Support missing',
-      'Fail' => 'Support for CoCo missing, Entity Category Support missing',
-      'FailFail' => 'CoCo is not supported, BUT Entity Category Support is claimed',
-    ),
   ),
   'Anon' => array(
     'displayName' => 'Anon',
     'fullName' => 'Anonymous',
     'dbName' => 'anonymous',
     'expected' => array (
-        'ePSA' => 'eduPersonScopedAffiliation',
-        'sHO' => 'schacHomeOrganization',
+      'ePSA' => 'eduPersonScopedAffiliation',
+      'sHO' => 'schacHomeOrganization',
     ),
     'testResults' => array(
       'OKOK' => 'Anonymous attributes OK, Entity Category Support OK',
@@ -83,10 +73,10 @@ $tests = array(
     'fullName' => 'Pseudonymous',
     'dbName' => 'pseudonymous',
     'expected' => array (
-        'pairwise-id' => 'pairwise-id',
-        'ePA' => 'eduPersonAssurance',
-        'ePSA'=> 'eduPersonScopedAffiliation',
-        'sHO' => 'schacHomeOrganization',
+      'pairwise-id' => 'pairwise-id',
+      'ePA' => 'eduPersonAssurance',
+      'ePSA'=> 'eduPersonScopedAffiliation',
+      'sHO' => 'schacHomeOrganization',
     ),
     'testResults' => array(
       'OKOK' => 'Pseudonymous attributes OK, Entity Category Support OK',
@@ -117,6 +107,8 @@ $tests = array(
     ),
   ),
 );
+$tests['CoCov2']['expected'] = $tests['CoCov1']['expected'];
+$tests['CoCov2']['testResults'] = $tests['CoCov1']['testResults'];
 
 if (isset($config->getFederation()['metadataTool'])) {
   $ch = curl_init();
@@ -288,15 +280,27 @@ function showTab($tab, $data,$tested_idps) {
               <td>%s</td>%s', $tab, $idp, $idp, $testResult['time'], "\n");
     switch ($testResult['testResult']) {
       case $data['testResults']['OKOK'] :
-        printf('              <td><i class="fas fa-check">   </td>
+        if (($tab == 'CoCov1' || $tab == 'CoCov2') && ! sends($testResult['attr_OK'], 'norEduPersonNIN')) {
+          printf('              <td><i class="fas fa-exclamation-triangle">  </td>
               <td><i class="fas fa-check">   </td>%s', "\n");
-        $okData++;
+          $warnData++;
+        } else {
+          printf('              <td><i class="fas fa-check">   </td>
+              <td><i class="fas fa-check">   </td>%s', "\n");
+          $okData++;
+        }
         $okEC++;
         break;
       case $data['testResults']['OKFail'] :
-        printf('              <td><i class="fas fa-check">   </td>
+        if (($tab == 'CoCov1' || $tab == 'CoCov2') && ! sends($testResult['attr_OK'], 'norEduPersonNIN')) {
+          printf('              <td><i class="fas fa-exclamation-triangle">  </td>
               <td><i class="fas fa-exclamation-triangle">  </td>%s', "\n");
-        $okData++;
+          $warnData++;
+        } else {
+          printf('              <td><i class="fas fa-check">   </td>
+              <td><i class="fas fa-exclamation-triangle">  </td>%s', "\n");
+          $okData++;
+        }
         $warnEC++;
         break;
       case $data['testResults']['Fail'] :
@@ -316,7 +320,7 @@ function showTab($tab, $data,$tested_idps) {
     }
     foreach ($data['expected'] as $SAML) {
       printf('              <td><i class="fas fa-%s</td>%s',
-      sends($testResult['attr_OK'],$SAML) ? HTML_CHECK_SP : HTML_EXCLAMATION_SP, "\n");
+      sends($testResult['attr_OK'], $SAML) ? HTML_CHECK_SP : HTML_EXCLAMATION_SP, "\n");
     }
     printf('            </tr>%s', "\n");
   }
