@@ -1,4 +1,9 @@
 <?php
+const HTML_ACTIVE = ' active';
+const HTML_CHECK_SP = 'check">   ';
+const HTML_EXCLAMATION_SP = 'exclamation"> ';
+const HTML_EXCLAMATION_TR_SP = 'exclamation-triangle">  ';
+
 //Load composer's autoloader
 require_once '../vendor/autoload.php';
 $config = new \releasecheck\Configuration();
@@ -9,6 +14,101 @@ $html = new $htmlClass();
 
 $collapseIcons = array();
 $tested_idps = array();
+$tests = array(
+  'RandS' => array(
+    'displayName' => 'R&S',
+    'fullName' => 'R&S',
+    'dbName' => 'rands',
+    'expected' => array (
+      'ePPN' => 'eduPersonPrincipalName',
+      'mail' => 'mail',
+      'displayName' => 'displayName',
+      'givenName' => 'givenName',
+      'sn' => 'sn',
+    ),
+    'testResults' => array(
+      'OKOK' => 'R&S attributes OK, Entity Category Support OK',
+      'OKFail' => 'R&S attributes OK, Entity Category Support missing',
+      'Fail' => 'R&S attribute missing, Entity Category Support missing',
+      'FailFail' => 'R&S attributes missing, BUT Entity Category Support claimed',
+    ),
+  ),
+  'CoCov1' => array(
+    'displayName' => 'CoCov1',
+    'fullName' => 'CoCov1',
+    'dbName' => 'cocov1-1',
+    'expected' => array (
+      'norEduPersonNIN' => 'norEduPersonNIN',
+      'personalIdentityNumber' => 'personalIdentityNumber',
+    ),
+    'testResults' => array(
+      'OKOK' => 'CoCo OK, Entity Category Support OK',
+      'OKFail' => 'CoCo OK, Entity Category Support missing',
+      'Fail' => 'Support for CoCo missing, Entity Category Support missing',
+      'FailFail' => 'CoCo is not supported, BUT Entity Category Support is claimed',
+    ),
+  ),
+  'CoCov2' => array(
+    'displayName' => 'CoCov2',
+    'fullName' => 'CoCov2',
+    'dbName' => 'cocov2-1',
+  ),
+  'Anon' => array(
+    'displayName' => 'Anon',
+    'fullName' => 'Anonymous',
+    'dbName' => 'anonymous',
+    'expected' => array (
+      'ePSA' => 'eduPersonScopedAffiliation',
+      'sHO' => 'schacHomeOrganization',
+    ),
+    'testResults' => array(
+      'OKOK' => 'Anonymous attributes OK, Entity Category Support OK',
+      'OKFail' => 'Anonymous attributes OK, Entity Category Support missing',
+      'Fail' => 'Anonymous attribute missing, Entity Category Support missing',
+      'FailFail' => 'Anonymous attributes missing, BUT Entity Category Support claimed',
+    ),
+  ),
+  'PAnon' => array(
+    'displayName' => 'Panon',
+    'fullName' => 'Pseudonymous',
+    'dbName' => 'pseudonymous',
+    'expected' => array (
+      'pairwise-id' => 'pairwise-id',
+      'ePA' => 'eduPersonAssurance',
+      'ePSA'=> 'eduPersonScopedAffiliation',
+      'sHO' => 'schacHomeOrganization',
+    ),
+    'testResults' => array(
+      'OKOK' => 'Pseudonymous attributes OK, Entity Category Support OK',
+      'OKFail' => 'Pseudonymous attributes OK, Entity Category Support missing',
+      'Fail' => 'Pseudonymous attribute missing, Entity Category Support missing',
+      'FailFail' => 'Pseudonymous attributes missing, BUT Entity Category Support claimed',
+    ),
+  ),
+  'Pers' => array(
+    'displayName' => 'Pers',
+    'fullName' => 'Personalized',
+    'dbName' => 'personalized',
+    'expected' => array (
+      'subject-id' => 'subject-id',
+      'mail' => 'mail',
+      'displayName' => 'displayName',
+      'givenName' => 'givenName',
+      'sn' => 'sn',
+      'ePA' => 'eduPersonAssurance',
+      'ePSA' => 'eduPersonScopedAffiliation',
+      'sHO' => 'schacHomeOrganization',
+    ),
+    'testResults' => array(
+      'OKOK' => 'Personalized attributes OK, Entity Category Support OK',
+      'OKFail' => 'Personalized attributes OK, Entity Category Support missing',
+      'Fail' => 'Personalized attribute missing, Entity Category Support missing',
+      'FailFail' => 'Personalized attributes missing, BUT Entity Category Support claimed',
+    ),
+  ),
+);
+$tests['CoCov2']['expected'] = $tests['CoCov1']['expected'];
+$tests['CoCov2']['testResults'] = $tests['CoCov1']['testResults'];
 
 if (isset($config->getFederation()['metadataTool'])) {
   $ch = curl_init();
@@ -27,854 +127,202 @@ if (isset($config->getFederation()['metadataTool'])) {
   curl_close($ch);
 }
 
-$randsActive = '';
-$cocov1Active = '';
-$cocov2Active = '';
-$anonymousActive = '';
-$pseudonymousActive = '';
-$personalizedActive = '';
-$mfaActive = '';
-$esiActive = '';
-$allTestsActive = '';
-$ecsActive = '';
-
-if (isset($_GET['tab'])) {
-  switch ($_GET['tab']) {
-    case 'Anon' :
-      $anonymousActive = ' active';
-      break;
-    case 'PAnon' :
-      $pseudonymousActive = ' active';
-      break;
-    case 'Pers' :
-      $personalizedActive = ' active';
-      break;
-    case 'RandS' :
-      $randsActive = ' active';
-      break;
-    case 'CoCov1' :
-      $cocov1Active = ' active';
-      break;
-    case 'CoCov2' :
-      $cocov2Active = ' active';
-      break;
-    case 'MFA' :
-      $mfaActive = ' active';
-      break;
-    case 'ESI' :
-      $esiActive = ' active';
-      break;
-    case 'AllTests' :
-      $allTestsActive = ' active';
-      break;
-    default :
-  }
-}
+$tab = isset($_GET['tab']) ? $_GET['tab'] : '';
 $html->showHeaders();
 if (! in_array($_SERVER['saml_eduPersonPrincipalName'], $config->getFederation()['adminUsers'] )) {
-    print "<h1>No access</h1>";
+    print '<h1>No access</h1>';
     $html->showFooter();
     exit;
 }
-?>
-    <div class="row">
+printf('    <div class="row">
       <div class="col">
-        <ul class="nav nav-tabs" id="myTab">
-          <li class="nav-item">
-            <a class="nav-link<?=$randsActive?>" href="?tab=RandS">R&S</a>
+        <ul class="nav nav-tabs">%s', "\n");
+foreach ($tests as $test => $data) {
+  printf('          <li class="nav-item">
+            <a class="nav-link%s" href="?tab=%s">%s</a>
+          </li>%s',
+    $tab == $test ? HTML_ACTIVE : '',
+    $test, $data['displayName'], "\n");
+}
+printf('          <li class="nav-item">
+            <a class="nav-link%s" href="?tab=MFA">MFA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link<?=$cocov1Active?>" href="?tab=CoCov1">CoCov1</a>
+            <a class="nav-link%s" href="?tab=ESI">ESI</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link<?=$cocov2Active?>" href="?tab=CoCov2">CoCov2</a>
+            <a class="nav-link%s" href="?tab=AllTests">AllTests</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link<?=$anonymousActive?>" href="?tab=Anon">Anon</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link<?=$pseudonymousActive?>" href="?tab=PAnon">Panon</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link<?=$personalizedActive?>" href="?tab=Pers">Pers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link<?=$mfaActive?>" href="?tab=MFA">MFA</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link<?=$esiActive?>" href="?tab=ESI">ESI</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link<?=$allTestsActive?>" href="?tab=AllTests">AllTests</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link<?=$ecsActive?>" href="?tab=ECS">ECS</a>
+            <a class="nav-link%s" href="?tab=ECS">ECS</a>
           </li>
         </ul>
       </div>
-    </div>
-<?php
-if (isset($_GET['idp']))
-  printf ("        <h3>Result for %s</h3>\n", htmlspecialchars($_GET['idp']));
-
-if (isset($_GET['tab'])) {
-  switch ($_GET['tab']) {
-    case 'Anon' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showAnon($tested_idps);
-      break;
-    case 'PAnon' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showPAnon($tested_idps);
-      break;
-    case 'Pers' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showPers($tested_idps);
-      break;
-    case 'RandS' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showRandS($tested_idps);
-      break;
-    case 'CoCov1' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showCoCo($tested_idps,1);
-      break;
-    case 'CoCov2' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showCoCo($tested_idps,2);
-      break;
+    </div>%s',
+  $tab == 'MFA' ? HTML_ACTIVE : '', $tab == 'ESI' ? HTML_ACTIVE : '',
+  $tab == 'AllTests' ? HTML_ACTIVE : '', $tab == 'ECS' ? HTML_ACTIVE : '', "\n");
+if (isset($_GET['idp'])) {
+  printf ('        <h3>Result for %s</h3>%s', "\n", htmlspecialchars($_GET['idp']));
+  switch ($tab) {
     case 'MFA' :
-      if (isset($_GET['idp'])) {
-        showTestsIdP('mfa');
-      } else {
-        showMFA($tested_idps);
-      }
+      showTestsIdP('mfa');
       break;
     case 'ESI' :
-      if (isset($_GET['idp'])) {
-        showTestsIdP('esi');
-      } else {
-        showESI($tested_idps);
-      }
+      showTestsIdP('esi');
       break;
-    case 'AllTests' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showAllTests();
-      break;
-    case 'ECS' :
-      if (isset($_GET['idp']))
-        showTestsIdP();
-      else
-        showEcsStatus();
-      break;
+    default :
+      showTestsIdP();
   }
+} elseif ($tab != '') {
+  if (isset($tests[$tab])) {
+    showTab($tab, $tests[$tab], $tested_idps);
+  } else {
+    switch ($tab) {
+      case 'MFA' :
+        showMFA($tested_idps);
+        break;
+      case 'ESI' :
+        showESI($tested_idps);
+        break;
+      case 'AllTests' :
+        showAllTests();
+        break;
+      case 'ECS' :
+        showEcsStatus();
+        break;
+      default :
+    }
+  }
+  $html->addTableSort('resultTable');
 }
 
 $html->showFooter();
 
-function sends($string,$Attribute) {
-  if ( strpos($string, $Attribute) === false ) {
-    return false;
-  } else {
-    return true;
-  }
+function sends($string,$attribute) {
+  return strpos($string, $attribute) !== false;
 }
 
-function showAnon($tested_idps) {
-  print '    <div class="row">
-      <div class="col">
-        <h1>Data based on IdP:s that have run Anonymous test</h1>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <td>Anonymous data </td>
-            <td>
-              <i class="fas fa-check"> = Only send reqested data</i><br>
-              <i class="fas fa-exclamation"> = Send to much/less data</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Anonymous ECS</td>
-            <td>
-              <i class="fas fa-check"> = Have ECS for Anonymous</i><br>
-              <i class="fas fa-exclamation-triangle"> = Missing ECS for Anonymous</i><br>
-              <i class="fas fa-exclamation"> = Have ECS for Anonymous but sends to much data > not Anonymous</i>
-            </td>
-          </tr>
-          <tr>
-            <td>eduPersonScopedAffiliation<br>schacHomeOrganization</td>
-            <td>
-              <i class="fas fa-check"> = Sends attribute</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send attribute</i>
-            </td>
-          </tr>
-        </table>
-        <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=PAnon&Idp">IdP</a></th>
-            <th><a href="?tab=PAnon&Time">Tested</a></th>
-            <th><a href="?tab=PAnon&Status">Data</a></th>
-            <th>ECS</th>
-            <th>ePSA</th>
-            <th>sHO</th>
-          </tr>' . "\n";
-  global $config;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'anonymous'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        ADN `test` = 'anonymous'
-      ORDER BY length(testResult) DESC,
-      length(attr_OK) - length(replace(attr_OK, 'eduPersonScopedAffiliation', '')) +
-      length(attr_OK) - length(replace(attr_OK, 'schacHomeOrganization', ''));");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'anonymous'
-      ORDER BY `entityID`;");
-  }
-  $okData=0;
-  $warnData=0;
-  $failData=0;
-  $okEC=0;
-  $warnEC=0;
-  $failEC=0;
-  $testHandler->execute();
-  while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
-    $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
-
-    printf ('          <tr>%s            <td><a href="?tab=Anon&idp=%s#anonymous">%s</a></td>%s', "\n", $idp, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case 'Anonymous attributes OK, Entity Category Support OK' :
-        printf ('            <td><i class="fas fa-check"></td>%s            <td><i class="fas fa-check"></td>%s', "\n", "\n");
-        $okData++;
-        $okEC++;
-        break;
-      case 'Anonymous attributes OK, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-check\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation-triangle\"></td>\n";
-        $okData++;
-        $warnEC++;
-        break;
-      case 'Anonymous attribute missing, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td></td>\n";
-        $failData++;
-        break;
-      case 'Anonymous attribute missing, BUT Entity Category Support claimed' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation\"></td>\n";
-        $failData++;
-        $failEC++;
-        break;
-      default :
-        print "            <td colspan=\"2\">" . $testResult['testResult'] . "</td>\n";
-    }
-    printf ('            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s          </tr>%s',
-    sends($testResult['attr_OK'],"eduPersonScopedAffiliation") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"schacHomeOrganization") ? "check" : "exclamation", "\n", "\n");
-  }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okData) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
-  if ($warnData) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
-  if ($failData) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
-  printf('            </td>%s            <td>%s', "\n", "\n");
-  if ($okEC) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
-  if ($warnEC) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
-  if ($failEC) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
-  print('        <table class="table table-striped table-bordered">'. "\n");
-  printf ("          <tr><th>IdP:s not tested</th></tr>\n");
-  foreach ($tested_idps as $idp => $value) {
-    if (! $value ) {
-      printf ("          <tr><td><a href=\"?tab=Anon&idp=%s\">%s</a></td></tr>\n", $idp, $idp);
-    }
-  }
-  print "        </table>
-      </div><!-- End col-->
-    </div><!-- End row-->\n";
-}
-
-function showPAnon($tested_idps) {
-  print '    <div class="row">
-      <div class="col">
-        <h1>Data based on IdP:s that have run Pseudonymous test</h1>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <td>Pseudonymous data </td>
-            <td>
-              <i class="fas fa-check"> = Only send reqested data</i><br>
-              <i class="fas fa-exclamation"> = Send to much/less data</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Pseudonymous ECS</td>
-            <td>
-              <i class="fas fa-check"> = Have ECS for Pseudonymous</i><br>
-              <i class="fas fa-exclamation-triangle"> = Missing ECS for Pseudonymous</i><br>
-              <i class="fas fa-exclamation"> = Have ECS for Pseudonymous but sends to much data > not Pseudonymous</i>
-            </td>
-          </tr>
-          <tr>
-            <td>pairwise-id<br>eduPersonAssurance<br>eduPersonScopedAffiliation<br>schacHomeOrganization</td>
-            <td>
-              <i class="fas fa-check"> = Sends attribute</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send attribute</i>
-            </td>
-          </tr>
-        </table>
-        <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=PAnon&Idp">IdP</a></th>
-            <th><a href="?tab=PAnon&Time">Tested</a></th>
-            <th><a href="?tab=PAnon&Status">Data</a></th>
-            <th>ECS</th>
-            <th>pairwise-id</th>
-            <th>ePA</th>
-            <th>ePSA</th>
-            <th>sHO</th>
-          </tr>' . "\n";
-  global $config;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'pseudonymous'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'pseudonymous'
-      ORDER BY length(testResult) DESC,
-        length(attr_OK) - length(replace(attr_OK, 'pairwise-id', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'eduPersonAssurance', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'eduPersonScopedAffiliation', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'schacHomeOrganization', ''));");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'pseudonymous'
-      ORDER BY `entityID`;");
-  }
-  $okData=0;
-  $warnData=0;
-  $failData=0;
-  $okEC=0;
-  $warnEC=0;
-  $failEC=0;
-  $testHandler->execute();
-  while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
-    $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
-
-    printf ('          <tr>%s            <td><a href="?tab=PAnon&idp=%s#pseudonymous">%s</a></td>%s', "\n", $idp, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case 'Pseudonymous attributes OK, Entity Category Support OK' :
-        printf ('            <td><i class="fas fa-check"></td>%s            <td><i class="fas fa-check"></td>%s', "\n", "\n");
-        $okData++;
-        $okEC++;
-        break;
-      case 'Pseudonymous attributes OK, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-check\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation-triangle\"></td>\n";
-        $okData++;
-        $warnEC++;
-        break;
-      case 'Pseudonymous attribute missing, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td></td>\n";
-        $failData++;
-        break;
-      case 'Pseudonymous attribute missing, BUT Entity Category Support claimed' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation\"></td>\n";
-        $failData++;
-        $failEC++;
-        break;
-      default :
-        print "            <td colspan=\"2\">" . $testResult['testResult'] . "</td>\n";
-    }
-    printf ('            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s          </tr>%s',
-     sends($testResult['attr_OK'],"pairwise-id") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"eduPersonAssurance") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"eduPersonScopedAffiliation") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"schacHomeOrganization") ? "check" : "exclamation", "\n", "\n");
-  }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okData) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
-  if ($warnData) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
-  if ($failData) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
-  printf('            </td>%s            <td>%s', "\n", "\n");
-  if ($okEC) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
-  if ($warnEC) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
-  if ($failEC) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
-  print('        <table class="table table-striped table-bordered">'. "\n");
-  printf ("          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>\n");
-  foreach ($tested_idps as $idp => $value) {
-    if (! $value ) {
-      printf ("          <tr><td><a href=\"?tab=PAnon&idp=%s\">%s</a></td></tr>\n", $idp, $idp);
-    }
-  }
-  print "        </table>
-      </div><!-- End col-->
-    </div><!-- End row-->\n";
-}
-
-function showPers($tested_idps) {
-  print '    <div class="row">
-      <div class="col">
-        <h1>Data based on IdP:s that have run Personalized test</h1>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <td>Personalized data </td>
-            <td>
-              <i class="fas fa-check"> = Only send reqested data</i><br>
-              <i class="fas fa-exclamation"> = Send to much/less data</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Personalized ECS</td>
-            <td>
-              <i class="fas fa-check"> = Have ECS for Personalized</i><br>
-              <i class="fas fa-exclamation-triangle"> = Missing ECS for Personalized</i><br>
-              <i class="fas fa-exclamation"> = Have ECS for Personalized but sends to much data > not Personalized</i>
-            </td>
-          </tr>
-          <tr>
-            <td>subject-id<br>mail<br>displayName<br>givenName<br>sn<br>eduPersonAssurance<br>eduPersonScopedAffiliation<br>schacHomeOrganization</td>
-            <td>
-              <i class="fas fa-check"> = Sends attribute</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send attribute</i>
-            </td>
-          </tr>
-        </table>
-        <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=Pers&Idp">IdP</a></th>
-            <th><a href="?tab=Pers&Time">Tested</a></th>
-            <th><a href="?tab=Pers&Status">Data</a></th>
-            <th>ECS</th>
-            <th>subject-id</th>
-            <th>mail</th>
-            <th>displayName</th>
-            <th>givenName</th>
-            <th>sn</th>
-            <th>ePA</th>
-            <th>ePSA</th>
-            <th>sHO</th>
-          </tr>' . "\n";
-  global $config;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'personalized'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'personalized'
-      ORDER BY length(testResult) DESC,
-        length(attr_OK) - length(replace(attr_OK, 'subject-id', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'mail', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'displayName', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'givenName', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'sn', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'eduPersonAssurance', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'eduPersonScopedAffiliation', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'schacHomeOrganization', ''));");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'personalized'
-      ORDER BY `entityID`;");
-  }
-  $okData=0;
-  $warnData=0;
-  $failData=0;
-  $okEC=0;
-  $warnEC=0;
-  $failEC=0;
-  $testHandler->execute();
-  while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
-    $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
-    printf ('          <tr>%s            <td><a href="?tab=Pers&idp=%s#personalized">%s</a></td>%s', "\n", $idp, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case 'Personalized attributes OK, Entity Category Support OK' :
-        printf ('            <td><i class="fas fa-check"></td>%s            <td><i class="fas fa-check"></td>%s', "\n", "\n");
-        $okData++;
-        $okEC++;
-        break;
-      case 'Personalized attributes OK, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-check\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation-triangle\"></td>\n";
-        $okData++;
-        $warnEC++;
-        break;
-      case 'Personalized attribute missing, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td></td>\n";
-        $failData++;
-        break;
-      case 'Personalized attribute missing, BUT Entity Category Support claimed' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation\"></td>\n";
-        $failData++;
-        $failEC++;
-        break;
-      default :
-        print "            <td colspan=\"2\">" . $testResult['testResult'] . "</td>\n";
-    }
-    printf ('            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-            <td><i class="fas fa-%s"></td>
-          </tr>%s',
-      sends($testResult['attr_OK'],"subject-id") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"mail") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"displayName") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"givenName") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"sn") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"eduPersonAssurance") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"eduPersonScopedAffiliation") ? "check" : "exclamation",
-      sends($testResult['attr_OK'],"schacHomeOrganization") ? "check" : "exclamation", "\n");
-  }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okData) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
-  if ($warnData) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
-  if ($failData) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
-  printf('            </td>%s            <td>%s', "\n", "\n");
-  if ($okEC) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
-  if ($warnEC) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
-  if ($failEC) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
-  print('        <table class="table table-striped table-bordered">'. "\n");
-  printf ("          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>\n");
-  foreach ($tested_idps as $idp => $value) {
-    if (! $value ) {
-      printf ("          <tr><td><a href=\"?tab=Pers&idp=%s\">%s</a></td></tr>\n", $idp, $idp);
-    }
-  }
-  print "        </table>
-      </div><!-- End col-->
-    </div><!-- End row-->\n";
-}
-
-function showRandS($tested_idps) {
-  print '    <div class="row">
-      <div class="col">
-        <h1>Data based on IdP:s that have run R&S test</h1>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <td>R&S data </td>
-            <td>
-              <i class="fas fa-check"> = Only send reqested data or less</i><br>
-              <i class="fas fa-exclamation"> = Send to much data</i>
-            </td>
-          </tr>
-          <tr>
-            <td>R&S ECS</td>
-            <td>
-              <i class="fas fa-check"> = Have ECS for R&S</i><br>
-              <i class="fas fa-exclamation-triangle"> = Missing ECS for R&S</i><br>
-              <i class="fas fa-exclamation"> = Have ECS for R&S but sends to much data > not R&S</i>
-            </td>
-          </tr>
-          <tr>
-            <td>ePPN<br>mail<br>displayName<br>givenName<br>sn</td>
-            <td>
-              <i class="fas fa-check"> = Sends attribute</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send attribute</i>
-            </td>
-          </tr>
-        </table>
-        <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=RandS&Idp">IdP</a></th>
-            <th><a href="?tab=RandS&Time">Tested</a></th>
-            <th><a href="?tab=RandS&Status">R&S data</a></th>
-            <th>R&S ECS</th>
-            <th>ePPN</th>
-            <th>mail</th>
-            <th>displayName</th>
-            <th>givenName</th>
-            <th>sn</th>
-          </tr>' . "\n";
-  global $config;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'rands'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'rands'
-      ORDER BY length(testResult) DESC,
-        length(attr_OK) - length(replace(attr_OK, 'eduPersonPrincipalName', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'mail', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'displayName', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'givenName', '')) +
-        length(attr_OK) - length(replace(attr_OK, 'sn', ''));");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'rands'
-      ORDER BY `entityID`;");
-  }
-  $okData=0;
-  $warnData=0;
-  $failData=0;
-  $okEC=0;
-  $warnEC=0;
-  $failEC=0;
-  $testHandler->execute();
-  while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
-    $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
-
-    printf ('          <tr>%s            <td><a href="?tab=RandS&idp=%s#rands">%s</a></td>%s', "\n", $idp, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case 'R&S attribut OK, Entity Category Support OK' :
-      case 'R&S attributes OK, Entity Category Support OK' :
-        printf ('            <td><i class="fas fa-check"></td>%s            <td><i class="fas fa-check"></td>%s', "\n", "\n");
-        $okData++;
-        $okEC++;
-        break;
-      case 'R&S attribut OK, Entity Category Support saknas' :
-      case 'R&S attributes OK, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-check\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation-triangle\"></td>\n";
-        $okData++;
-        $warnEC++;
-        break;
-      case 'R&S attribute missing, Entity Category Support missing' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td></td>\n";
-        $failData++;
-        break;
-      case 'R&S attributes missing, BUT Entity Category Support claimed' :
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n\t\t\t<td><i class=\"fas fa-exclamation\"></td>\n";
-        $failData++;
-        $failEC++;
-        break;
-      default :
-        print "            <td colspan=\"2\">" . $testResult['testResult'] . "</td>\n";
-    }
-    printf ('            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s          </tr>%s', sends($testResult['attr_OK'],"eduPersonPrincipalName") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"mail") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"displayName") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"givenName") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"sn") ? "check" : "exclamation", "\n", "\n");
-  }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okData) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
-  if ($warnData) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
-  if ($failData) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
-  printf('            </td>%s            <td>%s', "\n", "\n");
-  if ($okEC) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
-  if ($warnEC) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
-  if ($failEC) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
-  print('        <table class="table table-striped table-bordered">'. "\n");
-  printf ("          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>\n");
-  foreach ($tested_idps as $idp => $value) {
-    if (! $value ) {
-      printf ("          <tr><td><a href=\"?tab=Rands&idp=%s\">%s</a></td></tr>\n", $idp, $idp);
-    }
-  }
-  print "        </table>
-      </div><!-- End col-->
-    </div><!-- End row-->\n";
-}
-
-function showCoCo($tested_idps, $version = 1) {
-  $test = $version == 1 ? 'cocov1-1' : 'cocov2-1';
-  printf ('    <div class="row">
+function showTab($tab, $data,$tested_idps) {
+  printf('    <div class="row">
       <div class="col">
         <h1>Data based on IdP:s that have run %s test</h1>
         <table class="table table-striped table-bordered">
           <tr>
-            <td>Coco data </td>
+            <td>%s data </td>
+            <td>%s',
+    $data['fullName'], $data['fullName'], "\n");
+  switch ($tab) {
+    case 'CoCov1' :
+    case 'CoCov2' :
+      printf('              <i class="fas fa-check"> = Only send reqested data or less</i><br>
+              <i class="fas fa-exclamation"> = Send to much data</i>%s', "\n");
+      break;
+    default :
+      printf('              <i class="fas fa-check"> = Only send reqested data</i><br>
+              <i class="fas fa-exclamation"> = Send to much/less data</i>%s', "\n");
+  }
+  printf('            </td>
+          </tr>
+          <tr>
+            <td>%s ECS</td>
             <td>
-              <i class="fas fa-check"> = Only send reqested data or less</i><br>
-              <i class="fas fa-exclamation-triangle"> = Only send reqested data or less (not sending norEduPersonNIN)</i><br>
-              <i class="fas fa-exclamation"> = Send to much data</i>
+              <i class="fas fa-check"> = Have ECS for %s</i><br>
+              <i class="fas fa-exclamation-triangle"> = Missing ECS for %s</i><br>
+              <i class="fas fa-exclamation"> = Have ECS for %s but sends to much data > not %s</i>
             </td>
           </tr>
           <tr>
-            <td>CoCo ECS</td>
+            <td>%s</td>
             <td>
-              <i class="fas fa-check"> = Have ECS for CoCo</i><br>
-              <i class="fas fa-exclamation-triangle"> = Missing ECS for CoCo</i><br>
-              <i class="fas fa-exclamation"> = Have ECS for CoCo but sends to much data > not CoCo</i>
-            </td>
-          </tr>
-          <tr>
-            <td>norEduPersonNIN</td>
-            <td>
-              <i class="fas fa-check"> = Sends norEduPersonNIN</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send norEduPersonNIN</i>
-            </td>
-          </tr>
-          <tr>
-            <td>personalIdentityNumber</td>
-            <td>
-              <i class="fas fa-check"> = Sends personalIdentityNumber</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send personalIdentityNumber</i>
+              <i class="fas fa-check"> = Sends attribute</i><br>
+              <i class="fas fa-exclamation"> = Doesn\'t send attribute</i>
             </td>
           </tr>
         </table>
         <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=CoCov%d&Idp">IdP</a></th>
-            <th><a href="?tab=CoCov%d&Time">Tested</a></th>
-            <th><a hreF="?tab=CoCov%d&Status">CoCo data</a></th>
-            <th>CoCo ECS</th>
-            <th>norEduPersonNIN</th>
-            <th>personalIdentityNumber</th>
-          </tr>%s', $version == 1 ? 'CoCov1-1' : 'CoCov2-1', $version, $version, $version, "\n");
-  global $config;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = '$test'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = '$test'
-      ORDER BY testResult DESC, length(attr_OK) - length(replace(attr_OK, 'norEduPersonNIN', '')) + length(attr_OK) - length(replace(attr_OK, 'personalIdentityNumber', ''));");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = '$test'
-      ORDER BY `entityID`;");
+        <table id="resultTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>IdP</th>
+              <th>Tested</th>
+              <th>Data</th>
+              <th>ECS</th>%s',
+    $data['fullName'], $data['fullName'], $data['fullName'], $data['fullName'], $data['fullName'],
+    implode('<br>', $data['expected']), "\n");
+  foreach ($data['expected'] as $shortName => $SAML) {
+    printf('              <th>%s</th>%s', $shortName, "\n");
   }
+  printf('            </tr>
+          </thead>
+          <tbody>%s', "\n");
+  global $config;
+  $testHandler = $config->getDB()->prepare(
+    'SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
+    FROM `tests`, `testRuns`, `idps`
+    WHERE `tests`.`testRun_id` = `testRuns`.`id`
+      AND `testRuns`.`idp_id` = `idps`.`id`
+      AND `test` = :Test
+    ORDER BY `entityID`, `time` DESC;');
   $okData=0;
   $warnData=0;
   $failData=0;
   $okEC=0;
   $warnEC=0;
   $failEC=0;
-  $testHandler->execute();
+  $lastIdp = '';
+  $testHandler->execute(array('Test' => $data['dbName']));
   while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
     $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
+    if ($lastIdp != $idp) {
+      $lastIdp = $idp;
+      $tested_idps[$idp] = true;
 
-    printf ('          <tr>%s            <td><a href="?tab=CoCov%d&idp=%s#cocov%d-1">%s</a></td>%s', "\n", $version, $idp, $version, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case "CoCo OK, Entity Category Support OK":
-        print "            <td><i class=\"fas fa-check\"></td>\n            <td><i class=\"fas fa-check\"></td>\n";
-        $okData++;
-        $okEC++;
-        break;
-      case "CoCo OK, Entity Category Support missing":
-      case "CoCo OK, Entity Category Support saknas":
-        # Show warning if Fulfiulls CoCo but doesn't send norEduPersonNIN
-        printf ("            <td><i class=\"fas fa-%s\"></td>\n            <td><i class=\"fas fa-exclamation-triangle\"></td>\n", sends($testResult['attr_OK'],"norEduPersonNIN") ? 'check' : 'exclamation-triangle');
-        $okData++;
-        $warnEC++;
-        break;
-      case "Support for CoCo missing, Entity Category Support missing":
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n            <td></td>\n";
-        $failData++;
-        break;
-      case "CoCo is not supported, BUT Entity Category Support is claimed":
-        print "            <td><i class=\"fas fa-exclamation\"></td>\n            <td><i class=\"fas fa-exclamation\"></td>\n";
-        $failData++;
-        $failEC++;
-        break;
-      default :
-        print "            <td colspan=\"2\">" . $testResult['testResult'] . "</td>\n";
-    }
-    printf ('            <td><i class="fas fa-%s"></td>%s            <td><i class="fas fa-%s"></td>%s          </tr>%s',
-      sends($testResult['attr_OK'],"norEduPersonNIN") ? "check" : "exclamation", "\n", sends($testResult['attr_OK'],"personalIdentityNumber") ? "check" : "exclamation", "\n", "\n");
-  }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okData) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
-  if ($warnData) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
-  if ($failData) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
-  printf('            </td>%s            <td>%s', "\n", "\n");
-  if ($okEC) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
-  if ($warnEC) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
-  if ($failEC) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
-  print('        <table class="table table-striped table-bordered">'. "\n");
-  printf ("          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>\n");
-  foreach ($tested_idps as $idp => $value) {
-    if (! $value ) {
-      printf ("          <tr><td><a href=\"?tab=Rands&idp=%s\">%s</a></td></tr>\n", $idp, $idp);
+      printf('            <tr>
+              <td><a href="?tab=%s&idp=%s">%s</a></td>
+              <td>%s</td>%s', $tab, $idp, $idp, $testResult['time'], "\n");
+      switch ($testResult['testResult']) {
+        case $data['testResults']['OKOK'] :
+          printf('              <td><i class="fas fa-check">   </td>
+              <td><i class="fas fa-check">   </td>%s', "\n");
+          $okData++;
+          $okEC++;
+          break;
+        case $data['testResults']['OKFail'] :
+          printf('              <td><i class="fas fa-check">   </td>
+              <td><i class="fas fa-exclamation-triangle">  </td>%s', "\n");
+          $okData++;
+          $warnEC++;
+          break;
+        case $data['testResults']['Fail'] :
+          printf('              <td><i class="fas fa-exclamation"> </td>
+              <td></td>%s', "\n");
+          $failData++;
+          break;
+        case $data['testResults']['FailFail'] :
+          printf('              <td><i class="fas fa-exclamation"> </td>
+              <td><i class="fas fa-exclamation"> </td>%s', "\n");
+          $failData++;
+          $failEC++;
+          break;
+        default :
+          printf('              <td>%s</td>
+              <td></td>%s', $testResult['testResult'], "\n");
+      }
+      foreach ($data['expected'] as $SAML) {
+        printf('              <td><i class="fas fa-%s</td>%s',
+        sends($testResult['attr_OK'], $SAML) ? HTML_CHECK_SP : HTML_EXCLAMATION_SP, "\n");
+      }
+      printf('            </tr>%s', "\n");
     }
   }
-  print "        </table>
-      </div><!-- End col-->
-    </div><!-- End row-->\n";
+  printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC, $tested_idps);
 }
 
 function showMFA($tested_idps) {
   print '    <div class="row">
       <div class="col">
         <h1>Data based on IdP:s that have run MFA test</h1>
-    <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered">
           <tr>
             <td>MFA </td>
             <td>
@@ -892,98 +340,71 @@ function showMFA($tested_idps) {
         </table>
         <br>
         <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=MFA&Idp">IdP</a></th>
-            <th><a href="?tab=MFA&Time">Tested</a></th>
-            <th><a href="?tab=MFA&Status">MFA</a></th>
-            <th>ForceAuthn</th>
-          </tr>' . "\n";
+        <table id="resultTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>IdP</th>
+              <th>Tested</th>
+              <th>MFA</th>
+              <th>ForceAuthn</th>
+            </tr>
+          </thead>
+          <tbody>' . "\n";
   global $config;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'mfa'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'mfa'
-      ORDER BY length(testResult) DESC;");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'mfa'
-      ORDER BY `entityID`;");
-  }
+  $testHandler = $config->getDB()->prepare(
+    "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
+    FROM `tests`, `testRuns`, `idps`
+    WHERE `tests`.`testRun_id` = `testRuns`.`id`
+      AND `testRuns`.`idp_id` = `idps`.`id`
+      AND `test` = 'mfa'
+    ORDER BY `entityID`, `time` DESC;");
   $okMFA = 0;
   $okForceAuthn = 0;
   $failMFA = 0;
   $failForceAuthn = 0;
+  $lastIdp = '';
   $testHandler->execute();
   while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
     $idp = $testResult['entityID'];
-    $tested_idps[$idp] = true;
+    if ($lastIdp != $idp) {
+      $lastIdp = $idp;
+      $tested_idps[$idp] = true;
 
-    printf ('          <tr>%s            <td><a href="?tab=MFA&idp=%s">%s</a></td>%s', "\n", $idp, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case 'Supports REFEDS MFA and ForceAuthn.' :
-        print "            <td><i class=\"fas fa-check\"></i> OK</td>\n";
-        print "            <td><i class=\"fas fa-check\"></i> OK</td>\n";
-        $okMFA++;
-        $okForceAuthn++;
-        break;
-      case 'Does support ForceAuthn but not REFEDS MFA.' :
-        print "            <td><i class=\"fas fa-exclamation\"></i> Fail</td>\n";
-        print "            <td><i class=\"fas fa-check\"></i> OK</td>\n";
-        $failMFA++;
-        $okForceAuthn++;
-        break;
-      case 'Supports REFEDS MFA but not ForceAuthn.' :
-        print "            <td><i class=\"fas fa-check\"></i> OK</td>\n";
-        print "            <td><i class=\"fas fa-exclamation\"></i> Fail</td>\n";
-        $okMFA++;
-        $failForceAuthn++;
-        break;
-      case 'Does neither support REFEDS MFA or ForceAuthn.' :
-        print "            <td><i class=\"fas fa-exclamation\"></i> Fail</td>\n";
-        print "            <td><i class=\"fas fa-exclamation\"></i> Fail</td>\n";
-        $failMFA++;
-        $failForceAuthn++;
-        break;
-      default :
-        print "            <td>" . $testResult['testResult'] . "</td>\n";
-    }
-    print "          </tr>\n";
-  }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okMFA) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okMFA);
-  if ($failMFA) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failMFA);
-  printf('            </td>%s            <td>%s', "\n", "\n");
-  if ($okForceAuthn) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okForceAuthn);
-  if ($failForceAuthn) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failForceAuthn);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
-  print('        <table class="table table-striped table-bordered">'. "\n");
-  printf ("          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>\n");
-  foreach ($tested_idps as $idp => $value) {
-    if (! $value ) {
-      printf ("          <tr><td>%s</td></tr>\n", $idp);
+      printf('            <tr>
+              <td><a href="?tab=MFA&idp=%s">%s</a></td>
+              <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
+      switch ($testResult['testResult']) {
+        case 'Supports REFEDS MFA and ForceAuthn.' :
+          printf('              <td><i class="fas fa-check"></i> OK</td>
+              <td><i class="fas fa-check"></i> OK</td>%s', "\n");
+          $okMFA++;
+          $okForceAuthn++;
+          break;
+        case 'Does support ForceAuthn but not REFEDS MFA.' :
+          printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
+              <td><i class="fas fa-check"></i> OK</td>%s', "\n");
+          $failMFA++;
+          $okForceAuthn++;
+          break;
+        case 'Supports REFEDS MFA but not ForceAuthn.' :
+          printf('              <td><i class="fas fa-check"></i> OK</td>\n";
+              <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
+          $okMFA++;
+          $failForceAuthn++;
+          break;
+        case 'Does neither support REFEDS MFA or ForceAuthn.' :
+          printf('              <td><i class="fas fa-exclamation"></i> Fail</td>\n";
+              <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
+          $failMFA++;
+          $failForceAuthn++;
+          break;
+        default :
+          printf('              <td>%s</td>%s',$testResult['testResult'], "\n");
+      }
+      print "            </tr>\n";
     }
   }
-  print "        </table>
-  </div><!-- End col-->
-  </div><!-- End row-->\n";
-
+  printFooterSummary($okMFA, 0, $failMFA, $okForceAuthn, 0, $failForceAuthn, $tested_idps);
 }
 
 function showESI($tested_idps) {
@@ -995,41 +416,27 @@ function showESI($tested_idps) {
         <i class="fas fa-exclamation"> = Error in schacPersonalUniqueCode</i>
         <br>
         <br>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th><a href="?tab=ESI&Idp">IdP</a></th>
-            <th><a href="?tab=ESI&Time">Tested</a></th>
-            <th><a href="?tab=ESI&Status">ESI (any)</a></th>
-            <th>Tested</th>
-            <th>ESI (as student)</th>
-          </tr>' . "\n";
+        <table id="resultTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>IdP</th>
+              <th>Tested</th>
+              <th>ESI (any)</th>
+              <th>Tested</th>
+              <th>ESI (as student)</th>
+            </tr>
+          </thead>
+          <tbody>' . "\n";
   global $config;
   $testRun = 0;
-  if (isset($_GET['Time'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`, `testRun_id`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'esi'
-      ORDER BY `time` DESC;");
-  } elseif (isset($_GET['Status'])) {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`, `testRun_id`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'esi'
-      ORDER BY length(testResult) DESC;");
-  } else {
-    $testHandler = $config->getDB()->prepare(
-      "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`, `testRun_id`
-      FROM `tests`, `testRuns`, `idps`
-      WHERE `tests`.`testRun_id` = `testRuns`.`id`
-        AND `testRuns`.`idp_id` = `idps`.`id`
-        AND `test` = 'esi'
-      ORDER BY `entityID`;");
-  }
+
+  $testHandler = $config->getDB()->prepare(
+    "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`, `testRun_id`
+    FROM `tests`, `testRuns`, `idps`
+    WHERE `tests`.`testRun_id` = `testRuns`.`id`
+      AND `testRuns`.`idp_id` = `idps`.`id`
+      AND `test` = 'esi'
+    ORDER BY `entityID`, `time` DESC;");
   $testStudHandler = $config->getDB()->prepare(
     "SELECT `attr_OK`, `testResult`, `tests`.`time`
     FROM `tests` WHERE `testRun_id` = :testrun
@@ -1042,87 +449,103 @@ function showESI($tested_idps) {
   $okStud=0;
   $warnStud=0;
   $failStud=0;
+  $lastIdp = '';
   $testHandler->execute();
   while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
     $idp = $testResult['entityID'];
-    $testRun = $testResult['testRun_id']; // NO SONAR bound above
-    $tested_idps[$idp] = true;
+    if ($lastIdp != $idp) {
+      $lastIdp = $idp;
+      $testRun = $testResult['testRun_id']; // NO SONAR bound above
+      $tested_idps[$idp] = true;
 
-    printf ('          <tr>%s            <td><a href="?tab=ESI&idp=%s">%s</a></td>%s', "\n", $idp, $idp, "\n");
-    printf ("            <td>%s</td>\n",$testResult['time']);
-    switch ($testResult['testResult']) {
-      case 'schacPersonalUniqueCode OK':
-        print "            <td><i class=\"fas fa-check\"></i> OK</td>\n";
-        $ok++;
-        break;
-      case 'schacPersonalUniqueCode OK. BUT wrong case':
-        print "            <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
-        $ok++;
-        break;
-      case 'Missing schacPersonalUniqueCode':
-        print "            <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
-        $warn++;
-        break;
-      case 'More than one schacPersonalUniqueCode';
-        print "            <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
-        $warn++;
-        break;
-      case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
-        print "            <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
-        $fail++;
-        break;
-      case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
-        print "            <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
-        $fail++;
-        break;
-      default :
-        print "            <td>" . $testResult['testResult'] . "</td>\n";
-    }
-    $testStudHandler->execute();
-    if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
-      printf ("            <td>%s</td>\n",$testResult['time']);
+      printf('            <tr>
+              <td><a href="?tab=ESI&idp=%s">%s</a></td>
+              <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
       switch ($testResult['testResult']) {
         case 'schacPersonalUniqueCode OK':
-          print "            <td><i class=\"fas fa-check\"></i> OK</td>\n";
-          $okStud++;
+          print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
+          $ok++;
           break;
         case 'schacPersonalUniqueCode OK. BUT wrong case':
-          print "            <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
-          $okStud++;
+          print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
+          $ok++;
           break;
         case 'Missing schacPersonalUniqueCode':
-          print "            <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
-          $warnStud++;
+          print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
+          $warn++;
           break;
         case 'More than one schacPersonalUniqueCode';
-          print "            <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
-          $warnStud++;
+          print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
+          $warn++;
           break;
         case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
-          print "            <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
-          $failStud++;
+          print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
+          $fail++;
           break;
         case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
-          print "            <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
-          $failStud++;
+          print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
+          $fail++;
           break;
         default :
-          print "            <td>" . $testResult['testResult'] . "</td>\n";
+          print "              <td>" . $testResult['testResult'] . "</td>\n";
       }
-    } else {
-      print '            <td colspan="2">No test run as Student</td>' . "\n";
+      $testStudHandler->execute();
+      if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
+        printf("              <td>%s</td>\n",$testResult['time']);
+        switch ($testResult['testResult']) {
+          case 'schacPersonalUniqueCode OK':
+            print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
+            $okStud++;
+            break;
+          case 'schacPersonalUniqueCode OK. BUT wrong case':
+            print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
+            $okStud++;
+            break;
+          case 'Missing schacPersonalUniqueCode':
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
+            $warnStud++;
+            break;
+          case 'More than one schacPersonalUniqueCode';
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
+            $warnStud++;
+            break;
+          case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
+            print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
+            $failStud++;
+            break;
+          case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
+            print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
+            $failStud++;
+            break;
+          default :
+            print "              <td>" . $testResult['testResult'] . "</td>\n";
+        }
+      } else {
+        print '              <td>No test run as Student</td>
+                <td></td>' . "\n";
+      }
+      print "            </tr>\n";
     }
-    print "          </tr>\n";
   }
-  printf('          <tr>%s            <td colspan="2"></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($ok) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$ok);
-  if ($warn) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warn);
-  if ($fail) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$fail);
-  printf('            </td>%s            <td></td>%s            <td>%s', "\n", "\n", "\n");
-  if ($okStud) printf("              <i class=\"fas fa-check\"></i> = %s<br>\n",$okStud);
-  if ($warnStud) printf("              <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnStud);
-  if ($failStud) printf("              <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failStud);
-  printf('            </td>%s          </tr>%s        </table>%s', "\n", "\n", "\n");
+  printf('          </tbody>
+          <tfooter>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>%s', "\n");
+  if ($ok) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$ok);
+  if ($warn) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warn);
+  if ($fail) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$fail);
+  printf('              </td>
+              <td></td>
+              <td>%s', "\n");
+  if ($okStud) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okStud);
+  if ($warnStud) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnStud);
+  if ($failStud) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failStud);
+  printf('              </td>
+            </tr>
+          <tfooter>
+        </table>%s', "\n");
   print('        <table class="table table-striped table-bordered">'. "\n");
   printf ("          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>\n");
   foreach ($tested_idps as $idp => $value) {
@@ -1137,7 +560,7 @@ function showESI($tested_idps) {
 
 function showAllTests() {
   global $config;
-  $lastYear = date('Y-m-d', mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-1));
+  $lastYear = date('Y-m-d', mktime(0, 0, 0, date('m'),   date('d'),   date('Y')-1));
 
   $tests = array('assurance', 'noec', 'anonymous', 'pseudonymous', 'personalized', 'cocov2-1', 'cocov2-2', 'cocov2-3', 'cocov1-1', 'cocov1-2', 'cocov1-3', 'rands', 'mfa', 'esi');
 
@@ -1154,51 +577,56 @@ function showAllTests() {
       <div class="col">
         <h1>Data based on IdP:s that have run any of the tests</h1>
         <p>Result inside () is older than one year.</p>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th>IdP</th>
-            <th>Assurance</th>
-            <th>No&nbsp;EC</th>
-            <th>Anonymous</th>
-            <th>Pseudonymous</th>
-            <th>Personalized</th>
-            <th>CoCo v2 part 1</th>
-            <th>CoCo v2 part 2</th>
-            <th>CoCo v2, outside</th>
-            <th>CoCo v1 part 1</th>
-            <th>CoCo v1 part 2</th>
-            <th>CoCo v1, outside</th>
-            <th>REFEDS R&S</th>
-            <th>MFA</th>
-            <th>ESI</th>
-          </tr>' . "\n";
+        <table id="resultTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>IdP</th>
+              <th>Assurance</th>
+              <th>No&nbsp;EC</th>
+              <th>Anonymous</th>
+              <th>Pseudonymous</th>
+              <th>Personalized</th>
+              <th>CoCo v2 part 1</th>
+              <th>CoCo v2 part 2</th>
+              <th>CoCo v2, outside</th>
+              <th>CoCo v1 part 1</th>
+              <th>CoCo v1 part 2</th>
+              <th>CoCo v1, outside</th>
+              <th>REFEDS R&S</th>
+              <th>MFA</th>
+              <th>ESI</th>
+            </tr>
+          <thead>
+          <tbody>' . "\n";
 
   $idpHandler->execute();
   while ($idp = $idpHandler->fetch(PDO::FETCH_ASSOC)) {
     $testHandler->bindValue(":idpId",$idp['id']);
-    printf ("          <tr>\n            <td><a href=\"?tab=AllTests&idp=%s\">%s</a></td>\n", $idp['entityID'], $idp['entityID']);
+    printf ('            <tr>
+              <td><a href="?tab=AllTests&idp=%s">%s</a></td>', $idp['entityID'], $idp['entityID'], "\n");
     foreach ($tests as $test) {
       $testHandler->execute();
       if ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
-        printf ('            <td>%s', $testResult['time']> $lastYear ? '' : '(');
+        printf('              <td>%s', $testResult['time']> $lastYear ? '' : '(');
         print $testResult['status_OK'] ? "<i class=\"fas fa-check\"></i>" : '';
         print $testResult['status_WARNING'] ? "<i class=\"fas fa-exclamation-triangle\"></i>" : '';
         print $testResult['status_ERROR'] ?"<i class=\"fas fa-exclamation\"></i>" : '';
-        printf ('%s</td>%s', $testResult['time']> $lastYear ? '' : ')', "\n");
+        printf('%s</td>%s', $testResult['time']> $lastYear ? '' : ')', "\n");
       } else {
-        print "            <td></td>\n";
+        print "              <td></td>\n";
       }
     }
-    print "          </tr>\n";
+    print "            </tr>\n";
   }
-  print "        </table>
+  print "          <tbody>
+        </table>
       </div><!-- End col-->
     </div><!-- End row-->\n";
 }
 
 function showEcsStatus() {
   global $config;
-  $lastYear = date('Y-m-d', mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-1));
+  $lastYear = date('Y-m-d', mktime(0, 0, 0, date('m'),   date('d'),   date('Y')-1));
 
   $tests = array('anonymous', 'pseudonymous', 'personalized', 'cocov2-1', 'cocov1-1', 'rands');
 
@@ -1234,7 +662,7 @@ function showEcsStatus() {
     foreach ($tests as $test) {
       $testHandler->execute();
       if ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
-        printf ('            <td>%s', $testResult['time']> $lastYear ? '' : '(');
+        printf('            <td>%s', $testResult['time']> $lastYear ? '' : '(');
         switch ($testResult['testResult']) {
           case 'Anonymous attributes OK, Entity Category Support OK' :
           case 'Pseudonymous attributes OK, Entity Category Support OK' :
@@ -1267,7 +695,7 @@ function showEcsStatus() {
           default :
             print $testResult['testResult'];
         }
-        printf ('%s</td>%s', $testResult['time']> $lastYear ? '' : ')', "\n");
+        printf('%s</td>%s', $testResult['time']> $lastYear ? '' : ')', "\n");
       } else
         print "            <td></td>\n";
     }
@@ -1308,7 +736,7 @@ function showEcsStatus() {
     if ($esiStatus == '') {
       print "            <td></td>\n";
     } else {
-      printf ('            <td>%s<i class="fas fa-%s">%s</td>%s', $esiTime > $lastYear ? '' : '(', $esiStatus, $testResult['time']> $lastYear ? '' : ')', "\n");
+      printf('            <td>%s<i class="fas fa-%s">%s</td>%s', $esiTime > $lastYear ? '' : '(', $esiStatus, $testResult['time']> $lastYear ? '' : ')', "\n");
     }
     print "          </tr>\n";
   }
@@ -1327,7 +755,7 @@ function showTestsIdP($test='entityCategory') {
         <ul>\n";
       foreach($testruns as $run) {
         printf('            <li><a href="./ops.php?tab=%s&idp=%s&id=%d">%s</a></li>%s', urlencode($_GET['tab']), urlencode($idp), $run['id'], $run['time'], "\n");
-        # Check if thus run is requested run. In that vase save this run
+        # Check if thus run is requested run. In that case save this run
         if (isset($_GET['id']) && $_GET['id'] == $run['id']) {
           $testrun = $run;
         }
@@ -1351,3 +779,33 @@ function showTestsIdP($test='entityCategory') {
   }
 }
 
+function printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC, $tested_idps) {
+  printf('          </tbody>
+          <tfooter>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>%s', "\n");
+  if ($okData) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
+  if ($warnData) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
+  if ($failData) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
+  printf('              </td>
+              <td>%s', "\n");
+  if ($okEC) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
+  if ($warnEC) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
+  if ($failEC) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
+  printf('              </td>
+            </tr>
+          </tfooter>
+        </table>
+        <table class="table table-striped table-bordered">
+          <tr><th>SWAMID 2.0 IdP:s not tested</th></tr>%s', "\n");
+  foreach ($tested_idps as $idp => $value) {
+    if (! $value ) {
+      printf ('          <tr><td>%s</a></td></tr>%s', $idp, "\n");
+    }
+  }
+  printf('        </table>
+      </div><!-- End col-->
+    </div><!-- End row-->%s', "\n");
+}

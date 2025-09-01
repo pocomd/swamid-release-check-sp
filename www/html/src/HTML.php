@@ -8,6 +8,11 @@ class HTML {
   protected Configuration $config;
 
   /**
+   * List of tables to sort on page
+   */
+  private array $tableToSort = array();
+
+  /**
    * Setup the class
    *
    * @return void
@@ -38,6 +43,7 @@ class HTML {
     <link href="//%s/fontawesome/css/solid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -164,11 +170,18 @@ class HTML {
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-  </script>
-  <script>
-    $(function () {%s', "\n");
-    foreach ($collapseIcons as $collapseIcon) {
-      printf("      $('#%s').on('show.bs.collapse', function () {
+  </script>%s', "\n");
+    if (isset($this->tableToSort[0]) || isset($collapseIcons[0])) {
+      if (isset($this->tableToSort[0])) {
+        # Add JS script to be able to use later
+        printf('  <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>%s', "\n");
+      }
+      print "  <script>\n";
+      if (isset($collapseIcons[0])) {
+        printf('    $(function () {%s', "\n");
+        foreach ($collapseIcons as $collapseIcon) {
+          printf("      $('#%s').on('show.bs.collapse', function () {
         var tag_id = document.getElementById('%s-icon');
         tag_id.className = \"fas fa-chevron-circle-down\";
       })
@@ -176,7 +189,31 @@ class HTML {
         var tag_id = document.getElementById('%s-icon');
         tag_id.className = \"fas fa-chevron-circle-right\";
       })\n", $collapseIcon, $collapseIcon, $collapseIcon, $collapseIcon);
+        }
+        printf ('    })%s', "\n");
+      }
+
+      # Add function to sort if needed
+      if (isset($this->tableToSort[0])) {
+        print "    $(document).ready(function () {\n";
+        foreach ($this->tableToSort as $table) {
+          printf ("      $('#%s').DataTable( {paging: false});\n", $table);
+        }
+        print "    });\n";
+      }
+      print "  </script>\n";
     }
-    printf ('    })%s  </script>%s  </body>%s</html>', "\n", "\n", "\n");
+    printf('  </body>%s</html>', "\n");
+  }
+
+  /**
+   * Add table that should be sorted
+   *
+   * Added as script/DataTable when footer is generated.
+   *
+   * @return void
+   */
+  public function addTableSort($tableId) {
+    $this->tableToSort[] = $tableId;
   }
 }

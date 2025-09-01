@@ -33,7 +33,6 @@ Alias /images/ "/var/www/images/"
 			require shib-session
 		</Location>
 
-
 		DocumentRoot /var/www/html
 
 		<FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
@@ -66,4 +65,3 @@ foreach ($testSuite->getTests() as $test => $testConfig) {
 
 print '
 </IfModule>';
-#$test = str_replace('.'.$config->basename(),'',strtolower($_SERVER['HTTP_HOST']));

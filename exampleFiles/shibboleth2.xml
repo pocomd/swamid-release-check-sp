@@ -72,7 +72,7 @@
             <ContactPerson id="Support-Contact"  contactType="support" formatter="$EmailAddress" />
             <ContactPerson id="Support-Technical"  contactType="technical" formatter="$EmailAddress" />
             <ContactPerson id="Other-Contact"  contactType="other" formatter="$EmailAddress" />
-            <Logo id="Logo" height="256" width="256" formatter="<img src='$_string' height='$height' width='$width'/>"/>
+            <Logo id="Logo" height="256" width="256" formatter="&lt;img src='$_string' height='$height' width='$width'/>"/>
         </AttributeExtractor>
 
         <!-- Default filtering policy for recognized attributes, lets other data pass. -->
