@@ -8,9 +8,7 @@ const HTML_EXCLAMATION_TR_SP = 'exclamation-triangle">  ';
 require_once '../vendor/autoload.php';
 $config = new \releasecheck\Configuration();
 
-$htmlClass = $config->getExtendedClass('HTML');
-
-$html = new $htmlClass();
+$html = $config->getExtendedClass('HTML');
 
 $collapseIcons = array();
 $tested_idps = array();

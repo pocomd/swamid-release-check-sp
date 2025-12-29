@@ -24,11 +24,9 @@ if (isset($_SERVER['Shib-Identity-Provider']) ) {
 
 $config = new \releasecheck\Configuration();
 
-$testClass = $config->getExtendedClass('TestSuite');
-$htmlClass = $config->getExtendedClass('HTML');
+$testSuite = $config->getExtendedClass('TestSuite');
+$html = $config->getExtendedClass('HTML');
 
-$testSuite = new $testClass();
-$html = new $htmlClass();
 $html->showHeaders();
 $display = new \releasecheck\Display();
 

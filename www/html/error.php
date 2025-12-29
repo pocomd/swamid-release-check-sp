@@ -3,9 +3,7 @@
 require_once 'vendor/autoload.php';
 $config = new \releasecheck\Configuration();
 
-$htmlClass = $config->getExtendedClass('HTML');
-
-$html = new $htmlClass();
+$html = $config->getExtendedClass('HTML');
 $html->showHeaders();
 
 $errorURL = isset($_GET['errorURL']) ?

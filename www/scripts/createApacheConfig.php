@@ -3,8 +3,7 @@
 require_once __DIR__ . '/../html/vendor/autoload.php';
 $config = new \releasecheck\Configuration();
 
-$testClass = $config->getExtendedClass('TestSuite');
-$testSuite = new $testClass();
+$testSuite = $config->getExtendedClass('TestSuite');
 
 print '
 Alias /images/ "/var/www/images/"

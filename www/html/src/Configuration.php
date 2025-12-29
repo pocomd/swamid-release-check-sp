@@ -217,13 +217,16 @@ class Configuration {
    *
    * @param string $className name of baseClass
    *
-   * @return string name of baseClass or if exists extended class
+   * @return instance of baseClass or if exists extended class
    */
-  public function getExtendedClass($className) {
-    if (class_exists(__NAMESPACE__.'\\'.$className)) {
-      return class_exists(__NAMESPACE__.'\\'.$className.$this->federation['extend']) ?
-        __NAMESPACE__.'\\'.$className.$this->federation['extend'] :
-        __NAMESPACE__.'\\'.$className;
+  public function getExtendedClass($className, ...$params) {
+    $baseClass   = __NAMESPACE__ . '\\' . $className;
+    $extendClass = $baseClass . ($this->federation['extend'] ?? '');
+
+    if (!class_exists($baseClass)) {
+        return null;
     }
+
+    return new (class_exists($extendClass) ? $extendClass : $baseClass)(...$params);
   }
 }
