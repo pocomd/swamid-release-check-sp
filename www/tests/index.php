@@ -27,7 +27,8 @@ if ($testInfo = $testSuite->getTest($test)) {
   if ($quickTest) {
     $IdPTest->testAttributes($testInfo['subtest'], $order['next']);
   } else {
-    $html->showHeaders($testInfo['name']);
+    $html->showHTMLHead($testInfo['name']);
+    $html->showContentHeader();
     if ($test == 'mfa') {
        if (isset($_GET['forceAuthn'])) {
         $IdPTest->showTestHeaders('mfa','result',$singleTest);
@@ -38,7 +39,8 @@ if ($testInfo = $testSuite->getTest($test)) {
       $IdPTest->showTestHeaders($order['last'], $order['next'],$singleTest);
     }
     $IdPTest->testAttributes($testInfo['subtest']);
-    $html->showFooter();
+    $html->showContentFooter();
+    $html->showScripts();
   }
 } else {
   print "Unknown test : $test";

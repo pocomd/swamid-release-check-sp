@@ -21,6 +21,12 @@ class Configuration {
   private array $federation = array ();
 
   /**
+   * UI template configuration
+   *
+   */
+  private array $template = array ();
+
+  /**
    * The database connection
    */
   private PDO $db;
@@ -35,7 +41,7 @@ class Configuration {
   public function __construct($startDB = true) {
     include __DIR__ . '/../config.php'; # NOSONAR
 
-    $reqParams = array('db', 'basename', 'federation');
+    $reqParams = array('db', 'basename', 'federation', 'template');
     $reqParamsDB = array('servername', 'username', 'password',
       'name');
     $reqParamsFederation = array('displayName', 'adminUsers');
@@ -63,6 +69,8 @@ class Configuration {
     $this->federation = $federation;
 
     $this->basename = $basename;
+    # Header/Footer content
+    $this->template = $template;
 
     # Database
     if ($startDB) {
@@ -210,6 +218,17 @@ class Configuration {
    */
   public function getFederation() {
     return $this->federation;
+  }
+
+  /**
+   * Return UI template
+   *
+   * Return an array with template content
+   *
+   * @return array
+   */
+  public function getTemplate() {
+    return $this->template;
   }
 
   /**

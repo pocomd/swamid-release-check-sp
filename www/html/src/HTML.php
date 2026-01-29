@@ -32,15 +32,17 @@ class HTML {
    *
    * @return void
    */
-  public function showHeaders($title = "") {
+  public function showHTMLHead($title = "") {
     if ( $title == "" ) {
       $title = 'Release check for ' . $this->config->getFederation()['displayName'];
     }
+    $bgColor = 'background-color: ' . ($this->config->getFederation()['backgroundColor'] ?? "unset");
     printf('<!DOCTYPE html>%s<html lang="en" xml:lang="en">%s  <head>
     <meta charset="UTF-8">
     <title>%s</title>
-    <link href="//%s/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="//%s/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="//%s/assets/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="//%s/assets/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="//%s/assets/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
@@ -53,87 +55,19 @@ class HTML {
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/images/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <style>
-      /* Space out content a bit */
-      body {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        %s
-      }
-      .container {
-        background-color: #FFFFFF;
-      }
+    %s</head>%s<body style="%s">%s<div class="container">',
+      "\n", "\n", $title, $this->config->basename(), $this->config->basename(), $this->config->basename(),
+      "\n", "\n", $bgColor,"\n");
+  }
 
-      /* Everything gets side spacing for mobile first views */
-      .header {
-        padding-right: 15px;
-        padding-left: 15px;
-      }
-
-      /* Custom page header */
-      .header {
-        border-bottom: 1px solid #e5e5e5;
-      }
-      /* Make the masthead heading the same height as the navigation */
-      .header h3 {
-        padding-bottom: 19px;
-        margin-top: 0;
-        margin-bottom: 0;
-        line-height: 40px;
-      }
-      .left {
-        float:left;
-      }
-      .clear {
-        clear: both
-      }
-
-      .text-truncate {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: inline-block;
-        max-width: 100%%;
-      }
-
-      /* color for fontawesome icons */
-      .fa-check {
-        color: green;
-      }
-
-      .fa-exclamation-triangle {
-        color: orange;
-      }
-
-      .fa-exclamation {
-        color: red;
-      }
-
-      /* Customize container */
-      @media (min-width: 768px) {
-        .container {
-          max-width: 1230px;
-        }
-      }
-      .container-narrow > hr {
-        margin: 30px 0;
-      }
-
-      /* Responsive: Portrait tablets and up */
-      @media screen and (min-width: 768px) {
-      /* Remove the padding we set earlier */
-        .header {
-          padding-right: 0;
-          padding-left: 0;
-        }
-        /* Space out the masthead */
-        .header {
-          margin-bottom: 30px;
-        }
-      }
-    </style>%s  </head>%s<body>%s  <div class="container">
-    <div class="header">
-      <nav>
+  /**
+   * Print header
+   *
+   * @return string
+   */
+  public function showContentHeader() {
+    $header = '<div class="header">';
+    $defaultHeader = sprintf('<nav>
         <ul class="nav nav-pills float-right">
           <li role="presentation" class="nav-item">
             <a href="https://www.sunet.se/swamid/" class="nav-link">About SWAMID</a>
@@ -147,11 +81,54 @@ class HTML {
         <a href="https://%s">
           <img alt = "Logo" src="https://%s/swamid-logo-2-100x115.png" width="55">
         </a> Release-check
-      </h3>
-    </div>%s',
-      "\n", "\n", $title, $this->config->basename(), $this->config->basename(),
-      isset($this->config->getFederation()['backgroundColor']) ? 'background-color: ' . $this->config->getFederation()['backgroundColor'] : '',
-      "\n", "\n", "\n", $this->config->basename(), $this->config->basename(), "\n");
+      </h3>%s', 
+    $this->config->basename(), $this->config->basename(), "\n");
+    $customHeader = $this->getPageContent("header");
+    if (false === $customHeader) {
+      $header .= $defaultHeader;
+    } else {
+      $header .= $customHeader;
+    }
+    echo $header . '</div>';
+  }
+
+  /**
+   * Print footer
+   *
+   * @return string
+   */
+  public function showContentFooter() {
+    $footer = sprintf('<div class="footer"></div>');
+    $customFooter = $this->getPageContent("footer");
+    if (false !== $customFooter) {
+      $footer = $customFooter;
+    }
+    echo $footer;
+  }
+
+  /**
+   * Parse custom content for given location
+   * 
+   * @return string|false 
+   */
+  public function getPageContent($location) {
+    $content = false;
+    if (!empty($this->config->getTemplate()[$location])) {
+      switch ($this->config->getTemplate()[$location]["src"] ?? "") {
+        case 'config':
+          $content = ($this->config->getTemplate()[$location]["template"] ?? "");
+          break;
+        case 'file':
+          $path = __DIR__  . "/../templates/{$location}.php";
+          if (file_exists($path)) {
+            ob_start();
+            include $path;
+            $content = ob_get_clean();
+          }
+          break;
+      }
+    }
+    return $content;
   }
 
   /**
@@ -159,7 +136,7 @@ class HTML {
    *
    * @return void
    */
-  public function showFooter($collapseIcons = array()) {
+  public function showScripts($collapseIcons = array()) {
     printf ('  </div><!-- End container-->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -27,7 +27,8 @@ $config = new \releasecheck\Configuration();
 $testSuite = $config->getExtendedClass('TestSuite');
 $html = $config->getExtendedClass('HTML');
 
-$html->showHeaders();
+$html->showHTMLHead();
+$html->showContentHeader();
 $display = new \releasecheck\Display();
 
 # Default values
@@ -394,4 +395,5 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
           }).render('#DS-Thiss');
         };
       </script>\n", $config->getFederation()['DS'], $config->basename(), $config->getFederation()['LoginURL'], $config->basename());
-$html->showFooter($collapseIcons);
+$html->showContentFooter();
+$html->showScripts($collapseIcons);
