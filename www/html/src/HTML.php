@@ -12,6 +12,8 @@ class HTML {
    */
   private array $tableToSort = array();
 
+  protected array $federation = array();
+
   /**
    * Setup the class
    *
@@ -23,6 +25,7 @@ class HTML {
     } else {
       $this->config = new Configuration();
     }
+    $this->federation = $this->config->getFederation();
   }
 
   /**
@@ -68,10 +71,6 @@ class HTML {
       .header {
         padding-right: 15px;
         padding-left: 15px;
-      }
-
-      /* Custom page header */
-      .header {
         border-bottom: 1px solid #e5e5e5;
       }
       /* Make the masthead heading the same height as the navigation */
@@ -80,9 +79,6 @@ class HTML {
         margin-top: 0;
         margin-bottom: 0;
         line-height: 40px;
-      }
-      .left {
-        float:left;
       }
       .clear {
         clear: both
@@ -115,9 +111,6 @@ class HTML {
           max-width: 1230px;
         }
       }
-      .container-narrow > hr {
-        margin: 30px 0;
-      }
 
       /* Responsive: Portrait tablets and up */
       @media screen and (min-width: 768px) {
@@ -136,22 +129,28 @@ class HTML {
       <nav>
         <ul class="nav nav-pills float-right">
           <li role="presentation" class="nav-item">
-            <a href="https://www.sunet.se/swamid/" class="nav-link">About SWAMID</a>
+            <a href="%s" class="nav-link">About %s</a>
           </li>
           <li role="presentation" class="nav-item">
-            <a href="https://www.sunet.se/swamid/kontakt/" class="nav-link">Contact us</a>
+            <a href="%s" class="nav-link">Contact us</a>
           </li>
         </ul>
       </nav>
       <h3 class="text-muted">
         <a href="https://%s">
-          <img alt = "Logo" src="https://%s/swamid-logo-2-100x115.png" width="55">
+          <img alt = "%s Logo" src="%s" width="%d" height="%d">
         </a> Release-check
       </h3>
     </div>%s',
       "\n", "\n", $title, $this->config->basename(), $this->config->basename(),
-      isset($this->config->getFederation()['backgroundColor']) ? 'background-color: ' . $this->config->getFederation()['backgroundColor'] : '',
-      "\n", "\n", "\n", $this->config->basename(), $this->config->basename(), "\n");
+      isset($this->federation['backgroundColor']) ? 'background-color: ' . $this->federation['backgroundColor'] : '',
+      "\n", "\n", "\n",
+      $this->federation['aboutURL'], $this->federation['displayName'],
+      $this->federation['contactURL'],
+      $this->config->basename(),
+      $this->federation['displayName'], $this->federation['logoURL'],
+      $this->federation['logoWidth'], $this->federation['logoHeight'],
+      "\n");
   }
 
   /**

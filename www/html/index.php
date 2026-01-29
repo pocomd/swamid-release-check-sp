@@ -143,29 +143,11 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
           <a data-toggle="collapse" href="#attributes-instructions" aria-expanded="%s" aria-controls="attributes-instructions">Instructions</a>
         </h3>
         <div class="collapse%s multi-collapse" id="attributes-instructions">
-          <p>Click on the green button to see what attributes your Identity Provider releases.</p>
-          <p>Description of all test avaiable in the SWAMID identity federation test suite:
-            <ul>
-              <li>The Attributes tab shows all attributes the service release to the entityId https://%s/shibboleth. The entityId uses the entity categories:<ul>
-                <li>REFEDS Personalized Access Entity Category,</li>
-                <li>REFEDS Research and Scholarship Entity Category, and</li>
-                <li>REFEDS Data Protection Code of Conduct ver 2.0 Entity Category including all
-                  <a href="https://wiki.sunet.se/display/SWAMID/Entity+Category+attribute+release+in+SWAMID">
-                  SWAMID Best Practice attributes</a>.
-                </li>
-              </ul></li>
-              <li>The Entity category tab does an exetensive testing of that an Identity Provider follows
-                SWAMID Best Practice attribute release via entity categories.</li>
-              <li>The MFA tab checks if an Identity Provider is correctly configured for handling request
-                for multi-factor login as expected by SWAMID.</li>
-              <li>The ESI tab verifies if the Identity Provider release the right attributes for the
-                European Digital Student Service Infrastructure.</li>
-            </ul>
-          </p>
+          %s
         </div><!-- end collapse -->%s',
   $result ? "Change" : "Select", $attributesShow, $attributesActive,
   $config->basename(), $result ? "Refresh" : "Login" , $result ? "right" : "down",
-  $instructionsSelected, $instructionsShow, $config->basename(), "\n");
+  $instructionsSelected, $instructionsShow, $federation['instructionsAttributes'], "\n");
 
   $collapseIcons[] = "attributes-instructions";
 
@@ -178,7 +160,7 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
   printf('      </div><!-- End tab-pane attributes -->
       <div class="tab-pane fade %s%s" id="entityCategory"
         role="tabpanel" aria-labelledby="entityCategory-tab">
-        <h2>SWAMID Best Practice Attribute Release check</h2>
+        <h2>%s Best Practice Attribute Release check</h2>
         <br>
         <div class="row">
           <div class="col">
@@ -188,6 +170,7 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
             <a href="https://assurance.%s/%s"><button type="button" class="btn btn-success">Run tests manually</button></a>
           </div>%s',
     $entityCategoryShow, $entityCategoryActive,
+    $federation['displayName'],
     $config->basename(),
     $result ?
       sprintf('Shibboleth.sso/Login?entityID=%s&target=%s', $IdP,
@@ -210,31 +193,9 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
           <a data-toggle="collapse" href="#entityCategory-instructions" aria-expanded="%s" aria-controls="entityCategory-instructions">Instructions</a>
         </h3>
         <div class="collapse%s multi-collapse" id="entityCategory-instructions">
-          <p>In order for SWAMID to work as effectively as possible for students and employees as well as for
-            service providers and identity providers, SWAMID recommends that service providers use
-            entity categories to get the attributes that they require.</p>
-          <p>In order for services within the SWAMID federation to work as effectively as possible, SWAMID recommends
-            the use of entity categories. Entity categories benefits not only students and employees but also
-            administrators of relying and identity providers by providing a
-            stable framework for the release of attributes.</p>
-          <p>During autumn 2019, SWAMID has updated its entity category recommendations and these will be implemented
-            in our production environment during 2020 and 2021.</p>
-          <p>This service is designed to help administrators of identity providers verify that their
-            IdP follows the new recommendations.</p>
-          <p>SWAMID’s current recommendations for attribute release are available at
-            <a href="https://wiki.sunet.se/display/SWAMID/SAML+WebSSO+Service+Provider+Best+Current+Practice">
-              https://wiki.sunet.se/display/SWAMID/SAML+WebSSO+Service+Provider+Best+Current+Practice
-            </a>.
-          </p>
-          <p>Example configuration for Shibboleth can be found in the section entitled “Example of metadata
-            configuration, attribute resolvers and attribute filters” on the following wiki page
-            <a href="https://wiki.sunet.se/display/SWAMID/SAML+WebSSO+Identity+Provider+Best+Current+Practice">
-              https://wiki.sunet.se/display/SWAMID/SAML+WebSSO+Identity+Provider+Best+Current+Practice
-            </a>.
-          </p>
-          <p>The SWAMID best practice attribute release check consists of the following tests:</p>
+          %s
           <ul style="list-style-type:none">%s',
-    $result ? "right" : "down", $instructionsSelected, $instructionsShow, "\n");
+    $result ? "right" : "down", $instructionsSelected, $instructionsShow, $federation['instructionsEntityCategory'], "\n");
   foreach ($testSuite->getECTests() as $test) {
     printf ('            <li>
               <a href="https://%s.%s/Shibboleth.sso/Login?target=%s">%s</a> - %s
@@ -242,15 +203,8 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
           $testSuite->getTestName($test), "\n");
   }
   printf ('          </ul>
-          <p>Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT
-            release in accordance REFEDS/GÉANT Code of Conduct.</p>
-          <p>For further information on how personal data is processed in SWAMID Best Practice Attribute Release
-            check see
-            <a href="https://wiki.sunet.se/display/SWAMID/SWAMID+Entity+Category+Release+Check+-+Privacy+Policy">
-              https://wiki.sunet.se/display/SWAMID/SWAMID+Entity+Category+Release+Check+-+Privacy+Policy
-            </a>
-          </p>
-        </div><!-- end collapse -->%s', "\n");
+          %s
+        </div><!-- end collapse -->%s', $federation['instructionsEntityCategoryEnd'], "\n");
   $collapseIcons[] = "entityCategory-instructions";
   if ($result) {
     if ($testruns = $display->getTestruns($IdP, 'entityCategory')) {
@@ -331,7 +285,7 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
   }
   printf('      </div><!-- End tab-pane mfa-check -->
       <div class="tab-pane fade%s%s" id="esi" role="tabpanel" aria-labelledby="esi-tab">
-        <h2>SWAMID Best Practice Attribute Release check</h2>
+        <h2>%s Best Practice Attribute Release check</h2>
         <br>
         <div class="row">
           <div class="col">
@@ -339,7 +293,7 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
               <button type="button" class="btn btn-success">Run tests</button>
             </a>
           </div>%s',
-    $esiShow, $esiActive, $config->basename(), $result ? HTML_SHIBBOLETH_LOGIN . $IdP : '',
+    $esiShow, $esiActive, $federation['displayName'], $config->basename(), $result ? HTML_SHIBBOLETH_LOGIN . $IdP : '',
     "\n");
   if (! $result ) {
     printf('          <div class="col">
@@ -394,5 +348,5 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
             loginInitiatorURL: 'https://%s/Shibboleth.sso/%s?target=https://%s/result',
           }).render('#DS-Thiss');
         };
-      </script>\n", $config->getFederation()['DS'], $config->basename(), $config->getFederation()['LoginURL'], $config->basename());
+      </script>\n", $federation['DS'], $config->basename(), $federation['LoginURL'], $config->basename());
 $html->showFooter($collapseIcons);

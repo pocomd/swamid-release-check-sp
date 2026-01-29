@@ -9,16 +9,15 @@ class Configuration {
   /**
    * Basename of the application
    *
-   * Should be the hostname without htts://
+   * Should be the hostname without htt(s)://
    *
    */
   private string $basename = '';
 
   /**
    * Informatiom about the federation running the application
-   *
    */
-  private array $federation = array ();
+  private array $federation = array();
 
   /**
    * The database connection
@@ -38,7 +37,11 @@ class Configuration {
     $reqParams = array('db', 'basename', 'federation');
     $reqParamsDB = array('servername', 'username', 'password',
       'name');
-    $reqParamsFederation = array('displayName', 'adminUsers');
+    $reqParamsFederation = array(
+      'displayName', 'adminUsers',
+      'aboutURL', 'contactURL',
+      'logoURL', 'logoWidth', 'logoHeight'#, 'languages'
+      );
 
     foreach ($reqParams as $param) {
       if (! isset(${$param})) {
