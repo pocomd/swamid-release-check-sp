@@ -15,13 +15,13 @@ if ($testInfo = $testSuite->getTest($test)) {
     $order = array ('last' => '', 'next' => 'result');
   }
 
-  $IdPTest = $config->getExtendedClass('IdPCheck', array (
+  $IdPTest = $config->getExtendedClass('IdPCheck',
     $test,
     $testInfo['name'],
     $testInfo['tab'],
     $testInfo['expected'],
     $testInfo['nowarn']
-  ));
+  );
 
   if ($quickTest) {
     $IdPTest->testAttributes($testInfo['subtest'], $order['next']);
