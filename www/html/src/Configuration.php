@@ -43,6 +43,12 @@ class Configuration {
       'logoURL', 'logoWidth', 'logoHeight'#, 'languages'
       );
 
+    $defaultValuesFederation = array(
+      'extend' => '',
+      'DS' => 'service.seamlessaccess.org',
+      'LoginURL' => 'Login',
+    );
+
     foreach ($reqParams as $param) {
       if (! isset(${$param})) {
         printf ('Missing %s in config.php<br>', $param);
@@ -52,16 +58,8 @@ class Configuration {
 
     $this->checkParams($db, $reqParamsDB, 'db');
 
-    $this->checkParams($federation,$reqParamsFederation, 'federation');
-    if (! isset($federation['extend'])) {
-      $federation['extend'] = '';
-    }
-    if (! isset($federation['DS'])) {
-      $federation['DS'] = 'service.seamlessaccess.org';
-    }
-    if (! isset($federation['LoginURL'])) {
-      $federation['LoginURL'] = 'Login';
-    }
+    $this->checkParams($federation,$reqParamsFederation, 'federation', $defaultValuesFederation);
+
     # Federation params
     $this->federation = $federation;
 
@@ -78,11 +76,18 @@ class Configuration {
    *
    * @param array $checkParam Parameter array to check
    *
-   * @param array $reqParams Requierd parameters in checkParam
+   * @param array $reqParams Required parameters in checkParam
    *
-   * @param string Name of array in config
+   * @param string $nameOfParam Name of array in config
+   *
+   * @return void
    */
-  private function checkParams($checkParam, $reqParams, $nameOfParam) {
+  private function checkParams(&$checkParam, $reqParams, $nameOfParam, $defaultValues = array()) {
+    foreach ($defaultValues as $param => $defaultValue) {
+      if (! isset($checkParam[$param])) {
+        $checkParam[$param] = $defaultValue;
+      }
+    }
     foreach ($reqParams as $param) {
       if (! isset($checkParam[$param])) {
         printf ('Missing $%s[%s] in config.php<br>', $nameOfParam, $param);
