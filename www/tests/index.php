@@ -8,18 +8,14 @@ $test = str_replace('.'.$config->basename(),'',strtolower($_SERVER['HTTP_HOST'])
 $quickTest = isset($_GET['quickTest']);
 $singleTest = isset($_GET['singleTest']);
 
-$testClass = $config->getExtendedClass('TestSuite');
-$htmlClass = $config->getExtendedClass('HTML');
-$idpCheckClass = $config->getExtendedClass('IdPCheck');
-
-$testSuite = new $testClass();
+$testSuite = $config->getExtendedClass('TestSuite');
 
 if ($testInfo = $testSuite->getTest($test)) {
   if (! $order = $testSuite->getOrder($test)) {
     $order = array ('last' => '', 'next' => 'result');
   }
 
-  $IdPTest =  new $idpCheckClass(
+  $IdPTest = $config->getExtendedClass('IdPCheck',
     $test,
     $testInfo['name'],
     $testInfo['tab'],
@@ -30,7 +26,7 @@ if ($testInfo = $testSuite->getTest($test)) {
   if ($quickTest) {
     $IdPTest->testAttributes($testInfo['subtest'], $order['next']);
   } else {
-    $html = new $htmlClass();
+    $html = $config->getExtendedClass('HTML');
     $html->showHeaders($testInfo['name']);
     if ($test == 'mfa') {
        if (isset($_GET['forceAuthn'])) {

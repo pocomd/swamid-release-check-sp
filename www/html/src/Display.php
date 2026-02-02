@@ -12,7 +12,7 @@ class Display {
   /**
    * class of testSuite
    */
-  private TestSuite $testSuite;
+  protected TestSuite $testSuite;
 
   /**
    * Constant to reuse SQL query
@@ -30,8 +30,7 @@ class Display {
     } else {
       $this->config = new Configuration();
     }
-    $testClass = $this->config->getExtendedClass('TestSuite');
-    $this->testSuite = new $testClass();
+    $this->testSuite = $this->config->getExtendedClass('TestSuite');
   }
 
   /**

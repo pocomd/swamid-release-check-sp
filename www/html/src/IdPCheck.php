@@ -107,7 +107,6 @@ class IdPCheck {
     if (method_exists($this,$f='__construct'.$i)) {
       call_user_func_array(array($this,$f),$a);
     }
-
     $this->registrationAuthority = isset($_SERVER['Meta-registrationAuthority']) ? $_SERVER['Meta-registrationAuthority'] : '';
     $this->sessionID = isset($_GET['session']) ? $_GET['session'] : session_id();
   }

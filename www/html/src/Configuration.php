@@ -9,16 +9,15 @@ class Configuration {
   /**
    * Basename of the application
    *
-   * Should be the hostname without htts://
+   * Should be the hostname without htt(s)://
    *
    */
   private string $basename = '';
 
   /**
    * Informatiom about the federation running the application
-   *
    */
-  private array $federation = array ();
+  private array $federation = array();
 
   /**
    * The database connection
@@ -38,7 +37,17 @@ class Configuration {
     $reqParams = array('db', 'basename', 'federation');
     $reqParamsDB = array('servername', 'username', 'password',
       'name');
-    $reqParamsFederation = array('displayName', 'adminUsers');
+    $reqParamsFederation = array(
+      'displayName', 'adminUsers',
+      'aboutURL', 'contactURL',
+      'logoURL', 'logoWidth', 'logoHeight'#, 'languages'
+      );
+
+    $defaultValuesFederation = array(
+      'extend' => '',
+      'DS' => 'service.seamlessaccess.org',
+      'LoginURL' => 'Login',
+    );
 
     foreach ($reqParams as $param) {
       if (! isset(${$param})) {
@@ -49,16 +58,8 @@ class Configuration {
 
     $this->checkParams($db, $reqParamsDB, 'db');
 
-    $this->checkParams($federation,$reqParamsFederation, 'federation');
-    if (! isset($federation['extend'])) {
-      $federation['extend'] = '';
-    }
-    if (! isset($federation['DS'])) {
-      $federation['DS'] = 'service.seamlessaccess.org';
-    }
-    if (! isset($federation['LoginURL'])) {
-      $federation['LoginURL'] = 'Login';
-    }
+    $this->checkParams($federation,$reqParamsFederation, 'federation', $defaultValuesFederation);
+
     # Federation params
     $this->federation = $federation;
 
@@ -75,11 +76,18 @@ class Configuration {
    *
    * @param array $checkParam Parameter array to check
    *
-   * @param array $reqParams Requierd parameters in checkParam
+   * @param array $reqParams Required parameters in checkParam
    *
-   * @param string Name of array in config
+   * @param string $nameOfParam Name of array in config
+   *
+   * @return void
    */
-  private function checkParams($checkParam, $reqParams, $nameOfParam) {
+  private function checkParams(&$checkParam, $reqParams, $nameOfParam, $defaultValues = array()) {
+    foreach ($defaultValues as $param => $defaultValue) {
+      if (! isset($checkParam[$param])) {
+        $checkParam[$param] = $defaultValue;
+      }
+    }
     foreach ($reqParams as $param) {
       if (! isset($checkParam[$param])) {
         printf ('Missing $%s[%s] in config.php<br>', $nameOfParam, $param);
@@ -217,13 +225,15 @@ class Configuration {
    *
    * @param string $className name of baseClass
    *
-   * @return string name of baseClass or if exists extended class
    */
-  public function getExtendedClass($className) {
-    if (class_exists(__NAMESPACE__.'\\'.$className)) {
-      return class_exists(__NAMESPACE__.'\\'.$className.$this->federation['extend']) ?
-        __NAMESPACE__.'\\'.$className.$this->federation['extend'] :
-        __NAMESPACE__.'\\'.$className;
+  public function getExtendedClass($className, ...$params) {
+    $baseClass   = __NAMESPACE__ . '\\' . $className;
+    $extendClass = $baseClass . ($this->federation['extend'] ?? '');
+
+    if (!class_exists($baseClass)) {
+      return null;
     }
+
+    return new (class_exists($extendClass) ? $extendClass : $baseClass)(...$params);
   }
 }
