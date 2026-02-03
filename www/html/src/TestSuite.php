@@ -39,21 +39,9 @@ class TestSuite {
       'last' => '',
       'next' => 'noec',
     ),
-    'cocov1-1' => array (
-      'last' => 'cocov2-2',
-      'next' => 'cocov1-2',
-    ),
-    'cocov1-2' => array (
-      'last' => 'cocov1-1',
-      'next' => 'rands',
-    ),
-    'cocov2-1' => array (
+    'cocov2' => array (
       'last' => 'personalized',
-      'next' => 'cocov2-2',
-    ),
-    'cocov2-2' => array (
-      'last' => 'cocov2-1',
-      'next' => 'cocov1-1',
+      'next' => 'rands',
     ),
     'esi' => array (
       'last' => '',
@@ -69,10 +57,10 @@ class TestSuite {
     ),
     'personalized' => array (
       'last' => 'pseudonymous',
-      'next' => 'cocov2-1',
+      'next' => 'cocov2',
     ),
     'rands' => array (
-      'last' => 'cocov1-2',
+      'last' => 'cocov2',
       'next' => 'result',
     ),
   );
@@ -86,10 +74,7 @@ class TestSuite {
     'anonymous',
     'pseudonymous',
     'personalized',
-    'cocov2-1',
-    'cocov2-2',
-    'cocov1-1',
-    'cocov1-2',
+    'cocov2',
     'rands',
   );
 
@@ -126,52 +111,8 @@ class TestSuite {
       'nowarn'   => array (),
       'subtest'  => 'RAF',
     ),
-    'cocov1-1'     => array (
-      'name'     => 'GÉANT CoCo part 1',
-      'tab'      => 'entityCategory',
-      'expected' => array (
-        'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
-        'eduPersonOrcid'             => self::DESC_EDUPERSONORCID,
-        'schacDateOfBirth'           => self::DESC_SCHACDATEOFBIRTH,
-        'displayName'                => self::DESC_DISPLAYNAME,
-        'cn'                         => self::DESC_CN,
-        'givenName'                  => self::DESC_GIVENNAME,
-        'sn'                         => self::DESC_SN,
-        'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
-        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
-        'eduPersonAffiliation'       => self::DESC_EDUPERSONAFFILIATION,
-        'schacHomeOrganizationType'  => self::DESC_SCHACHOMEORGANIZATIONTYPE,
-      ),
-      'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
-      ),
-      'subtest'  => 'CoCov1',
-    ),
-    'cocov1-2'     => array (
-      'name'     => 'GÉANT CoCo part 2',
-      'tab'      => 'entityCategory',
-      'expected' =>array (
-        'eduPersonPrincipalName' => self::DESC_EDUPERSONPRINCIPALNAME,
-        'mail'                   => self::DESC_MAIL,
-        'displayName'            => self::DESC_DISPLAYNAME,
-        'cn'                     => self::DESC_CN,
-        'givenName'              => self::DESC_GIVENNAME,
-        'sn'                     => self::DESC_SN,
-        'o'                      => self::DESC_O,
-        'norEduOrgAcronym'       => self::DESC_NOREDUORGACRONYM,
-        'c'                      => self::DESC_C,
-        'co'                     => self::DESC_CO,
-        'schacHomeOrganization'  =>self::DESC_SCHACHOMEORGANIZATION,
-      ),
-      'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
-      ),
-      'subtest'  => 'CoCov1',
-    ),
-    'cocov2-1'     => array (
-      'name'     => 'REFEDS CoCo part 1',
+    'cocov2'     => array (
+      'name'     => 'REFEDS CoCo',
       'tab'      => 'entityCategory',
       'expected' => array (
         'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
@@ -186,29 +127,6 @@ class TestSuite {
         'eduPersonAffiliation'       => self::DESC_EDUPERSONAFFILIATION,
         'schacHomeOrganizationType'  => self::DESC_SCHACHOMEORGANIZATIONTYPE,
         'pairwise-id'                => self::DESC_PAIRWISEID,
-      ),
-      'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
-      ),
-      'subtest'  => 'CoCov2',
-    ),
-    'cocov2-2'     => array (
-      'name'     => 'REFEDS CoCo part 2',
-      'tab'      => 'entityCategory',
-      'expected' => array (
-        'eduPersonPrincipalName' => self::DESC_EDUPERSONPRINCIPALNAME,
-        'mail'                   => self::DESC_MAIL,
-        'displayName'            => self::DESC_DISPLAYNAME,
-        'cn'                     => self::DESC_CN,
-        'givenName'              => self::DESC_GIVENNAME,
-        'sn'                     => self::DESC_SN,
-        'o'                      => self::DESC_O,
-        'norEduOrgAcronym'       => self::DESC_NOREDUORGACRONYM,
-        'c'                      => self::DESC_C,
-        'co'                     => self::DESC_CO,
-        'schacHomeOrganization'  => self::DESC_SCHACHOMEORGANIZATION,
-        'subject-id'             => self::DESC_SUBJECTID,
       ),
       'nowarn'   => array (
         'persistent-id' => self::DESC_PERSISTENTID,
