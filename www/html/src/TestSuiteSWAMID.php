@@ -77,6 +77,10 @@ class TestSuiteSWAMID extends TestSuite {
     // Extra attribute for SWAMID test
     $this->tests['rands']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
 
+    $this->tests['esi']['name'] = 'SWAMID Entity Category Release Check - European Student Identifier';
+    $this->tests['esi']['expected']['schacPersonalUniqueCode'] = 'Usually used within SWAMID for the European Student Identifier.';
+
+
     // Added tests for swamid
     $this->tests['cocov1-1'] = array (
       'name'     => 'GÉANT CoCo part 1, from SWAMID',
@@ -194,22 +198,6 @@ class TestSuiteSWAMID extends TestSuite {
         'transient-id'  => self::DESC_TRANSIENTID,
       ),
       'subtest'  => 'CoCov2',
-    );
-
-    // New test for swamid
-    $this->tests['esi'] = array (
-      'name'     => 'SWAMID Entity Category Release Check - European Student Identifier',
-      'tab'      => 'esi',
-      'expected' =>array (
-        'schacPersonalUniqueCode'    => 'Usually used within SWAMID for the European Student Identifier.',
-        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
-      ),
-      'nowarn'   => array (
-        'eduPersonAffiliation' => self::DESC_EDUPERSONAFFILIATION,
-        'persistent-id'        => self::DESC_PERSISTENTID,
-        'transient-id'         => self::DESC_TRANSIENTID,
-      ),
-      'subtest'  => 'ESI',
     );
   }
 }

@@ -32,6 +32,51 @@ class IdPCheckSWAMID extends IdPCheck {
   }
 
   /**
+   * Check https://myacademicid.org/entity-categories/esi
+   *
+   * * Check  if all attributes that are requied are sent and in correct format
+   *
+   * @param array $attributes Attributes released
+   */
+  protected function checkESI( $attributes) {
+    if ( isset($attributes['schacPersonalUniqueCode'])) {
+      $rows=0;
+      foreach (explode(';',$attributes['schacPersonalUniqueCode']) as $row) {
+        if (strtolower(substr($row,0,37)) == 'urn:schac:personaluniquecode:int:esi:') {
+          if (strtolower(substr($row,0,40)) == 'urn:schac:personaluniquecode:int:esi:se:') {
+            $this->status['error'] .=
+              'schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or &lt;sHO&gt;.se<br>';
+            $this->status['testResult'] = 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
+          } elseif (substr($row,0,37) == 'urn:schac:personalUniqueCode:int:esi:') {
+            $this->status['testResult'] = 'schacPersonalUniqueCode OK';
+          } else {
+            # Some chars not in correct case
+            $this->status['warning'] .=
+              'schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi.';
+            $this->status['warning'] .= ' Might create problem in some SP:s<br>';
+            $this->status['testResult'] = 'schacPersonalUniqueCode OK. BUT wrong case';
+          }
+        } else {
+          $this->status['error'] .= 'schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:<br>';
+          $this->status['testResult'] = 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
+        }
+        $rows++;
+      }
+      if ($rows > 1) {
+        $this->status['warning'] .= 'schacPersonalUniqueCode should only contain <b>one</b> value.<br>';
+        if ($this->status['testResult'] == '' ) {
+          $this->status['testResult'] = 'More than one schacPersonalUniqueCode';
+        }
+      }
+      if ($this->status['testResult'] == '' ) {
+        $this->status['testResult'] = 'schacPersonalUniqueCode OK';
+      }
+    } else {
+      $this->status['testResult'] = 'Missing schacPersonalUniqueCode';
+    }
+  }
+
+  /**
    * Setup RAF/MFA
    *
    * Used by checkRAF and checkMFA

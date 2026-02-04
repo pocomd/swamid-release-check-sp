@@ -762,11 +762,7 @@ class IdPCheck {
       $rows=0;
       foreach (explode(';',$attributes['schacPersonalUniqueCode']) as $row) {
         if (strtolower(substr($row,0,37)) == 'urn:schac:personaluniquecode:int:esi:') {
-          if (strtolower(substr($row,0,40)) == 'urn:schac:personaluniquecode:int:esi:se:') {
-            $this->status['error'] .=
-              'schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or &lt;sHO&gt;.se<br>';
-            $this->status['testResult'] = 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
-          } elseif (substr($row,0,37) == 'urn:schac:personalUniqueCode:int:esi:') {
+          if (substr($row,0,37) == 'urn:schac:personalUniqueCode:int:esi:') {
             $this->status['testResult'] = 'schacPersonalUniqueCode OK';
           } else {
             # Some chars not in correct case

@@ -203,11 +203,26 @@ class TestSuite {
       'nowarn'   => array (
         'persistent-id'       => self::DESC_PERSISTENTID,
         'transient-id'        => self::DESC_TRANSIENTID,
+        'eduPersonAssurance'  => self::DESC_EDUPERSONASSURANCE,
         'eduPersonTargetedID' => 'For R&S release only if eduPersonPrincipalName is reassignable',
         'eduPersonUniqueID'   => 'A long-lived, non re-assignable, omnidirectional identifier suitable for use as a principal identifier by authentication providers or as a unique external key by applications.',
       ),
       'subtest'  => 'R&S',
-    )
+    ),
+    'esi' => array (
+      'name'     => 'European Student Identifier',
+      'tab'      => 'esi',
+      'expected' =>array (
+        'schacPersonalUniqueCode'    => 'Usually used for the European Student Identifier.',
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+      ),
+      'nowarn'   => array (
+        'eduPersonAffiliation' => self::DESC_EDUPERSONAFFILIATION,
+        'persistent-id'        => self::DESC_PERSISTENTID,
+        'transient-id'         => self::DESC_TRANSIENTID,
+      ),
+      'subtest'  => 'ESI',
+    ),
   );
 
   /**
