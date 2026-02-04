@@ -126,10 +126,12 @@ if (isset($config->getFederation()['metadataTool'])) {
 }
 
 $tab = isset($_GET['tab']) ? $_GET['tab'] : '';
-$html->showHeaders();
+$html->showHTMLHead();
+$html->showContentHeader();
 if (! in_array($_SERVER['saml_eduPersonPrincipalName'], $config->getFederation()['adminUsers'] )) {
     print '<h1>No access</h1>';
-    $html->showFooter();
+    $html->showContentFooter();
+    $html->showScripts();
     exit;
 }
 printf('    <div class="row">
@@ -194,7 +196,8 @@ if (isset($_GET['idp'])) {
   $html->addTableSort('resultTable');
 }
 
-$html->showFooter();
+$html->showContentFooter();
+$html->showScripts();
 
 function sends($string,$attribute) {
   return strpos($string, $attribute) !== false;

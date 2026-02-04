@@ -28,7 +28,8 @@ $federation = $config->getFederation();
 $testSuite = $config->getExtendedClass('TestSuite');
 $html = $config->getExtendedClass('HTML');
 
-$html->showHeaders();
+$html->showHTMLHead();
+$html->showContentHeader();
 $display = new \releasecheck\Display();
 
 # Default values
@@ -349,4 +350,5 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
           }).render('#DS-Thiss');
         };
       </script>\n", $federation['DS'], $config->basename(), $federation['LoginURL'], $config->basename());
-$html->showFooter($collapseIcons);
+$html->showContentFooter();
+$html->showScripts($collapseIcons);
