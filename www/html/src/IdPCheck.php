@@ -327,7 +327,7 @@ class IdPCheck {
       }
 
       if (count ($extraValues) ) {
-        $this->showAttributeTable('Attributes that were not requested/expected', $extraValues);
+        $this->showAttributeTable('Attributes that were not requested/expected', $extraValues, true);
       }
     }
   }
@@ -341,13 +341,18 @@ class IdPCheck {
    *
    * @return void
    */
-  protected function showAttributeTable($title, $attributeArray) {
+  protected function showAttributeTable($title, $attributeArray, $showIcons = false) {
     printf ('    <h3>%s</h3>
     <table class="table table-striped table-bordered">
       <tr><th>Attribute</th><th>Value</th></tr>%s', $title, "\n");
     foreach ( $attributeArray as $key => $value ) {
+      if ($showIcons) {
+        $icon = sprintf('<i class="fas fa-%s"></i> ', isset($this->nowarn[$key]) ? 'check' : 'exclamation');
+      } else {
+        $icon = '';
+      }
       $value = str_replace(";" , "<br>",$value);
-      printf('      <tr><th>%s</th><td>%s</td></tr>%s', $key, $value, "\n");
+      printf('      <tr><th>%s%s</th><td>%s</td></tr>%s', $icon, $key, $value, "\n");
     }
     print "    </table>\n";
   }
