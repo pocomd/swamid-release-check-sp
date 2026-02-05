@@ -77,15 +77,15 @@ $federation = array(
 );
 
 $template = array(
-  # Header setup 
+  # Header setup
   # src - source of page header content. Values:
   # "config" - use content from "template" param
-  # "file" - use content from readable header.php file param located in /www/html/resources/templates folder. 
-  #          file content will be loaded by applying include_once() 
+  # "file" - use content from readable header.php file param located in /www/html/resources/templates folder.
+  #          file content will be loaded by applying include_once()
   # "self" (or any other value) - use default content from HTML class
   "header" => array(
     "src" => "self",
-    "template" => "", 
+    "template" => "",
   ),
   "body" => array(),
   "footer" => array(

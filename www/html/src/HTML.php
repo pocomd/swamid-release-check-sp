@@ -113,8 +113,8 @@ class HTML {
 
   /**
    * Parse custom content for given location
-   * 
-   * @return string|false 
+   *
+   * @return string|false
    */
   public function getPageContent($location) {
     $content = false;
@@ -135,6 +135,9 @@ class HTML {
               $content = "<script>console.warn('{$e->getMessage()}')</script>";
             }
           }
+          break;
+        default:
+          $content = false;
           break;
       }
     }

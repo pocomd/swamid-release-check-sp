@@ -11,10 +11,7 @@ body {
 .header {
     padding-right: 15px;
     padding-left: 15px;
-}
-
-/* Custom page header */
-.header {
+    /* Custom page header */
     border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
@@ -68,9 +65,7 @@ body {
     .header {
         padding-right: 0;
         padding-left: 0;
-    }
-    /* Space out the masthead */
-    .header {
+        /* Space out the masthead */
         margin-bottom: 30px;
     }
 }
