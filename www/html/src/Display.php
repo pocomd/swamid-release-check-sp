@@ -125,13 +125,13 @@ class Display {
    *
    * @param string $idp IdP to show results for
    *
-   * @param int $testRunId Id of testrun
+   * @param array $testrun testrun to display
    *
    * @return void
    */
-  public function showResultsECTests($idp, $testRunId=0){
+  public function showResultsECTests($idp, $testrun){
     $testHandler = $this->config->getDb()->prepare(self::SQL_TESTS);
-    $testHandler->bindValue('testRun',$testRunId);
+    $testHandler->bindValue('testRun',$testrun['id']);
     $testHandler->bindParam('test',$test);
 
     printf('          <table class="table table-striped table-bordered">
@@ -139,7 +139,7 @@ class Display {
     foreach ( $this->testSuite->getECTests() as $test) {
       $testHandler->execute();
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
-        $this->printRow($row, $idp, $this->testSuite->getTestName($test));
+        $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
       } else {
         printf ('            <tr>
               <td>Test not run yet<br>
@@ -149,7 +149,7 @@ class Display {
               </td>
               <td><h5>%s</h5></td>
             </tr>%s',
-          $test, $this->config->basename(), urlencode($idp), urlencode(sprintf('https://%s.%s/?singleTest',$test, $this->config->basename())),
+          $test, $this->config->basename(), urlencode($idp), urlencode(sprintf('https://%s.%s/?singleTest%s',$test, $this->config->basename(), $testrun['session'] == '' ? '' : sprintf('&session=%s', $testrun['session']))),
           $this->testSuite->getTestName($test), "\n");
       }
     }
@@ -161,13 +161,13 @@ class Display {
    *
    * @param string $idp IdP to show results for
    *
-   * @param int $testRunId Id of testrun
+   * @param array $testrun testrun to display
    *
    * @return void
    */
-  public function showResultsMFA($idp, $testRunId=0){
+  public function showResultsMFA($idp, $testrun){
     $testHandler = $this->config->getDb()->prepare(self::SQL_TESTS);
-    $testHandler->bindValue('testRun',$testRunId);
+    $testHandler->bindValue('testRun',$testrun['id']);
     $testHandler->bindParam('test',$test);
 
     printf ('          <table class="table table-striped table-bordered">
@@ -175,7 +175,7 @@ class Display {
     $test = 'mfa';
     $testHandler->execute();
     if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
-      $this->printRow($row, $idp, $this->testSuite->getTestName($test));
+      $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
     } else {
       printf ("            <tr><td>Test not run yet</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
     }
@@ -187,18 +187,18 @@ class Display {
    *
    * @param string $idp IdP to show results for
    *
-   * @param int $testRunId Id of testrun
+   * @param array $testrun testrun to display
    *
    * @return void
    */
-  public function showResultsESI($idp, $testRunId=0){
+  public function showResultsESI($idp, $testrun){
     $tests = array(
       'esi-stud' => 'European Student Identifier (student account)',
       'esi' => 'European Student Identifier (any account)',
     );
 
     $testHandler = $this->config->getDb()->prepare(self::SQL_TESTS);
-    $testHandler->bindValue('testRun',$testRunId);
+    $testHandler->bindValue('testRun',$testrun['id']);
     $testHandler->bindParam('test',$test);
 
     printf ('          <table class="table table-striped table-bordered">
@@ -225,13 +225,16 @@ class Display {
    *
    * @return void
    */
-  private function printRow($row, $idp, $desc='') {
+  private function printRow($row, $idp, $desc='', $session = '') {
     $baseTest = $row['test'] == 'esi-stud' ? 'esi' : $row['test'];
     $button = sprintf('<a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">
-                  <button type="button" class="btn btn-link">Rerun test</button>
+                  <button type="button" class="btn btn-link">%s</button>
                 </a>',
       $baseTest, $this->config->basename(), urlencode($idp),
-      urlencode(sprintf('https://%s.%s/%s', $baseTest, $this->config->basename(), $baseTest == 'mfa' ? '' : '?singleTest')));
+      urlencode(sprintf('https://%s.%s/%s',
+        $baseTest, $this->config->basename(),
+        $baseTest == 'mfa' ? '' : sprintf('?singleTest%s', $session == '' ? '' : sprintf('&session=%s', $session)))),
+      $session == '' ? 'Run NEW test' : 'Rerun test');
     if ($desc == '') {
       printf ("            <tr>
               <td>%s<br>
@@ -310,7 +313,7 @@ class Display {
    *
    * @return array
    */
-  public function getTestruns($idp, $tab, $limit = 10) {
+  public function getTestruns($idp, $tab, $limit = 10, $base = './') {
     switch ($tab) {
       case 'entityCategory' :
         $tests = implode("','", $this->testSuite->getECTests());
@@ -326,7 +329,7 @@ class Display {
         exit;
     }
     $testRunHandler = $this->config->getDb()->prepare(
-      "SELECT DISTINCT `testRuns`.`id`, `testRuns`.`time`
+      "SELECT DISTINCT `testRuns`.`id`, `testRuns`.`time`, `testRuns`.`session`
       FROM `testRuns`, `idps`, `tests`
       WHERE `idp_id` = `idps`.`id`
         AND `idps`.`entityID` = :EntityId
@@ -337,20 +340,26 @@ class Display {
     $testRunHandler->execute(array('EntityId' => $idp));
     if ($testruns = $testRunHandler->fetchAll(PDO::FETCH_ASSOC)) {
       $testrun = $testruns[0];
+      $session = $testrun['session'];
+      $session = (isset($_GET['id']) && $_GET['id'] != $testrun['id'])  ? '' : $session;
       if (count($testruns) > 1) {
         print "          <h4>Other results</h4>
             <ul>\n";
         foreach($testruns as $run) {
-          printf('            <li><a href="./?tab=%s&id=%d">%s</a></li>%s', $tab, $run['id'], $run['time'], "\n");
           # Check if this run is requested run. In that case save this run
-          if (isset($_GET['id']) && $_GET['id'] == $run['id']) {
+          if ((isset($_GET['id']) && $_GET['id'] == $run['id']) || (!isset($_GET['id']) && $testrun['id'] == $run['id'])) {
             $testrun = $run;
+            printf('            <li>%s</li>%s', $run['time'], "\n");
+          } else {
+            printf('            <li><a href="%s?tab=%s&id=%d&idp=%s">%s</a></li>%s',
+              $base, $tab, $run['id'], $idp, $run['time'], "\n");
           }
         }
         print "          </ul>\n";
+        $testrun['session'] = $session;
       }
     } else {
-      $testrun = array ('id' => 0, 'time' => HTML_NO_RUN);
+      $testrun = array ('id' => 0, 'time' => HTML_NO_RUN, 'session' => '');
     }
     return $testrun;
   }

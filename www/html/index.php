@@ -209,7 +209,7 @@ $collapseIcons[] = "entityCategory-instructions";
 if ($result) {
   $testrun = $display->getTestruns($IdP, 'entityCategory');
   printf (HTML_RESULT_FOR, $displayName,$IdP, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
-  $display->showResultsECTests($IdP, $testrun['id']);
+  $display->showResultsECTests($IdP, $testrun);
 }
 printf('      </div><!-- End tab-pane entityCategory -->
       <div class="tab-pane fade%s%s" id="mfa-check"
@@ -249,7 +249,7 @@ $collapseIcons[] = "mfa-instructions";
 if ($result) {
   $testrun = $display->getTestruns($IdP, 'mfa');
   printf (HTML_RESULT_FOR, $displayName,$IdP, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
-  $display->showResultsMFA($IdP, $testrun['id']);
+  $display->showResultsMFA($IdP, $testrun);
 }
 printf('      </div><!-- End tab-pane mfa-check -->
       <div class="tab-pane fade%s%s" id="esi" role="tabpanel" aria-labelledby="esi-tab">
@@ -288,7 +288,7 @@ $collapseIcons[] = "esi-instructions";
 if ($result) {
   $testrun = $display->getTestruns($IdP, 'esi');
   printf (HTML_RESULT_FOR, $displayName,$IdP, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
-  $display->showResultsESI($IdP, $testrun['id']);
+  $display->showResultsESI($IdP, $testrun);
 }
 printf("      </div><!-- End tab-pane esi -->
       <!-- Include the Seamless Access Sign in Button & Discovery Service -->
