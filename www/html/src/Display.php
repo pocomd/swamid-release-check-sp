@@ -353,6 +353,9 @@ class Display {
         $selectedTab = isset($_GET['tab']) && $_GET['tab'] == $tab;
         $selectedId = isset($_GET['id']) && $selectedTab ? $_GET['id'] : $lastRunId;
         $session = ($selectedId == $lastRunId)  ? $testruns[0]['session'] : '';
+        $urlBase = sprintf('%s?tab=%s%s',
+          $base, $tab,
+          $base == './' ? '' : sprintf('&idp=%s', urlencode($idp)));
         print "          <h4>Other results</h4>
             <ul>\n";
         foreach($testruns as $run) {
@@ -361,10 +364,8 @@ class Display {
             $testrun = $run;
             printf('            <li>%s</li>%s', $run['time'], "\n");
           } else {
-            printf('            <li><a href="%s?tab=%s&id=%d%s">%s</a></li>%s',
-              $base, $tab, $run['id'],
-              $base == './' ? '' : sprintf('&idp=%s', urlencode($idp)),
-              $run['time'], "\n");
+            printf('            <li><a href="%s&id=%d">%s</a></li>%s',
+              $urlBase, $run['id'], $run['time'], "\n");
           }
         }
         print "          </ul>\n";
