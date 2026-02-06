@@ -29,6 +29,19 @@ class TestSuiteSWAMID extends TestSuite {
    */
   public function __construct() {
     parent::__construct();
+    $this->updateOrder();
+    $this->updateTest();
+    $this->addTests();
+  }
+
+  /**
+   * Update order for tests
+   *
+   * Since we add som tests we need to update order
+   *
+   * @return void
+   */
+  private function updateOrder() {
     /**
      * Changes in order from TestSuite
      */
@@ -58,10 +71,16 @@ class TestSuiteSWAMID extends TestSuite {
       'next' => 'cocov1-1',
     );
     $this->order['rands']['last'] = 'cocov1-3';
+  }
 
-    /**
-     * Changes from tests in TestSuite
-     */
+  /**
+   * Update tests that already exists in TestSuite
+   *
+   * Add some extra attributes and update some descriptions
+   *
+   * @return void
+   */
+  private function updateTest() {
     $this->tests['assurance']['expected']['eduPersonAssurance'] =
      'User assurance information. SWAMID Identity Assurance Profiles can only be asserted for a user if and only if both the organisation and the user is validated for the assurance level. Furthermore, REFEDS Assurance Framework information should be released based on SWAMID Assurance level for the user.';
 
@@ -77,6 +96,14 @@ class TestSuiteSWAMID extends TestSuite {
     $this->tests['esi']['name'] = 'SWAMID Entity Category Release Check - European Student Identifier';
     $this->tests['esi']['expected']['schacPersonalUniqueCode'] = 'Usually used within SWAMID for the European Student Identifier.';
 
+  }
+
+  /**
+   * Add extra tests
+   *
+   * @return void
+   */
+  private function addTests() {
     // Added tests for swamid
     $this->tests['cocov1-1'] = array (
       'name'     => 'GÉANT CoCo part 1, from SWAMID',
@@ -144,13 +171,31 @@ class TestSuiteSWAMID extends TestSuite {
       'subtest'  => 'CoCov1',
     );
 
-    # Rename test cocov2-1 to cocov2
-    $this->tests['cocov2-1'] = $this->tests['cocov2'];
-    unset($this->tests['cocov2']);
-    $this->tests['cocov2-1']['name'] = 'REFEDS CoCo part 1, from SWAMID';
-    $this->tests['cocov2-1']['expected']['norEduPersonNIN'] = $this->tests['cocov1-1']['expected']['norEduPersonNIN'];
-    $this->tests['cocov2-1']['expected']['personalIdentityNumber'] = $this->tests['cocov1-1']['expected']['personalIdentityNumber'];
-    $this->tests['cocov2-1']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
+    $this->tests['cocov2-1'] = array(
+      'name'     => 'REFEDS CoCo part 1, from SWAMID',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
+        'eduPersonOrcid'             => self::DESC_EDUPERSONORCID,
+        'schacDateOfBirth'           => self::DESC_SCHACDATEOFBIRTH,
+        'displayName'                => self::DESC_DISPLAYNAME,
+        'cn'                         => self::DESC_CN,
+        'givenName'                  => self::DESC_GIVENNAME,
+        'sn'                         => self::DESC_SN,
+        'eduPersonAssurance'         => $this->tests['assurance']['expected']['eduPersonAssurance'],
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+        'eduPersonAffiliation'       => self::DESC_EDUPERSONAFFILIATION,
+        'schacHomeOrganizationType'  => self::DESC_SCHACHOMEORGANIZATIONTYPE,
+        'pairwise-id'                => self::DESC_PAIRWISEID,
+        'norEduPersonNIN'            => '12 digit Socialsecuritynumber. Same as for example LADOK uses. Required for systems like LADOK to work.',
+        'personalIdentityNumber'     => 'Swedish 12 digit Socialsecuritynumber. Same as in passport',
+      ),
+      'nowarn'   => array (
+        'persistent-id' => self::DESC_PERSISTENTID,
+        'transient-id'  => self::DESC_TRANSIENTID,
+      ),
+      'subtest'  => 'CoCov2',
+    );
     $this->tests['cocov2-2'] = array (
       'name'     => 'REFEDS CoCo part 2, from SWAMID',
       'tab'      => 'entityCategory',
