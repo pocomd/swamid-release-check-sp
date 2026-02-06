@@ -4,7 +4,8 @@ require_once 'vendor/autoload.php';
 $config = new \releasecheck\Configuration();
 
 $html = $config->getExtendedClass('HTML');
-$html->showHeaders();
+$html->showHTMLHead();
+$html->showContentHeader();
 
 $errorURL = isset($_GET['errorURL']) ?
   'For more info visit this <a href="' . $_GET['errorURL'] . '">support-page</a>.' : '';

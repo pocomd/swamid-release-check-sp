@@ -28,7 +28,8 @@ $federation = $config->getFederation();
 $testSuite = $config->getExtendedClass('TestSuite');
 $html = $config->getExtendedClass('HTML');
 
-$html->showHeaders();
+$html->showHTMLHead();
+$html->showContentHeader();
 $display = new \releasecheck\Display();
 
 # Default values
@@ -301,4 +302,5 @@ printf("      </div><!-- End tab-pane esi -->
           }).render('#DS-Thiss');
         };
       </script>\n", $federation['DS'], $config->basename(), $federation['LoginURL'], $config->basename());
-$html->showFooter($collapseIcons);
+$html->showContentFooter();
+$html->showScripts($collapseIcons);
