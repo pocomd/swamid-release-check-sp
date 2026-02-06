@@ -206,7 +206,7 @@ class Display {
     foreach ($tests as $test => $name) {
       $testHandler->execute();
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
-        $this->printRow($row, $idp, $name);
+        $this->printRow($row, $idp, $name, $testrun['session']);
       } else {
         printf ("            <tr><td>Test not run yet</td><td><h5>%s</h5></td></tr>\n", $name);
       }
@@ -227,14 +227,15 @@ class Display {
    */
   private function printRow($row, $idp, $desc='', $session = '') {
     $baseTest = $row['test'] == 'esi-stud' ? 'esi' : $row['test'];
+    $singleTest = sprintf('?singleTest%s', $session == '' ? '' : sprintf('&session=%s', $session));
+    $target = sprintf('https://%s.%s/%s',
+        $baseTest, $this->config->basename(),
+        $baseTest == 'mfa' ? '' : $singleTest);
     $button = sprintf('<a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">
                   <button type="button" class="btn btn-link">%s</button>
                 </a>',
       $baseTest, $this->config->basename(), urlencode($idp),
-      urlencode(sprintf('https://%s.%s/%s',
-        $baseTest, $this->config->basename(),
-        $baseTest == 'mfa' ? '' : sprintf('?singleTest%s', $session == '' ? '' : sprintf('&session=%s', $session)))),
-      $session == '' ? 'Run NEW test' : 'Rerun test');
+      urlencode($target), $session == '' ? 'Run NEW test' : 'Rerun test');
     if ($desc == '') {
       printf ("            <tr>
               <td>%s<br>
@@ -338,28 +339,36 @@ class Display {
       ORDER BY `time` DESC
       LIMIT " . $limit);
     $testRunHandler->execute(array('EntityId' => $idp));
-    if ($testruns = $testRunHandler->fetchAll(PDO::FETCH_ASSOC)) {
-      $testrun = $testruns[0];
-      $session = $testrun['session'];
-      $session = (isset($_GET['id']) && $_GET['id'] != $testrun['id'])  ? '' : $session;
-      if (count($testruns) > 1) {
+    $testruns = $testRunHandler->fetchAll(PDO::FETCH_ASSOC);
+    switch (count($testruns)) {
+      case 0 :
+        $testrun = array ('id' => 0, 'time' => HTML_NO_RUN, 'session' => '');
+        break;
+      case 1 :
+        $testrun = $testruns[0];
+        break;
+      default :
+        # Default to 1:st testrun
+        $lastRunId = $testruns[0]['id'];
+        $selectedTab = isset($_GET['tab']) && $_GET['tab'] == $tab;
+        $selectedId = isset($_GET['id']) && $selectedTab ? $_GET['id'] : $lastRunId;
+        $session = ($selectedId == $lastRunId)  ? $testruns[0]['session'] : '';
         print "          <h4>Other results</h4>
             <ul>\n";
         foreach($testruns as $run) {
           # Check if this run is requested run. In that case save this run
-          if ((isset($_GET['id']) && $_GET['id'] == $run['id']) || (!isset($_GET['id']) && $testrun['id'] == $run['id'])) {
+          if ($selectedId == $run['id']) {
             $testrun = $run;
             printf('            <li>%s</li>%s', $run['time'], "\n");
           } else {
-            printf('            <li><a href="%s?tab=%s&id=%d&idp=%s">%s</a></li>%s',
-              $base, $tab, $run['id'], $idp, $run['time'], "\n");
+            printf('            <li><a href="%s?tab=%s&id=%d%s">%s</a></li>%s',
+              $base, $tab, $run['id'],
+              $base == './' ? '' : sprintf('&idp=%s', urlencode($idp)),
+              $run['time'], "\n");
           }
         }
         print "          </ul>\n";
         $testrun['session'] = $session;
-      }
-    } else {
-      $testrun = array ('id' => 0, 'time' => HTML_NO_RUN, 'session' => '');
     }
     return $testrun;
   }

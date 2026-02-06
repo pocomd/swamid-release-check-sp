@@ -29,11 +29,9 @@ class TestSuiteSWAMID extends TestSuite {
    */
   public function __construct() {
     parent::__construct();
-
     /**
      * Changes in order from TestSuite
      */
-
     $this->order['personalized']['next'] = 'cocov2-1';
     $this->order['cocov1-1'] = array (
       'last' => 'cocov2-3',
@@ -74,12 +72,10 @@ class TestSuiteSWAMID extends TestSuite {
 
     $this->tests['personalized']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
 
-    // Extra attribute for SWAMID test
     $this->tests['rands']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
 
     $this->tests['esi']['name'] = 'SWAMID Entity Category Release Check - European Student Identifier';
     $this->tests['esi']['expected']['schacPersonalUniqueCode'] = 'Usually used within SWAMID for the European Student Identifier.';
-
 
     // Added tests for swamid
     $this->tests['cocov1-1'] = array (
@@ -155,7 +151,6 @@ class TestSuiteSWAMID extends TestSuite {
     $this->tests['cocov2-1']['expected']['norEduPersonNIN'] = $this->tests['cocov1-1']['expected']['norEduPersonNIN'];
     $this->tests['cocov2-1']['expected']['personalIdentityNumber'] = $this->tests['cocov1-1']['expected']['personalIdentityNumber'];
     $this->tests['cocov2-1']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
-
     $this->tests['cocov2-2'] = array (
       'name'     => 'REFEDS CoCo part 2, from SWAMID',
       'tab'      => 'entityCategory',

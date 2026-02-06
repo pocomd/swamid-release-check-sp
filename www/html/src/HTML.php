@@ -84,7 +84,7 @@ class HTML {
       </h3>%s',
     $this->federation['aboutURL'], $this->federation['displayName'],
     $this->federation['contactURL'],
-    $this->config->basename(), 
+    $this->config->basename(),
     $this->federation['displayName'], $this->federation['logoURL'],
     $this->federation['logoWidth'], $this->federation['logoHeight'],
     "\n");
