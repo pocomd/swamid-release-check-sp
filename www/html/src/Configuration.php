@@ -40,7 +40,7 @@ class Configuration {
   public function __construct($startDB = true) {
     include __DIR__ . '/../config.php'; # NOSONAR
 
-    $reqParams = array('db', 'basename', 'federation', 'template');
+    $reqParams = array('db', 'basename', 'federation');
     $reqParamsDB = array('servername', 'username', 'password',
       'name');
     $reqParamsFederation = array(
@@ -80,6 +80,21 @@ class Configuration {
       'instructionsEntityCategoryEnd' => '<p>Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT
             release in accordance REFEDS/GÉANT Code of Conduct.</p>',
     );
+
+    if (! isset($template)) {
+      # set default values if not configured
+      $template = array(
+        'header' => array(
+          'src' => 'self',
+          'template' => '',
+        ),
+        'body' => array(),
+        'footer' => array(
+          'src' => 'self',
+          'template' => '',
+        )
+      );
+    }
 
     foreach ($reqParams as $param) {
       if (! isset(${$param})) {
