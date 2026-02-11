@@ -10,7 +10,6 @@ $html = $config->getExtendedClass('HTML');
 $admin = $config->getExtendedClass('Admin');
 
 $collapseIcons = array();
-$tested_idps = array();
 
 $tab = isset($_GET['tab']) ? $_GET['tab'] : '';
 
@@ -46,7 +45,7 @@ if ($tab != '') {
           $display = new \releasecheck\Display();
           $testrun = $display->getTestruns($_GET['idp'], 'entityCategory');
           printf ('        <h3>Result for %s (%s)%s</h3>%s',
-            $displayName, $_GET['idp'],
+            $displayName, htmlspecialchars($_GET['idp']),
             $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')', "\n");
           $display->showResultsECTests($_GET['idp'], $testrun);
         }

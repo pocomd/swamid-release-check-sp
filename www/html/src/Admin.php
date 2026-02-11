@@ -18,7 +18,7 @@ class Admin {
    * key   = entityID
    * value = true if IdP have been tested
    */
-  protected array $tested_idps;
+  protected array $testedIPs;
 
   /**
    * Array of federation configuration
@@ -107,6 +107,7 @@ class Admin {
       'expected' => array (
         'givenName' => 'givenName',
         'sn' => 'sn',
+        'mail' => 'mail',
       ),
       'testResults' => array(
         'OKOK' => 'CoCo OK, Entity Category Support OK',
@@ -134,7 +135,7 @@ class Admin {
       $this->config = new Configuration();
     }
     $this->federation = $this->config->getFederation();
-    $this->get_tested_idps();
+    $this->getTestedIPs();
   }
 
   /**
@@ -142,7 +143,7 @@ class Admin {
    *
    * @return void
    */
-  protected function get_tested_idps() {
+  protected function getTestedIPs() {
     if (isset($this->federation['metadataTool'])) {
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, 'https://' . $this->federation['metadataTool'] . '/api/v1/');
@@ -155,7 +156,7 @@ class Admin {
       $res = curl_exec($ch);
       $data = json_decode($res, true, 4);
       foreach ($data['objects'] as $row) {
-        $this->tested_idps[$row['entityID']] = false;
+        $this->testedIPs[$row['entityID']] = false;
       }
     }
   }
@@ -188,14 +189,14 @@ class Admin {
         $test, $idpParam, $data['displayName'], "\n");
     }
     printf('          <li class="nav-item">
-            <a class="nav-link%s" href="?tab=mfa">MFA</a>
+            <a class="nav-link%s" href="?tab=mfa%s">MFA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link%s" href="?tab=esi">ESI</a>
+            <a class="nav-link%s" href="?tab=esi%s">ESI</a>
           </li>
         </ul>%s',
-      $tab == 'mfa' ? self::HTML_ACTIVE : '',
-      $tab == 'esi' ? self::HTML_ACTIVE : '', "\n");
+      $tab == 'mfa' ? self::HTML_ACTIVE : '', $idpParam,
+      $tab == 'esi' ? self::HTML_ACTIVE : '', $idpParam, "\n");
   }
 
   /**
@@ -230,7 +231,7 @@ class Admin {
       <a href="./admin.php?tab=AllTests&idp=%s">
         <button type="button" class="btn btn-success">Show all EC tests for this IdP</button>
       </a>%s',
-        $this->tests[$tab]['fullName'], $selectedIdp, $tab, $selectedIdp, "\n");
+        $this->tests[$tab]['fullName'], htmlspecialchars($selectedIdp), $tab, urldecode($selectedIdp), "\n");
     } else {
       printf('      <h1>Data based on IdP:s that have run %s test</h1>%s',
        $this->tests[$tab]['fullName'], "\n");
@@ -317,7 +318,7 @@ class Admin {
       $idp = $testResult['entityID'];
       if ($selectedIdp || $lastIdp != $idp) {
         $lastIdp = $idp;
-        $this->tested_idps[$idp] = true;
+        $this->testedIPs[$idp] = true;
 
         if ($selectedIdp) {
           printf('            <tr>
@@ -363,7 +364,7 @@ class Admin {
       }
     }
     printf('          </tbody>%s', "\n");
-    $this->printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC);
+    $this->printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC, sizeof($this->tests[$tab]['expected']));
   }
 
   /**
@@ -372,10 +373,23 @@ class Admin {
    * @return void
    */
   public function showMFA() {
-    print '    <div class="row">
-      <div class="col">
-        <h1>Data based on IdP:s that have run MFA test</h1>
-        <table class="table table-striped table-bordered">
+    $selectedIdp = isset($_GET['idp']) ? $_GET['idp'] : false;
+    printf('    <div class="row">
+      <div class="col">%s', "\n");
+    if ($selectedIdp) {
+      printf('      <h1>MFA tests run by %s</h1>
+      <a href="./admin.php?tab=mfa">
+        <button type="button" class="btn btn-success">Show all IdPs</button>
+      </a>
+      <a href="./admin.php?tab=AllTests&idp=%s">
+        <button type="button" class="btn btn-success">Show all EC tests for this IdP</button>
+      </a>%s',
+        htmlspecialchars($selectedIdp), urldecode($selectedIdp), "\n");
+    } else {
+      printf('      <h1>Data based on IdP:s that have run MFA test</h1>%s',
+        "\n");
+    }
+    printf('        <table class="table table-striped table-bordered">
           <tr>
             <td>MFA </td>
             <td>
@@ -396,35 +410,51 @@ class Admin {
         <table id="resultTable" class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th>IdP</th>
+              %s
               <th>Tested</th>
               <th>MFA</th>
               <th>ForceAuthn</th>
             </tr>
           </thead>
-          <tbody>' . "\n";
-    $testHandler = $this->config->getDB()->prepare(
+          <tbody>',
+      $selectedIdp ? '' : '<th>IdP</th>',
+      "\n");
+    $testHandler = $this->config->getDB()->prepare($selectedIdp ?
       "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
       FROM `tests`, `testRuns`, `idps`
       WHERE `tests`.`testRun_id` = `testRuns`.`id`
         AND `testRuns`.`idp_id` = `idps`.`id`
         AND `test` = 'mfa'
-      ORDER BY `entityID`, `time` DESC;");
+        AND `entityID` = :Idp
+      ORDER BY `time` DESC;"
+      : "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
+      FROM `tests`, `testRuns`, `idps`
+      WHERE `tests`.`testRun_id` = `testRuns`.`id`
+        AND `testRuns`.`idp_id` = `idps`.`id`
+        AND `test` = 'mfa'
+      ORDER BY `entityID`, `time` DESC;"
+      );
     $okMFA = 0;
     $okForceAuthn = 0;
     $failMFA = 0;
     $failForceAuthn = 0;
     $lastIdp = '';
-    $testHandler->execute();
+    $testHandler->execute($selectedIdp ?
+      array('Idp' => $selectedIdp) : array());
     while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
       $idp = $testResult['entityID'];
-      if ($lastIdp != $idp) {
+      if ($selectedIdp || $lastIdp != $idp) {
         $lastIdp = $idp;
-        $this->tested_idps[$idp] = true;
+        $this->testedIPs[$idp] = true;
 
-        printf('            <tr>
+        if ($selectedIdp) {
+          printf('            <tr>
+              <td>%s</td>%s', $testResult['time'], "\n");
+        } else {
+          printf('            <tr>
               <td><a href="?tab=mfa&idp=%s">%s</a></td>
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
+        }
         switch ($testResult['testResult']) {
           case 'Supports REFEDS MFA and ForceAuthn.' :
             printf('              <td><i class="fas fa-check"></i> OK</td>
@@ -466,10 +496,24 @@ class Admin {
    * @return void
    */
   public function showESI() {
-    print '    <div class="row">
-      <div class="col">
-        <h1>Data based on IdP:s that have run ESI test</h1>
-        <i class="fas fa-check"> = Correct schacPersonalUniqueCode</i><br>
+    $selectedIdp = isset($_GET['idp']) ? $_GET['idp'] : false;
+    printf('    <div class="row">
+      <div class="col">%s', "\n");
+    if ($selectedIdp) {
+      printf('      <h1>ESI tests run by %s</h1>
+      <a href="./admin.php?tab=esi">
+        <button type="button" class="btn btn-success">Show all IdPs</button>
+      </a>
+      <a href="./admin.php?tab=AllTests&idp=%s">
+        <button type="button" class="btn btn-success">Show all EC tests for this IdP</button>
+      </a>
+      <br>%s',
+        htmlspecialchars($selectedIdp), urldecode($selectedIdp), "\n");
+    } else {
+      printf('      <h1>Data based on IdP:s that have run ESI test</h1>%s',
+        "\n");
+    }
+    printf('        <i class="fas fa-check"> = Correct schacPersonalUniqueCode</i><br>
         <i class="fas fa-exclamation-triangle"> = Missing schacPersonalUniqueCode or to many</i><br>
         <i class="fas fa-exclamation"> = Error in schacPersonalUniqueCode</i>
         <br>
@@ -477,18 +521,26 @@ class Admin {
         <table id="resultTable" class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th>IdP</th>
+              %s
               <th>Tested</th>
               <th>ESI (any)</th>
               <th>Tested</th>
               <th>ESI (as student)</th>
             </tr>
           </thead>
-          <tbody>' . "\n";
+          <tbody>',
+      $selectedIdp ? '' : '<th>IdP</th>',
+      "\n");
     $testRun = 0;
-
-    $testHandler = $this->config->getDB()->prepare(
+    $testHandler = $this->config->getDB()->prepare($selectedIdp ?
       "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`, `testRun_id`
+      FROM `tests`, `testRuns`, `idps`
+      WHERE `tests`.`testRun_id` = `testRuns`.`id`
+        AND `testRuns`.`idp_id` = `idps`.`id`
+        AND `test` = 'esi'
+        AND `entityID` = :Idp
+      ORDER BY `time` DESC;"
+      : "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`, `testRun_id`
       FROM `tests`, `testRuns`, `idps`
       WHERE `tests`.`testRun_id` = `testRuns`.`id`
         AND `testRuns`.`idp_id` = `idps`.`id`
@@ -498,8 +550,6 @@ class Admin {
       "SELECT `attr_OK`, `testResult`, `tests`.`time`
       FROM `tests` WHERE `testRun_id` = :testrun
         AND `test` = 'esi-stud'");
-    $testStudHandler->bindParam(':testrun', $testRun);
-
     $ok=0;
     $warn=0;
     $fail=0;
@@ -507,17 +557,23 @@ class Admin {
     $warnStud=0;
     $failStud=0;
     $lastIdp = '';
-    $testHandler->execute();
+    $testHandler->execute($selectedIdp ?
+      array('Idp' => $selectedIdp) : array());
     while ($testResult=$testHandler->fetch(PDO::FETCH_ASSOC)) {
       $idp = $testResult['entityID'];
-      if ($lastIdp != $idp) {
+      if ($selectedIdp || $lastIdp != $idp) {
         $lastIdp = $idp;
-        $testRun = $testResult['testRun_id']; // NO SONAR bound above
-        $this->tested_idps[$idp] = true;
+        $testRun = $testResult['testRun_id'];
+        $this->testedIPs[$idp] = true;
 
-        printf('            <tr>
+        if ($selectedIdp) {
+          printf('            <tr>
+              <td>%s</td>%s', $testResult['time'], "\n");
+        } else {
+          printf('            <tr>
               <td><a href="?tab=esi&idp=%s">%s</a></td>
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
+        }
         switch ($testResult['testResult']) {
           case 'schacPersonalUniqueCode OK':
             print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
@@ -546,6 +602,7 @@ class Admin {
           default :
             print "              <td>" . $testResult['testResult'] . "</td>\n";
         }
+        $testStudHandler->bindParam(':testrun', $testRun);
         $testStudHandler->execute();
         if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
           printf("              <td>%s</td>\n",$testResult['time']);
@@ -587,18 +644,18 @@ class Admin {
     printf('          </tbody>
           <tfooter>
             <tr>
-              <td></td>
-              <td></td>
-              <td>%s', "\n");
-    if ($ok) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$ok);
-    if ($warn) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warn);
-    if ($fail) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$fail);
+              <td colspan="%d"></td>
+              <td>%s',
+      $selectedIdp ? 1 : 2, "\n");
+    if ($ok) { printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$ok); }
+    if ($warn) { printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warn); }
+    if ($fail) { printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$fail); }
     printf('              </td>
               <td></td>
               <td>%s', "\n");
-    if ($okStud) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okStud);
-    if ($warnStud) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnStud);
-    if ($failStud) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failStud);
+    if ($okStud) { printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okStud); }
+    if ($warnStud) { printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnStud); }
+    if ($failStud) { printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failStud); }
     printf('              </td>
             </tr>
           <tfooter>
@@ -606,7 +663,7 @@ class Admin {
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
           <tr><th>IdP:s not tested</th></tr>%s', "\n");
-      foreach ($this->tested_idps as $idp => $value) {
+      foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ("          <tr><td>%s</td></tr>\n", $idp);
         }
@@ -620,28 +677,31 @@ class Admin {
   /**
    * Print footer of table with stats
    */
-  private function printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC) {
+  private function printFooterSummary($okData, $warnData, $failData, $okEC, $warnEC, $failEC, $restCols = 0) {
     printf('          <tfooter>
             <tr>
-              <td></td>
-              <td></td>
-              <td>%s', "\n");
-    if ($okData) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okData);
-    if ($warnData) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData);
-    if ($failData) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData);
+              <td colspan="%d"></td>
+              <td>%s',
+      isset($_GET['idp']) ? 1 : 2, "\n");
+    if ($okData) { printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okData); }
+    if ($warnData) { printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnData); }
+    if ($failData) { printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failData); }
     printf('              </td>
               <td>%s', "\n");
-    if ($okEC) printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC);
-    if ($warnEC) printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC);
-    if ($failEC) printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC);
+    if ($okEC) { printf("                <i class=\"fas fa-check\"></i> = %s<br>\n",$okEC); }
+    if ($warnEC) { printf("                <i class=\"fas fa-exclamation-triangle\"></i> = %s<br>\n",$warnEC); }
+    if ($failEC) { printf("                <i class=\"fas fa-exclamation\"></i> = %s<br>\n",$failEC); }
     printf('              </td>
+              %s
             </tr>
           </tfooter>
-        </table>%s', "\n");
+        </table>%s',
+      $restCols > 0 ? sprintf('<td colspan="%d"></td>',$restCols) : '',
+      "\n");
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
           <tr><th>IdP:s not tested</th></tr>', "\n");
-      foreach ($this->tested_idps as $idp => $value) {
+      foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ('          <tr><td>%s</a></td></tr>%s', $idp, "\n");
         }
