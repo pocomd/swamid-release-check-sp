@@ -60,13 +60,13 @@ class HTML {
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/images/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    %s  </head>%s<body style="%s">%s  <div class="container">',
+    %s  </head>%s<body style="%s">%s  <div class="container">%s',
       "\n", "\n", $title, $this->config->basename(), $this->config->basename(), $this->config->basename(),
-      "\n", "\n", $bgColor,"\n");
+      "\n", "\n", $bgColor, "\n", "\n");
   }
 
   public function showContentHeader() {
-    $header = '<div class="header">';
+    $header = '    <div class="header">';
     $defaultHeader = sprintf('<nav>
         <ul class="nav nav-pills float-right">
           <li role="presentation" class="nav-item">
@@ -94,7 +94,7 @@ class HTML {
     } else {
       $header .= $customHeader;
     }
-    echo $header . '</div>';
+    echo $header . "    </div>\n";
   }
 
   /**
@@ -103,7 +103,7 @@ class HTML {
    * @return string
    */
   public function showContentFooter() {
-    $footer = sprintf('<div class="footer"></div>');
+    $footer = sprintf('    <div class="footer"></div>%s', "\n");
     $customFooter = $this->getPageContent("footer");
     if (false !== $customFooter) {
       $footer = $customFooter;

@@ -13,7 +13,8 @@ class TestSuite {
   protected const DESC_EDUPERSONPRINCIPALNAME = 'A scoped identifier for a person. It should be represented in the form "user@scope" where \'user\' is a name-based identifier for the person and where the "scope" portion MUST be the administrative domain of the identity system where the identifier was created and assigned.';
   protected const DESC_EDUPERSONSCOPEDAFFILIATION = 'eduPersonAffiliation, scoped';
   protected const DESC_GIVENNAME = 'Firstname';
-  protected const DESC_MAIL = 'Mailaddress';
+  protected const DESC_MAIL = 'Mailaddress (should only be one)';
+  protected const DESC_MAILLOCALADDRESS = 'List of additional organizational mailaddresses for the person';
   protected const DESC_NOREDUORGACRONYM = 'Shortform of organisation name';
   protected const DESC_O = 'Organisation name';
   protected const DESC_PAIRWISEID = 'Its value for a given subject depends upon the relying party to whom it is given, thus preventing unrelated systems from using it as a basis for correlation.';
@@ -115,9 +116,9 @@ class TestSuite {
       'name'     => 'REFEDS CoCo',
       'tab'      => 'entityCategory',
       'expected' => array (
+        'subject-id'                 => self::DESC_SUBJECTID,
         'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
         'eduPersonOrcid'             => self::DESC_EDUPERSONORCID,
-        'schacDateOfBirth'           => self::DESC_SCHACDATEOFBIRTH,
         'displayName'                => self::DESC_DISPLAYNAME,
         'cn'                         => self::DESC_CN,
         'givenName'                  => self::DESC_GIVENNAME,
@@ -125,8 +126,9 @@ class TestSuite {
         'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
         'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
         'eduPersonAffiliation'       => self::DESC_EDUPERSONAFFILIATION,
-        'schacHomeOrganizationType'  => self::DESC_SCHACHOMEORGANIZATIONTYPE,
-        'pairwise-id'                => self::DESC_PAIRWISEID,
+        'mail'                       => self::DESC_MAIL,
+        'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
+        'mailLocalAddress'           => self::DESC_MAILLOCALADDRESS
       ),
       'nowarn'   => array (
         'persistent-id' => self::DESC_PERSISTENTID,

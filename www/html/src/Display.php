@@ -19,6 +19,8 @@ class Display {
    */
   const SQL_TESTS = 'SELECT * FROM `tests` WHERE `test` = :test AND `testRun_id` = :testRun';
 
+  const HTML_NO_RUN = 'no run';
+
   /**
    * Setup the class
    *
@@ -342,7 +344,7 @@ class Display {
     $testruns = $testRunHandler->fetchAll(PDO::FETCH_ASSOC);
     switch (count($testruns)) {
       case 0 :
-        $testrun = array ('id' => 0, 'time' => HTML_NO_RUN, 'session' => '');
+        $testrun = array ('id' => 0, 'time' => self::HTML_NO_RUN, 'session' => '');
         break;
       case 1 :
         $testrun = $testruns[0];
