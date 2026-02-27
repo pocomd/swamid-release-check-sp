@@ -108,8 +108,15 @@ printf('    <div class="row">
   $mfaActive, $mfaSelected, $esiActive, $esiSelected, "\n");
 if ($result) {
         printf ("        <p><span style=\"white-space: nowrwap\"><b>%s</b><br>%s</span></p>\n",$displayName,$IdP);
+        $admin = $config->getExtendedClass('Admin');
+        $adminButton = $admin->checkAccess() ? '<a href="admin.php">
+          <button type="button" class="btn btn-primary">Admin</button>
+        </a>' : '';
+} else {
+  $adminButton = '';
 }
-printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="false" aria-controls="selectIdP">
+printf ('        %s
+        <a data-toggle="collapse" href="#selectIdP" aria-expanded="false" aria-controls="selectIdP">
           <button type="button" class="btn btn-outline-primary">%s IdP</button>
         </a>
       </div>
@@ -146,7 +153,7 @@ printf ('        <a data-toggle="collapse" href="#selectIdP" aria-expanded="fals
         <div class="collapse%s multi-collapse" id="attributes-instructions">
           %s
         </div><!-- end collapse -->%s',
-  $result ? "Change" : "Select", $attributesShow, $attributesActive,
+  $adminButton, $result ? "Change" : "Select", $attributesShow, $attributesActive,
   $config->basename(), $result ? "Refresh" : "Login" , $result ? "right" : "down",
   $instructionsSelected, $instructionsShow, $federation['instructionsAttributes'], "\n");
 
