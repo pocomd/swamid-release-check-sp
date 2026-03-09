@@ -382,11 +382,8 @@ class Admin {
       printf('      <h1>MFA tests run by %s</h1>
       <a href="./admin.php?tab=mfa">
         <button type="button" class="btn btn-success">Show all IdPs</button>
-      </a>
-      <a href="./admin.php?tab=AllTests&idp=%s">
-        <button type="button" class="btn btn-success">Show all EC tests for this IdP</button>
       </a>%s',
-        htmlspecialchars($selectedIdp), urlencode($selectedIdp), "\n");
+        htmlspecialchars($selectedIdp), "\n");
     } else {
       printf('      <h1>Data based on IdP:s that have run MFA test</h1>%s',
         "\n");
@@ -418,7 +415,7 @@ class Admin {
               <th>ForceAuthn</th>
             </tr>
           </thead>
-          <tbody>',
+          <tbody>%s',
       $selectedIdp ? '' : '<th>IdP</th>',
       "\n");
     $testHandler = $this->config->getDB()->prepare($selectedIdp ?
@@ -471,16 +468,21 @@ class Admin {
             $okForceAuthn++;
             break;
           case 'Supports REFEDS MFA but not ForceAuthn.' :
-            printf('              <td><i class="fas fa-check"></i> OK</td>\n";
+            printf('              <td><i class="fas fa-check"></i> OK</td>
               <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
             $okMFA++;
             $failForceAuthn++;
             break;
           case 'Does neither support REFEDS MFA or ForceAuthn.' :
-            printf('              <td><i class="fas fa-exclamation"></i> Fail</td>\n";
+            printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
               <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
             $failMFA++;
             $failForceAuthn++;
+            break;
+          case 'Supports REFEDS MFA.' :
+            printf('              <td><i class="fas fa-check"></i> OK</td>
+              <td></td>%s', "\n");
+            $okMFA++;
             break;
           default :
             printf('              <td>%s</td>%s',$testResult['testResult'], "\n");

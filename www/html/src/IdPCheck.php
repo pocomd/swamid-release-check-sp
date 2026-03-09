@@ -84,6 +84,21 @@ class IdPCheck {
    */
   protected bool $notAllowed = false;
 
+  /**
+   * Possible ACCR to select from /check
+   */
+  protected array $accrOptions = array(
+    'password' => array(
+      'value' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
+      'description' => 'PasswordProtectedTransport'),
+    'refeds-sfa' => array(
+      'value' => 'https://refeds.org/profile/sfa',
+      'description' => 'REFEDS SFA'),
+    'refeds-mfa' => array(
+      'value' => 'https://refeds.org/profile/mfa',
+      'description' => 'REFEDS MFA'),
+  );
+
   protected const RAF_BASE = 'https://refeds.org/assurance';
   protected const RAF_LOW = self::RAF_BASE . '/IAP/low';
   protected const RAF_MEDIUM = self::RAF_BASE . '/IAP/medium';
@@ -109,6 +124,14 @@ class IdPCheck {
     }
     $this->registrationAuthority = isset($_SERVER['Meta-registrationAuthority']) ? $_SERVER['Meta-registrationAuthority'] : '';
     $this->sessionID = isset($_GET['session']) ? $_GET['session'] : session_id();
+    $this->idp=isset($_SERVER['Shib-Identity-Provider']) ? $_SERVER['Shib-Identity-Provider'] : '';
+  }
+
+  /**
+   * Constructor for singeltest
+   */
+  protected function __construct1($test) { # NOSONAR
+    $this->test = $test;
   }
 
   /**
@@ -120,7 +143,6 @@ class IdPCheck {
     $this->testtab = $testtab;
     $this->expected = $expected;
     $this->nowarn = $nowarn;
-    $this->idp=$_SERVER['Shib-Identity-Provider'];
   }
 
   /**
@@ -332,6 +354,64 @@ class IdPCheck {
         $this->showAttributeTable('Attributes that were not requested/expected', $extraValues, true);
       }
     }
+  }
+
+  /**
+   * Show result for ACCR Test
+   *
+   * @param string $requestedAccr What AuthnContext-Class was requested.
+   *
+   * @return void
+   */
+
+  public function testACCR($requestedAccr){
+    $okValues = array();
+    $singleValueAttributes = array(
+      'pairwise-id' => true,
+      'subject-id' => true,
+      'eduPersonPrincipalName' => true
+    );
+
+    list ($ac,$ecs,$ec) = $this->getMetaInfo();
+
+    /**
+     *  Save values and warn if multipla values are sent for an single-value attribute.
+     */
+    foreach ( array ('eduPersonPrincipalName', 'eduPersonAssurance') as $key) {
+      if ( isset ($_SERVER['saml_'.$key] ) ) {
+        $okValues[$key] = $_SERVER['saml_'.$key];
+        if (strpos($_SERVER['saml_'.$key], ';') && isset($singleValueAttributes[$key])) {
+          $this->status['error'] .= sprintf('Received multi-value for %s, should be single-value!<br>', $key);
+        }
+      }
+    }
+
+    print "        <br>\n";
+    $expectedAccr = isset($this->accrOptions[$requestedAccr])
+      ? $this->accrOptions[$requestedAccr]['value']
+      : $_SERVER['Shib-AuthnContext-Class'];
+    if ($expectedAccr != $_SERVER['Shib-AuthnContext-Class']) {
+      printf('        <div class="row alert alert-danger" role="alert">
+          <div class="col">
+            AuthnContext-Class = %s was requested<br>
+            but %s was revived.
+          </div>
+        </div>%s',
+        $expectedAccr, $_SERVER['Shib-AuthnContext-Class'], "\n");
+    }
+
+    $this->checkMFA($okValues, $ac, $requestedAccr);
+
+    if ( $requestedAccr == 'refeds-mfa' ) {
+      $this->saveToSQL($okValues, array(), array());
+    }
+    $this->showStatus($this->status);
+
+    if (isset($this->status['infoText'])) {
+      print $this->status['infoText'];
+    }
+
+    $this->showAttributeTable('Received attributes', $okValues);
   }
 
   /**
@@ -943,11 +1023,14 @@ class IdPCheck {
    *
    * @param array $ac List of values from Assurance-Certification
    *
+   * @param string $requestedAccr Requested AuthnContextRef
+   *
    * @return void
    */
-  protected function checkMFA(array &$attributes, array &$ac) {
+  protected function checkMFA(array &$attributes, array &$ac, string $requestedAccr = 'refeds-mfa') {
     $this->setupAssurance($attributes, $ac);
-    $mfaDone = $_SERVER['Shib-AuthnContext-Class'] == 'https://refeds.org/profile/mfa';
+    $accrCorrect = $requestedAccr == 'none' || $_SERVER['Shib-AuthnContext-Class'] == $this->accrOptions[$requestedAccr]['value'];
+    $accrName = $requestedAccr == 'none' ? 'no ACCR' : $this->accrOptions[$requestedAccr]['description'];
     $forceAuthnSuccess = false;
     $step2 = false;
     if (isset($_GET['forceAuthn'])) {
@@ -964,18 +1047,20 @@ class IdPCheck {
           $forceAuthnResult = 'Error';
         }
       } else {
-        print '<div>Please restart mfa-test. Click on "Previous test"</div>' . "\n";
+        print '<div>Please restart this test. Click on "Test" again</div>' . "\n";
+        $forceAuthnResult = 'Failed';
       }
       unset ($_SESSION['ts']);
     } else {
       # Step1
       $_SESSION['ts'] = time();
+      $_SESSION['accr'] = $requestedAccr;
       $forceAuthnResult = 'Not tested';
     }
 
-    $this->status['infoText'] = sprintf('    <h3>Test results</h3>%s    <table class="table table-striped table-bordered">%s',
+    $this->status['infoText'] = sprintf('    <h3>Test result</h3>%s    <table class="table table-striped table-bordered">%s',
       "\n", "\n");
-    $this->status['infoText'] .= sprintf('      <tr><th>MFA status</th><td>%s</td></tr>%s', $mfaDone ? "OK" : "Error", "\n");
+    $this->status['infoText'] .= sprintf('      <tr><th>ACCR status</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
     $this->status['infoText'] .= sprintf('      <tr><th>ForceAuthn status</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
 
     $this->showRAFAttributeStatus('AL1 status','http://www.swamid.se/policy/assurance/al1'); # NOSONAR Should be http://
@@ -999,7 +1084,7 @@ class IdPCheck {
     $this->status['infoText'] .= "    </table>\n";
 
     $this->status['infoText'] .= '
-    <h3>Identity Provider approved Assurance Levels</h3>
+    <h3>Identity Provider approved Assurance</h3>
     <table class="table table-striped table-bordered">' . "\n";
     if (isset($_SERVER['Meta-Assurance-Certification'])) {
       $value = str_replace(';' , '<br>',$_SERVER['Meta-Assurance-Certification']);
@@ -1007,28 +1092,29 @@ class IdPCheck {
     }
     $this->status['infoText'] .= "    </table>\n";
 
-    if ($mfaDone) {
+    if ($accrCorrect) {
       if ($forceAuthnSuccess) {
-        $this->status['ok'] .= 'Identity Provider supports REFEDS MFA and ForceAuthn.<br>';
-        $this->status['testResult'] = 'Supports REFEDS MFA and ForceAuthn.';
+        $this->status['ok'] .= sprintf('Identity Provider supports %s and ForceAuthn.<br>', $accrName);
+        $this->status['testResult'] = sprintf('Supports %s and ForceAuthn.', $accrName);
       } else {
         if ($step2) {
-          $this->status['error'] .= 'Identity Provider supports REFEDS MFA but not ForceAuthn.<br>';
-          $this->status['testResult'] = 'Supports REFEDS MFA but not ForceAuthn.';
+          $this->status['error'] .= sprintf('Identity Provider supports %s but not ForceAuthn.<br>', $accrName);
+          $this->status['testResult'] = sprintf('Supports %s but not ForceAuthn.', $accrName);
         } else {
-          $this->status['ok'] .= 'Identity Provider supports REFEDS MFA.<br>';
+          $this->status['ok'] .= sprintf('Identity Provider supports %s.<br>', $accrName);
+          $this->status['testResult'] = sprintf('Supports %s.', $accrName);
         }
       }
     } else {
       if ($forceAuthnSuccess) {
-        $this->status['error'] .= 'Identity Provider does support ForceAuthn but not REFEDS MFA.<br>';
-        $this->status['testResult'] = 'Does support ForceAuthn but not REFEDS MFA.';
+        $this->status['error'] .= sprintf('Identity Provider does support ForceAuthn but not %s.<br>', $accrName);
+        $this->status['testResult'] = sprintf('Does support ForceAuthn but not %s.', $accrName);
       } else {
         if ($step2) {
-          $this->status['error'] .= 'Identity Provider does neither support REFEDS MFA or ForceAuthn.<br>';
-          $this->status['testResult'] = 'Does neither support REFEDS MFA or ForceAuthn.';
+          $this->status['error'] .= sprintf('Identity Provider does neither support %s or ForceAuthn.<br>', $accrName);
+          $this->status['testResult'] = sprintf('Does neither support %s or ForceAuthn.', $accrName);
         } else {
-          $this->status['error'] .= 'Identity Provider does not support REFEDS MFA.<br>';
+          $this->status['error'] .=  sprintf('Identity Provider does not support %s.<br>', $accrName);
         }
       }
     }
@@ -1097,5 +1183,14 @@ class IdPCheck {
     }
 
     return [$ac, $ecs, $ec];
+  }
+
+  /**
+   * Get a list of testAccrOptions
+   *
+   * @return array
+   */
+  public function getAccrOptions() {
+    return $this->accrOptions;
   }
 }
