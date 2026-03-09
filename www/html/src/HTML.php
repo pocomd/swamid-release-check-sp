@@ -28,7 +28,7 @@ class HTML {
       $this->config = new Configuration();
     }
     $this->federation = $this->config->getFederation();
-    new \releasecheck\Localize();
+    $localize = new \releasecheck\Localize(); # NOSONAR We need ti initalize this class
   }
 
   /**

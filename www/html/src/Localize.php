@@ -22,8 +22,6 @@ class Localize {
       $selectedLang = 'en';
       if ($_GET['lang'] == 'sv') {
         $selectedLang = 'sv_SE';
-      } else {
-        $selectedLang = 'en';
       }
       $_SESSION['lang'] = $selectedLang;
     }
