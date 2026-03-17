@@ -112,8 +112,10 @@ printf('    <div class="row">
         </ul>
       </div>
       <div class="col-4 text-right">%s',
-  $attributesActive, $attributesSelected, $entityCategoryActive, $entityCategorySelected,
-  $accActive, $accSelected, $esiActive, $esiSelected, "\n");
+  $attributesActive, $attributesSelected,
+  $accActive, $accSelected,
+  $entityCategoryActive, $entityCategorySelected,
+  $esiActive, $esiSelected, "\n");
 if ($result) {
         printf ("        <p><span style=\"white-space: nowrwap\"><b>%s</b><br>%s</span></p>\n",$displayName,$idp);
         $admin = $config->getExtendedClass('Admin');
