@@ -18,13 +18,11 @@ class TestSuite {
   protected const DESC_NOREDUORGACRONYM = 'Shortform of organisation name';
   protected const DESC_O = 'Organisation name';
   protected const DESC_PAIRWISEID = 'Its value for a given subject depends upon the relying party to whom it is given, thus preventing unrelated systems from using it as a basis for correlation.';
-  protected const DESC_PERSISTENTID = 'Should not be sent by default any more';
   protected const DESC_SCHACDATEOFBIRTH = '8 digit date of birth (YYYYMMDD)';
   protected const DESC_SCHACHOMEORGANIZATION = 'Specifies a person\'s home organization using the domain name of the organization';
   protected const DESC_SCHACHOMEORGANIZATIONTYPE = 'example urn:schac:homeOrganizationType:eu:higherEducationInstitution';
   protected const DESC_SN = 'Lastname';
   protected const DESC_SUBJECTID = 'Its value for a given subject is independent of the relying party to whom it is given.';
-  protected const DESC_TRANSIENTID = self::DESC_PERSISTENTID;
 
   /**
    * Order of the tests
@@ -85,7 +83,7 @@ class TestSuite {
    * * name - full name of test .
    * * tab - tab on resultpage .
    * * expected - expected attributes with description .
-   * * nowarn - extra attributes to accept with description .
+   * * nowarn - extra attributes to accept.
    * * subtest - subtest to validate correctnes of attributes .
    */
   protected $tests = array(
@@ -97,8 +95,8 @@ class TestSuite {
         'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
       ),
       'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
+        'persistent-id' => '',
+        'transient-id'  => '',
       ),
       'subtest'  => 'anonymous',
     ),
@@ -131,8 +129,8 @@ class TestSuite {
         'mailLocalAddress'           => self::DESC_MAILLOCALADDRESS
       ),
       'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
+        'persistent-id' => '',
+        'transient-id'  => '',
       ),
       'subtest'  => 'CoCov2',
     ),
@@ -141,8 +139,8 @@ class TestSuite {
       'tab'      => 'entityCategory',
       'expected' => array (),
       'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
+        'persistent-id' => '',
+        'transient-id'  => '',
       ),
       'subtest'  => '',
     ),
@@ -156,8 +154,8 @@ class TestSuite {
         'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
       ),
       'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
+        'persistent-id' => '',
+        'transient-id'  => '',
       ),
       'subtest'  => 'pseudonymous',
     ),
@@ -170,13 +168,13 @@ class TestSuite {
         'displayName'                => self::DESC_DISPLAYNAME,
         'givenName'                  => self::DESC_GIVENNAME,
         'sn'                         => self::DESC_SN,
-        'mail'                       => 'Personalized require mailaddress',
+        'mail'                       => self::DESC_MAIL,
         'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
         'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
       ),
       'nowarn'   => array (
-        'persistent-id' => self::DESC_PERSISTENTID,
-        'transient-id'  => self::DESC_TRANSIENTID,
+        'persistent-id' => '',
+        'transient-id'  => '',
       ),
       'subtest'  => 'personalized',
     ),
@@ -185,18 +183,18 @@ class TestSuite {
       'tab'      => 'entityCategory',
       'expected' => array (
         'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
-        'mail'                       => 'R&S require mailaddress',
+        'mail'                       => self::DESC_MAIL,
         'displayName'                => self::DESC_DISPLAYNAME,
         'givenName'                  => self::DESC_GIVENNAME,
         'sn'                         => self::DESC_SN,
         'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
       ),
       'nowarn'   => array (
-        'persistent-id'       => self::DESC_PERSISTENTID,
-        'transient-id'        => self::DESC_TRANSIENTID,
-        'eduPersonAssurance'  => self::DESC_EDUPERSONASSURANCE,
-        'eduPersonTargetedID' => 'For R&S release only if eduPersonPrincipalName is reassignable',
-        'eduPersonUniqueID'   => 'A long-lived, non re-assignable, omnidirectional identifier suitable for use as a principal identifier by authentication providers or as a unique external key by applications.',
+        'persistent-id'       => '',
+        'transient-id'        => '',
+        'eduPersonAssurance'  => '',
+        'eduPersonTargetedID' => '',
+        'eduPersonUniqueID'   => '',
       ),
       'subtest'  => 'R&S',
     ),
@@ -208,9 +206,9 @@ class TestSuite {
         'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
       ),
       'nowarn'   => array (
-        'eduPersonAffiliation' => self::DESC_EDUPERSONAFFILIATION,
-        'persistent-id'        => self::DESC_PERSISTENTID,
-        'transient-id'         => self::DESC_TRANSIENTID,
+        'eduPersonAffiliation' => '',
+        'persistent-id'        => '',
+        'transient-id'         => '',
       ),
       'subtest'  => 'ESI',
     ),

@@ -348,7 +348,7 @@ class IdPCheck {
       }
 
       if (count ($extraValues) ) {
-        $this->showAttributeTable('Attributes that were not requested/expected', $extraValues, true);
+        $this->showAttributeTable('Attributes that were not requested/expected/needed', $extraValues, true);
       }
     }
   }
