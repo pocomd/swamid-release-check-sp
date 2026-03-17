@@ -229,9 +229,7 @@ class IdPCheck {
         $samlValues[$nkey] = $value;
         if (! isset($this->expected[$nkey]) ) {
           $extraValues[$nkey] = $value;
-          if ( isset( $this->nowarn[$nkey] ) ) {
-            $this->status['warning'] = 'The IDP has sent too many attributes.<br>';
-          } else {
+          if ( ! isset( $this->nowarn[$nkey] ) ) {
             $this->status['error'] = 'The IDP has sent too many attributes.<br>';
           }
         }
