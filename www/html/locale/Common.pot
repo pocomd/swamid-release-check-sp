@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Release check package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Release check 1\n"
-"Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-03-05 16:05+0100\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-19 18:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,223 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: www/html/src/HTML.php:42
+#: html/src/HTML.php:43
 msgid "Release check for"
 msgstr ""
 
-#: www/html/src/HTML.php:73
+#: html/src/HTML.php:80
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: www/html/src/HTML.php:86
+#: html/src/HTML.php:93
 msgid "Contact us"
+msgstr ""
+
+#: html/error.php:11
+#, php-format
+msgid "For more info visit this <a href=\"%s\">support-page</a>."
+msgstr ""
+
+#: html/error.php:44
+msgid "Unknown Identity Provider"
+msgstr ""
+
+#: html/error.php:45
+msgid ""
+"To report this problem, please contact the site administrator at <a "
+"href=\"mailto:operations@swamid.se\">operations@swamid.se</a>."
+msgstr ""
+
+#: html/error.php:47 html/error.php:63
+msgid "Please include the following error message in any email"
+msgstr ""
+
+#: html/error.php:48 html/error.php:64
+msgid "Identity provider lookup failed at"
+msgstr ""
+
+#: html/error.php:49 html/error.php:65
+msgid "EntityID"
+msgstr ""
+
+#: html/error.php:55
+msgid "Unusable Identity Provider"
+msgstr ""
+
+#: html/error.php:56
+msgid ""
+"The identity provider supplying your login credentials does not support the "
+"necessary capabilities."
+msgstr ""
+
+#: html/error.php:58
+msgid ""
+"<p>The MFA test service requires MFA signaling via REFEDS-MFA (https://"
+"refeds.org/profile/mfa).</p>"
+msgstr ""
+
+#: html/error.php:59
+msgid "To report this problem, please contact the IdP administrator."
+msgstr ""
+
+#: html/error.php:60
+msgid "If your are the IdP administrator you can reach out to"
+msgstr ""
+
+#: html/error.php:74
+msgid "Values"
+msgstr ""
+
+#: html/error.php:75
+msgid "Key"
+msgstr ""
+
+#: html/error.php:75
+msgid "Value"
+msgstr ""
+
+#: html/index.php:5
+msgid "Result for"
+msgstr ""
+
+#: html/index.php:97
+#, php-format
+msgid "Attributes"
+msgstr ""
+
+#: html/index.php:101
+#, php-format
+msgid "Authentication"
+msgstr ""
+
+#: html/index.php:106
+#, php-format
+msgid "Entity category"
+msgstr ""
+
+#: html/index.php:110
+#, php-format
+msgid "ESI"
+msgstr ""
+
+#: html/index.php:123
+msgid "Admin"
+msgstr ""
+
+#: html/index.php:130
+#, php-format
+msgid "%s IdP"
+msgstr ""
+
+#: html/index.php:138
+#, php-format
+msgid "Select IdP"
+msgstr ""
+
+#: html/index.php:150
+#, php-format
+msgid "Released attributes from IdP"
+msgstr ""
+
+#: html/index.php:155
+#, php-format
+msgid "%s and show attributes"
+msgstr ""
+
+#: html/index.php:161 html/index.php:186 html/index.php:264 html/index.php:309
+#, php-format
+msgid "Instructions"
+msgstr ""
+
+#: html/index.php:166
+msgid "Change"
+msgstr ""
+
+#: html/index.php:166
+msgid "Select"
+msgstr ""
+
+#: html/index.php:167
+msgid "Refresh"
+msgstr ""
+
+#: html/index.php:167
+msgid "Login"
+msgstr ""
+
+#: html/index.php:190
+#, php-format
+msgid "Different tests for AuthnContextClassRef."
+msgstr ""
+
+#: html/index.php:190
+#, php-format
+msgid ""
+"The restults from this tests are NOT saved exept for tests done with REFEDS "
+"MFA."
+msgstr ""
+
+#: html/index.php:200
+#, php-format
+msgid "No authnContextClassRef"
+msgstr ""
+
+#: html/index.php:210
+#, php-format
+msgid "Test"
+msgstr ""
+
+#: html/index.php:219
+#, php-format
+msgid "Got %sAuthnContext-Class (%s)"
+msgstr ""
+
+#: html/index.php:220
+#, php-format
+msgid "Press button below to test with forceAuthn"
+msgstr ""
+
+#: html/index.php:221
+#, php-format
+msgid "forceAuthN"
+msgstr ""
+
+#: html/index.php:234 html/index.php:287
+#, php-format
+msgid "%s Best Practice Attribute Release check"
+msgstr ""
+
+#: html/index.php:238
+#, php-format
+msgid "Run all tests automatically"
+msgstr ""
+
+#: html/index.php:241
+#, php-format
+msgid "Run tests manually"
+msgstr ""
+
+#: html/index.php:257 html/index.php:300
+#, php-format
+msgid "Show results"
+msgstr ""
+
+#: html/index.php:292
+#, php-format
+msgid "Run tests"
+msgstr ""
+
+#: html/index.php:313
+#, php-format
+msgid ""
+"European Student Identifier uses the entity category https://myacademicid."
+"org/entity-categories/esi for release of attributes from the user's identity "
+"provider."
+msgstr ""
+
+#: html/index.php:313
+#, php-format
+msgid ""
+"This test verifies that all required attributes are released during login."
 msgstr ""
