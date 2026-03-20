@@ -383,7 +383,6 @@ class IdPCheck {
       }
     }
 
-    #print "        <br>\n";
     $expectedAccr = isset($this->accrOptions[$requestedAccr])
       ? $this->accrOptions[$requestedAccr]['value']
       : $_SERVER['Shib-AuthnContext-Class'];

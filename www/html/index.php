@@ -197,6 +197,7 @@ $accr = isset($_REQUEST['accr']) ? $_REQUEST['accr'] : 'none';
 printf('        <div class="row">
           <div class="col">
             <h4>Step 1</h4>
+            Choose AuthnContextClassRef to test:
             <form action="./?tab=acc" method="POST">
               <input type="radio" id="none" name="accr" value="none"%s>
               <label for="none">No authnContextClassRef</label><br>%s',
@@ -230,20 +231,22 @@ if ($result) {
   }
   printf('          </div>
         </div>
+        <br>
         <div class="row">
           <div class="col">%s', "\n");
   if (isset($_GET['forceAuthn']) && isset($_SESSION['ts'])) {
     #Step 2 OK
-    printf('            <br>
-            Recieved in Step 1:
+    printf('            Recieved in Step 1:
             <ul>
-              <li>AuthnContext-Class %s</li>
-              <li>Authentication-Instant %s</li>
+              <li>AuthnContext-Class: %s</li>
+              <li>Authentication-Instant: %s</li>
             </ul>
+          </div>
+          <div class="col">
             Recieved in Step 2:
             <ul>
-              <li>AuthnContext-Class %s</li>
-              <li>Authentication-Instant %s</li>
+              <li>AuthnContext-Class: %s</li>
+              <li>Authentication-Instant: %s</li>
             </ul>%s',
     $_SESSION['accr'], $_SESSION['ts'],
     $_SERVER['Shib-AuthnContext-Class'], $_SERVER['Shib-Authentication-Instant'], "\n");
@@ -256,8 +259,8 @@ if ($result) {
     #Step 1
     printf('            <br>
             Recieved in Step 1:<ul>
-              <li>AuthnContext-Class %s</li>
-              <li>Authentication-Instant %s</li>
+              <li>AuthnContext-Class: %s</li>
+              <li>Authentication-Instant: %s</li>
             </ul>%s',
     $_SERVER['Shib-AuthnContext-Class'], $_SERVER['Shib-Authentication-Instant'], "\n");
   }
