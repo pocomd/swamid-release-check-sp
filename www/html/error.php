@@ -53,14 +53,13 @@ function showMetadataException() {?>
 <?php }
 
 function showFatalProfileException() {
-    global $errorURL;?>
+    global $errorURL;
+    $mail = str_replace('mailto:', '', $_GET['contactEmail']);?>
     <h1>Unusable Identity Provider</h1>
     <p>The identity provider supplying your login credentials does not support the necessary capabilities.</p>
-    <?=$_GET['requestURL'] == 'https://mfa.release-check.swamid.se/Shibboleth.sso/SAML2/POST' ?
-      '<p>The MFA test service requires MFA signaling via REFEDS-MFA (https://refeds.org/profile/mfa).</p>' : '' ?>
     <p>To report this problem, please contact the IdP administrator. <?=$errorURL?><br>
     If your are the IdP administrator you can reach out to
-    <a href="mailto:operations@swamid.se">operations@swamid.se</a>.
+    <a href="mailto:<?= $mail ?>"><?= $mail ?></a>.
     </p>
     <p>Please include the following error message in any email:</p>
     <p class="error">Identity provider lookup failed at (<?=htmlspecialchars($_GET['requestURL'])?>)</p>
