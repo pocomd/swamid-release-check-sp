@@ -44,7 +44,7 @@ class Display {
    */
   public function showAttributeList() {
     printf ('        <table class="table table-striped table-bordered">
-          <tr><th>Attribute</th><th>Value</th></tr>%s', "\n");
+          <tr><th>' . _("Attribute") . '</th><th>' . _("Value") . '</th></tr>%s', "\n");
 
     foreach ( $_SERVER as $key => $value ) {
       if ( substr($key,0,5) == 'saml_' ) {
@@ -62,9 +62,9 @@ class Display {
    */
   public function showIdpMetadataInfo() {
     printf('        </table>
-        <h4>Identity Provider attributes in metadata</h4>
+        <h4>' . _("Identity Provider attributes in metadata") . '</h4>
         <table class="table table-striped table-bordered">
-          <tr><th>Attribute</th><th>Value</th></tr>%s', "\n");
+          <tr><th>' . _("Attribute") . '</th><th>' . _("Value") . '</th></tr>%s', "\n");
 
     if ( isset($_SERVER['Meta-Assurance-Certification']) ) {
       printf('          <tr><th>Assurance-Certification</th><td>%s</td></tr>%s',
@@ -109,9 +109,9 @@ class Display {
    * @return void
    */
   public function showIdpSessionInfo() {
-    printf('          <h4>Identity Provider sessions attributes</h4>
+    printf('          <h4>' . _("Identity Provider sessions attributes") . '</h4>
         <table class="table table-striped table-bordered">
-          <tr><th>Attribute</th><th>Value</th></tr>%s', "\n");
+          <tr><th>' . _("Attribute") . '</th><th>' . _("Value") . '</th></tr>%s', "\n");
     foreach (array('Shib-Identity-Provider','Shib-Authentication-Instant','Shib-Authentication-Method','Shib-AuthnContext-Class') as $name) {
       if ( isset ($_SERVER[$name])) {
         printf ("          <tr><th>%s</th><td>%s</td></tr>\n", substr($name,5), $_SERVER[$name]);
@@ -137,16 +137,16 @@ class Display {
     $testHandler->bindParam('test',$test);
 
     printf('          <table class="table table-striped table-bordered">
-            <tr><th>Test</th><th>Result</th></tr>%s', "\n");
+            <tr><th>' . _("Test") . '</th><th>' . _("Result") . '</th></tr>%s', "\n");
     foreach ( $this->testSuite->getECTests() as $test) {
       $testHandler->execute();
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
         $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
       } else {
         printf ('            <tr>
-              <td>Test not run yet<br>
+              <td>' . _("Test not run yet") . '<br>
                 <a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">
-                  <button type="button" class="btn btn-link">Run test</button>
+                  <button type="button" class="btn btn-link">' . _("Run test") . '</button>
                 </a>
               </td>
               <td><h5>%s</h5></td>
@@ -173,13 +173,13 @@ class Display {
     $testHandler->bindParam('test',$test);
 
     printf ('          <table class="table table-striped table-bordered">
-            <tr><th>Test</th><th>Result</th></tr>', "\n");
+            <tr><th>' . _("Test") . '</th><th>' . _("Result") . '</th></tr>', "\n");
     $test = 'mfa';
     $testHandler->execute();
     if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
       $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
     } else {
-      printf ("            <tr><td>Test not run yet</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
+      printf ("            <tr><td>" . _("Test not run yet") . "</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
     }
     print "          </table>\n";
   }
@@ -195,8 +195,8 @@ class Display {
    */
   public function showResultsESI($idp, $testrun){
     $tests = array(
-      'esi-stud' => 'European Student Identifier (student account)',
-      'esi' => 'European Student Identifier (any account)',
+      'esi-stud' => _('European Student Identifier (student account)'),
+      'esi' => _('European Student Identifier (any account)'),
     );
 
     $testHandler = $this->config->getDb()->prepare(self::SQL_TESTS);
@@ -204,13 +204,13 @@ class Display {
     $testHandler->bindParam('test',$test);
 
     printf ('          <table class="table table-striped table-bordered">
-            <tr><th>Test</th><th>Result</th></tr>', "\n");
+            <tr><th>' . _("Test") . '</th><th>' . _("Result") . '</th></tr>', "\n");
     foreach ($tests as $test => $name) {
       $testHandler->execute();
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
         $this->printRow($row, $idp, $name, $testrun['session']);
       } else {
-        printf ("            <tr><td>Test not run yet</td><td><h5>%s</h5></td></tr>\n", $name);
+        printf ("            <tr><td>" . _("Test not run yet") . "</td><td><h5>%s</h5></td></tr>\n", $name);
       }
     }
     print "          </table>\n";
@@ -236,7 +236,7 @@ class Display {
                   <button type="button" class="btn btn-link">%s</button>
                 </a>',
       $baseTest, $this->config->basename(), urlencode($idp),
-      urlencode($target), $session == '' ? 'Run NEW test' : 'Rerun test');
+      urlencode($target), $session == '' ? _('Run NEW test') : _('Rerun test'));
     if ($desc == '') {
       printf ("            <tr>
               <td>%s<br>
@@ -271,7 +271,7 @@ class Display {
     }
     if ( $row['attr_OK'] ) {
       printf ("
-                <div>Received :
+                <div>" . _("Received") . " :
                   <ul>
                     <li>%s</li>
                   </ul>
@@ -281,7 +281,7 @@ class Display {
       $temp= str_replace(',','#',$row['attr_Missing']);
       $temp= str_replace('# ',',',$temp);
       printf ("
-                <div>Missing :
+                <div>" . _("Missing") . " :
                   <ul>
                     <li>%s</li>
                   </ul>
@@ -289,7 +289,7 @@ class Display {
     }
     if ( $row['attr_Extra'] )  {
       printf ("
-                <div>Not expected :
+                <div>" . _("Not expected") . " :
                   <ul>
                     <li>%s</li>
                   </ul>
@@ -297,7 +297,7 @@ class Display {
     }
     if ( $row['testResult'] ) {
       printf ("
-                <div>Test result  : %s</div>", $row['testResult']);
+                <div>" . _("Test result") . "  : %s</div>", $row['testResult']);
     }
     print "
               </td>
@@ -327,7 +327,7 @@ class Display {
         $tests = "mfa";
         break;
       default:
-        printf ('unknown tab : %s',  $tab);
+        printf (_('unknown tab') . ' : %s',  $tab);
         exit;
     }
     $testRunHandler = $this->config->getDb()->prepare(
@@ -357,7 +357,7 @@ class Display {
         $urlBase = sprintf('%s?tab=%s%s',
           $base, $tab,
           $base == './' ? '' : sprintf('&idp=%s', urlencode($idp)));
-        print "          <h4>Other results</h4>
+        print "          <h4>" . _("Other results") . "</h4>
             <ul>\n";
         foreach($testruns as $run) {
           # Check if this run is requested run. In that case save this run

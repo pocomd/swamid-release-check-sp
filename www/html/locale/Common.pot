@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 18:47+0000\n"
+"POT-Creation-Date: 2026-03-23 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,93 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: html/src/Display.php:47 html/src/Display.php:67 html/src/Display.php:114
+#, php-format
+msgid "Attribute"
+msgstr ""
+
+#: html/src/Display.php:47 html/src/Display.php:67 html/src/Display.php:114
+#: html/error.php:75
+#, php-format
+msgid "Value"
+msgstr ""
+
+#: html/src/Display.php:65
+#, php-format
+msgid "Identity Provider attributes in metadata"
+msgstr ""
+
+#: html/src/Display.php:112
+#, php-format
+msgid "Identity Provider sessions attributes"
+msgstr ""
+
+#: html/src/Display.php:140 html/src/Display.php:176 html/src/Display.php:207
+#: html/index.php:210
+#, php-format
+msgid "Test"
+msgstr ""
+
+#: html/src/Display.php:140 html/src/Display.php:176 html/src/Display.php:207
+#, php-format
+msgid "Result"
+msgstr ""
+
+#: html/src/Display.php:147 html/src/Display.php:182 html/src/Display.php:213
+#, php-format
+msgid "Test not run yet"
+msgstr ""
+
+#: html/src/Display.php:149
+#, php-format
+msgid "Run test"
+msgstr ""
+
+#: html/src/Display.php:198
+msgid "European Student Identifier (student account)"
+msgstr ""
+
+#: html/src/Display.php:199
+msgid "European Student Identifier (any account)"
+msgstr ""
+
+#: html/src/Display.php:239
+msgid "Run NEW test"
+msgstr ""
+
+#: html/src/Display.php:239
+msgid "Rerun test"
+msgstr ""
+
+#: html/src/Display.php:274
+#, php-format
+msgid "Received"
+msgstr ""
+
+#: html/src/Display.php:284
+#, php-format
+msgid "Missing"
+msgstr ""
+
+#: html/src/Display.php:292
+#, php-format
+msgid "Not expected"
+msgstr ""
+
+#: html/src/Display.php:300
+#, php-format
+msgid "Test result"
+msgstr ""
+
+#: html/src/Display.php:330
+#, php-format
+msgid "unknown tab"
+msgstr ""
+
+#: html/src/Display.php:360
+msgid "Other results"
+msgstr ""
 
 #: html/src/HTML.php:43
 msgid "Release check for"
@@ -87,10 +174,6 @@ msgstr ""
 
 #: html/error.php:75
 msgid "Key"
-msgstr ""
-
-#: html/error.php:75
-msgid "Value"
 msgstr ""
 
 #: html/index.php:5
@@ -177,11 +260,6 @@ msgstr ""
 #: html/index.php:200
 #, php-format
 msgid "No authnContextClassRef"
-msgstr ""
-
-#: html/index.php:210
-#, php-format
-msgid "Test"
 msgstr ""
 
 #: html/index.php:219
