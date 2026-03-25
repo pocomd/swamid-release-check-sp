@@ -16,6 +16,20 @@ $db = array(
 
 $basename = 'release-check.<org>.<tld>';
 
+# Languages to offer support for.
+# Supported is listed below (based on .po files)
+# Rearange order to suite your needs
+# Remove unwanted in your installation or change flag if wanted.
+# Other options for flags see https://flagcdn.com/en/codes.json
+$languages = array(
+  'en' => array('name' => 'English', 'flag' => 'gb'),
+  'sv' => array('name' => 'Svenska', 'flag' => 'se'),
+  'fr' => array('name' => 'Français', 'flag' => 'fr'),
+  #'fr' => array('name' => 'French', 'flag' => 'ca'),
+  'sr' => array('name' => 'Cpпcки језик', 'flag' => 'rs'),
+  'it' => array('name' => 'Italiano', 'flag' => 'it'),
+);
+
 $federation = array(
   'displayName' => 'SWAMID',
   # Admin users that should have access to ops.php

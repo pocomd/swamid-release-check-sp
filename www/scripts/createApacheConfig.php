@@ -1,5 +1,4 @@
 <?php
-#use PDO;
 require_once __DIR__ . '/../html/vendor/autoload.php';
 $config = new \releasecheck\Configuration();
 

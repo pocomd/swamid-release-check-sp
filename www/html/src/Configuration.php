@@ -15,6 +15,15 @@ class Configuration {
   private string $basename = '';
 
   /**
+   * Array of languages to offer translation for
+   * key = lang (sv for sweden NOT se)
+   * array of
+   * * name (Name of language in local spelling)
+   * * flag (flag could be sv)
+   */
+  private array $languages = array();
+
+  /**
    * Informatiom about the federation running the application
    */
   private array $federation = array();
@@ -40,7 +49,7 @@ class Configuration {
   public function __construct($startDB = true) {
     include __DIR__ . '/../config.php'; # NOSONAR
 
-    $reqParams = array('db', 'basename', 'federation');
+    $reqParams = array('db', 'basename', 'federation', 'languages');
     $reqParamsDB = array('servername', 'username', 'password',
       'name');
     $reqParamsFederation = array(
@@ -106,6 +115,9 @@ class Configuration {
     $this->checkParams($db, $reqParamsDB, 'db');
 
     $this->checkParams($federation,$reqParamsFederation, 'federation', $defaultValuesFederation);
+
+    # Language array
+    $this->languages = $languages;
 
     # Federation params
     $this->federation = $federation;
@@ -278,6 +290,17 @@ class Configuration {
    */
   public function getTemplate() {
     return $this->template;
+  }
+
+  /**
+   * Return languages
+   *
+   * Return an array with languages to translate GUI into
+   *
+   * @return array
+   */
+  public function getLanguages() {
+    return $this->languages;
   }
 
   /**
