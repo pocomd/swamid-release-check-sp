@@ -7,22 +7,22 @@ class TestSuite {
   protected const DESC_CN = 'givenName + sn';
   protected const DESC_CO = 'ISO_COUNTRY_NAME (Sweden)';
   protected const DESC_DISPLAYNAME = self::DESC_CN;
-  protected const DESC_EDUPERSONAFFILIATION = 'Specifies the person\'s relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc.';
-  protected const DESC_EDUPERSONASSURANCE = 'User assurance information.';
-  protected const DESC_EDUPERSONORCID = 'This attribute should only be released if and only if the IdP organization has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs are persistent digital identifiers for individual researchers. Their primary purpose is to unambiguously and definitively link them with their scholarly work products. ORCID iDs are assigned, managed and maintained by the ORCID organization.';
-  protected const DESC_EDUPERSONPRINCIPALNAME = 'A scoped identifier for a person. It should be represented in the form "user@scope" where \'user\' is a name-based identifier for the person and where the "scope" portion MUST be the administrative domain of the identity system where the identifier was created and assigned.';
-  protected const DESC_EDUPERSONSCOPEDAFFILIATION = 'eduPersonAffiliation, scoped';
-  protected const DESC_GIVENNAME = 'Firstname';
-  protected const DESC_MAIL = 'Mailaddress (should only be one)';
-  protected const DESC_MAILLOCALADDRESS = 'List of additional organizational mailaddresses for the person';
-  protected const DESC_NOREDUORGACRONYM = 'Shortform of organisation name';
-  protected const DESC_O = 'Organisation name';
-  protected const DESC_PAIRWISEID = 'Its value for a given subject depends upon the relying party to whom it is given, thus preventing unrelated systems from using it as a basis for correlation.';
-  protected const DESC_SCHACDATEOFBIRTH = '8 digit date of birth (YYYYMMDD)';
-  protected const DESC_SCHACHOMEORGANIZATION = 'Specifies a person\'s home organization using the domain name of the organization';
-  protected const DESC_SCHACHOMEORGANIZATIONTYPE = 'example urn:schac:homeOrganizationType:eu:higherEducationInstitution';
-  protected const DESC_SN = 'Lastname';
-  protected const DESC_SUBJECTID = 'Its value for a given subject is independent of the relying party to whom it is given.';
+  protected const DESC_EDUPERSONAFFILIATION = _("Specifies the person's relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc.");
+  protected const DESC_EDUPERSONASSURANCE = _('User assurance information.');
+  protected const DESC_EDUPERSONORCID = _('This attribute should only be released if and only if the IdP organization has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs are persistent digital identifiers for individual researchers. Their primary purpose is to unambiguously and definitively link them with their scholarly work products. ORCID iDs are assigned, managed and maintained by the ORCID organization.');
+  protected const DESC_EDUPERSONPRINCIPALNAME = _('A scoped identifier for a person. It should be represented in the form "user@scope" where \'user\' is a name-based identifier for the person and where the "scope" portion MUST be the administrative domain of the identity system where the identifier was created and assigned.');
+  protected const DESC_EDUPERSONSCOPEDAFFILIATION = _('eduPersonAffiliation, scoped');
+  protected const DESC_GIVENNAME = _('Firstname');
+  protected const DESC_MAIL = _('Mailaddress (should only be one)');
+  protected const DESC_MAILLOCALADDRESS = _('List of additional organizational mailaddresses for the person');
+  protected const DESC_NOREDUORGACRONYM = _('Shortform of organisation name');
+  protected const DESC_O = _('Organisation name');
+  protected const DESC_PAIRWISEID = _('Its value for a given subject depends upon the relying party to whom it is given, thus preventing unrelated systems from using it as a basis for correlation.');
+  protected const DESC_SCHACDATEOFBIRTH = _('8 digit date of birth (YYYYMMDD)');
+  protected const DESC_SCHACHOMEORGANIZATION = _('Specifies a person\'s home organization using the domain name of the organization');
+  protected const DESC_SCHACHOMEORGANIZATIONTYPE = _('example urn:schac:homeOrganizationType:eu:higherEducationInstitution');
+  protected const DESC_SN = _('Lastname');
+  protected const DESC_SUBJECTID = _('Its value for a given subject is independent of the relying party to whom it is given.');
 
   /**
    * Order of the tests
@@ -88,7 +88,7 @@ class TestSuite {
    */
   protected $tests = array(
     'anonymous'    => array (
-      'name'     => 'REFEDS Anonymous Access',
+      'name'     => _('REFEDS Anonymous Access'),
       'tab'      => 'entityCategory',
       'expected' => array (
         'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
@@ -101,7 +101,7 @@ class TestSuite {
       'subtest'  => 'anonymous',
     ),
     'assurance'    => array (
-      'name'     => 'Assurance Attribute test',
+      'name'     => _('Assurance Attribute test'),
       'tab'      => 'entityCategory',
       'expected' => array (
         'eduPersonAssurance'     => self::DESC_EDUPERSONASSURANCE,
@@ -119,7 +119,7 @@ class TestSuite {
       'subtest'  => 'RAF',
     ),
     'cocov2'     => array (
-      'name'     => 'REFEDS CoCo',
+      'name'     => _('REFEDS CoCo'),
       'tab'      => 'entityCategory',
       'expected' => array (
         'subject-id'                 => self::DESC_SUBJECTID,
@@ -143,7 +143,7 @@ class TestSuite {
       'subtest'  => 'CoCov2',
     ),
     'noec'         => array (
-      'name'     => 'No EC (shall not send any attributes!)',
+      'name'     => _('No EC (shall not send any attributes!)'),
       'tab'      => 'entityCategory',
       'expected' => array (),
       'nowarn'   => array (
@@ -153,7 +153,7 @@ class TestSuite {
       'subtest'  => '',
     ),
     'pseudonymous' => array (
-      'name'     => 'REFEDS Pseudonymous Access',
+      'name'     => _('REFEDS Pseudonymous Access'),
       'tab'      => 'entityCategory',
       'expected' => array (
         'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
@@ -168,7 +168,7 @@ class TestSuite {
       'subtest'  => 'pseudonymous',
     ),
     'personalized' => array (
-      'name'     => 'REFEDS Personalized Access',
+      'name'     => _('REFEDS Personalized Access'),
       'tab'      => 'entityCategory',
       'expected' => array (
         'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
@@ -187,7 +187,7 @@ class TestSuite {
       'subtest'  => 'personalized',
     ),
     'rands'        => array (
-      'name'     => 'REFEDS R&S',
+      'name'     => _('REFEDS R&S'),
       'tab'      => 'entityCategory',
       'expected' => array (
         'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
@@ -207,10 +207,10 @@ class TestSuite {
       'subtest'  => 'R&S',
     ),
     'esi' => array (
-      'name'     => 'European Student Identifier',
+      'name'     => _('European Student Identifier'),
       'tab'      => 'esi',
       'expected' =>array (
-        'schacPersonalUniqueCode'    => 'Usually used for the European Student Identifier.',
+        'schacPersonalUniqueCode'    => _('Usually used for the European Student Identifier.'),
         'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
       ),
       'nowarn'   => array (

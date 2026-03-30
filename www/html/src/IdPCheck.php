@@ -67,7 +67,7 @@ class IdPCheck {
   /**
    * Request adding ECS to Metadata
    */
-  protected $toListStr = 'to the list of supported ECs in Metadata';
+  protected $toListStr = _('to the list of supported ECs in Metadata');
 
   /**
    * List of allow/expected values in eduPersonAssuance
@@ -165,35 +165,35 @@ class IdPCheck {
    */
   public function showTestHeaders($lasttest, $nexttest, $singleTest=false, $forceAuthn = false) {
     printf('%s    <table class="table table-striped table-bordered">
-      <caption>Test info</caption>
-      <tr><th>Test</th><td>%s</td></tr>
-      <tr><th>Tested IdP</th><td>%s</td></tr>
+      <caption>' . _('Test info') . '</caption>
+      <tr><th>' . _('Test') . '</th><td>%s</td></tr>
+      <tr><th>' . _('Tested IdP') . '</th><td>%s</td></tr>
     </table>
     <h4>%s', "\n", $this->testname, $this->idp, "\n");
     if ($lasttest == '' || $singleTest) {
-      print '      <button type="button" class="btn btn-outline-primary">No previous test</button> | ';
+      print '      <button type="button" class="btn btn-outline-primary">' . _('No previous test') . '</button> | ';
     } else {
       printf ('      <a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">%s</a> | %s',
         $lasttest, $this->config->basename(), $this->idp,
         urlencode(sprintf('https://%s.%s/?session=%s', $lasttest, $this->config->basename(), $this->sessionID)),
-        '<button type="button" class="btn btn-outline-primary">Previous test</button>', "\n");
+        '<button type="button" class="btn btn-outline-primary">' . _('Previous test') . '</button>', "\n");
     }
 
     if ($nexttest == 'result' || $singleTest) {
       printf ('      <a href="https://%s/Shibboleth.sso/Login?target=https://%s/result/?tab=%s&entityID=%s">%s</a>',
       $this->config->basename(), $this->config->basename(), $this->testtab, $this->idp,
-    '<button type="button" class="btn btn-success">Show the results</button>');
+    '<button type="button" class="btn btn-success">' . _('Show the results') . '</button>');
     } elseif ($forceAuthn) {
       printf (
         '      <a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&forceAuthn=true&target=%s">%s</a>',
         $nexttest, $this->config->basename(), $this->idp,
         urlencode(sprintf('https://%s.%s/?forceAuthn&session=%s', $nexttest, $this->config->basename(), $this->sessionID)),
-        '<button type="button" class="btn btn-success">Next test</button>');
+        '<button type="button" class="btn btn-success">' . _('Next test') . '</button>');
     } else {
       printf ('      <a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">%s</a>',
         $nexttest, $this->config->basename(), $this->idp,
         urlencode(sprintf('https://%s.%s/?session=%s', $nexttest, $this->config->basename(), $this->sessionID)),
-        '<button type="button" class="btn btn-success">Next test</button>');
+        '<button type="button" class="btn btn-success">' . _('Next test') . '</button>');
     }
 
     print "\n    </h4>\n";
@@ -230,7 +230,7 @@ class IdPCheck {
         if (! isset($this->expected[$nkey]) ) {
           $extraValues[$nkey] = $value;
           if ( ! isset( $this->nowarn[$nkey] ) ) {
-            $this->status['error'] = 'The IDP has sent too many attributes.<br>';
+            $this->status['error'] = _('The IDP has sent too many attributes.') . '<br>';
           }
         }
       }
@@ -243,7 +243,7 @@ class IdPCheck {
       if ( isset ($samlValues[$key] ) ) {
         $okValues[$key] = $samlValues[$key];
         if (strpos($samlValues[$key], ';') && isset($singleValueAttributes[$key])) {
-          $this->status['error'] .= sprintf('Received multi-value for %s, should be single-value!<br>', $key);
+          $this->status['error'] .= sprintf(_('Received multi-value for %s, should be single-value!') . '<br>', $key);
         }
       } else {
         $missingValues[$key] = $value;
@@ -252,7 +252,7 @@ class IdPCheck {
     }
 
     $this->status['warning'] .= $missing ?
-      'The IDP has not sent all the expected attributes. See the comments below.<br>' : '';
+      _('The IDP has not sent all the expected attributes. See the comments below.') . '<br>' : '';
     switch ($subtest) {
       case 'anonymous' :
         $this->checkAnonymous($okValues, $ecs);
@@ -287,9 +287,9 @@ class IdPCheck {
 
     # If we have no warnings or error then we are OK
     if ( $this->status['ok'] == '' && $this->status['warning'] == '' && $this->status['error'] == '' ) {
-      $this->status['ok'] .= 'Did not send any attributes that were not requested.<br>';
+      $this->status['ok'] .= _('Did not send any attributes that were not requested.') . '<br>';
       if ( $this->status['testResult'] == '' ) {
-        $this->status['testResult'] = 'Did not send any attributes that were not requested.';
+        $this->status['testResult'] = _('Did not send any attributes that were not requested.');
       }
     }
 
@@ -312,11 +312,11 @@ class IdPCheck {
         $stud = true;
       }
       if ($stud) {
-        print "    <h5>Checking as Stud-account, saving <b>two</b> results</h5>\n";
+        print "    <h5>" . _("Checking as Stud-account, saving <b>two</b> results") . "</h5>\n";
         $this->test = 'esi-stud';
         $this->saveToSQL($okValues,$missingValues,$extraValues);
       } else {
-        print "    <h5>Checking as none Stud-account, saving <b>one</b> result</h5>\n";
+        print "    <h5>" . _("Checking as none Stud-account, saving <b>one</b> result") . "</h5>\n";
       }
     }
     if ($quickTest) {
@@ -341,14 +341,14 @@ class IdPCheck {
         print $this->status['infoText'];
       }
 
-      $this->showAttributeTable('Received attributes', $okValues);
+      $this->showAttributeTable(_('Received attributes'), $okValues);
 
       if (count ($missingValues) ) {
-        $this->showAttributeTable('Missing attributes (might be OK, see comments below)', $missingValues);
+        $this->showAttributeTable(_('Missing attributes (might be OK, see comments below)'), $missingValues);
       }
 
       if (count ($extraValues) ) {
-        $this->showAttributeTable('Attributes that were not requested/expected/needed', $extraValues, true);
+        $this->showAttributeTable(_('Attributes that were not requested/expected/needed'), $extraValues, true);
       }
     }
   }
@@ -378,7 +378,7 @@ class IdPCheck {
       if ( isset ($_SERVER['saml_'.$key] ) ) {
         $okValues[$key] = $_SERVER['saml_'.$key];
         if (strpos($_SERVER['saml_'.$key], ';') && isset($singleValueAttributes[$key])) {
-          $this->status['error'] .= sprintf('Received multi-value for %s, should be single-value!<br>', $key);
+          $this->status['error'] .= sprintf(_('Received multi-value for %s, should be single-value!') . '<br>', $key);
         }
       }
     }
@@ -390,9 +390,8 @@ class IdPCheck {
     if ($expectedAccr != $_SERVER['Shib-AuthnContext-Class']) {
       printf('        <div class="row alert alert-danger" role="alert">
           <div class="col">
-            AuthnContext-Class = %s was requested<br>
-            but %s was revived.
-          </div>
+            ' . _('AuthnContext-Class = %s was requested<br>but %s was revived.') .
+          '</div>
         </div>%s',
         $expectedAccr, $_SERVER['Shib-AuthnContext-Class'], "\n");
     }
@@ -423,7 +422,7 @@ class IdPCheck {
   protected function showAttributeTable($title, $attributeArray, $showIcons = false) {
     printf ('    <h3>%s</h3>
     <table class="table table-striped table-bordered">
-      <tr><th>Attribute</th><th>Value</th></tr>%s', $title, "\n");
+      <tr><th>' . _('Attribute') . '</th><th>' . _('Value') . '</th></tr>%s', $title, "\n");
     foreach ( $attributeArray as $key => $value ) {
       if ($showIcons) {
         $icon = sprintf('<i class="fas fa-%s"></i> ', isset($this->nowarn[$key]) ? 'check' : 'exclamation');
@@ -560,35 +559,35 @@ class IdPCheck {
       $randSisOK = true;
     }
     if ( ! $randSisOK ) {
-      $this->status['warning'] .= 'R&S requires displayName or givenName + sn.<br>';
+      $this->status['warning'] .= _('R&S requires displayName or givenName + sn.') . '<br>';
     }
 
     # both mail and eduPersonPrincipalName must exist !
     if (! isset($attributes['mail']) ) {
       $randSisOK = false;
-      $this->status['warning'] .= 'R&S requires mail.<br>';
+      $this->status['warning'] .= _('R&S requires mail.') . '<br>';
     }
     if (! isset($attributes['eduPersonPrincipalName']) ) {
       $randSisOK = false;
-      $this->status['warning'] .= 'R&S requires eduPersonPrincipalName.<br>';
+      $this->status['warning'] .= _('R&S requires eduPersonPrincipalName.') . '<br>';
     }
     if ( $randSisOK ) {
-      $this->status['ok'] .= 'All the attributes required to fulfil R&S were sent<br>';
+      $this->status['ok'] .= _('All the attributes required to fulfil R&S were sent') . '<br>';
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
-        $this->status['testResult'] = 'R&S attributes OK, Entity Category Support OK';
+        $this->status['testResult'] = _('R&S attributes OK, Entity Category Support OK');
       } else {
-        $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports R&S but doesn't announce it in its metadata.";
-        $part2 = "Please add 'http://refeds.org/category/research-and-scholarship' "; # NOSONAR Should be http://
+        $this->status['testResult'] = _('R&S attributes OK, Entity Category Support missing');
+        $part1 = _("The IdP supports R&S but doesn't announce it in its metadata.");
+        $part2 = _("Please add") . " 'http://refeds.org/category/research-and-scholarship' "; # NOSONAR Should be http://
         $part3 = $this->toListStr;
         $this->status['warning'] .= $part1 . '<br>' . $part2 . $part3 . '<br>';
       }
     } else {
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
-        $this->status['testResult'] = 'R&S attributes missing, BUT Entity Category Support claimed';
-        $this->status['error'] .= 'The IdP does NOT support R&S but it claims that it does in its metadata!!<br>';
+        $this->status['testResult'] = _('R&S attributes missing, BUT Entity Category Support claimed');
+        $this->status['error'] .= _('The IdP does NOT support R&S but it claims that it does in its metadata!!') . '<br>';
       } else {
-        $this->status['testResult'] = 'R&S attribute missing, Entity Category Support missing';
+        $this->status['testResult'] = _('R&S attribute missing, Entity Category Support missing');
       }
     }
   }
@@ -607,31 +606,31 @@ class IdPCheck {
     $checkIsOK = true;
     if (! isset($attributes['schacHomeOrganization']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Anonymous requires schacHomeOrganization.<br>';
+      $this->status['warning'] .= _('Anonymous requires schacHomeOrganization.') . '<br>';
     }
 
     if (! isset($attributes['eduPersonScopedAffiliation']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Anonymous requires eduPersonScopedAffiliation.<br>';
+      $this->status['warning'] .= _('Anonymous requires eduPersonScopedAffiliation.') . '<br>';
     }
 
     if ( $checkIsOK ) {
-      $this->status['ok'] .= 'All the attributes required to fulfil Anonymous were sent<br>';
+      $this->status['ok'] .= _('All the attributes required to fulfil Anonymous were sent') . '<br>';
       if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
-        $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support OK';
+        $this->status['testResult'] = _('Anonymous attributes OK, Entity Category Support OK');
       } else {
-        $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports Anonymous but doesn't announce it in its metadata";
-        $part2 =  "Please add 'https://refeds.org/category/anonymous' ";
+        $this->status['testResult'] = _('Anonymous attributes OK, Entity Category Support missing');
+        $part1 = _("The IdP supports Anonymous but doesn't announce it in its metadata");
+        $part2 =  _("Please add") . " 'https://refeds.org/category/anonymous' ";
         $part3 =  $this->toListStr;
         $this->status['warning'] .= $part1 . '<br>' . $part2 . $part3 .'<br>';
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
-        $this->status['testResult'] = 'Anonymous attributes missing, BUT Entity Category Support claimed';
-        $this->status['error'] .= 'The IdP does NOT support Anonymous but it claims that it does in its metadata!!<br>';
+        $this->status['testResult'] = _('Anonymous attributes missing, BUT Entity Category Support claimed');
+        $this->status['error'] .= _('The IdP does NOT support Anonymous but it claims that it does in its metadata!!') . '<br>';
       } else {
-        $this->status['testResult'] = 'Anonymous attribute missing, Entity Category Support missing';
+        $this->status['testResult'] = _('Anonymous attribute missing, Entity Category Support missing');
       }
     }
   }
@@ -649,7 +648,7 @@ class IdPCheck {
   protected function checkPseudonymous( $attributes, $ecs) {
     $checkIsOK = false;
     if (! isset($attributes['eduPersonAssurance']) ) {
-      $this->status['warning'] .= 'Pseudonymous requires eduPersonAssurance.<br>';
+      $this->status['warning'] .= _('Pseudonymous requires eduPersonAssurance.') . '<br>';
     } else {
       $checkArray = array ('IAP/low', 'ID/unique', 'ID/eppn-unique-no-reassign', 'ATP/ePA-1m');
       $checkOKArray = array();
@@ -668,45 +667,45 @@ class IdPCheck {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
             $this->status['warning'] .=
-              'SWAMID recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
+              _('SWAMID recommends that eduPersonAssurance contains') . " " . self::RAF_BASE . '/' . $part . '.<br>';
           }
         }
       } else {
         $this->status['warning'] .=
-          'Pseudonymous requires that eduPersonAssurance at least contains ' . self::RAF_BASE . ' .<br>';
+          _('Pseudonymous requires that eduPersonAssurance at least contains') . " " . self::RAF_BASE . ' .<br>';
       }
     }
     if (! isset($attributes['pairwise-id']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Pseudonymous requires pairwise-id.<br>';
+      $this->status['warning'] .= _('Pseudonymous requires pairwise-id.') . '<br>';
     }
 
     if (! isset($attributes['schacHomeOrganization']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Pseudonymous requires schacHomeOrganization.<br>';
+      $this->status['warning'] .= _('Pseudonymous requires schacHomeOrganization.') . '<br>';
     }
 
     if (! isset($attributes['eduPersonScopedAffiliation']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Pseudonymous requires eduPersonScopedAffiliation.<br>';
+      $this->status['warning'] .= _('Pseudonymous requires eduPersonScopedAffiliation.') . '<br>';
     }
 
     if ( $checkIsOK ) {
-      $this->status['ok'] .= 'All the attributes required to fulfil Pseudonymous were sent<br>';
+      $this->status['ok'] .= _('All the attributes required to fulfil Pseudonymous were sent') . '<br>';
       if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
-        $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support OK';
+        $this->status['testResult'] = _('Pseudonymous attributes OK, Entity Category Support OK');
       } else {
-        $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports Pseudonymous but doesn't announce it in its metadata.";
-        $part2 = "Please add 'https://refeds.org/category/pseudonymous' ". $this->toListStr;
+        $this->status['testResult'] = _('Pseudonymous attributes OK, Entity Category Support missing');
+        $part1 = _("The IdP supports Pseudonymous but doesn't announce it in its metadata.");
+        $part2 = _("Please add") . " 'https://refeds.org/category/pseudonymous' ". $this->toListStr;
         $this->status['warning'] .= $part1 . '<br>' . $part2 .  '<br>';
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
-        $this->status['testResult'] = 'Pseudonymous attributes missing, BUT Entity Category Support claimed';
-        $this->status['error'] .= 'The IdP does NOT support Pseudonymous but it claims that it does in its metadata!!<br>';
+        $this->status['testResult'] = _('Pseudonymous attributes missing, BUT Entity Category Support claimed');
+        $this->status['error'] .= _('The IdP does NOT support Pseudonymous but it claims that it does in its metadata!!') . '<br>';
       } else {
-        $this->status['testResult'] = 'Pseudonymous attribute missing, Entity Category Support missing';
+        $this->status['testResult'] = _('Pseudonymous attribute missing, Entity Category Support missing');
       }
     }
   }
@@ -724,7 +723,7 @@ class IdPCheck {
   protected function checkPersonalized( $attributes, $ecs) {
     $checkIsOK = false;
     if (! isset($attributes['eduPersonAssurance']) ) {
-      $this->status['warning'] .= 'Personalized requires eduPersonAssurance.<br>';
+      $this->status['warning'] .= _('Personalized requires eduPersonAssurance.') . '<br>';
     } else {
       $checkArray = array ('IAP/low', 'ID/unique', 'ID/eppn-unique-no-reassign', 'ATP/ePA-1m');
       $checkOKArray = array();
@@ -743,56 +742,56 @@ class IdPCheck {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
             $this->status['warning'] .=
-              'SWAMID recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
+              _('SWAMID recommends that eduPersonAssurance contains') . " " . self::RAF_BASE . '/' . $part . '.<br>';
           }
         }
       } else {
         $this->status['warning'] .=
-          'Personalized requires that eduPersonAssurance at least contains ' . self::RAF_BASE . ' .<br>';
+          _('Personalized requires that eduPersonAssurance at least contains') . " " . self::RAF_BASE . ' .<br>';
       }
     }
     # displayName, givenName and sn must exist for Personalized
     if ( !(isset($attributes['displayName']) && isset($attributes['givenName']) && isset($attributes['sn'])) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Personalized requires displayName, givenName and sn.<br>';
+      $this->status['warning'] .= _('Personalized requires displayName, givenName and sn.') . '<br>';
     }
     # both mail must exist
     if (! isset($attributes['mail']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Personalized requires mail.<br>';
+      $this->status['warning'] .= _('Personalized requires mail.') . '<br>';
     }
 
     if (! isset($attributes['subject-id']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Personalized requires subject-id.<br>';
+      $this->status['warning'] .= _('Personalized requires subject-id.') . '<br>';
     }
 
     if (! isset($attributes['schacHomeOrganization']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Personalized requires schacHomeOrganization.<br>';
+      $this->status['warning'] .= _('Personalized requires schacHomeOrganization.') . '<br>';
     }
 
     if (! isset($attributes['eduPersonScopedAffiliation']) ) {
       $checkIsOK = false;
-      $this->status['warning'] .= 'Personalized requires eduPersonScopedAffiliation.<br>';
+      $this->status['warning'] .= _('Personalized requires eduPersonScopedAffiliation.') . '<br>';
     }
 
     if ( $checkIsOK ) {
-      $this->status['ok'] .= 'All the attributes required to fulfil Personalized were sent<br>';
+      $this->status['ok'] .= _('All the attributes required to fulfil Personalized were sent') . '<br>';
       if ( isset($ecs['https://refeds.org/category/personalized']) ) {
-        $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support OK';
+        $this->status['testResult'] = _('Personalized attributes OK, Entity Category Support OK');
       } else {
-        $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports Personalized but doesn't announce it in its metadata.";
-        $part2 = "Please add 'https://refeds.org/category/personalized' " . $this->toListStr;
+        $this->status['testResult'] = _('Personalized attributes OK, Entity Category Support missing');
+        $part1 = _("The IdP supports Personalized but doesn't announce it in its metadata.");
+        $part2 = _("Please add") . " 'https://refeds.org/category/personalized' " . $this->toListStr;
         $this->status['warning'] .= $part1 . '<br>' . $part2 . '<br>';
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/personalized']) ) {
-        $this->status['testResult'] = 'Personalized attributes missing, BUT Entity Category Support claimed';
-        $this->status['error'] .= 'The IdP does NOT support Personalized but it claims that it does in its metadata!!<br>';
+        $this->status['testResult'] = _('Personalized attributes missing, BUT Entity Category Support claimed');
+        $this->status['error'] .= _('The IdP does NOT support Personalized but it claims that it does in its metadata!!') . '<br>';
       } else {
-        $this->status['testResult'] = 'Personalized attribute missing, Entity Category Support missing';
+        $this->status['testResult'] = _('Personalized attribute missing, Entity Category Support missing');
       }
     }
   }
@@ -811,9 +810,9 @@ class IdPCheck {
    */
   protected function checkNumberOfAttributes($nrOfAttributes, $minimum = 3) {
     if ($nrOfAttributes == 0) {
-      $this->status['error'] .= 'The IDP has not sent any attributes.<br>';
+      $this->status['error'] .= _('The IDP has not sent any attributes.') . '<br>';
     } elseif ($nrOfAttributes < $minimum) {
-      $this->status['error'] .= sprintf('The IDP has only sent %d attributes.<br>', $nrOfAttributes) ;
+      $this->status['error'] .= sprintf(_('The IDP has only sent %d attributes.') . '<br>', $nrOfAttributes) ;
     }
   }
 
@@ -830,21 +829,21 @@ class IdPCheck {
   protected function checkCoCo( $ecs, $ecsValue = '' ) {
     # If status[error] contains any value at this point, then the IdP doesn't support CoCo
     if ( $this->status['error'] == '' ) {
-      $this->status['ok'] .= 'Fulfils Code of Conduct<br>';
+      $this->status['ok'] .= _('Fulfils Code of Conduct') . '<br>';
       if (isset($ecs[$ecsValue] ) ) {
-        $this->status['testResult'] = 'CoCo OK, Entity Category Support OK';
+        $this->status['testResult'] = _('CoCo OK, Entity Category Support OK');
       } else {
-        $this->status['testResult'] = 'CoCo OK, Entity Category Support missing';
-        $part1 = "The IdP supports CoCo but doesn't announce it in its metadata.";
-        $part2 = "Please add '" .$ecsValue. "' " . $this->toListStr;
+        $this->status['testResult'] = _('CoCo OK, Entity Category Support missing');
+        $part1 = _("The IdP supports CoCo but doesn't announce it in its metadata.");
+        $part2 = _("Please add") . " '" .$ecsValue. "' " . $this->toListStr;
         $this->status['warning'] .= $part1 . '<br>' . $part2 . '<br>';
       }
     } else {
       if ( isset($ecs[$ecsValue]) )  {
-        $this->status['testResult'] = 'CoCo is not supported, BUT Entity Category Support is claimed';
-        $this->status['error'] .= 'The IdP does NOT support CoCo but it claims that it does in its metadata!!<br>';
+        $this->status['testResult'] = _('CoCo is not supported, BUT Entity Category Support is claimed');
+        $this->status['error'] .= _('The IdP does NOT support CoCo but it claims that it does in its metadata!!') . '<br>';
       } else {
-        $this->status['testResult'] = 'Support for CoCo missing, Entity Category Support missing';
+        $this->status['testResult'] = _('Support for CoCo missing, Entity Category Support missing');
       }
     }
   }
@@ -866,27 +865,27 @@ class IdPCheck {
           } else {
             # Some chars not in correct case
             $this->status['warning'] .=
-              'schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi.';
-            $this->status['warning'] .= ' Might create problem in some SP:s<br>';
-            $this->status['testResult'] = 'schacPersonalUniqueCode OK. BUT wrong case';
+              _('schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi.');
+            $this->status['warning'] .= ' ' . _("Might create problem in some SP's") . '<br>';
+            $this->status['testResult'] = 'schacPersonalUniqueCode OK.' . _('BUT wrong case');
           }
         } else {
-          $this->status['error'] .= 'schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:<br>';
-          $this->status['testResult'] = 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
+          $this->status['error'] .= _('schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:') . '<br>';
+          $this->status['testResult'] = _('schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:');
         }
         $rows++;
       }
       if ($rows > 1) {
-        $this->status['warning'] .= 'schacPersonalUniqueCode should only contain <b>one</b> value.<br>';
+        $this->status['warning'] .= _('schacPersonalUniqueCode should only contain <b>one</b> value.') . '<br>';
         if ($this->status['testResult'] == '' ) {
-          $this->status['testResult'] = 'More than one schacPersonalUniqueCode';
+          $this->status['testResult'] = _('More than one schacPersonalUniqueCode');
         }
       }
       if ($this->status['testResult'] == '' ) {
         $this->status['testResult'] = 'schacPersonalUniqueCode OK';
       }
     } else {
-      $this->status['testResult'] = 'Missing schacPersonalUniqueCode';
+      $this->status['testResult'] = _('Missing schacPersonalUniqueCode');
     }
   }
 
@@ -967,11 +966,11 @@ class IdPCheck {
     $missing = false;
     $this->setupAssurance($attributes, $ac);
 
-    $this->status['infoText'] = sprintf('    <h3>Assurance Levels</h3>
+    $this->status['infoText'] = sprintf('    <h3>' . _('Assurance Levels') . '</h3>
     <table class="table table-striped table-bordered">
-      <tr><th>Assurance Level of user</th><td>%s</td></tr>
+      <tr><th>' . _('Assurance Level of user') . '</th><td>%s</td></tr>
     </table>
-    <h3>Received Assurance Values</h3>
+    <h3>' . _('Received Assurance Values') . '</h3>
     <table class="table table-striped table-bordered">%s',
       $this->userAL == '' ? 'None' : $this->userAL, "\n");
     foreach ($this->rafAttributes as $key => $data) {
@@ -979,7 +978,7 @@ class IdPCheck {
         case 'Missing' :
           if ($data['level'] <= $this->userAL ) {
             $missing=true;
-            $this->status['infoText'] .= "    <tr><th>$key</th><td>Missing</td></tr>\n";
+            $this->status['infoText'] .= "    <tr><th>$key</th><td>" . _("Missing") . "</td></tr>\n";
           }
           break;
         case 'NotExpected' :
@@ -994,22 +993,22 @@ class IdPCheck {
       }
     }
     if ($this->userAL == '') {
-      $this->status['infoText'] .= "    <tr><th>No Assurance information recived</th></tr>\n";
+      $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information recived") . "</th></tr>\n";
     }
     $this->status['infoText'] .="    </table>\n";
 
     if ($this->notAllowed) {
-      $this->status['error'] .= 'Identity Provider is sending invalid Assurance information.<br>';
-      $this->status['testResult'] = 'Sends invalid Assurance information.';
+      $this->status['error'] .= _('Identity Provider is sending invalid Assurance information.') . '<br>';
+      $this->status['testResult'] = _('Sends invalid Assurance information.');
     } elseif ($this->userAL == '') {
-      $this->status['error'] .= 'Missing Assurance information. Expected at least ' . self::RAF_BASE . '<br>';
-      $this->status['testResult'] = 'Missing ' . self::RAF_BASE . ' for user.';
+      $this->status['error'] .= _('Missing Assurance information. Expected at least') . ' ' . self::RAF_BASE . '<br>';
+      $this->status['testResult'] = sprintf(_('Missing %s for user.'), self::RAF_BASE);
     } elseif ($missing) {
-      $this->status['warning'] .= 'Missing some Assurance information.<br>';
-      $this->status['testResult'] = 'Missing some Assurance information.';
+      $this->status['warning'] .= _('Missing some Assurance information.') . '<br>';
+      $this->status['testResult'] = _('Missing some Assurance information.');
     } else {
-      $this->status['ok'] .= "Assurance attribute release for current user follows REFED's recommendations.<br>";
-      $this->status['testResult'] = 'Sends recommended Assurance information.';
+      $this->status['ok'] .= _("Assurance attribute release for current user follows REFED's recommendations.") . "<br>";
+      $this->status['testResult'] = _('Sends recommended Assurance information.');
     }
   }
 
@@ -1033,15 +1032,15 @@ class IdPCheck {
     if (isset($_GET['forceAuthn'])) {
       # Step2
       $step2 = true;
-      $forceAuthnResult = 'Failed missing old Authentication-Instant. Please restart test';
+      $forceAuthnResult = _('Failed missing old Authentication-Instant.') .  _('Please restart test');
       if (isset($_SESSION['ts'])) {
         $forceAuthnTime = strtotime($_SERVER['Shib-Authentication-Instant']) - $_SESSION['ts'];
         if ($_SESSION['ts'] <> $_SERVER['Shib-Authentication-Instant']) {
           $forceAuthnSuccess = true;
-          $forceAuthnResult = $forceAuthnTime < 600 ? 'OK' : 'Not done within 10 minutes' . $forceAuthnTime;
+          $forceAuthnResult = $forceAuthnTime < 600 ? 'OK' : _('Not done within 10 minutes') . $forceAuthnTime;
         } else {
-          $this->status['error'] .= "Authentication-instant hasn't updated after forceAuthn was requested.<br>";
-          $forceAuthnResult = 'Error';
+          $this->status['error'] .= _("Authentication-instant hasn't updated after forceAuthn was requested.") . "<br>";
+          $forceAuthnResult = _('Error');
         }
       }
       unset ($_SESSION['ts']);
@@ -1049,33 +1048,33 @@ class IdPCheck {
       # Step1
       $_SESSION['ts'] = time();
       $_SESSION['accr'] = $requestedAccr;
-      $forceAuthnResult = 'Not tested';
+      $forceAuthnResult = _('Not tested');
     }
 
-    $this->status['infoText'] = sprintf('    <h3>Test result</h3>%s    <table class="table table-striped table-bordered">%s',
+    $this->status['infoText'] = sprintf('    <h3>' . _('Test result') . '</h3>%s    <table class="table table-striped table-bordered">%s',
       "\n", "\n");
-    $this->status['infoText'] .= sprintf('      <tr><th>ACCR status</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
-    $this->status['infoText'] .= sprintf('      <tr><th>ForceAuthn status</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
+    $this->status['infoText'] .= sprintf('      <tr><th>' . _('ACCR status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : _('Error'), "\n");
+    $this->status['infoText'] .= sprintf('      <tr><th>' . _('ForceAuthn status') . '</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
 
-    $this->showRAFAttributeStatus('AL1 status','http://www.swamid.se/policy/assurance/al1'); # NOSONAR Should be http://
-    $this->showRAFAttributeStatus('AL2 status','http://www.swamid.se/policy/assurance/al2'); # NOSONAR Should be http://
-    $this->showRAFAttributeStatus('AL3 status','http://www.swamid.se/policy/assurance/al3'); # NOSONAR Should be http://
-    $this->showRAFAttributeStatus('RAF Low status', self::RAF_LOW);
-    $this->showRAFAttributeStatus('RAF Medium status', self::RAF_MEDIUM);
-    $this->showRAFAttributeStatus('RAF High status', self::RAF_HIGH);
+    $this->showRAFAttributeStatus(_('AL1 status'),'http://www.swamid.se/policy/assurance/al1'); # NOSONAR Should be http://
+    $this->showRAFAttributeStatus(_('AL2 status'),'http://www.swamid.se/policy/assurance/al2'); # NOSONAR Should be http://
+    $this->showRAFAttributeStatus(_('AL3 status'),'http://www.swamid.se/policy/assurance/al3'); # NOSONAR Should be http://
+    $this->showRAFAttributeStatus(_('RAF Low status'), self::RAF_LOW);
+    $this->showRAFAttributeStatus(_('RAF Medium status'), self::RAF_MEDIUM);
+    $this->showRAFAttributeStatus(_('RAF High status'), self::RAF_HIGH);
 
     $this->status['infoText'] .= sprintf('    </table>%s', "\n");
 
     $this->status['infoText'] .= '
-    <h3>Identity Provider sessions attributes</h3>
+    <h3>' . _('Identity Provider sessions attributes') . '</h3>
     <table class="table table-striped table-bordered">
-      <tr><th>Attribute</th><th>Value</th></tr>' . "\n";
+      <tr><th>' . _('Attribute') . '</th><th>' . _('Value') . '</th></tr>' . "\n";
     $this->status['infoText'] .= isset ($_SERVER['Shib-AuthnContext-Class']) ? sprintf ("      <tr><th>AuthnContext-Class</th><td>%s</td></tr>\n", $_SERVER['Shib-AuthnContext-Class']) : '';
     $this->status['infoText'] .= isset ($_SERVER['Shib-Authentication-Instant']) ? sprintf ("      <tr><th>Authentication-Instan'</th><td>%s</td></tr>\n", $_SERVER['Shib-Authentication-Instant']) : '';
     $this->status['infoText'] .= "    </table>\n";
 
     $this->status['infoText'] .= '
-    <h3>Identity Provider approved Assurance</h3>
+    <h3>' . _('Identity Provider approved Assurance') . '</h3>
     <table class="table table-striped table-bordered">' . "\n";
     if (isset($_SERVER['Meta-Assurance-Certification'])) {
       $value = str_replace(';' , '<br>',$_SERVER['Meta-Assurance-Certification']);
@@ -1085,25 +1084,25 @@ class IdPCheck {
 
     if ($accrCorrect) {
       if ($forceAuthnSuccess) {
-        $this->status['ok'] .= sprintf('Identity Provider supports %s and ForceAuthn.<br>', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s and ForceAuthn.', $accrName);
+        $this->status['ok'] .= sprintf(_('Identity Provider supports %s and ForceAuthn.') . '<br>', $accrName);
+        $this->status['testResult'] = sprintf(_('Supports %s and ForceAuthn.'), $accrName);
       } elseif ($step2) {
-        $this->status['error'] .= sprintf('Identity Provider supports %s but not ForceAuthn.<br>', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s but not ForceAuthn.', $accrName);
+        $this->status['error'] .= sprintf(_('Identity Provider supports %s but not ForceAuthn.') . '<br>', $accrName);
+        $this->status['testResult'] = sprintf(_('Supports %s but not ForceAuthn.'), $accrName);
       } else {
-        $this->status['ok'] .= sprintf('Identity Provider supports %s.<br>', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s.', $accrName);
+        $this->status['ok'] .= sprintf(_('Identity Provider supports %s.') . '<br>', $accrName);
+        $this->status['testResult'] = sprintf(_('Supports %s.'), $accrName);
       }
     } else {
       if ($forceAuthnSuccess) {
-        $this->status['error'] .= sprintf('Identity Provider does support ForceAuthn but not %s.<br>', $accrName);
-        $this->status['testResult'] = sprintf('Does support ForceAuthn but not %s.', $accrName);
+        $this->status['error'] .= sprintf(_('Identity Provider does support ForceAuthn but not %s.') . '<br>', $accrName);
+        $this->status['testResult'] = sprintf(_('Does support ForceAuthn but not %s.'), $accrName);
       } elseif ($step2) {
-        $this->status['error'] .= sprintf('Identity Provider does neither support %s or ForceAuthn.<br>', $accrName);
-        $this->status['testResult'] = sprintf('Does neither support %s or ForceAuthn.', $accrName);
+        $this->status['error'] .= sprintf(_('Identity Provider does neither support %s or ForceAuthn.') . '<br>', $accrName);
+        $this->status['testResult'] = sprintf(_('Does neither support %s or ForceAuthn.'), $accrName);
       } else {
-        $this->status['error'] .=  sprintf('Identity Provider does not support %s.<br>', $accrName);
-        $this->status['testResult'] = sprintf('Does not support %s.', $accrName);
+        $this->status['error'] .=  sprintf(_('Identity Provider does not support %s.') . '<br>', $accrName);
+        $this->status['testResult'] = sprintf(_('Does not support %s.'), $accrName);
       }
     }
   }
