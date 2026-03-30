@@ -69,7 +69,7 @@ class Configuration {
       'instructionsEntityCategory' => '<p>' . _('In order for eduGAIN to work as effectively as possible for students and employees as well as for service providers and identity providers, eduGAIN recommends that service providers use entity categories to get the attributes that they require.') . '</p>
           <p>' . _('In order for services within the eduGAIN federation to work as effectively as possible, eduGAIN recommends the use of entity categories. Entity categories benefits not only students and employees but also administrators of relying and identity providers by providing a stable framework for the release of attributes.') . '</p>
           <p>' . _('The eduGAIN best practice attribute release check consists of the following tests') . ':</p>',
-      'instructionsEntityCategoryEnd' => '<p>' . _('Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT release in accordance REFEDS/GÉANT Code of Conduct.') . '</p>',
+      'instructionsEntityCategoryEnd' => '<p>' . sprintf(_('Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT release in accordance REFEDS/%s Code of Conduct.'), 'GÉANT') . '</p>',
     );
 
     if (! isset($template)) {

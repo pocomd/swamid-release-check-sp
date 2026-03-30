@@ -86,10 +86,10 @@ class Display {
           <tr><th>InformationURL</th><td>%s</td></tr>
           <tr><th>Logo</th><td>%s</td></tr>
           <tr><th>OrganizationURL</th><td>%s</td></tr>
-          <tr><th>ContactPerson (administrative)</th><td>%s</td></tr>
-          <tr><th>ContactPerson (support)</th><td>%s</td></tr>
-          <tr><th>ContactPerson (technical)</th><td>%s</td></tr>
-          <tr><th>ContactPerson (other)</th><td>%s</td></tr>
+          <tr><th>ContactPerson (' . _('administrative') . ')</th><td>%s</td></tr>
+          <tr><th>ContactPerson (' . _('support') . ')</th><td>%s</td></tr>
+          <tr><th>ContactPerson (' . _('technical') . ')</th><td>%s</td></tr>
+          <tr><th>ContactPerson (' . _('other') . ')</th><td>%s</td></tr>
         </table>',
       isset($_SERVER['Meta-registrationAuthority']) ? $_SERVER['Meta-registrationAuthority'] : '',
       isset($_SERVER['Meta-errorURL']) ? '<a href="' . $_SERVER['Meta-errorURL'] . '" target=”_blank”><span class="d-inline-block text-truncate" style="max-width: 900px;">' . $_SERVER['Meta-errorURL'] . '</span></a>' : '',

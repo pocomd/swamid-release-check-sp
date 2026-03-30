@@ -67,7 +67,7 @@ class IdPCheck {
   /**
    * Request adding ECS to Metadata
    */
-  protected $toListStr = _('to the list of supported ECs in Metadata');
+  protected $toListStr = 'to the list of supported ECs in Metadata';
 
   /**
    * List of allow/expected values in eduPersonAssuance
@@ -579,7 +579,7 @@ class IdPCheck {
         $this->status['testResult'] = _('R&S attributes OK, Entity Category Support missing');
         $part1 = _("The IdP supports R&S but doesn't announce it in its metadata.");
         $part2 = _("Please add") . " 'http://refeds.org/category/research-and-scholarship' "; # NOSONAR Should be http://
-        $part3 = $this->toListStr;
+        $part3 = _($this->toListStr);
         $this->status['warning'] .= $part1 . '<br>' . $part2 . $part3 . '<br>';
       }
     } else {
@@ -622,7 +622,7 @@ class IdPCheck {
         $this->status['testResult'] = _('Anonymous attributes OK, Entity Category Support missing');
         $part1 = _("The IdP supports Anonymous but doesn't announce it in its metadata");
         $part2 =  _("Please add") . " 'https://refeds.org/category/anonymous' ";
-        $part3 =  $this->toListStr;
+        $part3 =  _($this->toListStr);
         $this->status['warning'] .= $part1 . '<br>' . $part2 . $part3 .'<br>';
       }
     } else {
@@ -697,7 +697,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = _('Pseudonymous attributes OK, Entity Category Support missing');
         $part1 = _("The IdP supports Pseudonymous but doesn't announce it in its metadata.");
-        $part2 = _("Please add") . " 'https://refeds.org/category/pseudonymous' ". $this->toListStr;
+        $part2 = _("Please add") . " 'https://refeds.org/category/pseudonymous' ". _($this->toListStr);
         $this->status['warning'] .= $part1 . '<br>' . $part2 .  '<br>';
       }
     } else {
@@ -783,7 +783,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = _('Personalized attributes OK, Entity Category Support missing');
         $part1 = _("The IdP supports Personalized but doesn't announce it in its metadata.");
-        $part2 = _("Please add") . " 'https://refeds.org/category/personalized' " . $this->toListStr;
+        $part2 = _("Please add") . " 'https://refeds.org/category/personalized' " . _($this->toListStr);
         $this->status['warning'] .= $part1 . '<br>' . $part2 . '<br>';
       }
     } else {
@@ -835,7 +835,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = _('CoCo OK, Entity Category Support missing');
         $part1 = _("The IdP supports CoCo but doesn't announce it in its metadata.");
-        $part2 = _("Please add") . " '" .$ecsValue. "' " . $this->toListStr;
+        $part2 = _("Please add") . " '" .$ecsValue. "' " . _($this->toListStr);
         $this->status['warning'] .= $part1 . '<br>' . $part2 . '<br>';
       }
     } else {
@@ -861,13 +861,13 @@ class IdPCheck {
       foreach (explode(';',$attributes['schacPersonalUniqueCode']) as $row) {
         if (strtolower(substr($row,0,37)) == 'urn:schac:personaluniquecode:int:esi:') {
           if (substr($row,0,37) == 'urn:schac:personalUniqueCode:int:esi:') {
-            $this->status['testResult'] = 'schacPersonalUniqueCode OK';
+            $this->status['testResult'] = _('schacPersonalUniqueCode OK');
           } else {
             # Some chars not in correct case
             $this->status['warning'] .=
               _('schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi.');
             $this->status['warning'] .= ' ' . _("Might create problem in some SP's") . '<br>';
-            $this->status['testResult'] = 'schacPersonalUniqueCode OK.' . _('BUT wrong case');
+            $this->status['testResult'] = _('schacPersonalUniqueCode OK. BUT wrong case');
           }
         } else {
           $this->status['error'] .= _('schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:') . '<br>';
@@ -882,7 +882,7 @@ class IdPCheck {
         }
       }
       if ($this->status['testResult'] == '' ) {
-        $this->status['testResult'] = 'schacPersonalUniqueCode OK';
+        $this->status['testResult'] = _('schacPersonalUniqueCode OK');
       }
     } else {
       $this->status['testResult'] = _('Missing schacPersonalUniqueCode');
