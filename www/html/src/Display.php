@@ -10,6 +10,11 @@ class Display {
   protected Configuration $config;
 
   /**
+   * Application helper functions
+   */
+  protected Helper $helper;
+
+  /**
    * class of testSuite
    */
   protected TestSuite $testSuite;
@@ -32,6 +37,7 @@ class Display {
     } else {
       $this->config = new Configuration();
     }
+    $this->helper = new Helper($this->config);
     $this->testSuite = $this->config->getExtendedClass('TestSuite');
   }
 
@@ -86,10 +92,10 @@ class Display {
           <tr><th>InformationURL</th><td>%s</td></tr>
           <tr><th>Logo</th><td>%s</td></tr>
           <tr><th>OrganizationURL</th><td>%s</td></tr>
-          <tr><th>ContactPerson (' . _('administrative') . ')</th><td>%s</td></tr>
-          <tr><th>ContactPerson (' . _('support') . ')</th><td>%s</td></tr>
-          <tr><th>ContactPerson (' . _('technical') . ')</th><td>%s</td></tr>
-          <tr><th>ContactPerson (' . _('other') . ')</th><td>%s</td></tr>
+          <tr><th>ContactPerson (administrative)</th><td>%s</td></tr>
+          <tr><th>ContactPerson (support)</th><td>%s</td></tr>
+          <tr><th>ContactPerson (technical)</th><td>%s</td></tr>
+          <tr><th>ContactPerson (other)</th><td>%s</td></tr>
         </table>',
       isset($_SERVER['Meta-registrationAuthority']) ? $_SERVER['Meta-registrationAuthority'] : '',
       isset($_SERVER['Meta-errorURL']) ? '<a href="' . $_SERVER['Meta-errorURL'] . '" target=”_blank”><span class="d-inline-block text-truncate" style="max-width: 900px;">' . $_SERVER['Meta-errorURL'] . '</span></a>' : '',
@@ -255,13 +261,13 @@ class Display {
       printf ("
                 <i class=\"fas fa-check\"></i>
                 <div>%s</div>
-                <div class=\"clear\"></div><br>", $row['status_OK']);
+                <div class=\"clear\"></div><br>", $this->helper->getStatusTranslated($row['status_OK']));
     }
     if ( $row['status_WARNING'] ) {
       printf ("
                 <i class=\"fas fa-exclamation-triangle\"></i>
                 <div>%s</div>
-                <div class=\"clear\"></div><br>", $row['status_WARNING']);
+                <div class=\"clear\"></div><br>", $this->helper->getStatusTranslated($row['status_WARNING']));
     }
     if ( $row['status_ERROR'] ) {
       printf ("
@@ -275,7 +281,7 @@ class Display {
                   <ul>
                     <li>%s</li>
                   </ul>
-                </div><br>", str_replace(',',"</li>\n                    <li>",$row['attr_OK']));
+                </div><br>", str_replace(',',"</li>\n                    <li>",$this->helper->getStatusTranslated($row['attr_OK'])));
     }
     if ( $row['attr_Missing'] ) {
       $temp= str_replace(',','#',$row['attr_Missing']);

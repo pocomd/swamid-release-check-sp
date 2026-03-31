@@ -41,10 +41,10 @@ class Admin {
         'sn' => 'sn',
       ),
       'testResults' => array(
-        'OKOK' => _('R&S attributes OK, Entity Category Support OK'),
-        'OKFail' => _('R&S attributes OK, Entity Category Support missing'),
-        'Fail' => _('R&S attribute missing, Entity Category Support missing'),
-        'FailFail' => _('R&S attributes missing, BUT Entity Category Support claimed'),
+        'OKOK' => 'R&S attributes OK, Entity Category Support OK',
+        'OKFail' => 'R&S attributes OK, Entity Category Support missing',
+        'Fail' => 'R&S attribute missing, Entity Category Support missing',
+        'FailFail' => 'R&S attributes missing, BUT Entity Category Support claimed',
       ),
     ),
     'Anon' => array(
@@ -56,10 +56,10 @@ class Admin {
         'sHO' => 'schacHomeOrganization',
       ),
       'testResults' => array(
-        'OKOK' => _('Anonymous attributes OK, Entity Category Support OK'),
-        'OKFail' => _('Anonymous attributes OK, Entity Category Support missing'),
-        'Fail' => _('Anonymous attribute missing, Entity Category Support missing'),
-        'FailFail' => _('Anonymous attributes missing, BUT Entity Category Support claimed'),
+        'OKOK' => 'Anonymous attributes OK, Entity Category Support OK',
+        'OKFail' => 'Anonymous attributes OK, Entity Category Support missing',
+        'Fail' => 'Anonymous attribute missing, Entity Category Support missing',
+        'FailFail' => 'Anonymous attributes missing, BUT Entity Category Support claimed',
       ),
     ),
     'PAnon' => array(
@@ -73,10 +73,10 @@ class Admin {
         'sHO' => 'schacHomeOrganization',
       ),
       'testResults' => array(
-        'OKOK' => _('Pseudonymous attributes OK, Entity Category Support OK'),
-        'OKFail' => _('Pseudonymous attributes OK, Entity Category Support missing'),
-        'Fail' => _('Pseudonymous attribute missing, Entity Category Support missing'),
-        'FailFail' => _('Pseudonymous attributes missing, BUT Entity Category Support claimed'),
+        'OKOK' => 'Pseudonymous attributes OK, Entity Category Support OK',
+        'OKFail' => 'Pseudonymous attributes OK, Entity Category Support missing',
+        'Fail' => 'Pseudonymous attribute missing, Entity Category Support missing',
+        'FailFail' => 'Pseudonymous attributes missing, BUT Entity Category Support claimed',
       ),
     ),
     'Pers' => array(
@@ -94,10 +94,10 @@ class Admin {
         'sHO' => 'schacHomeOrganization',
       ),
       'testResults' => array(
-        'OKOK' => _('Personalized attributes OK, Entity Category Support OK'),
-        'OKFail' => _('Personalized attributes OK, Entity Category Support missing'),
-        'Fail' => _('Personalized attribute missing, Entity Category Support missing'),
-        'FailFail' => _('Personalized attributes missing, BUT Entity Category Support claimed'),
+        'OKOK' => 'Personalized attributes OK, Entity Category Support OK',
+        'OKFail' => 'Personalized attributes OK, Entity Category Support missing',
+        'Fail' => 'Personalized attribute missing, Entity Category Support missing',
+        'FailFail' => 'Personalized attributes missing, BUT Entity Category Support claimed',
       ),
     ),
     'CoCov2' => array(
@@ -110,10 +110,10 @@ class Admin {
         'mail' => 'mail',
       ),
       'testResults' => array(
-        'OKOK' => _('CoCo OK, Entity Category Support OK'),
-        'OKFail' => _('CoCo OK, Entity Category Support missing'),
-        'Fail' => _('Support for CoCo missing, Entity Category Support missing'),
-        'FailFail' => _('CoCo is not supported, BUT Entity Category Support is claimed'),
+        'OKOK' => 'CoCo OK, Entity Category Support OK',
+        'OKFail' => 'CoCo OK, Entity Category Support missing',
+        'Fail' => 'Support for CoCo missing, Entity Category Support missing',
+        'FailFail' => 'CoCo is not supported, BUT Entity Category Support is claimed',
       ),
     ),
   );
@@ -666,7 +666,7 @@ class Admin {
         </table>%s', "\n");
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
-          <tr><th>IdPs not tested</th></tr>%s', "\n");
+          <tr><th>' . _('IdPs not tested') . '</th></tr>%s', "\n");
       foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ("          <tr><td>%s</td></tr>\n", $idp);
