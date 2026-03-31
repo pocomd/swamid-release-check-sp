@@ -13,7 +13,7 @@ class Admin {
   protected Configuration $config;
 
   /**
-   * List of IdP:s
+   * List of IdPs
    *
    * key   = entityID
    * value = true if IdP have been tested
@@ -139,7 +139,7 @@ class Admin {
   }
 
   /**
-   * Create a list of IdP:s in federation
+   * Create a list of IdPs in federation
    *
    * @return void
    */
@@ -235,7 +235,7 @@ class Admin {
       </a>%s',
         $this->tests[$tab]['fullName'], htmlspecialchars($selectedIdp), $tab, urlencode($selectedIdp), "\n");
     } else {
-      printf('      <h1>' . _('Data based on IdP:s that have run %s test') . '</h1>%s',
+      printf('      <h1>' . _('Data based on IdPs that have run %s test') . '</h1>%s',
        $this->tests[$tab]['fullName'], "\n");
     }
     printf('      <table class="table table-striped table-bordered">
@@ -385,7 +385,7 @@ class Admin {
       </a>%s',
         htmlspecialchars($selectedIdp), "\n");
     } else {
-      printf('      <h1>' . _("Data based on IdP:s that have run MFA test") . '</h1>%s',
+      printf('      <h1>' . _("Data based on IdPs that have run MFA test") . '</h1>%s',
         "\n");
     }
     printf('        <table class="table table-striped table-bordered">
@@ -455,31 +455,31 @@ class Admin {
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
         }
         switch ($testResult['testResult']) {
-          case _('Supports REFEDS MFA and ForceAuthn.') :
+          case 'Supports REFEDS MFA and ForceAuthn.' :
             printf('              <td><i class="fas fa-check"></i> OK</td>
                 <td><i class="fas fa-check"></i> OK</td>%s', "\n");
             $okMFA++;
             $okForceAuthn++;
             break;
-          case _('Does support ForceAuthn but not REFEDS MFA.') :
+          case 'Does support ForceAuthn but not REFEDS MFA.' :
             printf('              <td><i class="fas fa-exclamation"></i> ' . _('Fail') . '</td>
               <td><i class="fas fa-check"></i> OK</td>%s', "\n");
             $failMFA++;
             $okForceAuthn++;
             break;
-          case _('Supports REFEDS MFA but not ForceAuthn.') :
+          case 'Supports REFEDS MFA but not ForceAuthn.' :
             printf('              <td><i class="fas fa-check"></i> OK</td>
               <td><i class="fas fa-exclamation"></i> ' . _('Fail') . '</td>%s', "\n");
             $okMFA++;
             $failForceAuthn++;
             break;
-          case _('Does neither support REFEDS MFA or ForceAuthn.') :
+          case 'Does neither support REFEDS MFA or ForceAuthn.' :
             printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
               <td><i class="fas fa-exclamation"></i> ' . _('Fail') . '</td>%s', "\n");
             $failMFA++;
             $failForceAuthn++;
             break;
-          case _('Supports REFEDS MFA.') :
+          case 'Supports REFEDS MFA.' :
             printf('              <td><i class="fas fa-check"></i> OK</td>
               <td></td>%s', "\n");
             $okMFA++;
@@ -514,7 +514,7 @@ class Admin {
       <br>%s',
         htmlspecialchars($selectedIdp), urlencode($selectedIdp), "\n");
     } else {
-      printf('      <h1>' . _('Data based on IdP:s that have run ESI test') . '</h1>%s',
+      printf('      <h1>' . _('Data based on IdPs that have run ESI test') . '</h1>%s',
         "\n");
     }
     printf('        <i class="fas fa-check"> = ' . ('Correct schacPersonalUniqueCode') . '</i><br>
@@ -579,27 +579,27 @@ class Admin {
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
         }
         switch ($testResult['testResult']) {
-          case _('schacPersonalUniqueCode OK'):
+          case 'schacPersonalUniqueCode OK' :
             print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
             $ok++;
             break;
-          case _('schacPersonalUniqueCode OK. BUT wrong case'):
+          case 'schacPersonalUniqueCode OK. BUT wrong case' :
             print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> " . _("Wrong case") . "</td>\n";
             $ok++;
             break;
-          case _('Missing schacPersonalUniqueCode'):
+          case 'Missing schacPersonalUniqueCode' :
             print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("No schacPersonalUniqueCode") . "</td>\n";
             $warn++;
             break;
-          case _('More than one schacPersonalUniqueCode');
+          case 'More than one schacPersonalUniqueCode' ;
             print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("More than one schacPersonalUniqueCode") . "</td>\n";
             $warn++;
             break;
-          case _('schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:');
+          case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:' ;
             print "              <td><i class=\"fas fa-exclamation\"></i> " . _("Not correct code") . "</td>\n";
             $fail++;
             break;
-          case _('schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:');
+          case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:' ;
             print "              <td><i class=\"fas fa-exclamation\"></i> " . _("sHO = se") . "</td>\n";
             $fail++;
             break;
@@ -611,27 +611,27 @@ class Admin {
         if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
           printf("              <td>%s</td>\n",$testResult['time']);
           switch ($testResult['testResult']) {
-            case _('schacPersonalUniqueCode OK'):
+            case 'schacPersonalUniqueCode OK' :
               print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
               $okStud++;
               break;
-            case _('schacPersonalUniqueCode OK. BUT wrong case'):
+            case 'schacPersonalUniqueCode OK. BUT wrong case' :
               print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> " . _("Wrong case") . "</td>\n";
               $okStud++;
               break;
-            case _('Missing schacPersonalUniqueCode'):
+            case 'Missing schacPersonalUniqueCode' :
               print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("No schacPersonalUniqueCode") . "</td>\n";
               $warnStud++;
               break;
-            case _('More than one schacPersonalUniqueCode');
+            case 'More than one schacPersonalUniqueCode' ;
               print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("More than one schacPersonalUniqueCode") . "</td>\n";
               $warnStud++;
               break;
-            case _('schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:');
+            case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:' ;
               print "              <td><i class=\"fas fa-exclamation\"></i> " . _("Not correct code") . "</td>\n";
               $failStud++;
               break;
-            case _('schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:');
+            case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:' ;
               print "              <td><i class=\"fas fa-exclamation\"></i> " . _("sHO = se") . "</td>\n";
               $failStud++;
               break;
@@ -666,7 +666,7 @@ class Admin {
         </table>%s', "\n");
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
-          <tr><th>IdP:s not tested</th></tr>%s', "\n");
+          <tr><th>IdPs not tested</th></tr>%s', "\n");
       foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ("          <tr><td>%s</td></tr>\n", $idp);
@@ -704,7 +704,7 @@ class Admin {
       "\n");
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
-          <tr><th>' . _("IdP:s not tested") . '</th></tr>', "\n");
+          <tr><th>' . _("IdPs not tested") . '</th></tr>', "\n");
       foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ('          <tr><td>%s</a></td></tr>%s', $idp, "\n");

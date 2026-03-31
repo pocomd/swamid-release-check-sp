@@ -297,7 +297,7 @@ class Display {
     }
     if ( $row['testResult'] ) {
       printf ("
-                <div>" . _("Test result") . "  : %s</div>", $row['testResult']);
+                <div>" . _("Test result") . "  : %s</div>", _($row['testResult']));
     }
     print "
               </td>

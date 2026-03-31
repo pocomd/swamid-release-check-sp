@@ -7,7 +7,7 @@ class TestSuite {
   protected const DESC_CN = 'givenName + sn';
   protected const DESC_CO = 'ISO_COUNTRY_NAME (Sweden)';
   protected const DESC_DISPLAYNAME = self::DESC_CN;
-  protected const DESC_EDUPERSONAFFILIATION = "Specifies the person's relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc.";
+  protected const DESC_EDUPERSONAFFILIATION = 'Specifies the person\'s relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc.';
   protected const DESC_EDUPERSONASSURANCE = 'User assurance information.';
   protected const DESC_EDUPERSONORCID = 'This attribute should only be released if and only if the IdP organization has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs are persistent digital identifiers for individual researchers. Their primary purpose is to unambiguously and definitively link them with their scholarly work products. ORCID iDs are assigned, managed and maintained by the ORCID organization.';
   protected const DESC_EDUPERSONPRINCIPALNAME = 'A scoped identifier for a person. It should be represented in the form "user@scope" where \'user\' is a name-based identifier for the person and where the "scope" portion MUST be the administrative domain of the identity system where the identifier was created and assigned.';
@@ -86,7 +86,141 @@ class TestSuite {
    * * nowarn - extra attributes to accept.
    * * subtest - subtest to validate correctnes of attributes .
    */
-  protected $tests;
+  protected $tests = array(
+    'anonymous'    => array (
+      'name'     => 'REFEDS Anonymous Access',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+      ),
+      'nowarn'   => array (
+        'persistent-id' => '',
+        'transient-id'  => '',
+      ),
+      'subtest'  => 'anonymous',
+    ),
+    'assurance'    => array (
+      'name'     => 'Assurance Attribute test',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'eduPersonAssurance'     => self::DESC_EDUPERSONASSURANCE,
+      ),
+      'nowarn'   => array (
+        'eduPersonPrincipalName'     => '',
+        'displayName'                => '',
+        'eduPersonScopedAffiliation' => '',
+        'givenName'                  => '',
+         'mail'                      => '',
+         'schacHomeOrganization'     => '',
+         'sn'                        => '',
+         'subject-id'                => '',
+      ),
+      'subtest'  => 'RAF',
+    ),
+    'cocov2'     => array (
+      'name'     => 'REFEDS CoCo',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'subject-id'                 => self::DESC_SUBJECTID,
+        'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
+        'eduPersonOrcid'             => self::DESC_EDUPERSONORCID,
+        'displayName'                => self::DESC_DISPLAYNAME,
+        'cn'                         => self::DESC_CN,
+        'givenName'                  => self::DESC_GIVENNAME,
+        'sn'                         => self::DESC_SN,
+        'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+        'eduPersonAffiliation'       => self::DESC_EDUPERSONAFFILIATION,
+        'mail'                       => self::DESC_MAIL,
+        'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
+        'mailLocalAddress'           => self::DESC_MAILLOCALADDRESS
+      ),
+      'nowarn'   => array (
+        'persistent-id' => '',
+        'transient-id'  => '',
+      ),
+      'subtest'  => 'CoCov2',
+    ),
+    'noec'         => array (
+      'name'     => 'No EC (shall not send any attributes!)',
+      'tab'      => 'entityCategory',
+      'expected' => array (),
+      'nowarn'   => array (
+        'persistent-id' => '',
+        'transient-id'  => '',
+      ),
+      'subtest'  => '',
+    ),
+    'pseudonymous' => array (
+      'name'     => 'REFEDS Pseudonymous Access',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
+        'pairwise-id'                => self::DESC_PAIRWISEID,
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+        'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
+      ),
+      'nowarn'   => array (
+        'persistent-id' => '',
+        'transient-id'  => '',
+      ),
+      'subtest'  => 'pseudonymous',
+    ),
+    'personalized' => array (
+      'name'     => 'REFEDS Personalized Access',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'schacHomeOrganization'      => self::DESC_SCHACHOMEORGANIZATION,
+        'subject-id'                 => self::DESC_SUBJECTID,
+        'displayName'                => self::DESC_DISPLAYNAME,
+        'givenName'                  => self::DESC_GIVENNAME,
+        'sn'                         => self::DESC_SN,
+        'mail'                       => self::DESC_MAIL,
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+        'eduPersonAssurance'         => self::DESC_EDUPERSONASSURANCE,
+      ),
+      'nowarn'   => array (
+        'persistent-id' => '',
+        'transient-id'  => '',
+      ),
+      'subtest'  => 'personalized',
+    ),
+    'rands'        => array (
+      'name'     => 'REFEDS R&S',
+      'tab'      => 'entityCategory',
+      'expected' => array (
+        'eduPersonPrincipalName'     => self::DESC_EDUPERSONPRINCIPALNAME,
+        'mail'                       => self::DESC_MAIL,
+        'displayName'                => self::DESC_DISPLAYNAME,
+        'givenName'                  => self::DESC_GIVENNAME,
+        'sn'                         => self::DESC_SN,
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+      ),
+      'nowarn'   => array (
+        'persistent-id'       => '',
+        'transient-id'        => '',
+        'eduPersonAssurance'  => '',
+        'eduPersonTargetedID' => '',
+        'eduPersonUniqueID'   => '',
+      ),
+      'subtest'  => 'R&S',
+    ),
+    'esi' => array (
+      'name'     => 'European Student Identifier',
+      'tab'      => 'esi',
+      'expected' =>array (
+        'schacPersonalUniqueCode'    => 'Usually used for the European Student Identifier.',
+        'eduPersonScopedAffiliation' => self::DESC_EDUPERSONSCOPEDAFFILIATION,
+      ),
+      'nowarn'   => array (
+        'eduPersonAffiliation' => '',
+        'persistent-id'        => '',
+        'transient-id'         => '',
+      ),
+      'subtest'  => 'ESI',
+    ),
+  );
 
   /**
    * Setup the class
@@ -94,141 +228,6 @@ class TestSuite {
    * @return void
    */
   public function __construct() {
-    $this->tests = array(
-      'anonymous'    => array (
-        'name'     => _('REFEDS Anonymous Access'),
-        'tab'      => 'entityCategory',
-        'expected' => array (
-          'schacHomeOrganization'      => _(self::DESC_SCHACHOMEORGANIZATION),
-          'eduPersonScopedAffiliation' => _(self::DESC_EDUPERSONSCOPEDAFFILIATION),
-        ),
-        'nowarn'   => array (
-          'persistent-id' => '',
-          'transient-id'  => '',
-        ),
-        'subtest'  => 'anonymous',
-      ),
-      'assurance'    => array (
-        'name'     => _('Assurance Attribute test'),
-        'tab'      => 'entityCategory',
-        'expected' => array (
-          'eduPersonAssurance'     => _(self::DESC_EDUPERSONASSURANCE),
-        ),
-        'nowarn'   => array (
-          'eduPersonPrincipalName'     => '',
-          'displayName'                => '',
-          'eduPersonScopedAffiliation' => '',
-          'givenName'                  => '',
-          'mail'                       => '',
-          'schacHomeOrganization'      => '',
-          'sn'                         => '',
-          'subject-id'                 => '',
-        ),
-        'subtest'  => 'RAF',
-      ),
-      'cocov2'     => array (
-        'name'     => _('REFEDS CoCo'),
-        'tab'      => 'entityCategory',
-        'expected' => array (
-          'subject-id'                 => _(self::DESC_SUBJECTID),
-          'eduPersonPrincipalName'     => _(self::DESC_EDUPERSONPRINCIPALNAME),
-          'eduPersonOrcid'             => _(self::DESC_EDUPERSONORCID),
-          'displayName'                => self::DESC_DISPLAYNAME,
-          'cn'                         => self::DESC_CN,
-          'givenName'                  => _(self::DESC_GIVENNAME),
-          'sn'                         => _(self::DESC_SN),
-          'eduPersonAssurance'         => _(self::DESC_EDUPERSONASSURANCE),
-          'eduPersonScopedAffiliation' => _(self::DESC_EDUPERSONSCOPEDAFFILIATION),
-          'eduPersonAffiliation'       => _(self::DESC_EDUPERSONAFFILIATION),
-          'mail'                       => _(self::DESC_MAIL),
-          'schacHomeOrganization'      => _(self::DESC_SCHACHOMEORGANIZATION),
-          'mailLocalAddress'           => _(self::DESC_MAILLOCALADDRESS)
-        ),
-        'nowarn'   => array (
-          'persistent-id' => '',
-          'transient-id'  => '',
-        ),
-        'subtest'  => 'CoCov2',
-      ),
-      'noec'         => array (
-        'name'     => _('No EC (shall not send any attributes!)'),
-        'tab'      => 'entityCategory',
-        'expected' => array (),
-        'nowarn'   => array (
-          'persistent-id' => '',
-          'transient-id'  => '',
-        ),
-        'subtest'  => '',
-      ),
-      'pseudonymous' => array (
-        'name'     => _('REFEDS Pseudonymous Access'),
-        'tab'      => 'entityCategory',
-        'expected' => array (
-          'schacHomeOrganization'      => _(self::DESC_SCHACHOMEORGANIZATION),
-          'pairwise-id'                => _(self::DESC_PAIRWISEID),
-          'eduPersonScopedAffiliation' => _(self::DESC_EDUPERSONSCOPEDAFFILIATION),
-          'eduPersonAssurance'         => _(self::DESC_EDUPERSONASSURANCE),
-        ),
-        'nowarn'   => array (
-          'persistent-id' => '',
-          'transient-id'  => '',
-        ),
-        'subtest'  => 'pseudonymous',
-      ),
-      'personalized' => array (
-        'name'     => _('REFEDS Personalized Access'),
-        'tab'      => 'entityCategory',
-        'expected' => array (
-          'schacHomeOrganization'      => _(self::DESC_SCHACHOMEORGANIZATION),
-          'subject-id'                 => _(self::DESC_SUBJECTID),
-          'displayName'                => self::DESC_DISPLAYNAME,
-          'givenName'                  => _(self::DESC_GIVENNAME),
-          'sn'                         => _(self::DESC_SN),
-          'mail'                       => _(self::DESC_MAIL),
-          'eduPersonScopedAffiliation' => _(self::DESC_EDUPERSONSCOPEDAFFILIATION),
-          'eduPersonAssurance'         => _(self::DESC_EDUPERSONASSURANCE),
-        ),
-        'nowarn'   => array (
-          'persistent-id' => '',
-          'transient-id'  => '',
-        ),
-        'subtest'  => 'personalized',
-      ),
-      'rands'        => array (
-        'name'     => _('REFEDS R&S'),
-        'tab'      => 'entityCategory',
-        'expected' => array (
-          'eduPersonPrincipalName'     => _(self::DESC_EDUPERSONPRINCIPALNAME),
-          'mail'                       => _(self::DESC_MAIL),
-          'displayName'                => self::DESC_DISPLAYNAME,
-          'givenName'                  => _(self::DESC_GIVENNAME),
-          'sn'                         => _(self::DESC_SN),
-          'eduPersonScopedAffiliation' => _(self::DESC_EDUPERSONSCOPEDAFFILIATION),
-        ),
-        'nowarn'   => array (
-          'persistent-id'       => '',
-          'transient-id'        => '',
-          'eduPersonAssurance'  => '',
-          'eduPersonTargetedID' => '',
-          'eduPersonUniqueID'   => '',
-        ),
-        'subtest'  => 'R&S',
-      ),
-      'esi' => array (
-        'name'     => _('European Student Identifier'),
-        'tab'      => 'esi',
-        'expected' =>array (
-          'schacPersonalUniqueCode'    => _('Usually used for the European Student Identifier.'),
-          'eduPersonScopedAffiliation' => _(self::DESC_EDUPERSONSCOPEDAFFILIATION),
-        ),
-        'nowarn'   => array (
-          'eduPersonAffiliation' => '',
-          'persistent-id'        => '',
-          'transient-id'         => '',
-        ),
-        'subtest'  => 'ESI',
-      ),
-    );
   }
 
   /**
