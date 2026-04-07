@@ -508,8 +508,8 @@ class IdPCheck {
     $updateTestHandler->execute(array('testRun' => $testRun_id, 'test' => $this->test,
       'time' => date("Y-m-d H:i:s"), 'attr_ok' =>  $this->listKeys($okValues),
       'attr_missing' =>  $this->listKeysWithValues($missingValues), 'attr_extra' =>  $this->listKeys($extraValues),
-      'status_ok' => json_encode($this->status['ok'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), 
-      'status_warning' =>  json_encode($this->status['warning'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), 
+      'status_ok' => json_encode($this->status['ok'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+      'status_warning' =>  json_encode($this->status['warning'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
       'status_error' =>  json_encode($this->status['error'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
       'testresultat' =>  $this->status['testResult']));
   }

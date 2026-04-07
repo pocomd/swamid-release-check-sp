@@ -25,6 +25,9 @@ class Admin {
    */
   protected array $federation = array();
 
+  const HTML_MORE_THAN_ONE_SCHAC = "More than one schacPersonalUniqueCode";
+  const HTML_SHOW_ALL_IDPS = "Show all IdPs";
+
   /**
    * List of tests/tabs to display
    */
@@ -228,7 +231,7 @@ class Admin {
     if ($selectedIdp) {
       printf('      <h1>' . _('%s tests run by %s') . '</h1>
       <a href="./admin.php?tab=%s">
-        <button type="button" class="btn btn-success">' . _('Show all IdPs') . '</button>
+        <button type="button" class="btn btn-success">' . _(self::HTML_SHOW_ALL_IDPS) . '</button>
       </a>
       <a href="./admin.php?tab=AllTests&idp=%s">
         <button type="button" class="btn btn-success">' . _('Show all EC tests for this IdP') .'</button>
@@ -381,7 +384,7 @@ class Admin {
     if ($selectedIdp) {
       printf('      <h1>' . _('MFA tests run by %s') . '</h1>
       <a href="./admin.php?tab=mfa">
-        <button type="button" class="btn btn-success">' . _('Show all IdPs') . '</button>
+        <button type="button" class="btn btn-success">' . _(self::HTML_SHOW_ALL_IDPS) . '</button>
       </a>%s',
         htmlspecialchars($selectedIdp), "\n");
     } else {
@@ -506,7 +509,7 @@ class Admin {
     if ($selectedIdp) {
       printf('      <h1>' . _('ESI tests run by %s') . '</h1>
       <a href="./admin.php?tab=esi">
-        <button type="button" class="btn btn-success">' . _('Show all IdPs') . '</button>
+        <button type="button" class="btn btn-success">' . _(self::HTML_SHOW_ALL_IDPS) . '</button>
       </a>
       <a href="./admin.php?tab=AllTests&idp=%s">
         <button type="button" class="btn btn-success">' . _('Show all EC tests for this IdP') . '</button>
@@ -591,8 +594,8 @@ class Admin {
             print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("No schacPersonalUniqueCode") . "</td>\n";
             $warn++;
             break;
-          case 'More than one schacPersonalUniqueCode' ;
-            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("More than one schacPersonalUniqueCode") . "</td>\n";
+          case self::HTML_MORE_THAN_ONE_SCHAC ;
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _(self::HTML_MORE_THAN_ONE_SCHAC) . "</td>\n";
             $warn++;
             break;
           case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:' ;
@@ -623,8 +626,8 @@ class Admin {
               print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("No schacPersonalUniqueCode") . "</td>\n";
               $warnStud++;
               break;
-            case 'More than one schacPersonalUniqueCode' ;
-              print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("More than one schacPersonalUniqueCode") . "</td>\n";
+            case self::HTML_MORE_THAN_ONE_SCHAC ;
+              print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _(self::HTML_MORE_THAN_ONE_SCHAC) . "</td>\n";
               $warnStud++;
               break;
             case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:' ;

@@ -2,7 +2,7 @@
 namespace releasecheck;
 
 /**
- * Helper class containig useful functions 
+ * Helper class containig useful functions
  *
  */
 class Helper {
@@ -21,7 +21,7 @@ class Helper {
 
   /**
    * Get string from array of results.
-   * 
+   *
    * @param array $statusTextArr of results string
    *
    * @return string
@@ -43,11 +43,11 @@ class Helper {
 
       foreach ($statusTextArr as $entry) {
         $trans = _($entry);
-        $trans = preg_replace_callback('/\[\[(.*?)\]\]/', 
+        $trans = preg_replace_callback('/\[\[(.*?)\]\]/',
             function ($matches) use ($placeholders) {
                 $key = $matches[1];
 
-                return $placeholders[$key] ?? $key; 
+                return $placeholders[$key] ?? $key;
             },
             $trans
         );

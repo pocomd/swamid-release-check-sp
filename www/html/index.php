@@ -2,10 +2,11 @@
 const HTML_ACTIVE = ' active';
 const HTML_CHECKED = ' checked';
 const HTML_NO_RUN = 'no run';
-const HTML_RESULT_FOR = "        <h3>%s %s (%s)%s</h3>\n";
+const HTML_AGGREGATE_RESULT_FOR = "        <h3>%s %s (%s)%s</h3>\n";
 const HTML_SHOW = ' show';
 const HTML_TRUE = 'true';
 const HTML_SHIBBOLETH_LOGIN = 'Shibboleth.sso/Login?entityID=';
+const HTML_RESULT_FOR = "Result for";
 
 if (isset($_SERVER['Shib-Identity-Provider']) ) {
   $result = true;
@@ -170,7 +171,7 @@ printf ('        %s
   $collapseIcons[] = "attributes-instructions";
 
 if ($result) {
-  printf (HTML_RESULT_FOR, _("Result for"), $displayName, $idp, '');
+  printf (HTML_AGGREGATE_RESULT_FOR, _(HTML_RESULT_FOR), $displayName, $idp, '');
   $display->showAttributeList();
   $display->showIdpMetadataInfo();
   $display->showIdpSessionInfo();
@@ -279,7 +280,7 @@ printf ('          </ul>
 $collapseIcons[] = "entityCategory-instructions";
 if ($result) {
   $testrun = $display->getTestruns($idp, 'entityCategory');
-  printf (HTML_RESULT_FOR, _("Result for"), $displayName,$idp, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
+  printf (HTML_AGGREGATE_RESULT_FOR, _(HTML_RESULT_FOR), $displayName,$idp, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
   $display->showResultsECTests($idp, $testrun);
 }
 printf('      </div><!-- End tab-pane entityCategory -->
@@ -316,7 +317,7 @@ printf('        </div>
 $collapseIcons[] = "esi-instructions";
 if ($result) {
   $testrun = $display->getTestruns($idp, 'esi');
-  printf (HTML_RESULT_FOR, _("Result for"), $displayName,$idp, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
+  printf (HTML_AGGREGATE_RESULT_FOR, _(HTML_RESULT_FOR), $displayName,$idp, $testrun['time'] == HTML_NO_RUN ? '' : ' ('.$testrun['time'].')');
   $display->showResultsESI($idp, $testrun);
 }
 

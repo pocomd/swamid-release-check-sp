@@ -25,6 +25,7 @@ class Display {
   const SQL_TESTS = 'SELECT * FROM `tests` WHERE `test` = :test AND `testRun_id` = :testRun';
 
   const HTML_NO_RUN = 'no run';
+  const HTML_NOT_RUN_YET = "Test not run yet";
 
   /**
    * Setup the class
@@ -150,7 +151,7 @@ class Display {
         $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
       } else {
         printf ('            <tr>
-              <td>' . _("Test not run yet") . '<br>
+              <td>' . _(self::HTML_NOT_RUN_YET) . '<br>
                 <a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">
                   <button type="button" class="btn btn-link">' . _("Run test") . '</button>
                 </a>
@@ -185,7 +186,7 @@ class Display {
     if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
       $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
     } else {
-      printf ("            <tr><td>" . _("Test not run yet") . "</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
+      printf ("            <tr><td>" . _(self::HTML_NOT_RUN_YET) . "</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
     }
     print "          </table>\n";
   }
@@ -216,7 +217,7 @@ class Display {
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
         $this->printRow($row, $idp, $name, $testrun['session']);
       } else {
-        printf ("            <tr><td>" . _("Test not run yet") . "</td><td><h5>%s</h5></td></tr>\n", $name);
+        printf ("            <tr><td>" . _(self::HTML_NOT_RUN_YET) . "</td><td><h5>%s</h5></td></tr>\n", $name);
       }
     }
     print "          </table>\n";

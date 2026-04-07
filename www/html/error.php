@@ -7,8 +7,12 @@ $html = $config->getExtendedClass('HTML');
 $html->showHTMLHead();
 $html->showContentHeader();
 
-$errorURL = isset($_GET['errorURL']) ?
-  printf(_('For more info visit this <a href="%s">support-page</a>.'), $_GET['errorURL']) : '';
+$errorURL = isset($_GET['errorURL'])
+            ? sprintf(_('For more info visit this <a href="%s">support-page</a>.'),
+                        filter_var($_GET['errorURL'], FILTER_VALIDATE_URL)
+                        ? htmlspecialchars($_GET['errorURL'], ENT_QUOTES, 'UTF-8')
+                        : '#')
+            : '';
 $errorURL = str_replace(array('ERRORURL_TS'), array(time()), $errorURL);
 $errorURL = isset($_GET['RelayState']) ?
   str_replace(array('ERRORURL_RP'), array($_GET['RelayState'].'shibboleth'), $errorURL) : $errorURL;
