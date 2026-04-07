@@ -188,7 +188,9 @@ printf('      </div><!-- End tab-pane attributes -->
           </a>
         </h3>
         <div class="collapse%s multi-collapse" id="acc-instructions">
-          <p>' . _('Different tests for AuthnContextClassRef.') . ' ' . _('The restults from this tests are NOT saved exept for tests done with REFEDS MFA.') . '</p>
+          <p>' . _('The Authentication test is a two step process.')
+               . _('The first step is to test an AuthnContextClassRef and the second step is to verify that forceAuthn works as expected for that AuthnContextClassRef.')
+               . _('The restults from this tests are NOT saved exept for tests done with REFEDS MFA.') . '</p>
         </div><!-- end collapse -->%s',
   $accShow, $accActive, $federation['displayName'],
   $result ? "right" : "down", $instructionsSelected, $instructionsShow, "\n");
@@ -196,6 +198,8 @@ $collapseIcons[] = "acc-instructions";
 $accr = isset($_REQUEST['accr']) ? $_REQUEST['accr'] : 'none';
 printf('        <div class="row">
           <div class="col">
+            <h4>Step 1</h4>
+            Choose AuthnContextClassRef to test:
             <form action="./?tab=acc" method="POST">
               <input type="radio" id="none" name="accr" value="none"%s>
               <label for="none">' . _('No authnContextClassRef') . '</label><br>%s',
@@ -208,26 +212,66 @@ foreach ($idpCheck->getAccrOptions() as $key => $accrArray) {
     $key, $accrArray['description'],
     "\n");
 }
-printf('              <button type="submit" name="action" class="btn btn-success">' . _('Test') . '</button><br>
-            </form>
-          </div>%s', "\n");
+printf('              <button type="submit" name="action" class="btn btn-success">' . _('Test AuthnContextClassRef') . '</button><br>
+            </form>%s', "\n");
 if ($result) {
   $expectedAccr = isset($idpCheck->accrOptions[$accr])
     ? $idpCheck->accrOptions[$accr]['value']
     : $_SERVER['Shib-AuthnContext-Class'];
+  printf('          </div>
+          <div class="col">
+            <h4>Step 2</h4>%s', "\n");
+
   if ($expectedAccr == $_SERVER['Shib-AuthnContext-Class']) {
-    printf('          <div class="col">
-            <p>' . _('Got %sAuthnContext-Class (%s)') . '</p>
-            <p>' . _('Press button below to test with forceAuthn') . '.<p>
-            <a href="?tab=acc&accr=%s&testForceAuthn"><button type="button" class="btn btn-success">' . _('forceAuthN') . '</button></a>
-          </div>
-        </div>%s', $accr == 'none' ? '' : 'expected ', $expectedAccr, $accr, "\n");
-  } else {
-    printf('        </div>%s', "\n");
+    if (isset($_GET['forceAuthn'])) {
+      printf('            <p>' . _('Rerun "Test AuthnContextClassRef" to get a fresh Authentication-Instant to be able to run "Test forceAuthN" again.') . '<p>%s',"\n");
+    } else {
+      printf('            <p>' . _('Test that forceAuthn return a newer Authentication-Instant than in step 1. The same AuthnContextClassRef is used as in step 1.') . '<p>
+              <a href="?tab=acc&accr=%s&testForceAuthn"><button type="button" class="btn btn-success">' . _('Test forceAuthN') . '</button></a>%s',
+        $accr, "\n");
+    }
   }
+  printf('          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">%s', "\n");
+  if (isset($_GET['forceAuthn']) && isset($_SESSION['ts'])) {
+    #Step 2 OK
+    printf('            Recieved in Step 1:
+            <ul>
+              <li>AuthnContext-Class: %s</li>
+              <li>Authentication-Instant: %s</li>
+            </ul>
+          </div>
+          <div class="col">
+            Recieved in Step 2:
+            <ul>
+              <li>AuthnContext-Class: %s</li>
+              <li>Authentication-Instant: %s</li>
+            </ul>%s',
+    $_SESSION['accr'], $_SESSION['ts'],
+    $_SERVER['Shib-AuthnContext-Class'], $_SERVER['Shib-Authentication-Instant'], "\n");
+  } elseif (isset($_GET['forceAuthn'])) {
+    # Step 2 after refresh. Should not be done!!
+    printf('            <br>
+            Refresh/Reload is not allowed while testing forceAuthn.<br>
+            Please rerun "Test AuthnContextClassRef"%s', "\n");
+  } else {
+    #Step 1
+    printf('            <br>
+            Recieved in Step 1:<ul>
+              <li>AuthnContext-Class: %s</li>
+              <li>Authentication-Instant: %s</li>
+            </ul>%s',
+    $_SERVER['Shib-AuthnContext-Class'], $_SERVER['Shib-Authentication-Instant'], "\n");
+  }
+  printf( '          </div>
+        </div>%s', "\n");
   $idpCheck->testACCR($accr);
 } else {
-  printf('        </div>%s', "\n");
+  printf('          </div>
+        </div>%s', "\n");
 }
 printf('      </div><!-- End tab-pane acc -->
       <div class="tab-pane fade %s%s" id="entityCategory"
@@ -329,9 +373,13 @@ printf("      </div><!-- End tab-pane esi -->
           // Render the Seamless Access button
           thiss.DiscoveryComponent({
             loginInitiatorURL: 'https://%s/Shibboleth.sso/%s?target=https://%s/result',
+            %s
+            %s
           }).render('#DS-Thiss');
         };
-      </script>\n", $federation['DS'], $config->basename(), $federation['LoginURL'], $config->basename());
+      </script>\n", $federation['DS'], $config->basename(), $federation['LoginURL'], $config->basename(),
+      isset($federation['entityID']) ? sprintf('entityID: \'%s\',',$federation['entityID']) : '',
+      isset($federation['trustProfile']) ? sprintf('trustProfile: \'%s\',', $federation['trustProfile']) : '');
 $html->showContentFooter();
 $html->showScripts($collapseIcons);
 

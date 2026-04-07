@@ -390,7 +390,6 @@ class IdPCheck {
       }
     }
 
-    print "        <br>\n";
     $expectedAccr = isset($this->accrOptions[$requestedAccr])
       ? $this->accrOptions[$requestedAccr]['value']
       : $_SERVER['Shib-AuthnContext-Class'];
@@ -675,8 +674,8 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] =
-              '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
+            $this->status['warning'] .=
+              $this->config->getFederation()['displayName'] . ' recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
           }
         }
       } else {
@@ -750,8 +749,8 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] =
-              '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
+            $this->status['warning'] .=
+              $this->config->getFederation()['displayName'] . ' recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
           }
         }
       } else {
@@ -1043,10 +1042,10 @@ class IdPCheck {
       $step2 = true;
       $forceAuthnResult = _('Failed missing old Authentication-Instant.') .  _('Please restart test');
       if (isset($_SESSION['ts'])) {
-        $forceAuthnTime = strtotime($_SERVER['Shib-Authentication-Instant']) - $_SESSION['ts'];
+        $forceAuthnTime = strtotime($_SERVER['Shib-Authentication-Instant']) - strtotime($_SESSION['ts']);
         if ($_SESSION['ts'] <> $_SERVER['Shib-Authentication-Instant']) {
           $forceAuthnSuccess = true;
-          $forceAuthnResult = $forceAuthnTime < 600 ? 'OK' : _('Not done within 10 minutes') . $forceAuthnTime;
+          $forceAuthnResult = $forceAuthnTime < 600 ? 'OK' : sprintf (_('Not done within 10 minutes! Was done in %d seconds'), $forceAuthnTime) ;
         } else {
           $this->status['error'][] = "Authentication-instant hasn't updated after forceAuthn was requested.";
           $forceAuthnResult = _('Error');
@@ -1055,15 +1054,15 @@ class IdPCheck {
       unset ($_SESSION['ts']);
     } else {
       # Step1
-      $_SESSION['ts'] = time();
-      $_SESSION['accr'] = $requestedAccr;
+      $_SESSION['ts'] = $_SERVER['Shib-Authentication-Instant'];
+      $_SESSION['accr'] = $_SERVER['Shib-AuthnContext-Class'];
       $forceAuthnResult = _('Not tested');
     }
 
-    $this->status['infoText'] = sprintf('    <h3>' . _('Test result') . '</h3>%s    <table class="table table-striped table-bordered">%s',
+    $this->status['infoText'] = sprintf('        <h3>' . _('Test result') . '</h3>%s        <table class="table table-striped table-bordered">%s',
       "\n", "\n");
-    $this->status['infoText'] .= sprintf('      <tr><th>' . _('ACCR status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : _('Error'), "\n");
-    $this->status['infoText'] .= sprintf('      <tr><th>' . _('ForceAuthn status') . '</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
+    $this->status['infoText'] .= sprintf('          <tr><th>' . _('ACCR status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
+    $this->status['infoText'] .= sprintf('          <tr><th>' . _('ForceAuthn status') . '</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
 
     $this->showRAFAttributeStatus(_('AL1 status'),'http://www.swamid.se/policy/assurance/al1'); # NOSONAR Should be http://
     $this->showRAFAttributeStatus(_('AL2 status'),'http://www.swamid.se/policy/assurance/al2'); # NOSONAR Should be http://
@@ -1072,24 +1071,16 @@ class IdPCheck {
     $this->showRAFAttributeStatus(_('RAF Medium status'), self::RAF_MEDIUM);
     $this->showRAFAttributeStatus(_('RAF High status'), self::RAF_HIGH);
 
-    $this->status['infoText'] .= sprintf('    </table>%s', "\n");
+    $this->status['infoText'] .= sprintf('        </table>%s', "\n");
 
     $this->status['infoText'] .= '
-    <h3>' . _('Identity Provider sessions attributes') . '</h3>
-    <table class="table table-striped table-bordered">
-      <tr><th>' . _('Attribute') . '</th><th>' . _('Value') . '</th></tr>' . "\n";
-    $this->status['infoText'] .= isset ($_SERVER['Shib-AuthnContext-Class']) ? sprintf ("      <tr><th>AuthnContext-Class</th><td>%s</td></tr>\n", $_SERVER['Shib-AuthnContext-Class']) : '';
-    $this->status['infoText'] .= isset ($_SERVER['Shib-Authentication-Instant']) ? sprintf ("      <tr><th>Authentication-Instant</th><td>%s</td></tr>\n", $_SERVER['Shib-Authentication-Instant']) : '';
-    $this->status['infoText'] .= "    </table>\n";
-
-    $this->status['infoText'] .= '
-    <h3>' . _('Identity Provider approved Assurance') . '</h3>
-    <table class="table table-striped table-bordered">' . "\n";
+        <h3>' . _('Identity Provider approved Assurance') . '</h3>
+        <table class="table table-striped table-bordered">' . "\n";
     if (isset($_SERVER['Meta-Assurance-Certification'])) {
       $value = str_replace(';' , '<br>',$_SERVER['Meta-Assurance-Certification']);
       $this->status['infoText'] .= sprintf ("          <tr><th>Assurance-Certification</th><td>%s</td></tr>\n", $value);
     }
-    $this->status['infoText'] .= "    </table>\n";
+    $this->status['infoText'] .= "        </table>\n";
 
     if ($accrCorrect) {
       if ($forceAuthnSuccess) {
@@ -1127,7 +1118,7 @@ class IdPCheck {
    */
   protected function showRAFAttributeStatus($text, $attributeValue) {
     if (isset($this->rafAttributes[$attributeValue]) && $this->rafAttributes[$attributeValue]['status'] <> 'NotExpected') {
-      $this->status['infoText'] .= sprintf('      <tr><th>%s</th><td>%s</td></tr>%s',
+      $this->status['infoText'] .= sprintf('          <tr><th>%s</th><td>%s</td></tr>%s',
         $text, $this->rafAttributes[$attributeValue]['status'], "\n");
     }
   }
@@ -1182,7 +1173,7 @@ class IdPCheck {
   }
 
   /**
-   * Get a list of testAccrOptions
+   * Get a list of accrOptions
    *
    * @return array
    */

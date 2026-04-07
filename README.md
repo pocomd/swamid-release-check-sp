@@ -69,7 +69,7 @@ We also need to update shibboleth2.xml.
 Use or own error page for better information controll.
 ```xml
 <Errors ...
-  redirectErrors="https://sp.example.org/error.php"
+  redirectErrors="https://release-check.<org>.<tld>/error.php"
 .../>
 ```
 
@@ -92,4 +92,15 @@ And add what we want to extract
   <ContactPerson id="Other-Contact"  contactType="other" formatter="$EmailAddress" />
   <Logo id="Logo" height="256" width="256" formatter="<img src='$_string' height='$height' width='$width'/>"/>
 </AttributeExtractor>
+```
+
+Optional if you want to use trustProfile from SeamlessAccess
+```xml
+<SSO discoveryProtocol="SAMLDS" discoveryURL="https://service.seamlessaccess.org/ds/?trustProfile=yourProfile"> SAML2 </SSO>
+```
+
+You also need to update config.php with 2 values.
+```php
+#'entityID' => 'https://release-check.<org>.<tld>/shibboleth',
+#'trustProfile' => 'yourProfile',
 ```

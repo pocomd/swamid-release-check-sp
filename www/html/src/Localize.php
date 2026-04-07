@@ -49,17 +49,31 @@ class Localize {
       }
 
       // look through sorted list and use first one that matches our languages
+      // https://simplelocalize.io/data/locales/ for other codes
       foreach ($langs as $lang => $val) {
         if ($selectedLang == '' ) {
           switch ($lang) {
+            case 'en' :
+            case 'en-GB' :
+            case 'en-US' :
+              $selectedLang = 'en_GB';
+              break;
+            case 'fr' :
+            case 'fr-CA' :
+            case 'fr-FR' :
+              $selectedLang = 'fr_FR';
+              break;
+            case 'it' :
+            case 'it-IT' :
+              $selectedLang = 'it_IT';
+              break;
+            case 'sr' :
+            case 'sr-RS' :
+              $selectedLang = 'sr_RS';
+              break;
             case 'sv' :
             case 'sv-SE' :
               $selectedLang = 'sv_SE';
-              break;
-            case 'en-GB' :
-            case 'en-US' :
-            case 'en' :
-              $selectedLang = 'en';
               break;
             default:
           }

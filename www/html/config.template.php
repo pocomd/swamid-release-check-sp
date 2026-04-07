@@ -16,6 +16,20 @@ $db = array(
 
 $basename = 'release-check.<org>.<tld>';
 
+# Languages to offer support for.
+# Supported is listed below (based on .po files)
+# Rearange order to suite your needs
+# Remove unwanted in your installation or change flag if wanted.
+# Other options for flags see https://flagcdn.com/en/codes.json
+$languages = array(
+  'en' => array('name' => 'English', 'flag' => 'gb'),
+  'sv' => array('name' => 'Svenska', 'flag' => 'se'),
+  'fr' => array('name' => 'Français', 'flag' => 'fr'),
+  #'fr' => array('name' => 'French', 'flag' => 'ca'),
+  'sr' => array('name' => 'Cpпcки језик', 'flag' => 'rs'),
+  'it' => array('name' => 'Italiano', 'flag' => 'it'),
+);
+
 $federation = array(
   'displayName' => 'SWAMID',
   # Admin users that should have access to ops.php
@@ -40,6 +54,9 @@ $federation = array(
   # If not set defaults to service.seamlessaccess.org and Login';
   #'DS' => 'service.seamlessaccess.org',
   #'LoginURL' => 'DS/seamless-access',
+  # Optional if you want to use profiles in magiq-button. Should alline with what is configured in shibboleth2.xml
+  #'entityID' => 'https://release-check.dev-edugain.swamid.se/shibboleth',
+  #'trustProfile' => 'edugain',
 
   # Optional if you want to fetch existiong IdP:s from a Metadata Tool
   #'metadataTool' => 'metadata.qa.swamid.se',
