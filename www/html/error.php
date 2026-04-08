@@ -7,14 +7,19 @@ $html = $config->getExtendedClass('HTML');
 $html->showHTMLHead();
 $html->showContentHeader();
 
-$errorURL = isset($_GET['errorURL']) ?
-  'For more info visit this <a href="' . $_GET['errorURL'] . '">support-page</a>.' : '';
+$errorURL = "";
+if (isset($_GET['errorURL'])) {
+  $urlValue = filter_var($_GET['errorURL'], FILTER_VALIDATE_URL)
+              ? htmlspecialchars($_GET['errorURL'], ENT_QUOTES, 'UTF-8')
+              : '#';
+  $errorURL = sprintf(_('For more info visit this <a href="%s">support-page</a>.'), $urlValue);
+}
+
 $errorURL = str_replace(array('ERRORURL_TS'), array(time()), $errorURL);
 $errorURL = isset($_GET['RelayState']) ?
   str_replace(array('ERRORURL_RP'), array($_GET['RelayState'].'shibboleth'), $errorURL) : $errorURL;
 $errorURL = isset($_SERVER['Shib-Session-ID']) ?
   str_replace(array('ERRORURL_TID'), array($_SERVER['Shib-Session-ID']), $errorURL) : $errorURL;
-
 
 switch ($_GET['errorType']) {
   case 'opensaml::saml2md::MetadataException' :
@@ -42,28 +47,27 @@ switch ($_GET['errorType']) {
 
 <?php
 function showMetadataException() {?>
-    <h1>Unknown Identity Provider</h1>
-    <p>To report this problem, please contact the site administrator at
-    <a href="mailto:operations@swamid.se">operations@swamid.se</a>.
+    <h1><?= _('Unknown Identity Provider') ?></h1>
+    <p><?= _('To report this problem, please contact the site administrator at <a href="mailto:operations@swamid.se">operations@swamid.se</a>.') ?>
     </p>
-    <p>Please include the following error message in any email:</p>
-    <p class="error">Identity provider lookup failed at (<?=htmlspecialchars($_GET['requestURL'])?>)</p>
-    <p><strong>EntityID:</strong> <?=htmlspecialchars($_GET['entityID'])?></p>
+    <p><?= _('Please include the following error message in any email') ?>:</p>
+    <p class="error"><?= _('Identity provider lookup failed at') ?>(<?=htmlspecialchars($_GET['requestURL'])?>)</p>
+    <p><strong><?=  _('EntityID') ?>:</strong> <?=htmlspecialchars($_GET['entityID'])?></p>
     <p><?=htmlspecialchars($_GET['errorType'])?>: <?=htmlspecialchars($_GET['errorText'])?></p>
 <?php }
 
 function showFatalProfileException() {
     global $errorURL;
     $mail = str_replace('mailto:', '', $_GET['contactEmail']);?>
-    <h1>Unusable Identity Provider</h1>
-    <p>The identity provider supplying your login credentials does not support the necessary capabilities.</p>
-    <p>To report this problem, please contact the IdP administrator. <?=$errorURL?><br>
-    If your are the IdP administrator you can reach out to
+    <h1><?= _('Unusable Identity Provider') ?></h1>
+    <p><?= _('The identity provider supplying your login credentials does not support the necessary capabilities.') ?></p>
+    <p><?= _('To report this problem, please contact the IdP administrator.') ?> <?=$errorURL?><br>
+    <?= _('If your are the IdP administrator you can reach out to') ?>
     <a href="mailto:<?= $mail ?>"><?= $mail ?></a>.
     </p>
-    <p>Please include the following error message in any email:</p>
-    <p class="error">Identity provider lookup failed at (<?=htmlspecialchars($_GET['requestURL'])?>)</p>
-    <p><strong>EntityID:</strong> <?=htmlspecialchars($_GET['entityID'])?></p>
+    <p><?= _('Please include the following error message in any email') ?>:</p>
+    <p class="error"><?= _('Identity provider lookup failed at') ?> (<?=htmlspecialchars($_GET['requestURL'])?>)</p>
+    <p><strong><?=  _('EntityID') ?>:</strong> <?=htmlspecialchars($_GET['entityID'])?></p>
     <p><?=htmlspecialchars($_GET['errorType'])?>: <?=htmlspecialchars($_GET['errorText'])?></p><?php
     print isset($_GET['statusCode']) ? "\n<p>statusCode : " . htmlspecialchars($_GET['statusCode']) . '</p>' : '';
     print isset($_GET['statusCode2']) ? "\n<p>statusCode2 : " . htmlspecialchars($_GET['statusCode2']) . '</p>' : '';
@@ -72,8 +76,8 @@ function showFatalProfileException() {
 
 function showInfo() { ?>
     <table>
-      <caption>Values</caption>
-      <tr><th>Key</th><th>Value</th></tr>
+      <caption><?= _('Values') ?></caption>
+      <tr><th><?= _('Key') ?></th><th><?= _('Value') ?></th></tr>
     <?php
     foreach ($_GET as $key => $value) {
       printf('<tr><td>%s = %s</td></tr>%s', $key, htmlspecialchars($value), "\n");

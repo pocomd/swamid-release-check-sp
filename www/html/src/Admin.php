@@ -13,7 +13,7 @@ class Admin {
   protected Configuration $config;
 
   /**
-   * List of IdP:s
+   * List of IdPs
    *
    * key   = entityID
    * value = true if IdP have been tested
@@ -24,6 +24,9 @@ class Admin {
    * Array of federation configuration
    */
   protected array $federation = array();
+
+  const HTML_MORE_THAN_ONE_SCHAC = "More than one schacPersonalUniqueCode";
+  const HTML_SHOW_ALL_IDPS = "Show all IdPs";
 
   /**
    * List of tests/tabs to display
@@ -139,7 +142,7 @@ class Admin {
   }
 
   /**
-   * Create a list of IdP:s in federation
+   * Create a list of IdPs in federation
    *
    * @return void
    */
@@ -226,48 +229,48 @@ class Admin {
     printf('    <div class="row">
       <div class="col">%s', "\n");
     if ($selectedIdp) {
-      printf('      <h1>%s tests run by %s</h1>
+      printf('      <h1>' . _('%s tests run by %s') . '</h1>
       <a href="./admin.php?tab=%s">
-        <button type="button" class="btn btn-success">Show all IdPs</button>
+        <button type="button" class="btn btn-success">' . _(self::HTML_SHOW_ALL_IDPS) . '</button>
       </a>
       <a href="./admin.php?tab=AllTests&idp=%s">
-        <button type="button" class="btn btn-success">Show all EC tests for this IdP</button>
+        <button type="button" class="btn btn-success">' . _('Show all EC tests for this IdP') .'</button>
       </a>%s',
         $this->tests[$tab]['fullName'], htmlspecialchars($selectedIdp), $tab, urlencode($selectedIdp), "\n");
     } else {
-      printf('      <h1>Data based on IdP:s that have run %s test</h1>%s',
+      printf('      <h1>' . _('Data based on IdPs that have run %s test') . '</h1>%s',
        $this->tests[$tab]['fullName'], "\n");
     }
     printf('      <table class="table table-striped table-bordered">
           <tr>
-            <td>%s data </td>
+            <td>' . _('%s data') . ' </td>
             <td>%s',
       $this->tests[$tab]['fullName'], "\n");
     switch ($tab) {
       case 'CoCov1' :
       case 'CoCov2' :
-        printf('              <i class="fas fa-check"> = Only send reqested data or less</i><br>
-              <i class="fas fa-exclamation"> = Send to much data</i>%s', "\n");
+        printf('              <i class="fas fa-check"> = ' . _('Only send reqested data or less') . '</i><br>
+              <i class="fas fa-exclamation"> = ' . _('Send to much data') . '</i>%s', "\n");
         break;
       default :
-        printf('              <i class="fas fa-check"> = Only send reqested data</i><br>
-              <i class="fas fa-exclamation"> = Send to much/less data</i>%s', "\n");
+        printf('              <i class="fas fa-check"> = ' . _('Only send reqested data') . '</i><br>
+              <i class="fas fa-exclamation"> = '. _('Send to much/less data') . '</i>%s', "\n");
     }
     printf('            </td>
           </tr>
           <tr>
             <td>%s ECS</td>
             <td>
-              <i class="fas fa-check"> = Have ECS for %s</i><br>
-              <i class="fas fa-exclamation-triangle"> = Missing ECS for %s</i><br>
-              <i class="fas fa-exclamation"> = Have ECS for %s but sends to much data > not %s</i>
+              <i class="fas fa-check"> = ' . _('Have ECS for %s') . '</i><br>
+              <i class="fas fa-exclamation-triangle"> = ' . _('Missing ECS for %s') . '</i><br>
+              <i class="fas fa-exclamation"> = ' . _('Have ECS for %s but sends to much data > not %s') . '</i>
             </td>
           </tr>
           <tr>
             <td>%s</td>
             <td>
-              <i class="fas fa-check"> = Sends attribute</i><br>
-              <i class="fas fa-exclamation"> = Doesn\'t send attribute</i>
+              <i class="fas fa-check"> = ' . _('Sends attribute') . '</i><br>
+              <i class="fas fa-exclamation"> = ' . _("Doesn't send attribute") . '</i>
             </td>
           </tr>
         </table>
@@ -276,14 +279,14 @@ class Admin {
           <thead>
             <tr>
               %s
-              <th>Tested</th>
-              <th>Data</th>
-              <th>ECS</th>%s',
+              <th>' . _('Tested') . '</th>
+              <th>' . _('Data') . '</th>
+              <th>' . _('ECS') . '</th>%s',
       $this->tests[$tab]['fullName'], $this->tests[$tab]['fullName'],
       $this->tests[$tab]['fullName'], $this->tests[$tab]['fullName'],
       $this->tests[$tab]['fullName'],
       implode('<br>', $this->tests[$tab]['expected']),
-      $selectedIdp ? '' : '<th>IdP</th>',
+      $selectedIdp ? '' : '<th>' . _('IdP') . '</th>',
       "\n");
     foreach ($this->tests[$tab]['expected'] as $shortName => $SAML) {
       printf('              <th>%s</th>%s', $shortName, "\n");
@@ -379,28 +382,28 @@ class Admin {
     printf('    <div class="row">
       <div class="col">%s', "\n");
     if ($selectedIdp) {
-      printf('      <h1>MFA tests run by %s</h1>
+      printf('      <h1>' . _('MFA tests run by %s') . '</h1>
       <a href="./admin.php?tab=mfa">
-        <button type="button" class="btn btn-success">Show all IdPs</button>
+        <button type="button" class="btn btn-success">' . _(self::HTML_SHOW_ALL_IDPS) . '</button>
       </a>%s',
         htmlspecialchars($selectedIdp), "\n");
     } else {
-      printf('      <h1>Data based on IdP:s that have run MFA test</h1>%s',
+      printf('      <h1>' . _("Data based on IdPs that have run MFA test") . '</h1>%s',
         "\n");
     }
     printf('        <table class="table table-striped table-bordered">
           <tr>
-            <td>MFA </td>
+            <td>' . _('MFA') . ' </td>
             <td>
-              <i class="fas fa-check"> = Responds with REFEDS MFA</i><br>
-              <i class="fas fa-exclamation"> = Wrongly sends something else (SHOULD break an not return anything)</i>
+              <i class="fas fa-check"> = ' . _('Responds with REFEDS MFA') . '</i><br>
+              <i class="fas fa-exclamation"> = ' . _('Wrongly sends something else (SHOULD break an not return anything)') . '</i>
             </td>
           </tr>
           <tr>
-            <td>ForceAuthn</td>
+            <td>' . _('ForceAuthn') . '</td>
             <td>
-              <i class="fas fa-check"> = Sends a new Authentication-Instant in step 2</i><br>
-              <i class="fas fa-exclamation"> = Sends same Authentication-Instant in step 2</i>
+              <i class="fas fa-check"> = ' . _('Sends a new Authentication-Instant in step 2') . '</i><br>
+              <i class="fas fa-exclamation"> = ' . _('Sends same Authentication-Instant in step 2') . '</i>
             </td>
           </tr>
         </table>
@@ -410,13 +413,13 @@ class Admin {
           <thead>
             <tr>
               %s
-              <th>Tested</th>
-              <th>MFA</th>
-              <th>ForceAuthn</th>
+              <th>' . _('Tested') . '</th>
+              <th>' . _('MFA') . '</th>
+              <th>' . _('ForceAuthn') . '</th>
             </tr>
           </thead>
           <tbody>%s',
-      $selectedIdp ? '' : '<th>IdP</th>',
+      $selectedIdp ? '' : '<th>' . _('IdP') . '</th>',
       "\n");
     $testHandler = $this->config->getDB()->prepare($selectedIdp ?
       "SELECT `entityID`, `attr_OK`, `testResult`, `tests`.`time`
@@ -462,20 +465,20 @@ class Admin {
             $okForceAuthn++;
             break;
           case 'Does support ForceAuthn but not REFEDS MFA.' :
-            printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
+            printf('              <td><i class="fas fa-exclamation"></i> ' . _('Fail') . '</td>
               <td><i class="fas fa-check"></i> OK</td>%s', "\n");
             $failMFA++;
             $okForceAuthn++;
             break;
           case 'Supports REFEDS MFA but not ForceAuthn.' :
             printf('              <td><i class="fas fa-check"></i> OK</td>
-              <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
+              <td><i class="fas fa-exclamation"></i> ' . _('Fail') . '</td>%s', "\n");
             $okMFA++;
             $failForceAuthn++;
             break;
           case 'Does neither support REFEDS MFA or ForceAuthn.' :
             printf('              <td><i class="fas fa-exclamation"></i> Fail</td>
-              <td><i class="fas fa-exclamation"></i> Fail</td>%s', "\n");
+              <td><i class="fas fa-exclamation"></i> ' . _('Fail') . '</td>%s', "\n");
             $failMFA++;
             $failForceAuthn++;
             break;
@@ -504,36 +507,36 @@ class Admin {
     printf('    <div class="row">
       <div class="col">%s', "\n");
     if ($selectedIdp) {
-      printf('      <h1>ESI tests run by %s</h1>
+      printf('      <h1>' . _('ESI tests run by %s') . '</h1>
       <a href="./admin.php?tab=esi">
-        <button type="button" class="btn btn-success">Show all IdPs</button>
+        <button type="button" class="btn btn-success">' . _(self::HTML_SHOW_ALL_IDPS) . '</button>
       </a>
       <a href="./admin.php?tab=AllTests&idp=%s">
-        <button type="button" class="btn btn-success">Show all EC tests for this IdP</button>
+        <button type="button" class="btn btn-success">' . _('Show all EC tests for this IdP') . '</button>
       </a>
       <br>%s',
         htmlspecialchars($selectedIdp), urlencode($selectedIdp), "\n");
     } else {
-      printf('      <h1>Data based on IdP:s that have run ESI test</h1>%s',
+      printf('      <h1>' . _('Data based on IdPs that have run ESI test') . '</h1>%s',
         "\n");
     }
-    printf('        <i class="fas fa-check"> = Correct schacPersonalUniqueCode</i><br>
-        <i class="fas fa-exclamation-triangle"> = Missing schacPersonalUniqueCode or to many</i><br>
-        <i class="fas fa-exclamation"> = Error in schacPersonalUniqueCode</i>
+    printf('        <i class="fas fa-check"> = ' . ('Correct schacPersonalUniqueCode') . '</i><br>
+        <i class="fas fa-exclamation-triangle"> = ' . _('Missing schacPersonalUniqueCode or to many') . '</i><br>
+        <i class="fas fa-exclamation"> = ' . _('Error in schacPersonalUniqueCode') . '</i>
         <br>
         <br>
         <table id="resultTable" class="table table-striped table-bordered">
           <thead>
             <tr>
               %s
-              <th>Tested</th>
-              <th>ESI (any)</th>
-              <th>Tested</th>
-              <th>ESI (as student)</th>
+              <th>' . _('Tested') . '</th>
+              <th>' . _('ESI (any)') . '</th>
+              <th>' . _('Tested') . '</th>
+              <th>' . _('ESI (as student)') . '</th>
             </tr>
           </thead>
           <tbody>',
-      $selectedIdp ? '' : '<th>IdP</th>',
+      $selectedIdp ? '' : '<th>' . _('IdP') . '</th>',
       "\n");
     $testRun = 0;
     $testHandler = $this->config->getDB()->prepare($selectedIdp ?
@@ -579,28 +582,28 @@ class Admin {
               <td>%s</td>%s', $idp, $idp, $testResult['time'], "\n");
         }
         switch ($testResult['testResult']) {
-          case 'schacPersonalUniqueCode OK':
+          case 'schacPersonalUniqueCode OK' :
             print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
             $ok++;
             break;
-          case 'schacPersonalUniqueCode OK. BUT wrong case':
-            print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
+          case 'schacPersonalUniqueCode OK. BUT wrong case' :
+            print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> " . _("Wrong case") . "</td>\n";
             $ok++;
             break;
-          case 'Missing schacPersonalUniqueCode':
-            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
+          case 'Missing schacPersonalUniqueCode' :
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("No schacPersonalUniqueCode") . "</td>\n";
             $warn++;
             break;
-          case 'More than one schacPersonalUniqueCode';
-            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
+          case self::HTML_MORE_THAN_ONE_SCHAC ;
+            print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _(self::HTML_MORE_THAN_ONE_SCHAC) . "</td>\n";
             $warn++;
             break;
-          case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
-            print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
+          case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:' ;
+            print "              <td><i class=\"fas fa-exclamation\"></i> " . _("Not correct code") . "</td>\n";
             $fail++;
             break;
-          case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
-            print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
+          case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:' ;
+            print "              <td><i class=\"fas fa-exclamation\"></i> " . _("sHO = se") . "</td>\n";
             $fail++;
             break;
           default :
@@ -611,35 +614,35 @@ class Admin {
         if ($testResult = $testStudHandler->fetch(PDO::FETCH_ASSOC)) {
           printf("              <td>%s</td>\n",$testResult['time']);
           switch ($testResult['testResult']) {
-            case 'schacPersonalUniqueCode OK':
+            case 'schacPersonalUniqueCode OK' :
               print "              <td><i class=\"fas fa-check\"></i> OK</td>\n";
               $okStud++;
               break;
-            case 'schacPersonalUniqueCode OK. BUT wrong case':
-              print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> Wrong case</td>\n";
+            case 'schacPersonalUniqueCode OK. BUT wrong case' :
+              print "              <td><i class=\"fas fa-check\"></i> OK, <i class=\"fas fa-exclamation-triangle\"></i> " . _("Wrong case") . "</td>\n";
               $okStud++;
               break;
-            case 'Missing schacPersonalUniqueCode':
-              print "              <td><i class=\"fas fa-exclamation-triangle\"></i> No schacPersonalUniqueCode</td>\n";
+            case 'Missing schacPersonalUniqueCode' :
+              print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _("No schacPersonalUniqueCode") . "</td>\n";
               $warnStud++;
               break;
-            case 'More than one schacPersonalUniqueCode';
-              print "              <td><i class=\"fas fa-exclamation-triangle\"></i> More than one schacPersonalUniqueCode</td>\n";
+            case self::HTML_MORE_THAN_ONE_SCHAC ;
+              print "              <td><i class=\"fas fa-exclamation-triangle\"></i> " . _(self::HTML_MORE_THAN_ONE_SCHAC) . "</td>\n";
               $warnStud++;
               break;
-            case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:';
-              print "              <td><i class=\"fas fa-exclamation\"></i> Not correct code</td>\n";
+            case 'schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:' ;
+              print "              <td><i class=\"fas fa-exclamation\"></i> " . _("Not correct code") . "</td>\n";
               $failStud++;
               break;
-            case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:';
-              print "              <td><i class=\"fas fa-exclamation\"></i> sHO = se</td>\n";
+            case 'schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:' ;
+              print "              <td><i class=\"fas fa-exclamation\"></i> " . _("sHO = se") . "</td>\n";
               $failStud++;
               break;
             default :
               print "              <td>" . $testResult['testResult'] . "</td>\n";
           }
         } else {
-          print '              <td>No test run as Student</td>
+          print '              <td>' . _('No test run as Student') . '</td>
                   <td></td>' . "\n";
         }
         print "            </tr>\n";
@@ -666,7 +669,7 @@ class Admin {
         </table>%s', "\n");
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
-          <tr><th>IdP:s not tested</th></tr>%s', "\n");
+          <tr><th>' . _('IdPs not tested') . '</th></tr>%s', "\n");
       foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ("          <tr><td>%s</td></tr>\n", $idp);
@@ -704,7 +707,7 @@ class Admin {
       "\n");
     if (isset($this->federation['metadataTool'])) {
       printf ('        <table class="table table-striped table-bordered">
-          <tr><th>IdP:s not tested</th></tr>', "\n");
+          <tr><th>' . _("IdPs not tested") . '</th></tr>', "\n");
       foreach ($this->testedIPs as $idp => $value) {
         if (! $value ) {
           printf ('          <tr><td>%s</a></td></tr>%s', $idp, "\n");
