@@ -7,26 +7,322 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
-"Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-03-05 16:05+0100\n"
-"PO-Revision-Date: 2026-03-05 16:08+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 18:21+0000\n"
+"PO-Revision-Date: 2026-03-27 15:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
-#: www/html/src/HTML.php:42
+#: html/src/Display.php:47 html/src/Display.php:67 html/src/Display.php:114
+#, php-format
+msgid "Attribute"
+msgstr "Attribut"
+
+#: html/src/Display.php:47 html/src/Display.php:67 html/src/Display.php:114
+#: html/error.php:75
+#, php-format
+msgid "Value"
+msgstr "Värde"
+
+#: html/src/Display.php:65
+#, php-format
+msgid "Identity Provider attributes in metadata"
+msgstr "Identitetsutfärdarens attribut i metadatan"
+
+#: html/src/Display.php:112
+#, php-format
+msgid "Identity Provider sessions attributes"
+msgstr "Identitetsutfärdarens sessions attribut"
+
+#: html/src/Display.php:140 html/src/Display.php:176 html/src/Display.php:207
+#: html/index.php:210
+#, php-format
+msgid "Test"
+msgstr "Test"
+
+#: html/src/Display.php:140 html/src/Display.php:176 html/src/Display.php:207
+#, php-format
+msgid "Result"
+msgstr "Resultat"
+
+#: html/src/Display.php:147 html/src/Display.php:182 html/src/Display.php:213
+#, php-format
+msgid "Test not run yet"
+msgstr "Testet är inte kört"
+
+#: html/src/Display.php:149
+#, php-format
+msgid "Run test"
+msgstr "Kör test"
+
+#: html/src/Display.php:198
+msgid "European Student Identifier (student account)"
+msgstr "European Student Identifier (student konto)"
+
+#: html/src/Display.php:199
+msgid "European Student Identifier (any account)"
+msgstr "European Student Identifier (något konto)"
+
+#: html/src/Display.php:239
+msgid "Run NEW test"
+msgstr "Kör NY test"
+
+#: html/src/Display.php:239
+msgid "Rerun test"
+msgstr "Kör om testet"
+
+#: html/src/Display.php:274
+#, php-format
+msgid "Received"
+msgstr "Mottaget"
+
+#: html/src/Display.php:284
+#, php-format
+msgid "Missing"
+msgstr "Saknas"
+
+#: html/src/Display.php:292
+#, php-format
+msgid "Not expected"
+msgstr "Ej förväntat"
+
+#: html/src/Display.php:300
+#, php-format
+msgid "Test result"
+msgstr "Test resultat"
+
+#: html/src/Display.php:330
+#, php-format
+msgid "unknown tab"
+msgstr "okänd tab"
+
+#: html/src/Display.php:360
+msgid "Other results"
+msgstr "Andra resultat"
+
+#: html/src/HTML.php:43
 msgid "Release check for"
 msgstr "Releasecheck för"
 
-#: www/html/src/HTML.php:73
+#: html/src/HTML.php:80
 #, php-format
 msgid "About %s"
 msgstr "Om %s"
 
-#: www/html/src/HTML.php:86
+#: html/src/HTML.php:93
 msgid "Contact us"
 msgstr "Kontakta oss"
+
+#: html/error.php:11
+#, php-format
+msgid "For more info visit this <a href=\"%s\">support-page</a>."
+msgstr "För mer information besök denna <a href=\"%s\">supportsida</a>."
+
+#: html/error.php:44
+msgid "Unknown Identity Provider"
+msgstr "Okänd Identitetsutfärdare"
+
+#: html/error.php:45
+msgid ""
+"To report this problem, please contact the site administrator at <a "
+"href=\"mailto:operations@swamid.se\">operations@swamid.se</a>."
+msgstr ""
+
+#: html/error.php:47 html/error.php:63
+msgid "Please include the following error message in any email"
+msgstr "Vänligen bifoga följande felkod i eventuellt mail"
+
+#: html/error.php:48 html/error.php:64
+msgid "Identity provider lookup failed at"
+msgstr "Misslyckades att slå upp Identitetsutfärdaren på sidan"
+
+#: html/error.php:49 html/error.php:65
+msgid "EntityID"
+msgstr "EntityID"
+
+#: html/error.php:55
+msgid "Unusable Identity Provider"
+msgstr "Oanvändbar Identitetsutfärdare"
+
+#: html/error.php:56
+msgid ""
+"The identity provider supplying your login credentials does not support the "
+"necessary capabilities."
+msgstr ""
+"Identitetsleverantören som tillhandahåller dina inloggningsuppgifter har "
+"inte stöd för de nödvändiga funktionerna."
+
+#: html/error.php:58
+msgid ""
+"<p>The MFA test service requires MFA signaling via REFEDS-MFA (https://"
+"refeds.org/profile/mfa).</p>"
+msgstr ""
+
+#: html/error.php:59
+msgid "To report this problem, please contact the IdP administrator."
+msgstr ""
+"För att rapportera detta problem, vänligen kontakta IdP-administratören."
+
+#: html/error.php:60
+msgid "If your are the IdP administrator you can reach out to"
+msgstr "Om du är IdP-administratören kan du kontakta"
+
+#: html/error.php:74
+msgid "Values"
+msgstr "Värden"
+
+#: html/error.php:75
+msgid "Key"
+msgstr "Nyckel"
+
+#: html/index.php:5
+msgid "Result for"
+msgstr "Result för"
+
+#: html/index.php:97
+#, php-format
+msgid "Attributes"
+msgstr "Attribut"
+
+#: html/index.php:101
+#, php-format
+msgid "Authentication"
+msgstr "Autentisering"
+
+#: html/index.php:106
+#, php-format
+msgid "Entity category"
+msgstr "Entitetskategori"
+
+#: html/index.php:110
+#, php-format
+msgid "ESI"
+msgstr "ESI"
+
+#: html/index.php:123
+msgid "Admin"
+msgstr "Administratör"
+
+#: html/index.php:130
+#, php-format
+msgid "%s IdP"
+msgstr "%s IdP"
+
+#: html/index.php:138
+#, php-format
+msgid "Select IdP"
+msgstr "Välj IdP"
+
+#: html/index.php:150
+#, php-format
+msgid "Released attributes from IdP"
+msgstr "Släppta attribut från IdPn"
+
+#: html/index.php:155
+#, php-format
+msgid "%s and show attributes"
+msgstr "%s och visa attributen"
+
+#: html/index.php:161 html/index.php:186 html/index.php:264 html/index.php:309
+#, php-format
+msgid "Instructions"
+msgstr "Instruktioner"
+
+#: html/index.php:166
+msgid "Change"
+msgstr "Ändra"
+
+#: html/index.php:166
+msgid "Select"
+msgstr "Välj"
+
+#: html/index.php:167
+msgid "Refresh"
+msgstr "Ladda om"
+
+#: html/index.php:167
+msgid "Login"
+msgstr "Logga in"
+
+#: html/index.php:190
+#, php-format
+msgid "Different tests for AuthnContextClassRef."
+msgstr "Olika tester för AuthnContextClassRef."
+
+#: html/index.php:190
+#, php-format
+msgid ""
+"The restults from this tests are NOT saved exept for tests done with REFEDS "
+"MFA."
+msgstr ""
+"Resultaten från denna test är INTE sparad förutom de som är gjorda med "
+"REFEDS MFA."
+
+#: html/index.php:200
+#, php-format
+msgid "No authnContextClassRef"
+msgstr "Ingen authnContextClassRef"
+
+#: html/index.php:219
+#, php-format
+msgid "Got %sAuthnContext-Class (%s)"
+msgstr "Fick %sAuthnContext-Class (%s)"
+
+#: html/index.php:220
+#, php-format
+msgid "Press button below to test with forceAuthn"
+msgstr "Tryck på knappen nedan för att testa med forceAuthn"
+
+#: html/index.php:221
+#, php-format
+msgid "forceAuthN"
+msgstr "forceAuthn"
+
+#: html/index.php:234 html/index.php:287
+#, php-format
+msgid "%s Best Practice Attribute Release check"
+msgstr ""
+
+#: html/index.php:238
+#, php-format
+msgid "Run all tests automatically"
+msgstr "Kör alla tester automatiskt"
+
+#: html/index.php:241
+#, php-format
+msgid "Run tests manually"
+msgstr "Kör tester manuellt"
+
+#: html/index.php:257 html/index.php:300
+#, php-format
+msgid "Show results"
+msgstr "Visa resultat"
+
+#: html/index.php:292
+#, php-format
+msgid "Run tests"
+msgstr "Kör tester"
+
+#: html/index.php:313
+#, php-format
+msgid ""
+"European Student Identifier uses the entity category https://"
+"myacademicid.org/entity-categories/esi for release of attributes from the "
+"user's identity provider."
+msgstr ""
+"European Student Identifier använder entitets kategorin https://"
+"myacademicid.org/entity-categories/esi för att få attributen från "
+"användarens Identitutfärdare."
+
+#: html/index.php:313
+#, php-format
+msgid ""
+"This test verifies that all required attributes are released during login."
+msgstr ""
+"Detta test kontrollerar att alla nödvändiga attribut släpps vid "
+"inloggningen."

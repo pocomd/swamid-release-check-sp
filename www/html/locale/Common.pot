@@ -1,0 +1,1247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Release check package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Release check 1\n"
+"Report-Msgid-Bugs-To: bjorn@sunet.se\n"
+"POT-Creation-Date: 2026-04-08 11:15+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: www/html/error.php:15
+#, php-format
+msgid "For more info visit this <a href=\"%s\">support-page</a>."
+msgstr ""
+
+#: www/html/error.php:50
+msgid "Unknown Identity Provider"
+msgstr ""
+
+#: www/html/error.php:51
+msgid ""
+"To report this problem, please contact the site administrator at <a "
+"href=\"mailto:operations@swamid.se\">operations@swamid.se</a>."
+msgstr ""
+
+#: www/html/error.php:53 www/html/error.php:68
+msgid "Please include the following error message in any email"
+msgstr ""
+
+#: www/html/error.php:54 www/html/error.php:69
+msgid "Identity provider lookup failed at"
+msgstr ""
+
+#: www/html/error.php:55 www/html/error.php:70
+msgid "EntityID"
+msgstr ""
+
+#: www/html/error.php:62
+msgid "Unusable Identity Provider"
+msgstr ""
+
+#: www/html/error.php:63
+msgid ""
+"The identity provider supplying your login credentials does not support the "
+"necessary capabilities."
+msgstr ""
+
+#: www/html/error.php:64
+msgid "To report this problem, please contact the IdP administrator."
+msgstr ""
+
+#: www/html/error.php:65
+msgid "If your are the IdP administrator you can reach out to"
+msgstr ""
+
+#: www/html/error.php:79
+msgid "Values"
+msgstr ""
+
+#: www/html/error.php:80
+msgid "Key"
+msgstr ""
+
+#: www/html/error.php:80 www/html/src/Display.php:54
+#: www/html/src/Display.php:74 www/html/src/Display.php:121
+#: www/html/src/IdPCheck.php:431
+#, php-format
+msgid "Value"
+msgstr ""
+
+#: www/html/index.php:98 www/html/result/index.php:98
+#, php-format
+msgid "Attributes"
+msgstr ""
+
+#: www/html/index.php:102 www/html/result/index.php:102
+#, php-format
+msgid "Authentication"
+msgstr ""
+
+#: www/html/index.php:107 www/html/result/index.php:107
+#, php-format
+msgid "Entity category"
+msgstr ""
+
+#: www/html/index.php:111 www/html/result/index.php:111
+#, php-format
+msgid "ESI"
+msgstr ""
+
+#: www/html/index.php:124 www/html/result/index.php:124
+msgid "Admin"
+msgstr ""
+
+#: www/html/index.php:131 www/html/result/index.php:131
+#, php-format
+msgid "%s IdP"
+msgstr ""
+
+#: www/html/index.php:139 www/html/result/index.php:139
+#, php-format
+msgid "Select IdP"
+msgstr ""
+
+#: www/html/index.php:151 www/html/result/index.php:151
+#, php-format
+msgid "Released attributes from IdP"
+msgstr ""
+
+#: www/html/index.php:156 www/html/result/index.php:156
+#, php-format
+msgid "%s and show attributes"
+msgstr ""
+
+#: www/html/index.php:162 www/html/index.php:187 www/html/index.php:309
+#: www/html/index.php:354 www/html/result/index.php:162
+#: www/html/result/index.php:187 www/html/result/index.php:309
+#: www/html/result/index.php:354
+#, php-format
+msgid "Instructions"
+msgstr ""
+
+#: www/html/index.php:167 www/html/result/index.php:167
+msgid "Change"
+msgstr ""
+
+#: www/html/index.php:167 www/html/result/index.php:167
+msgid "Select"
+msgstr ""
+
+#: www/html/index.php:168 www/html/result/index.php:168
+msgid "Refresh"
+msgstr ""
+
+#: www/html/index.php:168 www/html/result/index.php:168
+msgid "Login"
+msgstr ""
+
+#: www/html/index.php:191 www/html/result/index.php:191
+#, php-format
+msgid "The Authentication test is a two step process."
+msgstr ""
+
+#: www/html/index.php:192 www/html/result/index.php:192
+#, php-format
+msgid ""
+"The first step is to test an AuthnContextClassRef and the second step is to "
+"verify that forceAuthn works as expected for that AuthnContextClassRef."
+msgstr ""
+
+#: www/html/index.php:193 www/html/result/index.php:193
+#, php-format
+msgid ""
+"The restults from this tests are NOT saved exept for tests done with REFEDS "
+"MFA."
+msgstr ""
+
+#: www/html/index.php:205 www/html/result/index.php:205
+#, php-format
+msgid "No authnContextClassRef"
+msgstr ""
+
+#: www/html/index.php:215 www/html/result/index.php:215
+#, php-format
+msgid "Test AuthnContextClassRef"
+msgstr ""
+
+#: www/html/index.php:227 www/html/result/index.php:227
+#, php-format
+msgid ""
+"Rerun \"Test AuthnContextClassRef\" to get a fresh Authentication-Instant to "
+"be able to run \"Test forceAuthN\" again."
+msgstr ""
+
+#: www/html/index.php:229 www/html/result/index.php:229
+#, php-format
+msgid ""
+"Test that forceAuthn return a newer Authentication-Instant than in step 1. "
+"The same AuthnContextClassRef is used as in step 1."
+msgstr ""
+
+#: www/html/index.php:230 www/html/result/index.php:230
+#, php-format
+msgid "Test forceAuthN"
+msgstr ""
+
+#: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
+#: www/html/result/index.php:332
+#, php-format
+msgid "%s Best Practice Attribute Release check"
+msgstr ""
+
+#: www/html/index.php:283 www/html/result/index.php:283
+#, php-format
+msgid "Run all tests automatically"
+msgstr ""
+
+#: www/html/index.php:286 www/html/result/index.php:286
+#, php-format
+msgid "Run tests manually"
+msgstr ""
+
+#: www/html/index.php:302 www/html/index.php:345 www/html/result/index.php:302
+#: www/html/result/index.php:345
+#, php-format
+msgid "Show results"
+msgstr ""
+
+#: www/html/index.php:337 www/html/result/index.php:337
+#, php-format
+msgid "Run tests"
+msgstr ""
+
+#: www/html/index.php:358 www/html/result/index.php:358
+#, php-format
+msgid ""
+"European Student Identifier uses the entity category https://"
+"myacademicid.org/entity-categories/esi for release of attributes from the "
+"user's identity provider."
+msgstr ""
+
+#: www/html/index.php:358 www/html/result/index.php:358
+#, php-format
+msgid ""
+"This test verifies that all required attributes are released during login."
+msgstr ""
+
+#: www/html/result/admin.php:20
+msgid "No access"
+msgstr ""
+
+#: www/html/result/admin.php:31
+#, php-format
+msgid "Back"
+msgstr ""
+
+#: www/html/result/admin.php:52
+#, php-format
+msgid "Result for"
+msgstr ""
+
+#: www/html/src/Admin.php:232
+#, php-format
+msgid "%s tests run by %s"
+msgstr ""
+
+#: www/html/src/Admin.php:237 www/html/src/Admin.php:515
+#, php-format
+msgid "Show all EC tests for this IdP"
+msgstr ""
+
+#: www/html/src/Admin.php:241
+#, php-format
+msgid "Data based on IdPs that have run %s test"
+msgstr ""
+
+#: www/html/src/Admin.php:246
+#, php-format
+msgid "%s data"
+msgstr ""
+
+#: www/html/src/Admin.php:252
+#, php-format
+msgid "Only send reqested data or less"
+msgstr ""
+
+#: www/html/src/Admin.php:253
+#, php-format
+msgid "Send to much data"
+msgstr ""
+
+#: www/html/src/Admin.php:256
+#, php-format
+msgid "Only send reqested data"
+msgstr ""
+
+#: www/html/src/Admin.php:257
+#, php-format
+msgid "Send to much/less data"
+msgstr ""
+
+#: www/html/src/Admin.php:264
+#, php-format
+msgid "Have ECS for %s"
+msgstr ""
+
+#: www/html/src/Admin.php:265
+#, php-format
+msgid "Missing ECS for %s"
+msgstr ""
+
+#: www/html/src/Admin.php:266
+#, php-format
+msgid "Have ECS for %s but sends to much data > not %s"
+msgstr ""
+
+#: www/html/src/Admin.php:272
+#, php-format
+msgid "Sends attribute"
+msgstr ""
+
+#: www/html/src/Admin.php:273
+#, php-format
+msgid "Doesn't send attribute"
+msgstr ""
+
+#: www/html/src/Admin.php:282 www/html/src/Admin.php:416
+#: www/html/src/Admin.php:532 www/html/src/Admin.php:534
+#, php-format
+msgid "Tested"
+msgstr ""
+
+#: www/html/src/Admin.php:283
+#, php-format
+msgid "Data"
+msgstr ""
+
+#: www/html/src/Admin.php:284
+#, php-format
+msgid "ECS"
+msgstr ""
+
+#: www/html/src/Admin.php:289 www/html/src/Admin.php:422
+#: www/html/src/Admin.php:539
+msgid "IdP"
+msgstr ""
+
+#: www/html/src/Admin.php:385
+#, php-format
+msgid "MFA tests run by %s"
+msgstr ""
+
+#: www/html/src/Admin.php:391
+#, php-format
+msgid "Data based on IdPs that have run MFA test"
+msgstr ""
+
+#: www/html/src/Admin.php:396 www/html/src/Admin.php:417
+#, php-format
+msgid "MFA"
+msgstr ""
+
+#: www/html/src/Admin.php:398
+#, php-format
+msgid "Responds with REFEDS MFA"
+msgstr ""
+
+#: www/html/src/Admin.php:399
+#, php-format
+msgid "Wrongly sends something else (SHOULD break an not return anything)"
+msgstr ""
+
+#: www/html/src/Admin.php:403 www/html/src/Admin.php:418
+#, php-format
+msgid "ForceAuthn"
+msgstr ""
+
+#: www/html/src/Admin.php:405
+#, php-format
+msgid "Sends a new Authentication-Instant in step 2"
+msgstr ""
+
+#: www/html/src/Admin.php:406
+#, php-format
+msgid "Sends same Authentication-Instant in step 2"
+msgstr ""
+
+#: www/html/src/Admin.php:468 www/html/src/Admin.php:475
+#: www/html/src/Admin.php:481
+#, php-format
+msgid "Fail"
+msgstr ""
+
+#: www/html/src/Admin.php:510
+#, php-format
+msgid "ESI tests run by %s"
+msgstr ""
+
+#: www/html/src/Admin.php:520
+#, php-format
+msgid "Data based on IdPs that have run ESI test"
+msgstr ""
+
+#: www/html/src/Admin.php:524
+#, php-format
+msgid "Missing schacPersonalUniqueCode or to many"
+msgstr ""
+
+#: www/html/src/Admin.php:525
+#, php-format
+msgid "Error in schacPersonalUniqueCode"
+msgstr ""
+
+#: www/html/src/Admin.php:533
+#, php-format
+msgid "ESI (any)"
+msgstr ""
+
+#: www/html/src/Admin.php:535
+#, php-format
+msgid "ESI (as student)"
+msgstr ""
+
+#: www/html/src/Admin.php:590 www/html/src/Admin.php:622
+msgid "Wrong case"
+msgstr ""
+
+#: www/html/src/Admin.php:594 www/html/src/Admin.php:626
+msgid "No schacPersonalUniqueCode"
+msgstr ""
+
+#: www/html/src/Admin.php:602 www/html/src/Admin.php:634
+msgid "Not correct code"
+msgstr ""
+
+#: www/html/src/Admin.php:606 www/html/src/Admin.php:638
+msgid "sHO = se"
+msgstr ""
+
+#: www/html/src/Admin.php:645
+msgid "No test run as Student"
+msgstr ""
+
+#: www/html/src/Admin.php:672 www/html/src/Admin.php:710
+#, php-format
+msgid "IdPs not tested"
+msgstr ""
+
+#: www/html/src/Configuration.php:65
+msgid ""
+"Click on the green button to see what attributes your Identity Provider "
+"releases."
+msgstr ""
+
+#: www/html/src/Configuration.php:66
+#, php-format
+msgid "Description of all test available in the %s test suite"
+msgstr ""
+
+#: www/html/src/Configuration.php:68
+#, php-format
+msgid ""
+"The Attributes tab shows all attributes the service release to the entityId "
+"https://%s/shibboleth. The entityId uses the entity categories"
+msgstr ""
+
+#: www/html/src/Configuration.php:69
+msgid "REFEDS Personalized Access Entity Category"
+msgstr ""
+
+#: www/html/src/Configuration.php:70
+msgid "REFEDS Research and Scholarship Entity Category, and"
+msgstr ""
+
+#: www/html/src/Configuration.php:71
+msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
+msgstr ""
+
+#: www/html/src/Configuration.php:73
+msgid ""
+"The Authentication tab checks if an Identity Provider is correctly "
+"configured for handling request for different AuthnContextClassRef requests."
+msgstr ""
+
+#: www/html/src/Configuration.php:74
+msgid ""
+"The Entity category tab does an exetensive testing of that an Identity "
+"Provider follows Best Practice for attribute release via entity categories."
+msgstr ""
+
+#: www/html/src/Configuration.php:75
+msgid ""
+"The ESI tab verifies if the Identity Provider release the right attributes "
+"for the European Digital Student Service Infrastructure."
+msgstr ""
+
+#: www/html/src/Configuration.php:78
+#, php-format
+msgid ""
+"In order for %s to work as effectively as possible for students and "
+"employees as well as for service providers and identity providers, %s "
+"recommends that service providers use entity categories to get the "
+"attributes that they require."
+msgstr ""
+
+#: www/html/src/Configuration.php:79
+#, php-format
+msgid ""
+"In order for services within the %s federation to work as effectively as "
+"possible, %s recommends the use of entity categories. Entity categories "
+"benefits not only students and employees but also administrators of relying "
+"and identity providers by providing a stable framework for the release of "
+"attributes."
+msgstr ""
+
+#: www/html/src/Configuration.php:80
+#, php-format
+msgid ""
+"The %s best practice attribute release check consists of the following tests"
+msgstr ""
+
+#: www/html/src/Configuration.php:81
+#, php-format
+msgid ""
+"Multiple Code of Conduct test require different attributes which the IdP "
+"either SHOULD or SHOULD NOT release in accordance REFEDS/%s Code of Conduct."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:3
+msgid "The IDP has sent too many attributes."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:5 www/html/src/DatabaseTexts.php:14
+#, php-format
+msgid "Received multi-value for %s, should be single-value!"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:7
+msgid ""
+"The IDP has not sent all the expected attributes. See the comments below."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:9 www/html/src/DatabaseTexts.php:11
+msgid "Did not send any attributes that were not requested."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:17
+msgid "R&S requires displayName or givenName + sn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:19
+msgid "R&S requires mail."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:21
+msgid "R&S requires eduPersonPrincipalName."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:23
+msgid "All the attributes required to fulfil R&S were sent"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:25
+msgid "R&S attributes OK, Entity Category Support OK"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:27
+msgid "R&S attributes OK, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:29
+msgid "The IdP supports R&S but doesn't announce it in its metadata."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:32
+msgid ""
+"Please add 'http://refeds.org/category/research-and-scholarship' to the list "
+"of supported ECs in Metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:34
+msgid "R&S attributes missing, BUT Entity Category Support claimed"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:36
+msgid "R&S attribute missing, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:38
+msgid ""
+"The IdP does NOT support R&S but it claims that it does in its metadata!!"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:41
+msgid "Anonymous requires schacHomeOrganization."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:43
+msgid "Anonymous requires eduPersonScopedAffiliation."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:45
+msgid "All the attributes required to fulfil Anonymous were sent"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:47
+msgid "Anonymous attributes OK, Entity Category Support OK"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:49
+msgid "Anonymous attributes OK, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:51
+msgid "The IdP supports Anonymous but doesn't announce it in its metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:54
+msgid ""
+"Please add 'https://refeds.org/category/anonymous' to the list of supported "
+"ECs in Metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:56
+msgid "Anonymous attributes missing, BUT Entity Category Support claimed"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:58
+msgid "Anonymous attribute missing, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:60
+msgid ""
+"The IdP does NOT support Anonymous but it claims that it does in its "
+"metadata!!"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:63
+msgid "Pseudonymous requires eduPersonAssurance."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:66
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
+"assurance/IAP/low"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:67
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
+"assurance/ID/unique"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:68
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
+"assurance/ID/eppn-unique-no-reassign"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:69
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
+"assurance/ATP/ePA-1m"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:71
+msgid ""
+"Pseudonymous requires that eduPersonAssurance at least contains https://"
+"refeds.org/assurance"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:73
+msgid "Pseudonymous requires pairwise-id."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:75
+msgid "Pseudonymous requires schacHomeOrganization."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:77
+msgid "Pseudonymous requires eduPersonScopedAffiliation."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:79
+msgid "All the attributes required to fulfil Pseudonymous were sent"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:81
+msgid "Pseudonymous attributes OK, Entity Category Support OK"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:83
+msgid "Pseudonymous attributes OK, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:85
+msgid "The IdP supports Pseudonymous but doesn't announce it in its metadata."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:87
+msgid ""
+"Please add 'https://refeds.org/category/pseudonymous' to the list of "
+"supported ECs in Metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:89
+msgid "Pseudonymous attributes missing, BUT Entity Category Support claimed"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:91
+msgid "Pseudonymous attribute missing, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:94
+msgid "Personalized requires eduPersonAssurance."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:96
+msgid ""
+"The IdP does NOT support Pseudonymous but it claims that it does in its "
+"metadata!!"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:98
+msgid ""
+"Personalized requires that eduPersonAssurance at least contains https://"
+"refeds.org/assurance"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:100
+msgid "Personalized requires displayName, givenName and sn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:102
+msgid "Personalized requires mail."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:104
+msgid "Personalized requires subject-id."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:106
+msgid "Personalized requires schacHomeOrganization."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:108
+msgid "Personalized requires eduPersonScopedAffiliation."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:110
+msgid "All the attributes required to fulfil Personalized were sent"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:112
+msgid "Personalized attributes OK, Entity Category Support OK"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:114
+msgid "Personalized attributes OK, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:116
+msgid "The IdP supports Personalized but doesn't announce it in its metadata."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:118
+msgid ""
+"Please add 'https://refeds.org/category/personalized' to the list of "
+"supported ECs in Metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:120
+msgid "Personalized attributes missing, BUT Entity Category Support claimed"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:122
+msgid "Personalized attribute missing, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:125
+msgid ""
+"The IdP does NOT support Personalized but it claims that it does in its "
+"metadata!!"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:127
+msgid "The IDP has not sent any attributes."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:129
+#, php-format
+msgid "The IDP has only sent %d attributes."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:131
+msgid "Fulfils Code of Conduct<br>"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:133
+msgid "CoCo OK, Entity Category Support OK"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:135
+msgid "CoCo OK, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:137
+msgid "The IdP supports CoCo but doesn't announce it in its metadata."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:139
+msgid ""
+"Please add 'http://www.geant.net/uri/dataprotection-code-of-conduct/v1' to "
+"the list of supported ECs in Metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:140
+msgid ""
+"Please add 'https://refeds.org/category/code-of-conduct/v2' to the list of "
+"supported ECs in Metadata"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:142
+msgid "CoCo is not supported, BUT Entity Category Support is claimed"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:144
+msgid "Support for CoCo missing, Entity Category Support missing"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:146
+msgid ""
+"The IdP does NOT support CoCo but it claims that it does in its metadata!!"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:150
+msgid ""
+"schacPersonalUniqueCode in wrong case. Not "
+"urn:schac:personalUniqueCode:int:esi. Might create problem in some SP:s"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:152
+msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:154
+msgid "schacPersonalUniqueCode OK"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:156
+msgid "schacPersonalUniqueCode OK. BUT wrong case"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:158
+msgid ""
+"schacPersonalUniqueCode not starting with "
+"urn:schac:personalUniqueCode:int:esi:"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:160 www/html/src/DatabaseTextsSWAMID.php:7
+msgid ""
+"schacPersonalUniqueCode should start with "
+"urn:schac:personalUniqueCode:int:esi:"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:162
+msgid "More than one schacPersonalUniqueCode"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:164
+msgid "Missing schacPersonalUniqueCode"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:167
+msgid "Sends invalid Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:169
+msgid "Missing https://refeds.org/assurance for user."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:172
+msgid "Missing some Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:174 www/html/src/DatabaseTextsSWAMID.php:17
+msgid "Identity Provider is sending invalid Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:176
+msgid ""
+"Missing Assurance information. Expected at least https://refeds.org/assurance"
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:178
+msgid ""
+"Assurance attribute release for current user follows REFED's recommendations."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:180
+msgid "Sends recommended Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:183
+msgid "Authentication-instant hasn't updated after forceAuthn was requested."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:185
+#, php-format
+msgid "Identity Provider supports %s and ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:187
+msgid "Supports REFEDS MFA and ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:189
+msgid "Supports REFEDS MFA but not ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:191
+#, php-format
+msgid "Identity Provider supports %s."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:193
+msgid "Supports REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:195
+#, php-format
+msgid "Identity Provider supports %s but not ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:197
+msgid "Does support ForceAuthn but not REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:199
+msgid "Does neither support REFEDS MFA or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:201
+msgid "Does not support REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:203
+#, php-format
+msgid "Identity Provider does support ForceAuthn but not %s."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:205
+#, php-format
+msgid "Identity Provider does neither support %s or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:207
+#, php-format
+msgid "Identity Provider does not support %s."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:3
+msgid ""
+"schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or "
+"&lt;sHO&gt;.se"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:5
+msgid ""
+"schacPersonalUniqueCode starting with "
+"urn:schac:personalUniqueCode:int:esi:se:"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:9
+msgid ""
+"Identity Provider is not approved for any SWAMID Identity Assurance Profiles "
+"but sends Assurance information!."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:11
+msgid "Assurance Profile missing. Sends Assurance information!"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:13
+msgid ""
+"Identity Provider is not approved for any SWAMID Identity Assurance Profiles."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:15
+msgid "Assurance Profile missing."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:19
+msgid "Have Assurance Profile. Sends invalid Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:21
+msgid ""
+"Missing Assurance information. Expected at least http://www.swamid.se/policy/"
+"assurance/al1"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:23
+msgid ""
+"Have Assurance Profile. Missing http://www.swamid.se/policy/assurance/al1 "
+"for user."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:25
+msgid "Have Assurance Profile. Missing some Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:27
+msgid "Have Assurance Profile. Sends recommended Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:30
+#: www/html/src/DatabaseTextsSWAMID.php:32
+#: www/html/src/DatabaseTextsSWAMID.php:34
+msgid ""
+"Identity Provider is approved for at least one SWAMID Identity Assurance "
+"Profiles."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:37
+msgid ""
+"Identity Provider is approved for at least one SWAMID Identity Assurance "
+"Profiles' and attribute release for current user follows SWAMID's "
+"recommendations."
+msgstr ""
+
+#: www/html/src/Display.php:54 www/html/src/Display.php:74
+#: www/html/src/Display.php:121 www/html/src/IdPCheck.php:431
+#, php-format
+msgid "Attribute"
+msgstr ""
+
+#: www/html/src/Display.php:72
+#, php-format
+msgid "Identity Provider attributes in metadata"
+msgstr ""
+
+#: www/html/src/Display.php:119
+#, php-format
+msgid "Identity Provider sessions attributes"
+msgstr ""
+
+#: www/html/src/Display.php:147 www/html/src/Display.php:183
+#: www/html/src/Display.php:214 www/html/src/IdPCheck.php:175
+#, php-format
+msgid "Test"
+msgstr ""
+
+#: www/html/src/Display.php:147 www/html/src/Display.php:183
+#: www/html/src/Display.php:214
+#, php-format
+msgid "Result"
+msgstr ""
+
+#: www/html/src/Display.php:156
+#, php-format
+msgid "Run test"
+msgstr ""
+
+#: www/html/src/Display.php:205
+msgid "European Student Identifier (student account)"
+msgstr ""
+
+#: www/html/src/Display.php:206
+msgid "European Student Identifier (any account)"
+msgstr ""
+
+#: www/html/src/Display.php:246
+msgid "Run NEW test"
+msgstr ""
+
+#: www/html/src/Display.php:246
+msgid "Rerun test"
+msgstr ""
+
+#: www/html/src/Display.php:281
+#, php-format
+msgid "Received"
+msgstr ""
+
+#: www/html/src/Display.php:291 www/html/src/IdPCheck.php:987
+#, php-format
+msgid "Missing"
+msgstr ""
+
+#: www/html/src/Display.php:299
+#, php-format
+msgid "Not expected"
+msgstr ""
+
+#: www/html/src/Display.php:307 www/html/src/IdPCheck.php:1060
+#, php-format
+msgid "Test result"
+msgstr ""
+
+#: www/html/src/Display.php:337
+#, php-format
+msgid "unknown tab"
+msgstr ""
+
+#: www/html/src/Display.php:367
+msgid "Other results"
+msgstr ""
+
+#: www/html/src/Helper.php:18
+msgid "IdP home Federation"
+msgstr ""
+
+#: www/html/src/HTML.php:43
+msgid "Release check for"
+msgstr ""
+
+#: www/html/src/HTML.php:100
+#, php-format
+msgid "About %s"
+msgstr ""
+
+#: www/html/src/HTML.php:113
+msgid "Contact us"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:174
+#, php-format
+msgid "Test info"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:176
+#, php-format
+msgid "Tested IdP"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:180
+msgid "No previous test"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:185
+msgid "Previous test"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:191
+msgid "Show the results"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:197 www/html/src/IdPCheck.php:202
+msgid "Next test"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:322
+msgid "Checking as Stud-account, saving <b>two</b> results"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:326
+msgid "Checking as none Stud-account, saving <b>one</b> result"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:351
+msgid "Received attributes"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:354
+msgid "Missing attributes (might be OK, see comments below)"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:358
+msgid "Attributes that were not requested/expected/needed"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:399
+#, php-format
+msgid "AuthnContext-Class = %s was requested<br>but %s was revived."
+msgstr ""
+
+#: www/html/src/IdPCheck.php:975
+#, php-format
+msgid "Assurance Levels"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:977
+#, php-format
+msgid "Assurance Level of user"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:979
+#, php-format
+msgid "Received Assurance Values"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:981
+msgid "None"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1002
+msgid "No Assurance information recived"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1041
+msgid "Failed missing old Authentication-Instant."
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1041
+msgid "Please restart test"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1046
+#, php-format
+msgid "Not done within 10 minutes! Was done in %d seconds"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1049
+msgid "Error"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1057
+msgid "Not tested"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1062
+#, php-format
+msgid "ACCR status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1063
+#, php-format
+msgid "ForceAuthn status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1065
+msgid "AL1 status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1066
+msgid "AL2 status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1067
+msgid "AL3 status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1068
+msgid "RAF Low status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1069
+msgid "RAF Medium status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1070
+msgid "RAF High status"
+msgstr ""
+
+#: www/html/src/IdPCheck.php:1075
+msgid "Identity Provider approved Assurance"
+msgstr ""
