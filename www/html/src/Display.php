@@ -274,7 +274,7 @@ class Display {
       printf ("
                 <i class=\"fas fa-exclamation\"></i>
           <div>%s</div>
-          <div class=\"clear\"></div><br>", $row['status_ERROR']);
+          <div class=\"clear\"></div><br>", $this->helper->getStatusTranslated($row['status_ERROR']));
     }
     if ( $row['attr_OK'] ) {
       printf ("
