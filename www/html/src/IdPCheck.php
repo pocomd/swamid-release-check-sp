@@ -587,7 +587,7 @@ class IdPCheck {
     }
     if ( $randSisOK ) {
       $this->status['ok'][] = 'All the attributes required to fulfil R&S were sent.';
-      if ( isset($ecs[$this->ecEndpoints["EC_RANDS"]]) ) { # NOSONAR Should be http://
+      if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
@@ -595,7 +595,7 @@ class IdPCheck {
         $this->status['warning'][] = "Please add [[EC_RANDS]] " . $this->toListStr; # NOSONAR Should be http://
       }
     } else {
-      if ( isset($ecs[$this->ecEndpoints["EC_RANDS"]]) ) { # NOSONAR Should be http://
+      if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
         $this->status['testResult'] = 'R&S attributes missing, BUT Entity Category Support claimed';
         $this->status['error'][] = 'The IdP does NOT support R&S but it claims that it does in its metadata!!';
       } else {
@@ -628,7 +628,7 @@ class IdPCheck {
 
     if ( $checkIsOK ) {
       $this->status['ok'][] = 'All the attributes required to fulfil Anonymous were sent.';
-      if ( isset($ecs[$this->ecEndpoints["EC_ANON"]]) ) {
+      if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
         $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support missing';
@@ -636,7 +636,7 @@ class IdPCheck {
         $this->status['warning'][] = "Please add '[[EC_ANON]]' " . $this->toListStr;
       }
     } else {
-      if ( isset($ecs[$this->ecEndpoints["EC_ANON"]]) ) {
+      if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
         $this->status['testResult'] = 'Anonymous attributes missing, BUT Entity Category Support claimed';
         $this->status['error'][] = 'The IdP does NOT support Anonymous but it claims that it does in its metadata!!';
       } else {
@@ -700,7 +700,7 @@ class IdPCheck {
 
     if ( $checkIsOK ) {
       $this->status['ok'][] = 'All the attributes required to fulfil Pseudonymous were sent.';
-      if ( isset($ecs[$this->ecEndpoints["EC_PANON"]]) ) {
+      if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
         $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support missing';
@@ -708,7 +708,7 @@ class IdPCheck {
         $this->status['warning'][] = "Please add '[[EC_PANON]]' " . $this->toListStr;
       }
     } else {
-      if ( isset($ecs[$this->ecEndpoints["EC_PANON"]]) ) {
+      if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
         $this->status['testResult'] = 'Pseudonymous attributes missing, BUT Entity Category Support claimed';
         $this->status['error'][] = 'The IdP does NOT support Pseudonymous but it claims that it does in its metadata!!';
       } else {
@@ -783,7 +783,7 @@ class IdPCheck {
 
     if ( $checkIsOK ) {
       $this->status['ok'][] = 'All the attributes required to fulfil Personalized were sent.';
-      if ( isset($ecs[$this->ecEndpoints["EC_PERS"]]) ) {
+      if ( isset($ecs['https://refeds.org/category/personalized']) ) {
         $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support missing';
@@ -791,7 +791,7 @@ class IdPCheck {
         $this->status['warning'][] = "Please add '[[EC_PERS]]' " . $this->toListStr;
       }
     } else {
-      if ( isset($ecs[$this->ecEndpoints["EC_PERS"]]) ) {
+      if ( isset($ecs['https://refeds.org/category/personalized']) ) {
         $this->status['testResult'] = 'Personalized attributes missing, BUT Entity Category Support claimed';
         $this->status['error'][] = 'The IdP does NOT support Personalized but it claims that it does in its metadata!!';
       } else {
