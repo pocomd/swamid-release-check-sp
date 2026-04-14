@@ -49,7 +49,7 @@ switch ($_GET['errorType']) {
 function showMetadataException() {
   $mail = str_replace('mailto:', '', $_GET['contactEmail']);?>
     <h1><?= _('Unknown Identity Provider') ?></h1>
-    <p><?= _('To report this problem, please contact the site administrator at') ?> <a href="mailto:<?= urlencode($mail) ?>"><?= urlencode($mail) ?></a>.
+    <p><?= _('To report this problem, please contact the site administrator at') ?> <a href="mailto:<?= htmlspecialchars($mail) ?>"><?= htmlspecialchars($mail) ?></a>.
     </p>
     <p><?= _('Please include the following error message in any email') ?>:</p>
     <p class="error"><?= _('Identity provider lookup failed at') ?>(<?=htmlspecialchars($_GET['requestURL'])?>)</p>
@@ -64,7 +64,7 @@ function showFatalProfileException() {
     <p><?= _('The identity provider supplying your login credentials does not support the necessary capabilities.') ?></p>
     <p><?= _('To report this problem, please contact the IdP administrator.') ?> <?=$errorURL?><br>
     <?= _('If your are the IdP administrator you can reach out to') ?>
-    <a href="mailto:<?= urlencode($mail) ?>"><?= urlencode($mail) ?></a>.
+    <a href="mailto:<?= htmlspecialchars($mail) ?>"><?= htmlspecialchars($mail) ?></a>.
     </p>
     <p><?= _('Please include the following error message in any email') ?>:</p>
     <p class="error"><?= _('Identity provider lookup failed at') ?> (<?=htmlspecialchars($_GET['requestURL'])?>)</p>
