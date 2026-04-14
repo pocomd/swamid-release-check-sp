@@ -138,7 +138,6 @@ class IdPCheck {
     $this->registrationAuthority = isset($_SERVER['Meta-registrationAuthority']) ? $_SERVER['Meta-registrationAuthority'] : '';
     $this->sessionID = isset($_GET['session']) ? $_GET['session'] : session_id();
     $this->idp=isset($_SERVER['Shib-Identity-Provider']) ? $_SERVER['Shib-Identity-Provider'] : '';
-    $this->ecEndpoints = $this->config->getCategoryEndpoints() ?? array();
   }
 
   /**
@@ -273,12 +272,12 @@ class IdPCheck {
       case 'CoCov1' :
         $this->checkNumberOfAttributes(sizeof($samlValues));
         $this->checkCoCo($ecs,
-          $this->ecEndpoints["EC_COCO1"]); # NOSONAR Should be http://
+          'http://www.geant.net/uri/dataprotection-code-of-conduct/v1'); # NOSONAR Should be http://
         break;
       case 'CoCov2' :
         $this->checkNumberOfAttributes(sizeof($samlValues));
         $this->checkCoCo($ecs,
-          $this->ecEndpoints["EC_COCO2"]);
+          'https://refeds.org/category/code-of-conduct/v2');
         break;
       case 'ESI' :
         $this->checkESI($okValues);
@@ -1130,7 +1129,6 @@ class IdPCheck {
     if ($this->status['warning'] != array() ) {
       print '    <i class="fas fa-exclamation-triangle"></i><div>' . $this->helper->getStatusTranslated($this->status['warning']) . "</div>\n";
     }
-    $this->config->getCategoryEndpoints();
     # If we have any text in Error the show Error image and text
     if ($this->status['error'] != array() ) {
       print '    <i class="fas fa-exclamation"></i><div>' . $this->helper->getStatusTranslated($this->status['error']) . "</div>\n";
