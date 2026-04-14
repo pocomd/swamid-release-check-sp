@@ -14,9 +14,11 @@ class Helper {
   public function __construct(Configuration $config)
   {
     $this->config = $config;
+    $endpoints = $this->config->getCategoryEndpoints() ?? array();
+
     $this->replacements = array (
       "FED_NAME" => ($this->config->getFederation()["displayName"] ?? _("IdP home Federation")),
-    );
+    ) + $endpoints;
   }
 
   /**
@@ -56,5 +58,21 @@ class Helper {
     }
 
     return implode("<br>", $string);
+  }
+
+  public function trans(string $statusTextArr): string {
+    $placeholders = is_array($this->replacements) ? $this->replacements : [];
+
+    $trans = (string) _($statusTextArr);
+    $trans = preg_replace_callback('/\[\[(.*?)\]\]/',
+        function ($matches) use ($placeholders) {
+            $key = $matches[1];
+
+            return $placeholders[$key] ?? $key;
+        },
+        $trans
+    );
+
+    return $trans;
   }
 }

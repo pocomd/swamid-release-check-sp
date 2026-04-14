@@ -35,6 +35,12 @@ class Configuration {
   private array $template = array ();
 
   /**
+   * UI entity category endpoints
+   *
+   */
+  private array $entityCategoryEndpoints = array ();
+
+  /**
    * The database connection
    */
   private PDO $db;
@@ -49,7 +55,7 @@ class Configuration {
   public function __construct($startDB = true) {
     include __DIR__ . '/../config.php'; # NOSONAR
 
-    $reqParams = array('db', 'basename', 'federation', 'languages');
+    $reqParams = array('db', 'basename', 'federation', 'languages', 'entityCategoryEndpoints');
     $reqParamsDB = array('servername', 'username', 'password',
       'name');
     $reqParamsFederation = array(
@@ -114,6 +120,9 @@ class Configuration {
     $this->federation = $federation;
 
     $this->basename = $basename;
+    
+    $this->entityCategoryEndpoints = $entityCategoryEndpoints;
+    
     # Header/Footer content
     $this->template = $template;
 
@@ -292,6 +301,17 @@ class Configuration {
    */
   public function getLanguages() {
     return $this->languages;
+  }
+
+  /**
+   * Return languages
+   *
+   * Return an array with languages to translate GUI into
+   *
+   * @return array
+   */
+  public function getCategoryEndpoints() {
+    return $this->entityCategoryEndpoints;
   }
 
   /**

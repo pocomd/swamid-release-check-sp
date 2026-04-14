@@ -115,3 +115,14 @@ $template = array(
     'template' => '',
   )
 );
+
+$entityCategoryEndpoints = array(
+  "EC_RANDS"      => "http://refeds.org/category/research-and-scholarship",
+  "EC_COCO1"      => "http://www.geant.net/uri/dataprotection-code-of-conduct/v1",
+  "EC_COCO2"      => "https://refeds.org/category/code-of-conduct/v2",
+  "EC_ANON"       => "https://refeds.org/category/anonymous",
+  "EC_PERS"       => "https://refeds.org/category/personalized",
+  "EC_PANON"      => "https://refeds.org/category/pseudonymous",
+  "EC_ESI"        => "https://myacademicid.org/entity-categories/esi",
+  "RAF_ASSURANCE" => "https://refeds.org/assurance",
+);

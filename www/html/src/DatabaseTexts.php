@@ -26,7 +26,7 @@ _('R&S attributes OK, Entity Category Support missing');
 #IdPCheck.php:588: #status_WARNING
 _("The IdP supports R&S but doesn't announce it in its metadata.");
 #IdPCheck.php:589: #status_WARNING
-_("Please add 'http://refeds.org/category/research-and-scholarship' to the list of supported ECs in metadata");
+_("Please add '[[EC_RANDS]]' to the list of supported ECs in metadata");
 #IdPCheck.php:593: #testResult
 _('R&S attributes missing, BUT Entity Category Support claimed');
 #IdPCheck.php:594: #status_ERROR
@@ -47,7 +47,7 @@ _('Anonymous attributes OK, Entity Category Support missing');
 #IdPCheck.php:629: #status_WARNING
 _("The IdP supports Anonymous but doesn't announce it in its metadata");
 #IdPCheck.php:630: #status_WARNING
-_("Please add 'https://refeds.org/category/anonymous' to the list of supported ECs in metadata");
+_("Please add '[[EC_ANON]]' to the list of supported ECs in metadata");
 #IdPCheck.php:634: #testResult
 _('Anonymous attributes missing, BUT Entity Category Support claimed');
 #IdPCheck.php:635: #status_ERROR
@@ -64,7 +64,7 @@ _('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/a
 _('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ID/eppn-unique-no-reassign');
 _('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ATP/ePA-1m');
 #IdPCheck.php:677: #status_WARNING
-_('Pseudonymous requires that eduPersonAssurance at least contains https://refeds.org/assurance');
+_('Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]');
 #IdPCheck.php:682: #status_WARNING
 _('Pseudonymous requires pairwise-id.');
 #IdPCheck.php:687: #status_WARNING
@@ -80,7 +80,7 @@ _('Pseudonymous attributes OK, Entity Category Support missing');
 #IdPCheck.php:701: #status_WARNING
 _("The IdP supports Pseudonymous but doesn't announce it in its metadata.");
 #IdPCheck.php:702: #status_WARNING
-_("Please add 'https://refeds.org/category/pseudonymous' to the list of supported ECs in metadata");
+_("Please add '[[EC_PANON]]' to the list of supported ECs in metadata");
 #IdPCheck.php:706: #testResult
 _('Pseudonymous attributes missing, BUT Entity Category Support claimed');
 #IdPCheck.php:707: #status_ERROR
@@ -91,7 +91,7 @@ _('Pseudonymous attribute missing, Entity Category Support missing');
 #IdPCheck.php:727: #status_WARNING
 _('Personalized requires eduPersonAssurance.');
 #IdPCheck.php:749: #status_WARNING
-_('Personalized requires that eduPersonAssurance at least contains https://refeds.org/assurance');
+_('Personalized requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]');
 #IdPCheck.php:755: #status_WARNING
 _('Personalized requires displayName, givenName and sn.');
 #IdPCheck.php:760: #status_WARNING
@@ -111,7 +111,7 @@ _('Personalized attributes OK, Entity Category Support missing');
 #IdPCheck.php:784: #status_WARNING
 _("The IdP supports Personalized but doesn't announce it in its metadata.");
 #IdPCheck.php:785: #status_WARNING
-_("Please add 'https://refeds.org/category/personalized' to the list of supported ECs in metadata");
+_("Please add '[[EC_PERS]]' to the list of supported ECs in metadata");
 #IdPCheck.php:789: #testResult
 _('Personalized attributes missing, BUT Entity Category Support claimed');
 #IdPCheck.php:790: #status_ERROR
@@ -132,8 +132,8 @@ _('CoCo OK, Entity Category Support missing');
 #IdPCheck.php:835: #status_WARNING
 _("The IdP supports CoCo but doesn't announce it in its metadata.");
 #IdPCheck.php:836: #status_WARNING
-_("Please add 'http://www.geant.net/uri/dataprotection-code-of-conduct/v1' to the list of supported ECs in metadata");
-_("Please add 'https://refeds.org/category/code-of-conduct/v2' to the list of supported ECs in metadata");
+_("Please add '[[EC_COCO1]]' to the list of supported ECs in metadata");
+_("Please add '[[EC_COCO2]]' to the list of supported ECs in metadata");
 #IdPCheck.php:840: #testResult
 _('CoCo is not supported, BUT Entity Category Support is claimed');
 #IdPCheck.php:841: #status_ERROR
@@ -164,9 +164,9 @@ _('Identity Provider is sending invalid Assurance information.');
 #IdPCheck.php:999: #testResult
 _('Sends invalid Assurance information.');
 #IdPCheck.php:1001: #status_ERROR
-_('Missing Assurance information. Expected at least https://refeds.org/assurance');
+_('Missing Assurance information. Expected at least [[RAF_ASSURANCE]]');
 #IdPCheck.php:1002: #testResult
-_('Missing https://refeds.org/assurance for user.');
+_('Missing [[RAF_ASSURANCE]] for user.');
 #IdPCheck.php:1004: #status_WARNING
 #IdPCheck.php:1005: #testResult
 _('Missing some Assurance information.');
