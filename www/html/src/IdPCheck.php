@@ -72,7 +72,7 @@ class IdPCheck {
   /**
    * Request adding ECS to Metadata
    */
-  protected $toListStr = 'to the list of supported ECs in Metadata';
+  protected $toListStr = 'to the list of supported ECs in metadata';
 
   /**
    * List of allow/expected values in eduPersonAssuance
@@ -294,7 +294,7 @@ class IdPCheck {
 
     # If we have no warnings or error then we are OK
     if ( $this->status['ok'] == array() && $this->status['warning'] == array() && $this->status['error'] == array() ) {
-      $this->status['ok'][] = 'Did not send any attributes that were not requested';
+      $this->status['ok'][] = 'Did not send any attributes that were not requested.';
       if ( $this->status['testResult'] == '' ) {
         $this->status['testResult'] = 'Did not send any attributes that were not requested.';
       }
@@ -580,15 +580,13 @@ class IdPCheck {
       $this->status['warning'][] = 'R&S requires eduPersonPrincipalName.';
     }
     if ( $randSisOK ) {
-      $this->status['ok'][] = 'All the attributes required to fulfil R&S were sent';
+      $this->status['ok'][] = 'All the attributes required to fulfil R&S were sent.';
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports R&S but doesn't announce it in its metadata.";
-        $part2 = "Please add 'http://refeds.org/category/research-and-scholarship' "; # NOSONAR Should be http://
-        $part3 = $this->toListStr;
-        $this->status['warning'][] = $part1 . '<br>' . $part2 . $part3 . '<br>';
+        $this->status['warning'][] = "The IdP supports R&S but doesn't announce it in its metadata.";
+        $this->status['warning'][] = "Please add 'http://refeds.org/category/research-and-scholarship' " . $this->toListStr; # NOSONAR Should be http://
       }
     } else {
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
@@ -623,15 +621,13 @@ class IdPCheck {
     }
 
     if ( $checkIsOK ) {
-      $this->status['ok'][] = 'All the attributes required to fulfil Anonymous were sent';
+      $this->status['ok'][] = 'All the attributes required to fulfil Anonymous were sent.';
       if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
         $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports Anonymous but doesn't announce it in its metadata";
-        $part2 =  "Please add" . " 'https://refeds.org/category/anonymous' ";
-        $part3 =  $this->toListStr;
-        $this->status['warning'][] = $part1 . '<br>' . $part2 . $part3 .'<br>';
+        $this->status['warning'][] = "The IdP supports Anonymous but doesn't announce it in its metadata";
+        $this->status['warning'][] = "Please add 'https://refeds.org/category/anonymous' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
@@ -674,12 +670,11 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
+            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
           }
         }
       } else {
-        $this->status['warning'][] =
-          'Pseudonymous requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
+        $this->status['warning'][] = 'Pseudonymous requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
       }
     }
     if (! isset($attributes['pairwise-id']) ) {
@@ -698,14 +693,13 @@ class IdPCheck {
     }
 
     if ( $checkIsOK ) {
-      $this->status['ok'][] = 'All the attributes required to fulfil Pseudonymous were sent';
+      $this->status['ok'][] = 'All the attributes required to fulfil Pseudonymous were sent.';
       if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
         $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports Pseudonymous but doesn't announce it in its metadata.";
-        $part2 = "Please add 'https://refeds.org/category/pseudonymous' ". _($this->toListStr);
-        $this->status['warning'][] = $part1 . '<br>' . $part2 .  '<br>';
+        $this->status['warning'][] = "The IdP supports Pseudonymous but doesn't announce it in its metadata.";
+        $this->status['warning'][] = "Please add 'https://refeds.org/category/pseudonymous' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
@@ -748,12 +742,11 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part . '.<br>';
+            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
           }
         }
       } else {
-        $this->status['warning'][] =
-          'Personalized requires that eduPersonAssurance at least contains ' . self::RAF_BASE . ' .<br>';
+        $this->status['warning'][] = 'Personalized requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
       }
     }
     # displayName, givenName and sn must exist for Personalized
@@ -783,14 +776,13 @@ class IdPCheck {
     }
 
     if ( $checkIsOK ) {
-      $this->status['ok'][] = 'All the attributes required to fulfil Personalized were sent';
+      $this->status['ok'][] = 'All the attributes required to fulfil Personalized were sent.';
       if ( isset($ecs['https://refeds.org/category/personalized']) ) {
         $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support missing';
-        $part1 = "The IdP supports Personalized but doesn't announce it in its metadata.";
-        $part2 = "Please add 'https://refeds.org/category/personalized' " . $this->toListStr;
-        $this->status['warning'][] = $part1 . '<br>' . $part2 . '<br>';
+        $this->status['warning'][] = "The IdP supports Personalized but doesn't announce it in its metadata.";
+        $this->status['warning'][] = "Please add 'https://refeds.org/category/personalized' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/personalized']) ) {
@@ -818,7 +810,7 @@ class IdPCheck {
     if ($nrOfAttributes == 0) {
       $this->status['error'][] = 'The IDP has not sent any attributes.';
     } elseif ($nrOfAttributes < $minimum) {
-      $this->status['error'][] = sprintf('The IDP has only sent %d attributes.', $nrOfAttributes) ;
+      $this->status['error'][] = 'The IDP has sent less than minumum numer of attributes for this test.';
     }
   }
 
@@ -840,9 +832,8 @@ class IdPCheck {
         $this->status['testResult'] = 'CoCo OK, Entity Category Support OK';
       } else {
         $this->status['testResult'] = 'CoCo OK, Entity Category Support missing';
-        $part1 = "The IdP supports CoCo but doesn't announce it in its metadata.";
-        $part2 = "Please add '" .$ecsValue. "' " . $this->toListStr;
-        $this->status['warning'][] = $part1 . '<br>' . $part2 . '<br>';
+        $this->status['warning'][] = "The IdP supports CoCo but doesn't announce it in its metadata.";
+        $this->status['warning'][] = "Please add '" .$ecsValue. "' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs[$ecsValue]) )  {
@@ -1099,7 +1090,7 @@ class IdPCheck {
         $this->status['error'][] = sprintf('Identity Provider does neither support %s or ForceAuthn.', $accrName);
         $this->status['testResult'] = sprintf('Does neither support %s or ForceAuthn.', $accrName);
       } else {
-        $this->status['error'][] =  sprintf('Identity Provider does not support %s.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does not support %s.', $accrName);
         $this->status['testResult'] = sprintf('Does not support %s.', $accrName);
       }
     }

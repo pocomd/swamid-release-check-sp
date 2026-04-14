@@ -46,9 +46,10 @@ switch ($_GET['errorType']) {
 </html>
 
 <?php
-function showMetadataException() {?>
+function showMetadataException() {
+  $mail = str_replace('mailto:', '', $_GET['contactEmail']);?>
     <h1><?= _('Unknown Identity Provider') ?></h1>
-    <p><?= _('To report this problem, please contact the site administrator at <a href="mailto:operations@swamid.se">operations@swamid.se</a>.') ?>
+    <p><?= _('To report this problem, please contact the site administrator at') ?> <a href="mailto:<?= urlencode($mail) ?>"><?= urlencode($mail) ?></a>.
     </p>
     <p><?= _('Please include the following error message in any email') ?>:</p>
     <p class="error"><?= _('Identity provider lookup failed at') ?>(<?=htmlspecialchars($_GET['requestURL'])?>)</p>
@@ -57,13 +58,13 @@ function showMetadataException() {?>
 <?php }
 
 function showFatalProfileException() {
-    global $errorURL;
-    $mail = str_replace('mailto:', '', $_GET['contactEmail']);?>
+  global $errorURL;
+  $mail = str_replace('mailto:', '', $_GET['contactEmail']);?>
     <h1><?= _('Unusable Identity Provider') ?></h1>
     <p><?= _('The identity provider supplying your login credentials does not support the necessary capabilities.') ?></p>
     <p><?= _('To report this problem, please contact the IdP administrator.') ?> <?=$errorURL?><br>
     <?= _('If your are the IdP administrator you can reach out to') ?>
-    <a href="mailto:<?= $mail ?>"><?= $mail ?></a>.
+    <a href="mailto:<?= urlencode($mail) ?>"><?= urlencode($mail) ?></a>.
     </p>
     <p><?= _('Please include the following error message in any email') ?>:</p>
     <p class="error"><?= _('Identity provider lookup failed at') ?> (<?=htmlspecialchars($_GET['requestURL'])?>)</p>
@@ -80,7 +81,7 @@ function showInfo() { ?>
       <tr><th><?= _('Key') ?></th><th><?= _('Value') ?></th></tr>
     <?php
     foreach ($_GET as $key => $value) {
-      printf('<tr><td>%s = %s</td></tr>%s', $key, htmlspecialchars($value), "\n");
+      printf('<tr><td>%s = %s</td></tr>%s', htmlspecialchars($key), htmlspecialchars($value), "\n");
     }
     print "</table>";
     ?>
