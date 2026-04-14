@@ -278,7 +278,7 @@ class IdPCheck {
       case 'CoCov2' :
         $this->checkNumberOfAttributes(sizeof($samlValues));
         $this->checkCoCo($ecs,
-          $this->ecEndpoints["EC_COCO1"]);
+          $this->ecEndpoints["EC_COCO2"]);
         break;
       case 'ESI' :
         $this->checkESI($okValues);
@@ -1130,6 +1130,7 @@ class IdPCheck {
     if ($this->status['warning'] != array() ) {
       print '    <i class="fas fa-exclamation-triangle"></i><div>' . $this->helper->getStatusTranslated($this->status['warning']) . "</div>\n";
     }
+    $this->config->getCategoryEndpoints();
     # If we have any text in Error the show Error image and text
     if ($this->status['error'] != array() ) {
       print '    <i class="fas fa-exclamation"></i><div>' . $this->helper->getStatusTranslated($this->status['error']) . "</div>\n";
