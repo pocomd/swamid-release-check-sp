@@ -19,9 +19,23 @@ class Localize {
     $selectedLang = '';
 
     if (isset($_GET['lang'])) {
-      $selectedLang = 'en';
-      if ($_GET['lang'] == 'sv') {
-        $selectedLang = 'sv_SE';
+      switch ($_GET['lang']) {
+        case 'fr':
+          $selectedLang = 'fr_FR';
+          break;
+        case 'it':
+          $selectedLang = 'it_IT';
+          break;
+        case 'sr':
+          $selectedLang = 'sr_RS';
+          break;
+        case 'sv':
+          # Swedish
+          $selectedLang = 'sv_SE';
+          break;
+        case 'en':
+        default:
+          $selectedLang = '';
       }
       $_SESSION['lang'] = $selectedLang;
     }

@@ -25,7 +25,7 @@ class Display {
   const SQL_TESTS = 'SELECT * FROM `tests` WHERE `test` = :test AND `testRun_id` = :testRun';
 
   const HTML_NO_RUN = 'no run';
-  const HTML_NOT_RUN_YET = "Test not run yet";
+  const HTML_NOT_RUN_YET = 'Test not run yet';
 
   /**
    * Setup the class
@@ -38,7 +38,7 @@ class Display {
     } else {
       $this->config = new Configuration();
     }
-    $this->helper = new Helper($this->config);
+    $this->helper = $this->config->getExtendedClass('Helper', $this->config);
     $this->testSuite = $this->config->getExtendedClass('TestSuite');
   }
 

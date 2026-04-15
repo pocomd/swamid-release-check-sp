@@ -197,20 +197,20 @@ class IdPCheckSWAMID extends IdPCheck {
       }
       $this->status['infoText'] = '';
     } else {
-      $this->status['infoText'] = sprintf('    <h3>Assurance Levels</h3>
+      $this->status['infoText'] = sprintf('    <h3>' . _('Assurance Levels') . '</h3>
     <table class="table table-striped table-bordered">
-      <tr><th>IdP approved Assurance Level</th><td>%s</td></tr>
-      <tr><th>Assurance Level of user</th><td>%s</td></tr>
+      <tr><th>' . _('IdP approved Assurance Level') . '</th><td>%s</td></tr>
+      <tr><th>' . _('Assurance Level of user') . '</th><td>%s</td></tr>
     </table>
-    <h3>Received Assurance Values</h3>
+    <h3>' . _('Received Assurance Values') . '</h3>
     <table class="table table-striped table-bordered">%s',
-        $this->idPApproved, $this->userAL == '' ? 'None' : $this->userAL, "\n");
+        $this->idPApproved, $this->userAL == '' ? _('None') : $this->userAL, "\n");
       foreach ($this->rafAttributes as $key => $data) {
         switch ($data['status']) {
           case 'Missing' :
             if ($data['level'] <= $this->userAL ) {
               $missing=true;
-              $this->status['infoText'] .= "    <tr><th>$key</th><td>Missing</td></tr>\n";
+              $this->status['infoText'] .= "    <tr><th>$key</th><td>" . _("Missing") . "</td></tr>\n";
             }
             break;
           case 'NotExpected' :
@@ -225,7 +225,7 @@ class IdPCheckSWAMID extends IdPCheck {
         }
       }
       if ($this->userAL == '') {
-        $this->status['infoText'] .= "    <tr><th>No Assurance information recived</th></tr>\n";
+        $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information recived") . "</th></tr>\n";
       }
       $this->status['infoText'] .="    </table>\n";
 
@@ -235,8 +235,8 @@ class IdPCheckSWAMID extends IdPCheck {
         $this->status['testResult'] = 'Have Assurance Profile. Sends invalid Assurance information.';
       } elseif ($this->userAL == '') {
         $this->status['ok'] .= 'Identity Provider is approved for at least one SWAMID Identity Assurance Profiles.<br>';
-        $this->status['error'] .= 'Missing Assurance information. Expected at least http://www.swamid.se/policy/assurance/al1<br>'; # NOSONAR Should be http://
-        $this->status['testResult'] = 'Have Assurance Profile. Missing http://www.swamid.se/policy/assurance/al1 for user.'; # NOSONAR Should be http://
+        $this->status['error'] .= 'Missing Assurance information. Expected at least [[SWAMID_ASSURANCE]]/al1<br>';
+        $this->status['testResult'] = 'Have Assurance Profile. Missing [[SWAMID_ASSURANCE]]/al1 for user.';
       } elseif ($missing) {
         $this->status['ok'] .= 'Identity Provider is approved for at least one SWAMID Identity Assurance Profiles.<br>';
         $this->status['warning'] .= 'Missing some Assurance information.<br>';
