@@ -124,7 +124,7 @@ class IdPCheck {
       $this->config = new Configuration();
     }
 
-    $this->helper = new Helper($this->config);
+    $this->helper = $this->config->getExtendedClass('Helper', $this->config);
     $a = func_get_args();
     $i = func_num_args();
     if (method_exists($this,$f='__construct'.$i)) {

@@ -38,7 +38,7 @@ class Display {
     } else {
       $this->config = new Configuration();
     }
-    $this->helper = new Helper($this->config);
+    $this->helper = $this->config->getExtendedClass('Helper', $this->config);
     $this->testSuite = $this->config->getExtendedClass('TestSuite');
   }
 
