@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-15 10:45+0200\n"
+"POT-Creation-Date: 2026-04-15 22:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -887,47 +887,123 @@ msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:183
-msgid "Supports REFEDS MFA and ForceAuthn."
+msgid "Supports no ACCR and ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:184
+msgid "Supports PasswordProtectedTransport and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:185
+msgid "Supports REFEDS SFA and ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:186
+msgid "Supports REFEDS MFA and ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:188
 msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:187
-msgid "Supports REFEDS MFA but not ForceAuthn."
-msgstr ""
-
-#: www/html/src/DatabaseTexts.php:189
-msgid "Identity Provider supports REFEDS MFA."
+#: www/html/src/DatabaseTexts.php:190
+msgid "Supports no ACCR but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports REFEDS MFA."
+msgid "Supports PasswordProtectedTransport but not ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:192
+msgid "Supports REFEDS SFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:193
-msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
+msgid "Supports REFEDS MFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:195
-msgid "Does support ForceAuthn but not REFEDS MFA."
+msgid "Identity Provider supports REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:197
-msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
+msgid "Supports no ACCR."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Supports PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:199
+msgid "Supports REFEDS SFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:200
+msgid "Supports REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:202
+msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:204
+msgid "Does support ForceAuthn but not no ACCR."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:205
+msgid "Does support ForceAuthn but not PasswordProtectedTransport."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:206
+msgid "Does support ForceAuthn but not REFEDS SFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:207
+msgid "Does support ForceAuthn but not REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:209
+msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:211
+msgid "Does neither support no ACCR or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:212
+msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:213
+msgid "Does neither support REFEDS SFA or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:214
 msgid "Does neither support REFEDS MFA or ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:201
+#: www/html/src/DatabaseTexts.php:216
 msgid "Identity Provider does not support REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:203
+#: www/html/src/DatabaseTexts.php:218
+msgid "Does not support no ACCR."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:219
+msgid "Does not support PasswordProtectedTransport."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:220
+msgid "Does not support REFEDS SFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:221
 msgid "Does not support REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:224
+msgid "Test not run yet"
 msgstr ""
 
 #: www/html/src/Display.php:54 www/html/src/Display.php:74
@@ -1160,4 +1236,8 @@ msgstr ""
 
 #: www/html/src/IdPCheck.php:1066
 msgid "Identity Provider approved Assurance"
+msgstr ""
+
+#: www/html/src/TestSuite.php:146
+msgid "No EC (shall not send any attributes!)"
 msgstr ""

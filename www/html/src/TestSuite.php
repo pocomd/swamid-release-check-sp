@@ -143,7 +143,7 @@ class TestSuite {
       'subtest'  => 'CoCov2',
     ),
     'noec'         => array (
-      'name'     => 'No EC (shall not send any attributes!)',
+      'name'     => _('No EC (shall not send any attributes!)'),
       'tab'      => 'entityCategory',
       'expected' => array (),
       'nowarn'   => array (
