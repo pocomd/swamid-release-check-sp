@@ -65,20 +65,4 @@ class Helper {
 
     return implode("<br>", $string);
   }
-
-  public function trans(string $statusTextArr): string {
-    $placeholders = is_array($this->replacements) ? $this->replacements : [];
-
-    $trans = (string) _($statusTextArr);
-    $trans = preg_replace_callback('/\[\[(.*?)\]\]/',
-        function ($matches) use ($placeholders) {
-            $key = $matches[1];
-
-            return $placeholders[$key] ?? $key;
-        },
-        $trans
-    );
-
-    return $trans;
-  }
 }

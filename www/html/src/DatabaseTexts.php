@@ -59,10 +59,10 @@ _('Anonymous attribute missing, Entity Category Support missing');
 _('Pseudonymous requires eduPersonAssurance.');
 #IdPCheck.php:673: #status_WARNING
 #IdPCheck.php:745: #status_WARNING
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/IAP/low');
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ID/unique');
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ID/eppn-unique-no-reassign');
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ATP/ePA-1m');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/IAP/low');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/unique');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/eppn-unique-no-reassign');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ATP/ePA-1m');
 #IdPCheck.php:677: #status_WARNING
 _('Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]');
 #IdPCheck.php:682: #status_WARNING
