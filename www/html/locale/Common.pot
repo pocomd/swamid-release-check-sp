@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-14 16:03+0200\n"
+"POT-Creation-Date: 2026-04-15 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,58 +17,58 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: www/html/error.php:15
+#: www/html/error.php:12
 #, php-format
 msgid "For more info visit this <a href=\"%s\">support-page</a>."
 msgstr ""
 
-#: www/html/error.php:51
+#: www/html/error.php:48
 msgid "Unknown Identity Provider"
 msgstr ""
 
-#: www/html/error.php:52
+#: www/html/error.php:49
 msgid "To report this problem, please contact the site administrator at"
 msgstr ""
 
-#: www/html/error.php:54 www/html/error.php:69
+#: www/html/error.php:51 www/html/error.php:66
 msgid "Please include the following error message in any email"
 msgstr ""
 
-#: www/html/error.php:55 www/html/error.php:70
+#: www/html/error.php:52 www/html/error.php:67
 msgid "Identity provider lookup failed at"
 msgstr ""
 
-#: www/html/error.php:56 www/html/error.php:71
+#: www/html/error.php:53 www/html/error.php:68
 msgid "EntityID"
 msgstr ""
 
-#: www/html/error.php:63
+#: www/html/error.php:60
 msgid "Unusable Identity Provider"
 msgstr ""
 
-#: www/html/error.php:64
+#: www/html/error.php:61
 msgid ""
 "The identity provider supplying your login credentials does not support the "
 "necessary capabilities."
 msgstr ""
 
-#: www/html/error.php:65
+#: www/html/error.php:62
 msgid "To report this problem, please contact the IdP administrator."
 msgstr ""
 
-#: www/html/error.php:66
+#: www/html/error.php:63
 msgid "If your are the IdP administrator you can reach out to"
 msgstr ""
 
-#: www/html/error.php:80
+#: www/html/error.php:77
 msgid "Values"
 msgstr ""
 
-#: www/html/error.php:81
+#: www/html/error.php:78
 msgid "Key"
 msgstr ""
 
-#: www/html/error.php:81 www/html/src/Display.php:54
+#: www/html/error.php:78 www/html/src/Display.php:54
 #: www/html/src/Display.php:74 www/html/src/Display.php:121
 #: www/html/src/IdPCheck.php:431
 #, php-format
@@ -220,13 +220,15 @@ msgstr ""
 
 #: www/html/index.php:358 www/html/result/index.php:358
 #, php-format
-msgid ""
-"European Student Identifier uses the entity category https://"
-"myacademicid.org/entity-categories/esi for release of attributes from the "
-"user's identity provider."
+msgid "European Student Identifier uses the entity category"
 msgstr ""
 
-#: www/html/index.php:358 www/html/result/index.php:358
+#: www/html/index.php:360 www/html/result/index.php:360
+#, php-format
+msgid "for release of attributes from the user's identity provider."
+msgstr ""
+
+#: www/html/index.php:361 www/html/result/index.php:361
 #, php-format
 msgid ""
 "This test verifies that all required attributes are released during login."
@@ -445,10 +447,12 @@ msgid "Description of all test available in the %s test suite"
 msgstr ""
 
 #: www/html/src/Configuration.php:68
-#, php-format
 msgid ""
-"The Attributes tab shows all attributes the service release to the entityId "
-"https://%s/shibboleth. The entityId uses the entity categories"
+"The Attributes tab shows all attributes the service release to the entityId"
+msgstr ""
+
+#: www/html/src/Configuration.php:68
+msgid "The entityId uses the entity categories"
 msgstr ""
 
 #: www/html/src/Configuration.php:69
@@ -560,9 +564,7 @@ msgid "The IdP supports R&S but doesn't announce it in its metadata."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:29
-msgid ""
-"Please add '[[EC_RANDS]]' to the list "
-"of supported ECs in metadata"
+msgid "Please add '[[EC_RANDS]]' to the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:31
@@ -603,9 +605,7 @@ msgid "The IdP supports Anonymous but doesn't announce it in its metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:50
-msgid ""
-"Please add '[[EC_ANON]]' to the list of supported "
-"ECs in metadata"
+msgid "Please add '[[EC_ANON]]' to the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:52
@@ -628,32 +628,32 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:62
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/IAP/low"
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/"
+"IAP/low"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:63
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/ID/unique"
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/"
+"ID/unique"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:64
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/ID/eppn-unique-no-reassign"
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/"
+"ID/eppn-unique-no-reassign"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:65
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/ATP/ePA-1m"
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/"
+"ATP/ePA-1m"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:67
 msgid ""
-"Pseudonymous requires that eduPersonAssurance at least contains https://"
-"refeds.org/assurance"
+"Pseudonymous requires that eduPersonAssurance at least contains "
+"[[RAF_ASSURANCE]]"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:69
@@ -685,9 +685,7 @@ msgid "The IdP supports Pseudonymous but doesn't announce it in its metadata."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:83
-msgid ""
-"Please add '[[EC_PANON]]' to the list of "
-"supported ECs in metadata"
+msgid "Please add '[[EC_PANON]]' to the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:85
@@ -710,8 +708,8 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:94
 msgid ""
-"Personalized requires that eduPersonAssurance at least contains https://"
-"refeds.org/assurance"
+"Personalized requires that eduPersonAssurance at least contains "
+"[[RAF_ASSURANCE]]"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:96
@@ -751,9 +749,7 @@ msgid "The IdP supports Personalized but doesn't announce it in its metadata."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:114
-msgid ""
-"Please add '[[EC_PERS]]' to the list of "
-"supported ECs in metadata"
+msgid "Please add '[[EC_PERS]]' to the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:116
@@ -795,15 +791,11 @@ msgid "The IdP supports CoCo but doesn't announce it in its metadata."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:135
-msgid ""
-"Please add '[[EC_COCO1]]' to "
-"the list of supported ECs in metadata"
+msgid "Please add '[[EC_COCO1]]' to the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:136
-msgid ""
-"Please add '[[EC_COCO2]]' to the list of "
-"supported ECs in metadata"
+msgid "Please add '[[EC_COCO2]]' to the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:138
@@ -866,8 +858,7 @@ msgid "Sends invalid Assurance information."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:167
-msgid ""
-"Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
+msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:169
@@ -1023,6 +1014,10 @@ msgstr ""
 
 #: www/html/src/HTML.php:43
 msgid "Release check for"
+msgstr ""
+
+#: www/html/src/HTML.php:74
+msgid "Language"
 msgstr ""
 
 #: www/html/src/HTML.php:100
