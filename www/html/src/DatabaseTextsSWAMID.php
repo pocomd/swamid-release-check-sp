@@ -18,9 +18,9 @@ _('Identity Provider is sending invalid Assurance information.');
 #IdPCheckSWAMID.php:235: testResult
 _('Have Assurance Profile. Sends invalid Assurance information.');
 #IdPCheckSWAMID.php:238: #status_ERROR
-_('Missing Assurance information. Expected at least http://www.swamid.se/policy/assurance/al1');
+_('Missing Assurance information. Expected at least [[SWAMID_ASSURANCE]]/al1');
 #IdPCheckSWAMID.php:239: testResult
-_('Have Assurance Profile. Missing http://www.swamid.se/policy/assurance/al1 for user.');
+_('Have Assurance Profile. Missing [[SWAMID_ASSURANCE]]/al1 for user.');
 #IdPCheckSWAMID.php:243: testResult
 _('Have Assurance Profile. Missing some Assurance information.');
 #IdPCheckSWAMID.php:247: testResult
