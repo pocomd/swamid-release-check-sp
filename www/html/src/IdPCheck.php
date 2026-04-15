@@ -90,6 +90,11 @@ class IdPCheck {
   protected bool $notAllowed = false;
 
   /**
+   * Entity category endpoints
+   */
+  protected array $ecEndpoints = array();
+
+  /**
    * Possible ACCR to select from /check
    */
   protected array $accrOptions = array(
@@ -548,7 +553,7 @@ class IdPCheck {
   }
 
   /**
-   * Check http://refeds.org/category/research-and-scholarship
+   * Check http://refeds.org/category/research-and-scholarship [EC_RANDS]
    *
    * * Check  if all attributes that are requied are sent
    * * Verify that announced support for EC is correct
@@ -586,7 +591,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports R&S but doesn't announce it in its metadata.";
-        $this->status['warning'][] = "Please add 'http://refeds.org/category/research-and-scholarship' " . $this->toListStr; # NOSONAR Should be http://
+        $this->status['warning'][] = "Please add [[EC_RANDS]] " . $this->toListStr; # NOSONAR Should be http://
       }
     } else {
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
@@ -599,7 +604,7 @@ class IdPCheck {
   }
 
   /**
-   * Check https://refeds.org/category/anonymous
+   * Check https://refeds.org/category/anonymous [EC_ANON]
    *
    * * Check  if all attributes that are requied are sent
    * * Verify that announced support for EC is correct
@@ -627,7 +632,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'Anonymous attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports Anonymous but doesn't announce it in its metadata";
-        $this->status['warning'][] = "Please add 'https://refeds.org/category/anonymous' " . $this->toListStr;
+        $this->status['warning'][] = "Please add '[[EC_ANON]]' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/anonymous']) ) {
@@ -640,7 +645,7 @@ class IdPCheck {
   }
 
   /**
-   * Check https://refeds.org/category/pseudonymous
+   * Check https://refeds.org/category/pseudonymous [EC_PANON]
    *
    * * Check  if all attributes that are requied are sent
    * * Verify that announced support for EC is correct
@@ -699,7 +704,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'Pseudonymous attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports Pseudonymous but doesn't announce it in its metadata.";
-        $this->status['warning'][] = "Please add 'https://refeds.org/category/pseudonymous' " . $this->toListStr;
+        $this->status['warning'][] = "Please add '[[EC_PANON]]' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/pseudonymous']) ) {
@@ -712,7 +717,7 @@ class IdPCheck {
   }
 
   /**
-   * Check https://refeds.org/category/personalized
+   * Check https://refeds.org/category/personalized [EC_PERS]
    *
    * * Check  if all attributes that are requied are sent
    * * Verify that announced support for EC is correct
@@ -782,7 +787,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'Personalized attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports Personalized but doesn't announce it in its metadata.";
-        $this->status['warning'][] = "Please add 'https://refeds.org/category/personalized' " . $this->toListStr;
+        $this->status['warning'][] = "Please add '[[EC_PERS]]' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['https://refeds.org/category/personalized']) ) {
@@ -846,7 +851,7 @@ class IdPCheck {
   }
 
   /**
-   * Check https://myacademicid.org/entity-categories/esi
+   * Check https://myacademicid.org/entity-categories/esi [EC_ESI]
    *
    * * Check  if all attributes that are requied are sent and in correct format
    *

@@ -16,6 +16,14 @@ class Helper {
     $this->config = $config;
     $this->replacements = array (
       "FED_NAME" => ($this->config->getFederation()["displayName"] ?? _("IdP home Federation")),
+      "EC_RANDS"      => "http://refeds.org/category/research-and-scholarship",
+      "EC_COCO1"      => "http://www.geant.net/uri/dataprotection-code-of-conduct/v1",
+      "EC_COCO2"      => "https://refeds.org/category/code-of-conduct/v2",
+      "EC_ANON"       => "https://refeds.org/category/anonymous",
+      "EC_PERS"       => "https://refeds.org/category/personalized",
+      "EC_PANON"      => "https://refeds.org/category/pseudonymous",
+      "EC_ESI"        => "https://myacademicid.org/entity-categories/esi",
+      "RAF_ASSURANCE" => "https://refeds.org/assurance",
     );
   }
 
@@ -56,5 +64,21 @@ class Helper {
     }
 
     return implode("<br>", $string);
+  }
+
+  public function trans(string $statusTextArr): string {
+    $placeholders = is_array($this->replacements) ? $this->replacements : [];
+
+    $trans = (string) _($statusTextArr);
+    $trans = preg_replace_callback('/\[\[(.*?)\]\]/',
+        function ($matches) use ($placeholders) {
+            $key = $matches[1];
+
+            return $placeholders[$key] ?? $key;
+        },
+        $trans
+    );
+
+    return $trans;
   }
 }

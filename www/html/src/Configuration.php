@@ -112,8 +112,8 @@ class Configuration {
 
     # Federation params
     $this->federation = $federation;
-
     $this->basename = $basename;
+    
     # Header/Footer content
     $this->template = $template;
 

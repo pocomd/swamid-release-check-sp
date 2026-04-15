@@ -8,11 +8,8 @@ $html->showHTMLHead();
 $html->showContentHeader();
 
 $errorURL = "";
-if (isset($_GET['errorURL'])) {
-  $urlValue = filter_var($_GET['errorURL'], FILTER_VALIDATE_URL)
-              ? htmlspecialchars($_GET['errorURL'], ENT_QUOTES, 'UTF-8')
-              : '#';
-  $errorURL = sprintf(_('For more info visit this <a href="%s">support-page</a>.'), $urlValue);
+if (isset($_GET['errorURL']) && filter_var($_GET['errorURL'], FILTER_VALIDATE_URL)) {
+  $errorURL = sprintf(_('For more info visit this <a href="%s">support-page</a>.'), $_GET['errorURL']);
 }
 
 $errorURL = str_replace(array('ERRORURL_TS'), array(time()), $errorURL);

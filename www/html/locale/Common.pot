@@ -561,7 +561,7 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:29
 msgid ""
-"Please add 'http://refeds.org/category/research-and-scholarship' to the list "
+"Please add '[[EC_RANDS]]' to the list "
 "of supported ECs in metadata"
 msgstr ""
 
@@ -604,7 +604,7 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:50
 msgid ""
-"Please add 'https://refeds.org/category/anonymous' to the list of supported "
+"Please add '[[EC_ANON]]' to the list of supported "
 "ECs in metadata"
 msgstr ""
 
@@ -686,7 +686,7 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:83
 msgid ""
-"Please add 'https://refeds.org/category/pseudonymous' to the list of "
+"Please add '[[EC_PANON]]' to the list of "
 "supported ECs in metadata"
 msgstr ""
 
@@ -752,7 +752,7 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:114
 msgid ""
-"Please add 'https://refeds.org/category/personalized' to the list of "
+"Please add '[[EC_PERS]]' to the list of "
 "supported ECs in metadata"
 msgstr ""
 
@@ -796,13 +796,13 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:135
 msgid ""
-"Please add 'http://www.geant.net/uri/dataprotection-code-of-conduct/v1' to "
+"Please add '[[EC_COCO1]]' to "
 "the list of supported ECs in metadata"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:136
 msgid ""
-"Please add 'https://refeds.org/category/code-of-conduct/v2' to the list of "
+"Please add '[[EC_COCO2]]' to the list of "
 "supported ECs in metadata"
 msgstr ""
 
@@ -867,11 +867,11 @@ msgstr ""
 
 #: www/html/src/DatabaseTexts.php:167
 msgid ""
-"Missing Assurance information. Expected at least https://refeds.org/assurance"
+"Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:169
-msgid "Missing https://refeds.org/assurance for user."
+msgid "Missing [[RAF_ASSURANCE]] for user."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:172
