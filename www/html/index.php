@@ -199,8 +199,8 @@ $collapseIcons[] = "acc-instructions";
 $accr = isset($_REQUEST['accr']) ? $_REQUEST['accr'] : 'none';
 printf('        <div class="row">
           <div class="col">
-            <h4>Step 1</h4>
-            Choose AuthnContextClassRef to test:
+            <h4>' . _('Step 1') . '</h4>
+            ' . _('Choose AuthnContextClassRef to test') . ':
             <form action="./?tab=acc" method="POST">
               <input type="radio" id="none" name="accr" value="none"%s>
               <label for="none">' . _('No authnContextClassRef') . '</label><br>%s',
@@ -221,7 +221,7 @@ if ($result) {
     : $_SERVER['Shib-AuthnContext-Class'];
   printf('          </div>
           <div class="col">
-            <h4>Step 2</h4>%s', "\n");
+            <h4>' . _('Step 2') . '</h4>%s', "\n");
 
   if ($expectedAccr == $_SERVER['Shib-AuthnContext-Class']) {
     if (isset($_GET['forceAuthn'])) {
@@ -239,14 +239,14 @@ if ($result) {
           <div class="col">%s', "\n");
   if (isset($_GET['forceAuthn']) && isset($_SESSION['ts'])) {
     #Step 2 OK
-    printf('            Recieved in Step 1:
+    printf('            ' . _('Recieved in Step 1') . ':
             <ul>
               <li>AuthnContext-Class: %s</li>
               <li>Authentication-Instant: %s</li>
             </ul>
           </div>
           <div class="col">
-            Recieved in Step 2:
+            ' . _('Recieved in Step 2') . ':
             <ul>
               <li>AuthnContext-Class: %s</li>
               <li>Authentication-Instant: %s</li>
@@ -261,7 +261,7 @@ if ($result) {
   } else {
     #Step 1
     printf('            <br>
-            Recieved in Step 1:<ul>
+            ' . _('Recieved in Step 1') . ':<ul>
               <li>AuthnContext-Class: %s</li>
               <li>Authentication-Instant: %s</li>
             </ul>%s',
