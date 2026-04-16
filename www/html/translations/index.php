@@ -56,7 +56,7 @@ function showOverview()
         printf('          <tr><th><a href="?action=showInfo&type=pot&file=%s">%s</a></th><td>%d</td><td>%s</td></tr>%s',
           $pot_file,
           $pot_file,
-          $translations->count(), 
+          $translations->count(),
           $translations->getHeaders()->get('POT-Creation-Date'),
           "\n"
         );
@@ -106,7 +106,7 @@ function showInfo($type, $file)
 
   $fullPath = $pot_dir . '/' . basename($file);
   $fullPath .= $type == 'pot' ? '' : '/LC_MESSAGES/Common.po';
-  
+
   printf('        <h3>Info about file :</h3>
         <table class="table table-striped table-bordered">
           <tr><th>File</th><td>%s</td></tr>%s' , $file, "\n");
@@ -171,7 +171,7 @@ function showCompare($pot, $file)
 
   $poPath = $pot_dir . '/' . basename($file) . '/LC_MESSAGES/Common.po';
   $potPath = $pot_dir . '/' . basename($pot);
-  
+
   printf('        <h3>Missing translations in %s:</h3>
         <ul>%s' , $file, "\n");
 

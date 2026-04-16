@@ -145,6 +145,7 @@ _('Support for CoCo missing, Entity Category Support missing');
 #IdPCheck.php:882: #testResult
 _('schacPersonalUniqueCode OK');
 #IdPCheck.php:865: #status_WARNING
+#IdPCheck.php:866: #status_WARNING
 _("schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi. Might create problem in some SP's");
 #IdPCheck.php:867: #testResult
 _('schacPersonalUniqueCode OK. BUT wrong case');

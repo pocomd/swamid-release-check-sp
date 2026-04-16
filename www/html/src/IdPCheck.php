@@ -586,7 +586,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports R&S but doesn't announce it in its metadata.";
-        $this->status['warning'][] = "Please add [[EC_RANDS]] " . $this->toListStr;
+        $this->status['warning'][] = "Please add '[[EC_RANDS]]' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
@@ -670,11 +670,11 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
+            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/' . $part;
           }
         }
       } else {
-        $this->status['warning'][] = 'Pseudonymous requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
+        $this->status['warning'][] = 'Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]';
       }
     }
     if (! isset($attributes['pairwise-id']) ) {
@@ -742,11 +742,11 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
+            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/' . $part;
           }
         }
       } else {
-        $this->status['warning'][] = 'Personalized requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
+        $this->status['warning'][] = 'Personalized requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]';
       }
     }
     # displayName, givenName and sn must exist for Personalized
@@ -998,10 +998,10 @@ class IdPCheck {
       $this->status['error'][] = 'Identity Provider is sending invalid Assurance information.';
       $this->status['testResult'] = 'Sends invalid Assurance information.';
     } elseif ($this->userAL == '') {
-      $this->status['error'][] = 'Missing Assurance information. Expected at least ' . self::RAF_BASE;
-      $this->status['testResult'] = sprintf('Missing %s for user.', self::RAF_BASE);
+      $this->status['error'][] = 'Missing Assurance information. Expected at least [[RAF_ASSURANCE]]';
+      $this->status['testResult'] = 'Missing [[RAF_ASSURANCE]] for user.';
     } elseif ($missing) {
-      $this->status['warning'][]= 'Missing some Assurance information.';
+      $this->status['warning'][] = 'Missing some Assurance information.';
       $this->status['testResult'] = 'Missing some Assurance information.';
     } else {
       $this->status['ok'][] = "Assurance attribute release for current user follows REFED's recommendations.";
