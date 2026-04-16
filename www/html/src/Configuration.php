@@ -65,7 +65,7 @@ class Configuration {
       'instructionsAttributes' => '<p>' . _('Click on the green button to see what attributes your Identity Provider releases.') . '</p>
           <p>' . sprintf(_('Description of all test available in the %s test suite'), $federation['displayName']) . ':
             <ul>
-              <li>' . sprintf(_('The Attributes tab shows all attributes the service release to the entityId https://%s/shibboleth. The entityId uses the entity categories'), $basename) . ':<ul>
+              <li>' . _('The Attributes tab shows all attributes the service release to the entityId') . sprintf(' https://%s/shibboleth. ', $basename) . _('The entityId uses the entity categories') . ':<ul>
                 <li>' . _('REFEDS Personalized Access Entity Category') . ',</li>
                 <li>' . _('REFEDS Research and Scholarship Entity Category, and') . '</li>
                 <li>' . _('REFEDS Data Protection Code of Conduct ver 2.0 Entity Category') . '.</li>
@@ -112,8 +112,8 @@ class Configuration {
 
     # Federation params
     $this->federation = $federation;
+
     $this->basename = $basename;
-    
     # Header/Footer content
     $this->template = $template;
 

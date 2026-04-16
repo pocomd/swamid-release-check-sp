@@ -90,11 +90,6 @@ class IdPCheck {
   protected bool $notAllowed = false;
 
   /**
-   * Entity category endpoints
-   */
-  protected array $ecEndpoints = array();
-
-  /**
    * Possible ACCR to select from /check
    */
   protected array $accrOptions = array(
@@ -129,7 +124,7 @@ class IdPCheck {
       $this->config = new Configuration();
     }
 
-    $this->helper = new Helper($this->config);
+    $this->helper = $this->config->getExtendedClass('Helper', $this->config);
     $a = func_get_args();
     $i = func_num_args();
     if (method_exists($this,$f='__construct'.$i)) {
@@ -591,7 +586,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports R&S but doesn't announce it in its metadata.";
-        $this->status['warning'][] = "Please add [[EC_RANDS]] " . $this->toListStr; # NOSONAR Should be http://
+        $this->status['warning'][] = "Please add [[EC_RANDS]] " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
@@ -920,20 +915,20 @@ class IdPCheck {
     if (isset($attributes['eduPersonAssurance'])) {
       foreach (explode(';',$attributes['eduPersonAssurance']) as $ALevel) {
         switch ($ALevel) {
-          case self::RAF_LOW : # NOSONAR Should be http://
+          case self::RAF_LOW :
             if ($this->userAL < 'AL1') { $this->userAL = 'AL1'; }
             $this->rafAttributes[self::RAF_BASE . '/ID/unique']['status'] = 'Missing';
             $this->rafAttributes[self::RAF_BASE . '/ID/eppn-unique-no-reassign']['status'] = 'Missing';
             $this->rafAttributes[self::RAF_LOW]['status'] = 'Missing';
             $this->rafAttributes[self::RAF_BASE . '/ATP/ePA-1m']['status'] = 'Missing';
             break;
-          case self::RAF_MEDIUM : # NOSONAR Should be http://
+          case self::RAF_MEDIUM :
             if ($this->userAL < 'AL2') { $this->userAL = 'AL2'; }
             $this->rafAttributes[self::RAF_BASE . '/profile/cappuccino']['status'] = 'Missing';
             $this->rafAttributes[self::RAF_MEDIUM]['status'] = 'Missing';
             $this->rafAttributes[self::RAF_BASE . '/IAP/local-enterprise']['status'] = 'Missing';
             break;
-          case self::RAF_HIGH : # NOSONAR Should be http://
+          case self::RAF_HIGH :
             if ($this->userAL < 'AL3') { $this->userAL = 'AL3'; }
             $this->rafAttributes[self::RAF_BASE . '/profile/espresso']['status'] = 'Missing';
             $this->rafAttributes[self::RAF_HIGH]['status'] = 'Missing';

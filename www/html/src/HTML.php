@@ -71,7 +71,7 @@ class HTML {
     $defaultHeader = '<nav>
         <ul class="nav nav-pills float-right">
           <li role="presentation" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Language</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">' . _('Language') .'</a>
             <div class="dropdown-menu">' ."\n";
     $queryString = $_SERVER['QUERY_STRING'] == '' ? '?lang=' : '?' . $_SERVER['QUERY_STRING'] . '&lang=';
     if ($_SERVER['QUERY_STRING'] == '') {

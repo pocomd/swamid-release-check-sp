@@ -825,7 +825,7 @@ msgstr ""
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:152
+#: www/html/src/DatabaseTexts.php:152 www/html/src/DatabaseTextsSWAMID.php:7
 msgid ""
 "schacPersonalUniqueCode should start with "
 "urn:schac:personalUniqueCode:int:esi:"
@@ -849,7 +849,7 @@ msgstr ""
 msgid "Missing schacPersonalUniqueCode"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:163
+#: www/html/src/DatabaseTexts.php:163 www/html/src/DatabaseTextsSWAMID.php:17
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr ""
 
@@ -1006,6 +1006,73 @@ msgstr ""
 msgid "Test not run yet"
 msgstr ""
 
+#: www/html/src/DatabaseTextsSWAMID.php:3
+msgid ""
+"schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or "
+"&lt;sHO&gt;.se"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:5
+msgid ""
+"schacPersonalUniqueCode starting with "
+"urn:schac:personalUniqueCode:int:esi:se:"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:9
+msgid ""
+"Identity Provider is not approved for any SWAMID Identity Assurance Profiles "
+"but sends Assurance information!."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:11
+msgid "Assurance Profile missing. Sends Assurance information!"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:13
+msgid ""
+"Identity Provider is not approved for any SWAMID Identity Assurance Profiles."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:15
+msgid "Assurance Profile missing."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:19
+msgid "Have Assurance Profile. Sends invalid Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:21
+msgid ""
+"Missing Assurance information. Expected at least [[SWAMID_ASSURANCE]]/al1"
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:23
+msgid "Have Assurance Profile. Missing [[SWAMID_ASSURANCE]]/al1 for user."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:25
+msgid "Have Assurance Profile. Missing some Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:27
+msgid "Have Assurance Profile. Sends recommended Assurance information."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:30
+#: www/html/src/DatabaseTextsSWAMID.php:32
+#: www/html/src/DatabaseTextsSWAMID.php:34
+msgid ""
+"Identity Provider is approved for at least one SWAMID Identity Assurance "
+"Profiles."
+msgstr ""
+
+#: www/html/src/DatabaseTextsSWAMID.php:37
+msgid ""
+"Identity Provider is approved for at least one SWAMID Identity Assurance "
+"Profiles' and attribute release for current user follows SWAMID's "
+"recommendations."
+msgstr ""
+
 #: www/html/src/Display.php:54 www/html/src/Display.php:74
 #: www/html/src/Display.php:121 www/html/src/IdPCheck.php:431
 #, php-format
@@ -1061,6 +1128,7 @@ msgid "Received"
 msgstr ""
 
 #: www/html/src/Display.php:291 www/html/src/IdPCheck.php:978
+#: www/html/src/IdPCheckSWAMID.php:213
 #, php-format
 msgid "Missing"
 msgstr ""
@@ -1156,26 +1224,26 @@ msgstr ""
 msgid "AuthnContext-Class = %s was requested<br>but %s was revived."
 msgstr ""
 
-#: www/html/src/IdPCheck.php:966
+#: www/html/src/IdPCheck.php:966 www/html/src/IdPCheckSWAMID.php:200
 #, php-format
 msgid "Assurance Levels"
 msgstr ""
 
-#: www/html/src/IdPCheck.php:968
+#: www/html/src/IdPCheck.php:968 www/html/src/IdPCheckSWAMID.php:203
 #, php-format
 msgid "Assurance Level of user"
 msgstr ""
 
-#: www/html/src/IdPCheck.php:970
+#: www/html/src/IdPCheck.php:970 www/html/src/IdPCheckSWAMID.php:205
 #, php-format
 msgid "Received Assurance Values"
 msgstr ""
 
-#: www/html/src/IdPCheck.php:972
+#: www/html/src/IdPCheck.php:972 www/html/src/IdPCheckSWAMID.php:207
 msgid "None"
 msgstr ""
 
-#: www/html/src/IdPCheck.php:993
+#: www/html/src/IdPCheck.php:993 www/html/src/IdPCheckSWAMID.php:228
 msgid "No Assurance information recived"
 msgstr ""
 
@@ -1236,6 +1304,11 @@ msgstr ""
 
 #: www/html/src/IdPCheck.php:1066
 msgid "Identity Provider approved Assurance"
+msgstr ""
+
+#: www/html/src/IdPCheckSWAMID.php:202
+#, php-format
+msgid "IdP approved Assurance Level"
 msgstr ""
 
 #: www/html/src/TestSuite.php:146

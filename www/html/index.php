@@ -26,7 +26,6 @@ if (isset($_SERVER['Shib-Identity-Provider']) ) {
 }
 
 $config = new \releasecheck\Configuration();
-$help = new \releasecheck\Helper($config);
 $federation = $config->getFederation();
 
 $idpCheck = $config->getExtendedClass('IdPCheck', 'mfa');
@@ -356,7 +355,10 @@ printf('        </div>
           </a>
         </h3>
         <div class="collapse%s multi-collapse" id="esi-instructions">
-          <p>' . $help->trans('European Student Identifier uses the entity category [[EC_ESI]] for release of attributes from the user\'s identity provider.') . ' ' . _('This test verifies that all required attributes are released during login.') . '</p>
+          <p>' . _('European Student Identifier uses the entity category') .
+          ' https://myacademicid.org/entity-categories/esi ' .
+          _("for release of attributes from the user's identity provider.") . ' ' .
+          _('This test verifies that all required attributes are released during login.') . '</p>
         </div><!-- end collapse -->%s',
   $result ? "right" : "down", $instructionsSelected, $instructionsShow, "\n");
 $collapseIcons[] = "esi-instructions";

@@ -59,10 +59,10 @@ _('Anonymous attribute missing, Entity Category Support missing');
 _('Pseudonymous requires eduPersonAssurance.');
 #IdPCheck.php:673: #status_WARNING
 #IdPCheck.php:745: #status_WARNING
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/IAP/low');
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ID/unique');
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ID/eppn-unique-no-reassign');
-_('[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/assurance/ATP/ePA-1m');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/IAP/low');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/unique');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/eppn-unique-no-reassign');
+_('[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ATP/ePA-1m');
 #IdPCheck.php:677: #status_WARNING
 _('Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]');
 #IdPCheck.php:682: #status_WARNING
@@ -180,24 +180,45 @@ _("Authentication-instant hasn't updated after forceAuthn was requested.");
 #IdPCheck.php:1076: #status_OK
 _('Identity Provider supports REFEDS MFA and ForceAuthn.');
 #IdPCheck.php:1077: #testResult
+_('Supports no ACCR and ForceAuthn.');
+_('Supports PasswordProtectedTransport and ForceAuthn.');
+_('Supports REFEDS SFA and ForceAuthn.');
 _('Supports REFEDS MFA and ForceAuthn.');
 #IdPCheck.php:1079: #status_ERROR
 _('Identity Provider supports REFEDS MFA but not ForceAuthn.');
 #IdPCheck.php:1080: #testResult
+_('Supports no ACCR but not ForceAuthn.');
+_('Supports PasswordProtectedTransport but not ForceAuthn.');
+_('Supports REFEDS SFA but not ForceAuthn.');
 _('Supports REFEDS MFA but not ForceAuthn.');
 #IdPCheck.php:1082: #status_OK
 _('Identity Provider supports REFEDS MFA.');
 #IdPCheck.php:1083: #testResult
+_('Supports no ACCR.');
+_('Supports PasswordProtectedTransport.');
+_('Supports REFEDS SFA.');
 _('Supports REFEDS MFA.');
 #IdPCheck.php:1087: #status_ERROR
 _('Identity Provider does support ForceAuthn but not REFEDS MFA.');
 #IdPCheck.php:1088: #testResult
+_('Does support ForceAuthn but not no ACCR.');
+_('Does support ForceAuthn but not PasswordProtectedTransport.');
+_('Does support ForceAuthn but not REFEDS SFA.');
 _('Does support ForceAuthn but not REFEDS MFA.');
 #IdPCheck.php:1090: #status_ERROR
 _('Identity Provider does neither support REFEDS MFA or ForceAuthn.');
 #IdPCheck.php:1091: #testResult
+_('Does neither support no ACCR or ForceAuthn.');
+_('Does neither support PasswordProtectedTransport or ForceAuthn.');
+_('Does neither support REFEDS SFA or ForceAuthn.');
 _('Does neither support REFEDS MFA or ForceAuthn.');
 #IdPCheck.php:1093: #status_ERROR
 _('Identity Provider does not support REFEDS MFA.');
 #IdPCheck.php:1094: #testResult
+_('Does not support no ACCR.');
+_('Does not support PasswordProtectedTransport.');
+_('Does not support REFEDS SFA.');
 _('Does not support REFEDS MFA.');
+# Other texts
+# Display.php:28
+_('Test not run yet');
