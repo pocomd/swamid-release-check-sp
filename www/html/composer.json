@@ -8,6 +8,9 @@
           "email": "bjorn@sunet.se"
       }
   ],
+  "require": {
+    "gettext/gettext": "*"
+  },
   "autoload": {
     "psr-4": {"releasecheck\\": "src"}
   }
