@@ -186,6 +186,11 @@ class Configuration {
     if ($dbVersion < 1) {
       $this->createTables();
     }
+    if ($dbVersion < 2) {
+      $this->db->query('ALTER TABLE `testRuns`
+          CHANGE `session` `session` varchar(40) DEFAULT NULL');
+      $this->db->query("UPDATE params SET value = 1 WHERE `id` = 'dbVersion'");
+    }
   }
 
   /**
@@ -202,7 +207,7 @@ class Configuration {
         `value` text DEFAULT NULL
       );');
     $this->db->query(
-      "INSERT INTO `params` (`id`, `value`) VALUES ('dbVersion', '1');");
+      "INSERT INTO `params` (`id`, `value`) VALUES ('dbVersion', '2');");
 
     $this->db->query(
       'CREATE TABLE `idps` (
@@ -216,7 +221,7 @@ class Configuration {
       'CREATE TABLE `testRuns` (
         `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
         `idp_id` int(10) unsigned NOT NULL,
-        `session` varchar(27) DEFAULT NULL,
+        `session` varchar(40) DEFAULT NULL,
         `time` text DEFAULT NULL,
         PRIMARY KEY (`id`),
         KEY `idp_id` (`idp_id`),
