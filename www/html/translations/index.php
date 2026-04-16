@@ -46,7 +46,7 @@ function showOverview()
   global $loader, $pot_dir;
   printf('        <h3>POT files to translate :</h3>
         <table class="table table-striped table-bordered">
-          <tr><th>File</th><th># of msgid\'s</th><th>Senast uppdaterad</th></tr>%s' , "\n");
+          <tr><th>File</th><th># of msgids</th><th>Last updated</th></tr>%s' , "\n");
 
   if ($pot_dh = opendir($pot_dir) ) {
     while (false !== ($pot_file = readdir($pot_dh))) {
@@ -57,7 +57,7 @@ function showOverview()
           $pot_file,
           $pot_file,
           $translations->count(),
-          $translations->getHeaders()->get('POT-Creation-Date'),
+          convertDateTime($translations->getHeaders()->get('POT-Creation-Date')),
           "\n"
         );
       }
@@ -72,7 +72,7 @@ function showOverview()
             <th>File</th>
             <th># translated</th>
             <th># not translated in .po</th>
-            <th>date of translation</th>
+            <th>Date of translation</th>
           </tr>%s' , "\n");
 
   if ($pot_dh = opendir($pot_dir) ) {
@@ -90,7 +90,7 @@ function showOverview()
           $lang_dir,
           $translated,
           $translations->count() - $translated,
-          $translations->getHeaders()->get('PO-Revision-Date'),
+          convertDateTime($translations->getHeaders()->get('PO-Revision-Date')),
           "\n"
         );
       }
@@ -117,7 +117,7 @@ function showInfo($type, $file)
       printf('          <tr><th># of msgid\'s<td>%d</td></tr>
           <tr><th>Created</th><td>%s</td></tr>%s',
             $translations->count(),
-            $translations->getHeaders()->get('POT-Creation-Date'),
+            convertDateTime($translations->getHeaders()->get('POT-Creation-Date')),
             "\n"
       );
     } else {
@@ -132,8 +132,8 @@ function showInfo($type, $file)
           <tr><th>Last Translator</th><td>%s</td></tr>%s',
         $translated,
         $translations->count() - $translated,
-        $translations->getHeaders()->get('PO-Revision-Date'),
-        $translations->getHeaders()->get('POT-Creation-Date'),
+        convertDateTime($translations->getHeaders()->get('PO-Revision-Date')),
+        convertDateTime($translations->getHeaders()->get('POT-Creation-Date')),
         htmlspecialchars($translations->getHeaders()->get('Last-Translator')),
         "\n"
       );
@@ -172,8 +172,11 @@ function showCompare($pot, $file)
   $poPath = $pot_dir . '/' . basename($file) . '/LC_MESSAGES/Common.po';
   $potPath = $pot_dir . '/' . basename($pot);
 
-  printf('        <h3>Missing translations in %s:</h3>
-        <ul>%s' , $file, "\n");
+  printf('        <h3>Missing translations in %s compared to %s:</h3>
+        <ul>%s',
+    basename($file),
+    basename($pot),
+    "\n");
 
   if (is_file($poPath) && is_file($potPath)) {
     $poTranslations = $loader->loadFile($poPath)->getTranslations();
@@ -209,10 +212,12 @@ function showCompare($pot, $file)
           <li>%d <i class="fas fa-exclamation-triangle"></i> (missing translation)</li>
           <li>%d <i class="fas fa-exclamation"></i> (missing)</li>
         </ul>
-        <a href="."><button type="button" class="btn btn-primary">Back</button></a>%s',
+        <a href="?action=showInfo&type=po&file=%s"><button type="button" class="btn btn-primary">Back</button></a>
+        <br><br>%s',
     $translated,
     $notTranslated,
     $missing,
+    urlencode($file),
     "\n"
   );
 }
@@ -234,4 +239,20 @@ function download($type, $file)
     readfile($fullPath);
     exit;
   }
+}
+
+function convertDateTime($dateTime) {
+  $UTCh = substr($dateTime,17,2);
+  $UTCm = substr($dateTime,19,2);
+  return date(
+    "Y-m-d H:i \U\T\C",
+    mktime(
+      substr($dateTime,11,2) - $UTCh,
+      substr($dateTime,14,2) - $UTCm,
+      0,
+      substr($dateTime,5,2),
+      substr($dateTime,8,2),
+      substr($dateTime,0,4)
+    )
+  );
 }
