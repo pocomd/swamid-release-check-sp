@@ -26,6 +26,9 @@ class Localize {
         case 'it':
           $selectedLang = 'it_IT';
           break;
+        case 'ro':
+          $selectedLang = 'ro_RO';
+          break;
         case 'sr':
           $selectedLang = 'sr_RS';
           break;
@@ -67,26 +70,30 @@ class Localize {
       foreach ($langs as $lang => $val) {
         if ($selectedLang == '' ) {
           switch ($lang) {
-            case 'en' :
-            case 'en-GB' :
-            case 'en-US' :
+            case 'en':
+            case 'en-GB':
+            case 'en-US':
               $selectedLang = 'en_GB';
               break;
-            case 'fr' :
-            case 'fr-CA' :
-            case 'fr-FR' :
+            case 'fr':
+            case 'fr-CA':
+            case 'fr-FR':
               $selectedLang = 'fr_FR';
               break;
-            case 'it' :
-            case 'it-IT' :
+            case 'it':
+            case 'it-IT':
               $selectedLang = 'it_IT';
               break;
-            case 'sr' :
-            case 'sr-RS' :
+            case 'ro':
+            case 'ro_RO':
+              $selectedLang = 'ro_RO';
+              break;
+            case 'sr':
+            case 'sr-RS':
               $selectedLang = 'sr_RS';
               break;
-            case 'sv' :
-            case 'sv-SE' :
+            case 'sv':
+            case 'sv-SE':
               $selectedLang = 'sv_SE';
               break;
             default:
