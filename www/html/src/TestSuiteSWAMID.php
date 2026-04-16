@@ -89,7 +89,6 @@ class TestSuiteSWAMID extends TestSuite {
 
     $this->tests['rands']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
 
-    $this->tests['esi']['name'] = _('SWAMID Entity Category Release Check - European Student Identifier');
     $this->tests['esi']['expected']['schacPersonalUniqueCode'] = _('Usually used within SWAMID for the European Student Identifier.');
   }
 

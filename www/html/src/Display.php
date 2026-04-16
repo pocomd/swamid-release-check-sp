@@ -285,9 +285,8 @@ class Display {
                 </div><br>", str_replace(',',"</li>\n                    <li>",$this->helper->getStatusTranslated($row['attr_OK'])));
     }
     if ( $row['attr_Missing'] ) {
-      $temp= preg_replace('/(\S),(\S)/', '$1#$2', $row['attr_Missing']);
-      $temp= $this->helper->getMissingAttributesTranslated($temp);
-      $temp= str_replace('# ',',',$temp);
+      $temp = preg_replace('/(\S),(\S)/', '$1#$2', $row['attr_Missing']);
+      $temp = $this->helper->getMissingAttributesTranslated($temp);
       printf ("
                 <div>" . _("Missing") . " :
                   <ul>

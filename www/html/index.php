@@ -188,8 +188,8 @@ printf('      </div><!-- End tab-pane attributes -->
           </a>
         </h3>
         <div class="collapse%s multi-collapse" id="acc-instructions">
-          <p>' . _('The Authentication test is a two step process.')
-               . _('The first step is to test an AuthnContextClassRef and the second step is to verify that forceAuthn works as expected for that AuthnContextClassRef.')
+          <p>' . _('The Authentication test is a two step process.') . ' '
+               . _('The first step is to test an AuthnContextClassRef and the second step is to verify that forceAuthn works as expected for that AuthnContextClassRef.') . ' '
                . _('The restults from this tests are NOT saved exept for tests done with REFEDS MFA.') . '</p>
         </div><!-- end collapse -->%s',
   $accShow, $accActive, $federation['displayName'],

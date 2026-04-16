@@ -250,6 +250,7 @@ class TestSuite {
     $str[] = _('example urn:schac:homeOrganizationType:eu:higherEducationInstitution');
     $str[] = _('Lastname');
     $str[] = _('Its value for a given subject is independent of the relying party to whom it is given.');
+    $str[] = _('Usually used for the European Student Identifier.');
   }
 
   /**
