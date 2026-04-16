@@ -143,7 +143,7 @@ class TestSuite {
       'subtest'  => 'CoCov2',
     ),
     'noec'         => array (
-      'name'     => _('No EC (shall not send any attributes!)'),
+      'name'     => 'No EC (shall not send any attributes!)',
       'tab'      => 'entityCategory',
       'expected' => array (),
       'nowarn'   => array (
@@ -221,6 +221,36 @@ class TestSuite {
       'subtest'  => 'ESI',
     ),
   );
+
+  /**
+   * Function ot used more then to add translations
+   * Should never be called !!
+   *
+   * @return void;
+   */
+  protected function strings2Translate()
+  {
+    $str[] = _('No EC (shall not send any attributes!)');
+    $str[] = _('ISO_COUNTRY_CODE (se)');
+    $str[] = _('givenName + sn');
+    $str[] = _('ISO_COUNTRY_NAME (Sweden)');
+    $str[] = _('Specifies the person\'s relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc.');
+    $str[] = _('User assurance information.');
+    $str[] = _('This attribute should only be released if and only if the IdP organization has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs are persistent digital identifiers for individual researchers. Their primary purpose is to unambiguously and definitively link them with their scholarly work products. ORCID iDs are assigned, managed and maintained by the ORCID organization.');
+    $str[] = _('A scoped identifier for a person. It should be represented in the form "user@scope" where \'user\' is a name-based identifier for the person and where the "scope" portion MUST be the administrative domain of the identity system where the identifier was created and assigned.');
+    $str[] = _('eduPersonAffiliation, scoped');
+    $str[] = _('Firstname');
+    $str[] = _('Mailaddress (should only be one)');
+    $str[] = _('List of additional organizational mailaddresses for the person');
+    $str[] = _('Shortform of organisation name');
+    $str[] = _('Organisation name');
+    $str[] = _('Its value for a given subject depends upon the relying party to whom it is given, thus preventing unrelated systems from using it as a basis for correlation.');
+    $str[] = _('8 digit date of birth (YYYYMMDD)');
+    $str[] = _('Specifies a person\'s home organization using the domain name of the organization');
+    $str[] = _('example urn:schac:homeOrganizationType:eu:higherEducationInstitution');
+    $str[] = _('Lastname');
+    $str[] = _('Its value for a given subject is independent of the relying party to whom it is given.');
+  }
 
   /**
    * Setup the class

@@ -81,7 +81,7 @@ class TestSuiteSWAMID extends TestSuite {
    */
   private function updateTest() {
     $this->tests['assurance']['expected']['eduPersonAssurance'] =
-     'User assurance information. SWAMID Identity Assurance Profiles can only be asserted for a user if and only if both the organisation and the user is validated for the assurance level. Furthermore, REFEDS Assurance Framework information should be released based on SWAMID Assurance level for the user.';
+     _('User assurance information. SWAMID Identity Assurance Profiles can only be asserted for a user if and only if both the organisation and the user is validated for the assurance level. Furthermore, REFEDS Assurance Framework information should be released based on SWAMID Assurance level for the user.');
 
     $this->tests['pseudonymous']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
 
@@ -89,8 +89,8 @@ class TestSuiteSWAMID extends TestSuite {
 
     $this->tests['rands']['expected']['eduPersonAssurance'] = $this->tests['assurance']['expected']['eduPersonAssurance'];
 
-    $this->tests['esi']['name'] = 'SWAMID Entity Category Release Check - European Student Identifier';
-    $this->tests['esi']['expected']['schacPersonalUniqueCode'] = 'Usually used within SWAMID for the European Student Identifier.';
+    $this->tests['esi']['name'] = _('SWAMID Entity Category Release Check - European Student Identifier');
+    $this->tests['esi']['expected']['schacPersonalUniqueCode'] = _('Usually used within SWAMID for the European Student Identifier.');
   }
 
   /**

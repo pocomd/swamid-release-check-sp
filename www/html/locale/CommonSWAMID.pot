@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-15 22:28+0200\n"
+"POT-Creation-Date: 2026-04-16 11:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,6 +162,16 @@ msgid ""
 "MFA."
 msgstr ""
 
+#: www/html/index.php:201 www/html/result/index.php:201
+#, php-format
+msgid "Step 1"
+msgstr ""
+
+#: www/html/index.php:202 www/html/result/index.php:202
+#, php-format
+msgid "Choose AuthnContextClassRef to test"
+msgstr ""
+
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
 msgid "No authnContextClassRef"
@@ -170,6 +180,11 @@ msgstr ""
 #: www/html/index.php:215 www/html/result/index.php:215
 #, php-format
 msgid "Test AuthnContextClassRef"
+msgstr ""
+
+#: www/html/index.php:223 www/html/result/index.php:223
+#, php-format
+msgid "Step 2"
 msgstr ""
 
 #: www/html/index.php:227 www/html/result/index.php:227
@@ -189,6 +204,17 @@ msgstr ""
 #: www/html/index.php:230 www/html/result/index.php:230
 #, php-format
 msgid "Test forceAuthN"
+msgstr ""
+
+#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
+#: www/html/result/index.php:263
+#, php-format
+msgid "Recieved in Step 1"
+msgstr ""
+
+#: www/html/index.php:248 www/html/result/index.php:248
+#, php-format
+msgid "Recieved in Step 2"
 msgstr ""
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
@@ -435,57 +461,57 @@ msgstr ""
 msgid "IdPs not tested"
 msgstr ""
 
-#: www/html/src/Configuration.php:65
+#: www/html/src/Configuration.php:66
 msgid ""
 "Click on the green button to see what attributes your Identity Provider "
 "releases."
 msgstr ""
 
-#: www/html/src/Configuration.php:66
+#: www/html/src/Configuration.php:67
 #, php-format
 msgid "Description of all test available in the %s test suite"
 msgstr ""
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:69
 msgid ""
 "The Attributes tab shows all attributes the service release to the entityId"
 msgstr ""
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:69
 msgid "The entityId uses the entity categories"
 msgstr ""
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:70
 msgid "REFEDS Personalized Access Entity Category"
 msgstr ""
 
-#: www/html/src/Configuration.php:70
+#: www/html/src/Configuration.php:71
 msgid "REFEDS Research and Scholarship Entity Category, and"
 msgstr ""
 
-#: www/html/src/Configuration.php:71
+#: www/html/src/Configuration.php:72
 msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 msgstr ""
 
-#: www/html/src/Configuration.php:73
+#: www/html/src/Configuration.php:74
 msgid ""
 "The Authentication tab checks if an Identity Provider is correctly "
 "configured for handling request for different AuthnContextClassRef requests."
 msgstr ""
 
-#: www/html/src/Configuration.php:74
+#: www/html/src/Configuration.php:75
 msgid ""
 "The Entity category tab does an exetensive testing of that an Identity "
 "Provider follows Best Practice for attribute release via entity categories."
 msgstr ""
 
-#: www/html/src/Configuration.php:75
+#: www/html/src/Configuration.php:76
 msgid ""
 "The ESI tab verifies if the Identity Provider release the right attributes "
 "for the European Digital Student Service Infrastructure."
 msgstr ""
 
-#: www/html/src/Configuration.php:78
+#: www/html/src/Configuration.php:79
 #, php-format
 msgid ""
 "In order for %s to work as effectively as possible for students and "
@@ -494,7 +520,7 @@ msgid ""
 "attributes that they require."
 msgstr ""
 
-#: www/html/src/Configuration.php:79
+#: www/html/src/Configuration.php:80
 #, php-format
 msgid ""
 "In order for services within the %s federation to work as effectively as "
@@ -504,13 +530,13 @@ msgid ""
 "attributes."
 msgstr ""
 
-#: www/html/src/Configuration.php:80
+#: www/html/src/Configuration.php:81
 #, php-format
 msgid ""
 "The %s best practice attribute release check consists of the following tests"
 msgstr ""
 
-#: www/html/src/Configuration.php:81
+#: www/html/src/Configuration.php:82
 #, php-format
 msgid ""
 "Multiple Code of Conduct test require different attributes which the IdP "
@@ -1156,20 +1182,20 @@ msgstr ""
 msgid "IdP home Federation"
 msgstr ""
 
-#: www/html/src/HTML.php:43
+#: www/html/src/HTML.php:42
 msgid "Release check for"
 msgstr ""
 
-#: www/html/src/HTML.php:74
+#: www/html/src/HTML.php:73
 msgid "Language"
 msgstr ""
 
-#: www/html/src/HTML.php:100
+#: www/html/src/HTML.php:99
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: www/html/src/HTML.php:113
+#: www/html/src/HTML.php:112
 msgid "Contact us"
 msgstr ""
 
@@ -1311,6 +1337,117 @@ msgstr ""
 msgid "IdP approved Assurance Level"
 msgstr ""
 
-#: www/html/src/TestSuite.php:146
+#: www/html/src/TestSuite.php:233
 msgid "No EC (shall not send any attributes!)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:234
+msgid "ISO_COUNTRY_CODE (se)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:235
+msgid "givenName + sn"
+msgstr ""
+
+#: www/html/src/TestSuite.php:236
+msgid "ISO_COUNTRY_NAME (Sweden)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:237
+msgid ""
+"Specifies the person's relationship(s) to the institution in broad "
+"categories such as student, faculty, staff, alum, etc."
+msgstr ""
+
+#: www/html/src/TestSuite.php:238
+msgid "User assurance information."
+msgstr ""
+
+#: www/html/src/TestSuite.php:239
+msgid ""
+"This attribute should only be released if and only if the IdP organization "
+"has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs "
+"are persistent digital identifiers for individual researchers. Their primary "
+"purpose is to unambiguously and definitively link them with their scholarly "
+"work products. ORCID iDs are assigned, managed and maintained by the ORCID "
+"organization."
+msgstr ""
+
+#: www/html/src/TestSuite.php:240
+msgid ""
+"A scoped identifier for a person. It should be represented in the form "
+"\"user@scope\" where 'user' is a name-based identifier for the person and "
+"where the \"scope\" portion MUST be the administrative domain of the "
+"identity system where the identifier was created and assigned."
+msgstr ""
+
+#: www/html/src/TestSuite.php:241
+msgid "eduPersonAffiliation, scoped"
+msgstr ""
+
+#: www/html/src/TestSuite.php:242
+msgid "Firstname"
+msgstr ""
+
+#: www/html/src/TestSuite.php:243
+msgid "Mailaddress (should only be one)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:244
+msgid "List of additional organizational mailaddresses for the person"
+msgstr ""
+
+#: www/html/src/TestSuite.php:245
+msgid "Shortform of organisation name"
+msgstr ""
+
+#: www/html/src/TestSuite.php:246
+msgid "Organisation name"
+msgstr ""
+
+#: www/html/src/TestSuite.php:247
+msgid ""
+"Its value for a given subject depends upon the relying party to whom it is "
+"given, thus preventing unrelated systems from using it as a basis for "
+"correlation."
+msgstr ""
+
+#: www/html/src/TestSuite.php:248
+msgid "8 digit date of birth (YYYYMMDD)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:249
+msgid ""
+"Specifies a person's home organization using the domain name of the "
+"organization"
+msgstr ""
+
+#: www/html/src/TestSuite.php:250
+msgid "example urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+msgstr ""
+
+#: www/html/src/TestSuite.php:251
+msgid "Lastname"
+msgstr ""
+
+#: www/html/src/TestSuite.php:252
+msgid ""
+"Its value for a given subject is independent of the relying party to whom it "
+"is given."
+msgstr ""
+
+#: www/html/src/TestSuiteSWAMID.php:84
+msgid ""
+"User assurance information. SWAMID Identity Assurance Profiles can only be "
+"asserted for a user if and only if both the organisation and the user is "
+"validated for the assurance level. Furthermore, REFEDS Assurance Framework "
+"information should be released based on SWAMID Assurance level for the user."
+msgstr ""
+
+#: www/html/src/TestSuiteSWAMID.php:92
+msgid "SWAMID Entity Category Release Check - European Student Identifier"
+msgstr ""
+
+#: www/html/src/TestSuiteSWAMID.php:93
+msgid "Usually used within SWAMID for the European Student Identifier."
 msgstr ""
