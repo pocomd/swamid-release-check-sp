@@ -158,7 +158,7 @@ msgstr ""
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
 msgid ""
-"The restults from this tests are NOT saved exept for tests done with REFEDS "
+"The results from this tests are NOT saved exept for tests done with REFEDS "
 "MFA."
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
-msgid "No authnContextClassRef"
+msgid "No AuthnContextClassRef"
 msgstr ""
 
 #: www/html/index.php:215 www/html/result/index.php:215
@@ -209,12 +209,12 @@ msgstr ""
 #: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
 #: www/html/result/index.php:263
 #, php-format
-msgid "Recieved in Step 1"
+msgid "Received in Step 1"
 msgstr ""
 
 #: www/html/index.php:248 www/html/result/index.php:248
 #, php-format
-msgid "Recieved in Step 2"
+msgid "Received in Step 2"
 msgstr ""
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
@@ -301,7 +301,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:253
 #, php-format
-msgid "Send to much data"
+msgid "Send too much data"
 msgstr ""
 
 #: www/html/src/Admin.php:256
@@ -311,7 +311,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:257
 #, php-format
-msgid "Send to much/less data"
+msgid "Send too much/less data"
 msgstr ""
 
 #: www/html/src/Admin.php:264
@@ -326,7 +326,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:266
 #, php-format
-msgid "Have ECS for %s but sends to much data > not %s"
+msgid "Have ECS for %s but sends too much data > not %s"
 msgstr ""
 
 #: www/html/src/Admin.php:272
@@ -418,7 +418,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:524
 #, php-format
-msgid "Missing schacPersonalUniqueCode or to many"
+msgid "Missing schacPersonalUniqueCode or too many"
 msgstr ""
 
 #: www/html/src/Admin.php:525
@@ -913,7 +913,7 @@ msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:184
-msgid "Supports no ACCR and ForceAuthn."
+msgid "Supports no AuthnContextClassRef and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:185
@@ -933,7 +933,7 @@ msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports no ACCR but not ForceAuthn."
+msgid "Supports no AuthnContextClassRef but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:192
@@ -949,7 +949,7 @@ msgid "Supports REFEDS MFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:196
-msgid "Identity Provider supports no ACCR."
+msgid "Identity Provider supports no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:197
@@ -965,7 +965,7 @@ msgid "Identity Provider supports REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:201
-msgid "Supports no ACCR."
+msgid "Supports no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:202
@@ -985,7 +985,7 @@ msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:208
-msgid "Does support ForceAuthn but not no ACCR."
+msgid "Does support ForceAuthn but not no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:209
@@ -1005,7 +1005,7 @@ msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:215
-msgid "Does neither support no ACCR or ForceAuthn."
+msgid "Does neither support no AuthnContextClassRef or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:216
@@ -1025,7 +1025,7 @@ msgid "Identity Provider does not support REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:222
-msgid "Does not support no ACCR."
+msgid "Does not support no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:223
@@ -1214,7 +1214,7 @@ msgid "None"
 msgstr ""
 
 #: www/html/src/IdPCheck.php:993
-msgid "No Assurance information recived"
+msgid "No Assurance information received"
 msgstr ""
 
 #: www/html/src/IdPCheck.php:1032
@@ -1240,7 +1240,7 @@ msgstr ""
 
 #: www/html/src/IdPCheck.php:1053
 #, php-format
-msgid "ACCR status"
+msgid "AuthnContextClassRef status"
 msgstr ""
 
 #: www/html/src/IdPCheck.php:1054
