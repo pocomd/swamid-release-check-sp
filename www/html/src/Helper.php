@@ -65,4 +65,39 @@ class Helper {
 
     return implode("<br>", $string);
   }
+
+  /**
+   * Get translated string for missing attributes.
+   *
+   * @param string $statusTextString of results string
+   *
+   * @return string
+   */
+  public function getMissingAttributesTranslated(string $statusTextString): string {
+    $statusArr = explode("#", $statusTextString);
+
+    foreach ($statusArr as $key => $attrText) {
+      [$attribute, $description] = explode(' - ', trim($attrText), 2);
+      $description = _($description);
+      $statusArr[$key] = "$attribute - $description";
+    }
+
+    return implode("#", $statusArr);
+  }
+
+  public function trans(string $statusTextArr): string {
+    $placeholders = is_array($this->replacements) ? $this->replacements : [];
+
+    $trans = (string) _($statusTextArr);
+    $trans = preg_replace_callback('/\[\[(.*?)\]\]/',
+        function ($matches) use ($placeholders) {
+            $key = $matches[1];
+
+            return $placeholders[$key] ?? $key;
+        },
+        $trans
+    );
+
+    return $trans;
+  }
 }
