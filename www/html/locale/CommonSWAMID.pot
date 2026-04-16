@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-16 13:44+0200\n"
+"POT-Creation-Date: 2026-04-16 15:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -841,194 +841,194 @@ msgstr ""
 msgid "schacPersonalUniqueCode OK"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:148
+#: www/html/src/DatabaseTexts.php:149
 msgid ""
 "schacPersonalUniqueCode in wrong case. Not "
 "urn:schac:personalUniqueCode:int:esi. Might create problem in some SP's"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:150
+#: www/html/src/DatabaseTexts.php:151
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:152 www/html/src/DatabaseTextsSWAMID.php:7
+#: www/html/src/DatabaseTexts.php:153 www/html/src/DatabaseTextsSWAMID.php:7
 msgid ""
 "schacPersonalUniqueCode should start with "
 "urn:schac:personalUniqueCode:int:esi:"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:154
+#: www/html/src/DatabaseTexts.php:155
 msgid ""
 "schacPersonalUniqueCode not starting with "
 "urn:schac:personalUniqueCode:int:esi:"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:156
+#: www/html/src/DatabaseTexts.php:157
 msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:158
+#: www/html/src/DatabaseTexts.php:159
 msgid "More than one schacPersonalUniqueCode"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:160
+#: www/html/src/DatabaseTexts.php:161
 msgid "Missing schacPersonalUniqueCode"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:163 www/html/src/DatabaseTextsSWAMID.php:17
+#: www/html/src/DatabaseTexts.php:164 www/html/src/DatabaseTextsSWAMID.php:17
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:165
+#: www/html/src/DatabaseTexts.php:166
 msgid "Sends invalid Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:167
+#: www/html/src/DatabaseTexts.php:168
 msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:169
+#: www/html/src/DatabaseTexts.php:170
 msgid "Missing [[RAF_ASSURANCE]] for user."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:172
+#: www/html/src/DatabaseTexts.php:173
 msgid "Missing some Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:174
+#: www/html/src/DatabaseTexts.php:175
 msgid ""
 "Assurance attribute release for current user follows REFED's recommendations."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:176
+#: www/html/src/DatabaseTexts.php:177
 msgid "Sends recommended Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:179
+#: www/html/src/DatabaseTexts.php:180
 msgid "Authentication-instant hasn't updated after forceAuthn was requested."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:181
+#: www/html/src/DatabaseTexts.php:182
 msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:183
+#: www/html/src/DatabaseTexts.php:184
 msgid "Supports no ACCR and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:184
+#: www/html/src/DatabaseTexts.php:185
 msgid "Supports PasswordProtectedTransport and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:185
+#: www/html/src/DatabaseTexts.php:186
 msgid "Supports REFEDS SFA and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:186
+#: www/html/src/DatabaseTexts.php:187
 msgid "Supports REFEDS MFA and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:188
+#: www/html/src/DatabaseTexts.php:189
 msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:190
+#: www/html/src/DatabaseTexts.php:191
 msgid "Supports no ACCR but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:191
+#: www/html/src/DatabaseTexts.php:192
 msgid "Supports PasswordProtectedTransport but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:192
+#: www/html/src/DatabaseTexts.php:193
 msgid "Supports REFEDS SFA but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:193
+#: www/html/src/DatabaseTexts.php:194
 msgid "Supports REFEDS MFA but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:195
+#: www/html/src/DatabaseTexts.php:196
 msgid "Identity Provider supports REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:197
+#: www/html/src/DatabaseTexts.php:198
 msgid "Supports no ACCR."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:198
+#: www/html/src/DatabaseTexts.php:199
 msgid "Supports PasswordProtectedTransport."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:199
+#: www/html/src/DatabaseTexts.php:200
 msgid "Supports REFEDS SFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:200
+#: www/html/src/DatabaseTexts.php:201
 msgid "Supports REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:202
+#: www/html/src/DatabaseTexts.php:203
 msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:204
+#: www/html/src/DatabaseTexts.php:205
 msgid "Does support ForceAuthn but not no ACCR."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:205
+#: www/html/src/DatabaseTexts.php:206
 msgid "Does support ForceAuthn but not PasswordProtectedTransport."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:206
+#: www/html/src/DatabaseTexts.php:207
 msgid "Does support ForceAuthn but not REFEDS SFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:207
+#: www/html/src/DatabaseTexts.php:208
 msgid "Does support ForceAuthn but not REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:209
+#: www/html/src/DatabaseTexts.php:210
 msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:211
+#: www/html/src/DatabaseTexts.php:212
 msgid "Does neither support no ACCR or ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:212
+#: www/html/src/DatabaseTexts.php:213
 msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:213
+#: www/html/src/DatabaseTexts.php:214
 msgid "Does neither support REFEDS SFA or ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:214
+#: www/html/src/DatabaseTexts.php:215
 msgid "Does neither support REFEDS MFA or ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:216
+#: www/html/src/DatabaseTexts.php:217
 msgid "Identity Provider does not support REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:218
+#: www/html/src/DatabaseTexts.php:219
 msgid "Does not support no ACCR."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:219
+#: www/html/src/DatabaseTexts.php:220
 msgid "Does not support PasswordProtectedTransport."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:220
+#: www/html/src/DatabaseTexts.php:221
 msgid "Does not support REFEDS SFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:221
+#: www/html/src/DatabaseTexts.php:222
 msgid "Does not support REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:224
+#: www/html/src/DatabaseTexts.php:225
 msgid "Test not run yet"
 msgstr ""
 
