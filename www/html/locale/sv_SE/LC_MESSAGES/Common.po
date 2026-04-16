@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-16 13:44+0200\n"
-"PO-Revision-Date: 2026-04-16 13:47+0200\n"
+"POT-Creation-Date: 2026-04-16 19:18+0200\n"
+"PO-Revision-Date: 2026-04-16 19:21+0200\n"
 "Last-Translator: Björn Mattsson <Bjorn@sunet.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -854,7 +854,7 @@ msgstr "Support för CoCo saknas, Entity Category Support saknas"
 msgid "schacPersonalUniqueCode OK"
 msgstr "schacPersonalUniqueCode OK"
 
-#: www/html/src/DatabaseTexts.php:148
+#: www/html/src/DatabaseTexts.php:149
 msgid ""
 "schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi. "
 "Might create problem in some SP's"
@@ -862,183 +862,195 @@ msgstr ""
 "schacPersonalUniqueCode har fel versaler/gemener i värdet. Är inte "
 "urn:schac:personalUniqueCode:int:esi. Kan skapa problem i vissa SP:er"
 
-#: www/html/src/DatabaseTexts.php:150
+#: www/html/src/DatabaseTexts.php:151
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
 msgstr "schacPersonalUniqueCode OK. Men fel versaler/gemener"
 
-#: www/html/src/DatabaseTexts.php:152 www/html/src/DatabaseTextsSWAMID.php:7
+#: www/html/src/DatabaseTexts.php:153 www/html/src/DatabaseTextsSWAMID.php:7
 msgid "schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:"
 msgstr "schacPersonalUniqueCode skall börja med urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:154
+#: www/html/src/DatabaseTexts.php:155
 msgid "schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:"
 msgstr "schacPersonalUniqueCode börjar inte med urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:156
+#: www/html/src/DatabaseTexts.php:157
 msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
 msgstr "schacPersonalUniqueCode skall enbart innehålla <b>ett</b> värde."
 
-#: www/html/src/DatabaseTexts.php:158
+#: www/html/src/DatabaseTexts.php:159
 msgid "More than one schacPersonalUniqueCode"
 msgstr "Mer än en schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:160
+#: www/html/src/DatabaseTexts.php:161
 msgid "Missing schacPersonalUniqueCode"
 msgstr "Saknar schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:163 www/html/src/DatabaseTextsSWAMID.php:17
+#: www/html/src/DatabaseTexts.php:164 www/html/src/DatabaseTextsSWAMID.php:17
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr "Identitetsutfärdaren skickar felaktig Assurance information."
 
-#: www/html/src/DatabaseTexts.php:165
+#: www/html/src/DatabaseTexts.php:166
 msgid "Sends invalid Assurance information."
 msgstr "Skickar felaktig Assurance information."
 
-#: www/html/src/DatabaseTexts.php:167
+#: www/html/src/DatabaseTexts.php:168
 msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr "Saknar Assurance information. Förvänatade minst [[RAF_ASSURANCE]]"
 
-#: www/html/src/DatabaseTexts.php:169
+#: www/html/src/DatabaseTexts.php:170
 msgid "Missing [[RAF_ASSURANCE]] for user."
 msgstr "Saknar [[RAF_ASSURANCE]] för användaren."
 
-#: www/html/src/DatabaseTexts.php:172
+#: www/html/src/DatabaseTexts.php:173
 msgid "Missing some Assurance information."
 msgstr "Saknar viss Assurance information."
 
-#: www/html/src/DatabaseTexts.php:174
+#: www/html/src/DatabaseTexts.php:175
 msgid "Assurance attribute release for current user follows REFED's recommendations."
 msgstr "Assurance attribut som släpps för användaren följer REFED's rekommendationer."
 
-#: www/html/src/DatabaseTexts.php:176
+#: www/html/src/DatabaseTexts.php:177
 msgid "Sends recommended Assurance information."
 msgstr "Skickar rekommenderad Assurance information."
 
-#: www/html/src/DatabaseTexts.php:179
+#: www/html/src/DatabaseTexts.php:180
 msgid "Authentication-instant hasn't updated after forceAuthn was requested."
 msgstr "Authentication-instant har inte uppdaterats efter att forceAuthn begärdes."
 
-#: www/html/src/DatabaseTexts.php:181
+#: www/html/src/DatabaseTexts.php:182
 msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
 msgstr "Identitetsutfärdaren supportar REFEDS MFA och ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:183
+#: www/html/src/DatabaseTexts.php:184
 msgid "Supports no ACCR and ForceAuthn."
 msgstr "Supportar förfrågan utan någon ACCR samt ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:184
+#: www/html/src/DatabaseTexts.php:185
 msgid "Supports PasswordProtectedTransport and ForceAuthn."
 msgstr "Supportar PasswordProtectedTransport samt ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:185
+#: www/html/src/DatabaseTexts.php:186
 msgid "Supports REFEDS SFA and ForceAuthn."
 msgstr "Supportar REFEDS SFA samt ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:186
+#: www/html/src/DatabaseTexts.php:187
 msgid "Supports REFEDS MFA and ForceAuthn."
 msgstr "Supportar REFEDS MFA samt ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:188
+#: www/html/src/DatabaseTexts.php:189
 msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
 msgstr "Identitetsutfärdaren supportar REFEDS MFA men inte ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:190
+#: www/html/src/DatabaseTexts.php:191
 msgid "Supports no ACCR but not ForceAuthn."
 msgstr "Supportar förfrågan utan någon ACCR men inte ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:191
+#: www/html/src/DatabaseTexts.php:192
 msgid "Supports PasswordProtectedTransport but not ForceAuthn."
 msgstr "Supportar PasswordProtectedTransport men inte ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:192
+#: www/html/src/DatabaseTexts.php:193
 msgid "Supports REFEDS SFA but not ForceAuthn."
 msgstr "Supportar REFEDS SFA men inte ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:193
+#: www/html/src/DatabaseTexts.php:194
 msgid "Supports REFEDS MFA but not ForceAuthn."
 msgstr "Supportar REFEDS MFA men inte ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:195
+#: www/html/src/DatabaseTexts.php:196
+msgid "Identity Provider supports no ACCR."
+msgstr "Identitetsutfärdaren supportar förfrågan utan någon ACCR."
+
+#: www/html/src/DatabaseTexts.php:197
+msgid "Identity Provider supports PasswordProtectedTransport."
+msgstr "Identitetsutfärdaren supportar PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Identity Provider supports REFEDS SFA."
+msgstr "Identitetsutfärdaren supportar REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:199
 msgid "Identity Provider supports REFEDS MFA."
 msgstr "Identitetsutfärdaren supportar REFEDS MFA."
 
-#: www/html/src/DatabaseTexts.php:197
+#: www/html/src/DatabaseTexts.php:201
 msgid "Supports no ACCR."
 msgstr "Supportar förfrågan utan någon ACCR."
 
-#: www/html/src/DatabaseTexts.php:198
+#: www/html/src/DatabaseTexts.php:202
 msgid "Supports PasswordProtectedTransport."
 msgstr "Supportar PasswordProtectedTransport."
 
-#: www/html/src/DatabaseTexts.php:199
+#: www/html/src/DatabaseTexts.php:203
 msgid "Supports REFEDS SFA."
 msgstr "Supportar REFEDS SFA."
 
-#: www/html/src/DatabaseTexts.php:200
+#: www/html/src/DatabaseTexts.php:204
 msgid "Supports REFEDS MFA."
 msgstr "Supportar REFEDS MFA."
 
-#: www/html/src/DatabaseTexts.php:202
+#: www/html/src/DatabaseTexts.php:206
 msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
 msgstr "Identitetsutfärdaren supportar ForceAuthn men inte REFEDS MFA."
 
-#: www/html/src/DatabaseTexts.php:204
+#: www/html/src/DatabaseTexts.php:208
 msgid "Does support ForceAuthn but not no ACCR."
 msgstr "Supportar ForceAuthn men inte förfrågan utan någon ACCR."
 
-#: www/html/src/DatabaseTexts.php:205
+#: www/html/src/DatabaseTexts.php:209
 msgid "Does support ForceAuthn but not PasswordProtectedTransport."
 msgstr "Supportar ForceAuthn men inte PasswordProtectedTransport."
 
-#: www/html/src/DatabaseTexts.php:206
+#: www/html/src/DatabaseTexts.php:210
 msgid "Does support ForceAuthn but not REFEDS SFA."
 msgstr "Supportar ForceAuthn men inte REFEDS SFA."
 
-#: www/html/src/DatabaseTexts.php:207
+#: www/html/src/DatabaseTexts.php:211
 msgid "Does support ForceAuthn but not REFEDS MFA."
 msgstr "Supportar ForceAuthn men inte REFEDS MFA."
 
-#: www/html/src/DatabaseTexts.php:209
+#: www/html/src/DatabaseTexts.php:213
 msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
 msgstr "Identitetsutfärdaren supportar varken REFEDS MFA eller ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:211
+#: www/html/src/DatabaseTexts.php:215
 msgid "Does neither support no ACCR or ForceAuthn."
 msgstr "Supportar varken förfrågan utan någon ACCR eller ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:212
+#: www/html/src/DatabaseTexts.php:216
 msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
 msgstr "Supportar varken PasswordProtectedTransport eller ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:213
+#: www/html/src/DatabaseTexts.php:217
 msgid "Does neither support REFEDS SFA or ForceAuthn."
 msgstr "Supportar varken REFEDS SFA eller ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:214
+#: www/html/src/DatabaseTexts.php:218
 msgid "Does neither support REFEDS MFA or ForceAuthn."
 msgstr "Supportar varken REFEDS MFA eller ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:216
+#: www/html/src/DatabaseTexts.php:220
 msgid "Identity Provider does not support REFEDS MFA."
 msgstr "Identitetsutfärdaren supportar inte REFEDS MFA."
 
-#: www/html/src/DatabaseTexts.php:218
+#: www/html/src/DatabaseTexts.php:222
 msgid "Does not support no ACCR."
 msgstr "Supportar ej förfrågan utan någon ACCR."
 
-#: www/html/src/DatabaseTexts.php:219
+#: www/html/src/DatabaseTexts.php:223
 msgid "Does not support PasswordProtectedTransport."
 msgstr "Supportar ej PasswordProtectedTransport."
 
-#: www/html/src/DatabaseTexts.php:220
+#: www/html/src/DatabaseTexts.php:224
 msgid "Does not support REFEDS SFA."
 msgstr "Supportar ej REFEDS SFA."
 
-#: www/html/src/DatabaseTexts.php:221
+#: www/html/src/DatabaseTexts.php:225
 msgid "Does not support REFEDS MFA."
 msgstr "Supportar ej REFEDS MFA."
 
-#: www/html/src/DatabaseTexts.php:224
+#: www/html/src/DatabaseTexts.php:228
 msgid "Test not run yet"
 msgstr "Testet ännu ej kört"
 
@@ -1126,14 +1138,14 @@ msgstr "Identitetsutfärdarens attribut i metadatan"
 msgid "Identity Provider sessions attributes"
 msgstr "Identitetsutfärdarens sessions attribut"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214 www/html/src/IdPCheck.php:175
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216 www/html/src/IdPCheck.php:175
 #, php-format
 msgid "Test"
 msgstr "Test"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216
 #, php-format
 msgid "Result"
 msgstr "Resultat"
@@ -1143,49 +1155,49 @@ msgstr "Resultat"
 msgid "Run test"
 msgstr "Kör test"
 
-#: www/html/src/Display.php:205
+#: www/html/src/Display.php:207
 msgid "European Student Identifier (student account)"
 msgstr "European Student Identifier (student konto)"
 
-#: www/html/src/Display.php:206
+#: www/html/src/Display.php:208
 msgid "European Student Identifier (any account)"
 msgstr "European Student Identifier (något konto)"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Run NEW test"
 msgstr "Kör NY test"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Rerun test"
 msgstr "Kör om testet"
 
-#: www/html/src/Display.php:281
+#: www/html/src/Display.php:290
 #, php-format
 msgid "Received"
 msgstr "Mottaget"
 
-#: www/html/src/Display.php:291 www/html/src/IdPCheck.php:978
+#: www/html/src/Display.php:306 www/html/src/IdPCheck.php:978
 #: www/html/src/IdPCheckSWAMID.php:213
 #, php-format
 msgid "Missing"
 msgstr "Saknas"
 
-#: www/html/src/Display.php:299
+#: www/html/src/Display.php:320
 #, php-format
 msgid "Not expected"
 msgstr "Ej förväntat"
 
-#: www/html/src/Display.php:307 www/html/src/IdPCheck.php:1051
+#: www/html/src/Display.php:334 www/html/src/IdPCheck.php:1051
 #, php-format
 msgid "Test result"
 msgstr "Test resultat"
 
-#: www/html/src/Display.php:337
+#: www/html/src/Display.php:366
 #, php-format
 msgid "unknown tab"
 msgstr "okänd tab"
 
-#: www/html/src/Display.php:367
+#: www/html/src/Display.php:396
 msgid "Other results"
 msgstr "Andra resultat"
 

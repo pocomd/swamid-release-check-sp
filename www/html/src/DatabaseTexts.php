@@ -193,6 +193,9 @@ _('Supports PasswordProtectedTransport but not ForceAuthn.');
 _('Supports REFEDS SFA but not ForceAuthn.');
 _('Supports REFEDS MFA but not ForceAuthn.');
 #IdPCheck.php:1082: #status_OK
+_('Identity Provider supports no ACCR.');
+_('Identity Provider supports PasswordProtectedTransport.');
+_('Identity Provider supports REFEDS SFA.');
 _('Identity Provider supports REFEDS MFA.');
 #IdPCheck.php:1083: #testResult
 _('Supports no ACCR.');
