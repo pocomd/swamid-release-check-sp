@@ -66,11 +66,17 @@ class HTML {
   }
 
   public function showContentHeader() {
+    $localize = new \releasecheck\Localize();
+    $flag = $this->config->getLanguages()[$localize->getLang()]['flag'];
     $header = '    <div class="header">';
     $defaultHeader = '<nav>
         <ul class="nav nav-pills float-right">
           <li role="presentation" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">' . _('Language') .'</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <img src="https://flagcdn.com/h20/' . $flag . '.png"
+                srcset="https://flagcdn.com/h40/' . $flag . '.png 2x, https://flagcdn.com/h60/' . $flag . '.png 3x"
+                height="20"
+                alt="' . $localize->getLang() . '"> ' . _('Language') . '</a>
             <div class="dropdown-menu">' ."\n";
     $queryString = $_SERVER['QUERY_STRING'] == '' ? '?lang=' : '?' . $_SERVER['QUERY_STRING'] . '&lang=';
     if ($_SERVER['QUERY_STRING'] == '') {
@@ -87,11 +93,11 @@ class HTML {
                 <img src="https://flagcdn.com/h20/%s.png"
                   srcset="https://flagcdn.com/h40/%s.png 2x, https://flagcdn.com/h60/%s.png 3x"
                   height="20"
-                  alt="%s"> %s
+                  alt="%s"> %s (%s)
               </a>%s',
         $queryString, $lang,
         $info['flag'], $info['flag'], $info['flag'],
-        $info['name'],$info['name'], "\n");
+        $info['name'],$info['name'], $lang, "\n");
     }
     $defaultHeader .= sprintf('            </div>
           </li>

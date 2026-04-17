@@ -47,7 +47,8 @@ class Configuration {
    * @return void
    */
   public function __construct($startDB = true) {
-    $localize = new \releasecheck\Localize(); # NOSONAR We need to initalize this class early to catch translations in this file
+    $localize = new \releasecheck\Localize();
+    $localize->startTranslate();
     include __DIR__ . '/../config.php'; # NOSONAR
 
     $reqParams = array('db', 'basename', 'federation', 'languages');

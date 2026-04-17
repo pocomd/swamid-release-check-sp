@@ -28,7 +28,7 @@ $languages = array(
   'it' => array('name' => 'Italiano', 'flag' => 'it'),
   'ro' => array('name' => 'Română', 'flag' => 'ro'),
   'sv' => array('name' => 'Svenska', 'flag' => 'se'),
-  'sr' => array('name' => 'Cpпcки језик', 'flag' => 'rs'),
+  'sr' => array('name' => 'Cpпcки', 'flag' => 'rs'),
 );
 
 $federation = array(
@@ -97,6 +97,8 @@ $federation = array(
   # Optional instructions at end of EntityCategory tab. Default text below
   #'instructionsEntityCategoryEnd' => '<p>Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT
   #          release in accordance REFEDS/GÉANT Code of Conduct.</p>',
+  # If you only use one / no Code of Conduct test. Change this into
+  # 'instructionsEntityCategoryEnd' => '',
 );
 
 $template = array(
