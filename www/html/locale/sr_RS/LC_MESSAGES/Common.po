@@ -8,75 +8,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-08 11:15+0200\n"
-"PO-Revision-Date: 2026-04-14 19:36+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2026-04-17 16:37+0200\n"
+"PO-Revision-Date: 2026-04-17 19:36+0200\n"
+"Last-Translator: Andrijana <andrijana.todosijevic@amres.ac.rs>\n"
 "Language-Team: \n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: www/html/error.php:15
+#: www/html/error.php:12
 #, php-format
 msgid "For more info visit this <a href=\"%s\">support-page</a>."
 msgstr "За више информација посетите ову <a href=\"%s\">страницу подршке</a>."
 
-#: www/html/error.php:50
+#: www/html/error.php:48
 msgid "Unknown Identity Provider"
 msgstr "Непознат Давалац Идентитета"
 
-#: www/html/error.php:51
-msgid ""
-"To report this problem, please contact the site administrator at <a "
-"href=\"mailto:operations@swamid.se\">operations@swamid.se</a>."
-msgstr ""
-"Да бисте пријавили овај проблем, контактирајте администратора на "
-"<a href=\"mailto:operations@swamid.se\">operations@swamid.se</a>."
+#: www/html/error.php:49
+msgid "To report this problem, please contact the site administrator at"
+msgstr "Да бисте пријавили овај проблем, контактирајте администратора на"
 
-#: www/html/error.php:53 www/html/error.php:68
+#: www/html/error.php:51 www/html/error.php:66
 msgid "Please include the following error message in any email"
-msgstr "Молимо укључите следећу поруку о грешци у било коју имејл поруку"
+msgstr "Молимо укључите следећу поруку о грешци у било ком имејлу"
 
-#: www/html/error.php:54 www/html/error.php:69
+#: www/html/error.php:52 www/html/error.php:67
 msgid "Identity provider lookup failed at"
 msgstr "Претрага Даваоца Идентитета није успела на"
 
-#: www/html/error.php:55 www/html/error.php:70
+#: www/html/error.php:53 www/html/error.php:68
 msgid "EntityID"
 msgstr "EntityID"
 
-#: www/html/error.php:62
+#: www/html/error.php:60
 msgid "Unusable Identity Provider"
 msgstr "Неупотребљив Давалац Идентитета"
 
-#: www/html/error.php:63
+#: www/html/error.php:61
 msgid ""
 "The identity provider supplying your login credentials does not support the "
 "necessary capabilities."
 msgstr ""
-"Давалац Идентитета који обезбеђује ваше податке за пријаву не подржава "
-"потребне функционалности."
+"Давалац Идентитета који обезбеђује ваше податке за пријаву не подржава потребне "
+"функционалности."
 
-#: www/html/error.php:64
+#: www/html/error.php:62
 msgid "To report this problem, please contact the IdP administrator."
 msgstr "Да бисте пријавили овај проблем, контактирајте IdP администратора."
 
-#: www/html/error.php:65
+#: www/html/error.php:63
 msgid "If your are the IdP administrator you can reach out to"
 msgstr "Ако сте IdP администратор, можете се обратити"
 
-#: www/html/error.php:79
+#: www/html/error.php:77
 msgid "Values"
 msgstr "Вредности"
 
-#: www/html/error.php:80
+#: www/html/error.php:78
 msgid "Key"
 msgstr "Кључ"
 
-#: www/html/error.php:80 www/html/src/Display.php:54
-#: www/html/src/Display.php:74 www/html/src/Display.php:121
-#: www/html/src/IdPCheck.php:431
+#: www/html/error.php:78 www/html/src/Display.php:54 www/html/src/Display.php:74
+#: www/html/src/Display.php:121 www/html/src/IdPCheck.php:431
 #, php-format
 msgid "Value"
 msgstr "Вредност"
@@ -126,9 +121,8 @@ msgid "%s and show attributes"
 msgstr "%s и прикажи атрибуте"
 
 #: www/html/index.php:162 www/html/index.php:187 www/html/index.php:309
-#: www/html/index.php:354 www/html/result/index.php:162
-#: www/html/result/index.php:187 www/html/result/index.php:309
-#: www/html/result/index.php:354
+#: www/html/index.php:354 www/html/result/index.php:162 www/html/result/index.php:187
+#: www/html/result/index.php:309 www/html/result/index.php:354
 #, php-format
 msgid "Instructions"
 msgstr "Упутства"
@@ -152,21 +146,32 @@ msgstr "Пријава"
 #: www/html/index.php:191 www/html/result/index.php:191
 #, php-format
 msgid "The Authentication test is a two step process."
-msgstr "Тест аутентикације је процес у два корака."
+msgstr "Тест аутентификације је процес који се састоји од два корака."
 
 #: www/html/index.php:192 www/html/result/index.php:192
 #, php-format
 msgid ""
-"The first step is to test an AuthnContextClassRef and the second step is to "
-"verify that forceAuthn works as expected for that AuthnContextClassRef."
+"The first step is to test an AuthnContextClassRef and the second step is to verify "
+"that forceAuthn works as expected for that AuthnContextClassRef."
 msgstr ""
-"Први корак је тестирање AuthnContextClassRef, а други корак је "
-"провера да ли forceAuthn ради како се очекује за тај AuthnContextClassRef."
+"Први корак је тестирање AuthnContextClassRef, а други корак је провера да ли "
+"forceAuthn ради како се очекује за тај AuthnContextClassRef."
 
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
-msgid "The results from this tests are NOT saved exept for tests done with REFEDS MFA."
+msgid ""
+"The results from this tests are NOT saved exept for tests done with REFEDS MFA."
 msgstr "Резултати ових тестова се НЕ чувају осим за REFEDS MFA тестове."
+
+#: www/html/index.php:201 www/html/result/index.php:201
+#, php-format
+msgid "Step 1"
+msgstr "Корак 1"
+
+#: www/html/index.php:202 www/html/result/index.php:202
+#, php-format
+msgid "Choose AuthnContextClassRef to test"
+msgstr "Изабери AuthnContextClassRef за тест"
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
@@ -178,20 +183,25 @@ msgstr "Нема AuthnContextClassRef"
 msgid "Test AuthnContextClassRef"
 msgstr "Тестирај AuthnContextClassRef"
 
+#: www/html/index.php:223 www/html/result/index.php:223
+#, php-format
+msgid "Step 2"
+msgstr "Корак 2"
+
 #: www/html/index.php:227 www/html/result/index.php:227
 #, php-format
 msgid ""
-"Rerun \"Test AuthnContextClassRef\" to get a fresh Authentication-Instant to "
-"be able to run \"Test forceAuthN\" again."
+"Rerun \"Test AuthnContextClassRef\" to get a fresh Authentication-Instant to be "
+"able to run \"Test forceAuthN\" again."
 msgstr ""
-"Поново покрените \"Тест AuthnContextClassRef\" да бисте добили нови Authentication-Instant "
-"и могли поново да покренете \"Тест forceAuthN\"."
+"Поново покрените \"Тест AuthnContextClassRef\" да бисте добили нови Authentication-"
+"Instant и могли поново да покренете \"Тест forceAuthN\"."
 
 #: www/html/index.php:229 www/html/result/index.php:229
 #, php-format
 msgid ""
-"Test that forceAuthn return a newer Authentication-Instant than in step 1. "
-"The same AuthnContextClassRef is used as in step 1."
+"Test that forceAuthn return a newer Authentication-Instant than in step 1. The "
+"same AuthnContextClassRef is used as in step 1."
 msgstr ""
 "Проверите да forceAuthn враћа новији Authentication-Instant него у кораку 1. "
 "Користи се исти AuthnContextClassRef као у кораку 1."
@@ -201,11 +211,30 @@ msgstr ""
 msgid "Test forceAuthN"
 msgstr "Тестирај forceAuthN"
 
+#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
+#: www/html/result/index.php:263
+#, php-format
+msgid "Received in Step 1"
+msgstr "Примљено у Кораку 1"
+
+#: www/html/index.php:248 www/html/result/index.php:248
+#, php-format
+msgid "Received in Step 2"
+msgstr "Примљено у Кораку 2"
+
+#: www/html/index.php:258 www/html/result/index.php:258
+msgid "Refresh/Reload is not allowed while testing forceAuthn."
+msgstr "Refresh/Reload није дозвољен током тестирања forceAuthn."
+
+#: www/html/index.php:259 www/html/result/index.php:259
+msgid "Please rerun \"Test AuthnContextClassRef\""
+msgstr "Молимо поновите \"Test AuthnContextClassRef\""
+
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
 #: www/html/result/index.php:332
 #, php-format
 msgid "%s Best Practice Attribute Release check"
-msgstr "%s провера најбоље праксе прослеђивања атрибута"
+msgstr "%s провера најбоље праксе слања атрибута"
 
 #: www/html/index.php:283 www/html/result/index.php:283
 #, php-format
@@ -230,20 +259,18 @@ msgstr "Покрени тестове"
 
 #: www/html/index.php:358 www/html/result/index.php:358
 #, php-format
-msgid ""
-"European Student Identifier uses the entity category https://"
-"myacademicid.org/entity-categories/esi for release of attributes from the "
-"user's identity provider."
-msgstr ""
-"European Student Identifier користи категорију ентитета "
-"https://myacademicid.org/entity-categories/esi за ослобађање атрибута са "
-"корисничког Даваоца Идентитета."
+msgid "European Student Identifier uses the entity category"
+msgstr "European Student Identifier користи категорију ентитета"
 
-#: www/html/index.php:358 www/html/result/index.php:358
+#: www/html/index.php:360 www/html/result/index.php:360
 #, php-format
-msgid ""
-"This test verifies that all required attributes are released during login."
-msgstr "Овај тест проверава да ли су сви потребни атрибути ослобођени током пријаве."
+msgid "for release of attributes from the user's identity provider."
+msgstr "за слање атрибута са корисничког Даваоца Идентитета."
+
+#: www/html/index.php:361 www/html/result/index.php:361
+#, php-format
+msgid "This test verifies that all required attributes are released during login."
+msgstr "Овај тест проверава да ли су сви потребни атрибути послати током пријаве."
 
 #: www/html/result/admin.php:20
 msgid "No access"
@@ -267,7 +294,7 @@ msgstr "%s тестова покренуо %s"
 #: www/html/src/Admin.php:237 www/html/src/Admin.php:515
 #, php-format
 msgid "Show all EC tests for this IdP"
-msgstr "Прикажи све EC тестове за овај IdP"
+msgstr "Прикажи све тестове категорија ентитета за овај IdP"
 
 #: www/html/src/Admin.php:241
 #, php-format
@@ -324,8 +351,8 @@ msgstr "Шаље атрибут"
 msgid "Doesn't send attribute"
 msgstr "Не шаље атрибут"
 
-#: www/html/src/Admin.php:282 www/html/src/Admin.php:416
-#: www/html/src/Admin.php:532 www/html/src/Admin.php:534
+#: www/html/src/Admin.php:282 www/html/src/Admin.php:416 www/html/src/Admin.php:532
+#: www/html/src/Admin.php:534
 #, php-format
 msgid "Tested"
 msgstr "Тестирано"
@@ -340,8 +367,7 @@ msgstr "Подаци"
 msgid "ECS"
 msgstr "ECS"
 
-#: www/html/src/Admin.php:289 www/html/src/Admin.php:422
-#: www/html/src/Admin.php:539
+#: www/html/src/Admin.php:289 www/html/src/Admin.php:422 www/html/src/Admin.php:539
 msgid "IdP"
 msgstr "IdP"
 
@@ -385,8 +411,7 @@ msgstr "Шаље нови Authentication-Instant у кораку 2"
 msgid "Sends same Authentication-Instant in step 2"
 msgstr "Шаље исти Authentication-Instant у кораку 2"
 
-#: www/html/src/Admin.php:468 www/html/src/Admin.php:475
-#: www/html/src/Admin.php:481
+#: www/html/src/Admin.php:468 www/html/src/Admin.php:475 www/html/src/Admin.php:481
 #, php-format
 msgid "Fail"
 msgstr "Неуспех"
@@ -435,7 +460,7 @@ msgstr "Неисправан код"
 
 #: www/html/src/Admin.php:606 www/html/src/Admin.php:638
 msgid "sHO = se"
-msgstr "sHO = se"
+msgstr "sHO = rs"
 
 #: www/html/src/Admin.php:645
 msgid "No test run as Student"
@@ -446,619 +471,596 @@ msgstr "Нема покренутог теста као студент"
 msgid "IdPs not tested"
 msgstr "IdP-ови који нису тестирани"
 
-#: www/html/src/Configuration.php:65
+#: www/html/src/Configuration.php:67
 msgid ""
-"Click on the green button to see what attributes your Identity Provider "
-"releases."
+"Click on the green button to see what attributes your Identity Provider releases."
 msgstr ""
-"Кликните на зелено дугме да видите које атрибуте ваш Identity Provider "
-"ослобађа."
+"Кликните на зелено дугме да видите које атрибуте ваш Identity Provider шаље"
 
-#: www/html/src/Configuration.php:66
+#: www/html/src/Configuration.php:68
 #, php-format
 msgid "Description of all test available in the %s test suite"
 msgstr "Опис свих доступних тестова у %s тест пакету"
 
-#: www/html/src/Configuration.php:68
-#, php-format
-msgid ""
-"The Attributes tab shows all attributes the service release to the entityId "
-"https://%s/shibboleth. The entityId uses the entity categories"
-msgstr ""
-"Картица Атрибути приказује све атрибуте које сервис шаље ка entityId "
-"https://%s/shibboleth. EntityId користи категорије ентитета"
+#: www/html/src/Configuration.php:70
+msgid "The Attributes tab shows all attributes the service release to the entityId"
+msgstr "Картица Атрибути приказује све атрибуте које сервис шаље ка entityId"
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:70
+msgid "The entityId uses the entity categories"
+msgstr "EntityId користи категорије ентитета"
+
+#: www/html/src/Configuration.php:71
 msgid "REFEDS Personalized Access Entity Category"
 msgstr "REFEDS Personalized Access категорија ентитета"
 
-#: www/html/src/Configuration.php:70
+#: www/html/src/Configuration.php:72
 msgid "REFEDS Research and Scholarship Entity Category, and"
 msgstr "REFEDS Research and Scholarship категорија ентитета, и"
 
-#: www/html/src/Configuration.php:71
+#: www/html/src/Configuration.php:73
 msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 msgstr "REFEDS Data Protection Code of Conduct верзија 2.0 категорија ентитета"
 
-#: www/html/src/Configuration.php:73
-msgid ""
-"The Authentication tab checks if an Identity Provider is correctly "
-"configured for handling request for different AuthnContextClassRef requests."
-msgstr ""
-"Таб Аутентикација проверава да ли је Identity Provider исправно "
-"конфигурисан за обраду различитих AuthnContextClassRef захтева."
-
-#: www/html/src/Configuration.php:74
-msgid ""
-"The Entity category tab does an exetensive testing of that an Identity "
-"Provider follows Best Practice for attribute release via entity categories."
-msgstr ""
-"Таб Категорија ентитета врши детаљно тестирање да ли Давалац Идентитета "
-"прати најбоље праксе за ослобађање атрибута користећи категорије ентитета."
-
 #: www/html/src/Configuration.php:75
 msgid ""
-"The ESI tab verifies if the Identity Provider release the right attributes "
-"for the European Digital Student Service Infrastructure."
+"The Authentication tab checks if an Identity Provider is correctly configured for "
+"handling request for different AuthnContextClassRef requests."
 msgstr ""
-"Таб ESI проверава да ли Давалац Идентитеташаље исправне атрибуте "
-"за European Digital Student Service Infrastructure."
+"Таб Аутентификација проверава да ли је Identity Provider исправно конфигурисан за "
+"обраду различитих AuthnContextClassRef захтева."
 
-#: www/html/src/Configuration.php:78
-#, php-format
+#: www/html/src/Configuration.php:76
 msgid ""
-"In order for %s to work as effectively as possible for students and "
-"employees as well as for service providers and identity providers, %s "
-"recommends that service providers use entity categories to get the "
-"attributes that they require."
+"The Entity category tab does an exetensive testing of that an Identity Provider "
+"follows Best Practice for attribute release via entity categories."
 msgstr ""
-"Да би %s функционисао што ефикасније за студенте и запослене, као "
-"и за Даваоце Идентитета и Даваоце Ресурса, %s препоручује да Даваоци Ресурса "
-"користе категорије ентитета за добијање потребних атрибута."
+"Таб Категорија ентитета врши детаљно тестирање да ли Давалац Идентитета прати "
+"најбоље праксе за слање атрибута користећи категорије ентитета."
 
-#: www/html/src/Configuration.php:79
-#, php-format
+#: www/html/src/Configuration.php:77
 msgid ""
-"In order for services within the %s federation to work as effectively as "
-"possible, %s recommends the use of entity categories. Entity categories "
-"benefits not only students and employees but also administrators of relying "
-"and identity providers by providing a stable framework for the release of "
-"attributes."
+"The ESI tab verifies if the Identity Provider release the right attributes for the "
+"European Digital Student Service Infrastructure."
 msgstr ""
-"Да би сервиси у оквиру %s федерације функционисали што ефикасније, "
-"%s препоручује употребу категорија ентитета. Категорије ентитета су корисне не само "
-"за студенте и запослене, већ и за администраторе ентитета пружајући стабилан оквир "
-"за прослеђивање атрибута."
+"Таб ESI проверава да ли Давалац Идентитета шаље исправне атрибуте за European "
+"Digital Student Service Infrastructure."
 
 #: www/html/src/Configuration.php:80
 #, php-format
 msgid ""
-"The %s best practice attribute release check consists of the following tests"
-msgstr "%s провера најбоље праксе ослобађања атрибута састоји се од следећих тестова"
+"In order for %s to work as effectively as possible for students and employees as "
+"well as for service providers and identity providers, %s recommends that service "
+"providers use entity categories to get the attributes that they require."
+msgstr ""
+"Да би %s функционисао што ефикасније за студенте и запослене, као и за Даваоце "
+"Идентитета и Даваоце Ресурса, %s препоручује да Даваоци Ресурса користе категорије "
+"ентитета за добијање потребних атрибута."
 
 #: www/html/src/Configuration.php:81
 #, php-format
 msgid ""
-"Multiple Code of Conduct test require different attributes which the IdP "
-"either SHOULD or SHOULD NOT release in accordance REFEDS/%s Code of Conduct."
+"In order for services within the %s federation to work as effectively as possible, "
+"%s recommends the use of entity categories. Entity categories benefits not only "
+"students and employees but also administrators of relying and identity providers "
+"by providing a stable framework for the release of attributes."
 msgstr ""
-"Више Code of Conduct тестова захтева различите атрибуте које IdP "
-"треба или не треба да шаље у складу са REFEDS/%s Code of Conduct."
+"Да би сервиси у оквиру %s федерације функционисали што ефикасније, %s препоручује "
+"употребу категорија ентитета. Категорије ентитета су корисне не само за студенте и "
+"запослене, већ и за администраторе ентитета пружајући стабилан оквир за "
+"прослеђивање атрибута."
+
+#: www/html/src/Configuration.php:82
+#, php-format
+msgid "The %s best practice attribute release check consists of the following tests"
+msgstr "%s провера најбоље праксе слања атрибута састоји се од следећих тестова"
+
+#: www/html/src/Configuration.php:83
+#, php-format
+msgid ""
+"Multiple Code of Conduct test require different attributes which the IdP either "
+"SHOULD or SHOULD NOT release in accordance REFEDS/%s Code of Conduct."
+msgstr ""
+"Више Code of Conduct тестова захтева различите атрибуте које IdP треба или не "
+"треба да шаље у складу са REFEDS/%s Code of Conduct."
 
 #: www/html/src/DatabaseTexts.php:3
 msgid "The IDP has sent too many attributes."
 msgstr "IdP је послао превише атрибута."
 
-#: www/html/src/DatabaseTexts.php:5 www/html/src/DatabaseTexts.php:14
+#: www/html/src/DatabaseTexts.php:5 www/html/src/DatabaseTexts.php:12
 #, php-format
 msgid "Received multi-value for %s, should be single-value!"
 msgstr "Примљена је вишеструка вредност за %s, треба да буде једна вредност!"
 
 #: www/html/src/DatabaseTexts.php:7
-msgid ""
-"The IDP has not sent all the expected attributes. See the comments below."
+msgid "The IDP has not sent all the expected attributes. See the comments below."
 msgstr "IdP није послао све очекиване атрибуте. Погледајте коментаре испод."
 
-#: www/html/src/DatabaseTexts.php:9 www/html/src/DatabaseTexts.php:11
+#: www/html/src/DatabaseTexts.php:10
 msgid "Did not send any attributes that were not requested."
 msgstr "Нису послати атрибути који нису тражени."
 
-#: www/html/src/DatabaseTexts.php:17
+#: www/html/src/DatabaseTexts.php:15
 msgid "R&S requires displayName or givenName + sn."
 msgstr "R&S захтева displayName или givenName + sn."
 
-#: www/html/src/DatabaseTexts.php:19
+#: www/html/src/DatabaseTexts.php:17
 msgid "R&S requires mail."
 msgstr "R&S захтева mail."
 
-#: www/html/src/DatabaseTexts.php:21
+#: www/html/src/DatabaseTexts.php:19
 msgid "R&S requires eduPersonPrincipalName."
 msgstr "R&S захтева eduPersonPrincipalName."
 
-#: www/html/src/DatabaseTexts.php:23
-msgid "All the attributes required to fulfil R&S were sent"
-msgstr "Сви атрибути потребни за R&S су послати"
+#: www/html/src/DatabaseTexts.php:21
+msgid "All the attributes required to fulfil R&S were sent."
+msgstr "Сви атрибути захтевани у оквиру R&S су послати."
 
-#: www/html/src/DatabaseTexts.php:25
+#: www/html/src/DatabaseTexts.php:23
 msgid "R&S attributes OK, Entity Category Support OK"
 msgstr "R&S атрибути ОК, Entity Category Support ОК"
 
-#: www/html/src/DatabaseTexts.php:27
+#: www/html/src/DatabaseTexts.php:25
 msgid "R&S attributes OK, Entity Category Support missing"
 msgstr "R&S атрибути ОК, недостаје Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:29
+#: www/html/src/DatabaseTexts.php:27
 msgid "The IdP supports R&S but doesn't announce it in its metadata."
 msgstr "IdP подржава R&S али то не објављује у метаподацима."
 
-#: www/html/src/DatabaseTexts.php:32
-msgid ""
-"Please add 'http://refeds.org/category/research-and-scholarship' to the list "
-"of supported ECs in Metadata"
-msgstr ""
-"Молимо додајте 'http://refeds.org/category/research-and-scholarship' у метаподатке"
+#: www/html/src/DatabaseTexts.php:29
+msgid "Please add '[[EC_RANDS]]' to the list of supported ECs in metadata"
+msgstr "Молимо додајте '[[EC_RANDS]]' у метаподатке"
 
-#: www/html/src/DatabaseTexts.php:34
+#: www/html/src/DatabaseTexts.php:31
 msgid "R&S attributes missing, BUT Entity Category Support claimed"
-msgstr "R&S атрибути недостају, али је подржан Entity Category Support"
+msgstr "R&S атрибути недостају, али је декларисан Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:36
+#: www/html/src/DatabaseTexts.php:33
+msgid "The IdP does NOT support R&S but it claims that it does in its metadata!!"
+msgstr "IdP не подржава R&S, али тврди да га захтева у метаподацима!"
+
+#: www/html/src/DatabaseTexts.php:35
 msgid "R&S attribute missing, Entity Category Support missing"
 msgstr "Недостају R&S атрибути и Entity Category Support"
 
 #: www/html/src/DatabaseTexts.php:38
-msgid ""
-"The IdP does NOT support R&S but it claims that it does in its metadata!!"
-msgstr "IdP не подржава R&S, али тврди да га подржава у метаподацима!"
-
-#: www/html/src/DatabaseTexts.php:41
 msgid "Anonymous requires schacHomeOrganization."
 msgstr "Anonymous захтева schacHomeOrganization."
 
-#: www/html/src/DatabaseTexts.php:43
+#: www/html/src/DatabaseTexts.php:40
 msgid "Anonymous requires eduPersonScopedAffiliation."
 msgstr "Anonymous захтева eduPersonScopedAffiliation."
 
-#: www/html/src/DatabaseTexts.php:45
-msgid "All the attributes required to fulfil Anonymous were sent"
-msgstr "Сви атрибути за Anonymous су послати"
+#: www/html/src/DatabaseTexts.php:42
+msgid "All the attributes required to fulfil Anonymous were sent."
+msgstr "Сви атрибути захтевани у оквиру Anonymous су послати."
 
-#: www/html/src/DatabaseTexts.php:47
+#: www/html/src/DatabaseTexts.php:44
 msgid "Anonymous attributes OK, Entity Category Support OK"
 msgstr "Anonymous атрибути ОК, Entity Category Support ОК"
 
-#: www/html/src/DatabaseTexts.php:49
+#: www/html/src/DatabaseTexts.php:46
 msgid "Anonymous attributes OK, Entity Category Support missing"
 msgstr "Anonymous атрибути ОК, недостаје Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:51
+#: www/html/src/DatabaseTexts.php:48
 msgid "The IdP supports Anonymous but doesn't announce it in its metadata"
 msgstr "IdP подржава Anonymous али не објављује у метаподацима"
 
+#: www/html/src/DatabaseTexts.php:50
+msgid "Please add '[[EC_ANON]]' to the list of supported ECs in metadata"
+msgstr "Молимо додајте '[[EC_ANON]]' у метаподатке"
+
+#: www/html/src/DatabaseTexts.php:52
+msgid "Anonymous attributes missing, BUT Entity Category Support claimed"
+msgstr "Недостају Anonymous атрибути, али је декларисан Entity Category Support"
+
 #: www/html/src/DatabaseTexts.php:54
 msgid ""
-"Please add 'https://refeds.org/category/anonymous' to the list of supported "
-"ECs in Metadata"
-msgstr "Молимо додајте 'https://refeds.org/category/anonymous' у метаподатке"
+"The IdP does NOT support Anonymous but it claims that it does in its metadata!!"
+msgstr "IdP не подржава Anonymous али тврди да га подржава у метаподацима!"
 
 #: www/html/src/DatabaseTexts.php:56
-msgid "Anonymous attributes missing, BUT Entity Category Support claimed"
-msgstr "Недостају Anonymous атрибути, али је подржана категорија ентитета"
-
-#: www/html/src/DatabaseTexts.php:58
 msgid "Anonymous attribute missing, Entity Category Support missing"
 msgstr "Недостају Anonymous атрибути и Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:60
-msgid ""
-"The IdP does NOT support Anonymous but it claims that it does in its "
-"metadata!!"
-msgstr "IdP не подржава Anonymous али тврди да га подржава у метаподацима!"
-
-#: www/html/src/DatabaseTexts.php:63
+#: www/html/src/DatabaseTexts.php:59
 msgid "Pseudonymous requires eduPersonAssurance."
 msgstr "Pseudonymous захтева eduPersonAssurance."
 
-#: www/html/src/DatabaseTexts.php:66
+#: www/html/src/DatabaseTexts.php:62
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/IAP/low"
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/IAP/low"
 msgstr ""
-"[[FED_NAME]] захтева да eduPersonAssurance садржи https://refeds.org/"
-"assurance/IAP/low"
+"[[FED_NAME]] препоручује да eduPersonAssurance садржи [[RAF_ASSURANCE]]/IAP/low"
+
+#: www/html/src/DatabaseTexts.php:63
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/"
+"unique"
+msgstr "[[FED_NAME]] препоручује да eduPersonAssurance садржи [[RAF_ASSURANCE]]/ID/unique"
+
+#: www/html/src/DatabaseTexts.php:64
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/eppn-"
+"unique-no-reassign"
+msgstr "[[FED_NAME]] препоручује да eduPersonAssurance садржи [[RAF_ASSURANCE]]/ID/eppn-unique-no-reassign"
+
+
+#: www/html/src/DatabaseTexts.php:65
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ATP/"
+"ePA-1m"
+msgstr "[[FED_NAME]] препоручује да eduPersonAssurance садржи [[RAF_ASSURANCE]]/ATP/ePA-1m"
 
 #: www/html/src/DatabaseTexts.php:67
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/ID/unique"
-msgstr ""
-"[[FED_NAME]] захтева да eduPersonAssurance садржи https://refeds.org/"
-"assurance/ID/unique"
-
-#: www/html/src/DatabaseTexts.php:68
-msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/ID/eppn-unique-no-reassign"
-msgstr ""
-"[[FED_NAME]] захтева да eduPersonAssurance садржи https://refeds.org/"
-"assurance/ID/eppn-unique-no-reassign"
-
-#: www/html/src/DatabaseTexts.php:69
-msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains https://refeds.org/"
-"assurance/ATP/ePA-1m"
-msgstr ""
-"[[FED_NAME]] захтева да eduPersonAssurance садржи https://refeds.org/"
-"assurance/ATP/ePA-1m"
-
-#: www/html/src/DatabaseTexts.php:71
-msgid ""
-"Pseudonymous requires that eduPersonAssurance at least contains https://"
-"refeds.org/assurance"
+"Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]"
 msgstr ""
 "Pseudonymous захтева да eduPersonAssurance садржи бар "
-"https://refeds.org/assurance"
+"[[RAF_ASSURANCE]]"
 
-#: www/html/src/DatabaseTexts.php:73
+#: www/html/src/DatabaseTexts.php:69
 msgid "Pseudonymous requires pairwise-id."
 msgstr "Pseudonymous захтева pairwise-id."
 
-#: www/html/src/DatabaseTexts.php:75
+#: www/html/src/DatabaseTexts.php:71
 msgid "Pseudonymous requires schacHomeOrganization."
 msgstr "Pseudonymous захтева schacHomeOrganization."
 
-#: www/html/src/DatabaseTexts.php:77
+#: www/html/src/DatabaseTexts.php:73
 msgid "Pseudonymous requires eduPersonScopedAffiliation."
 msgstr "Pseudonymous захтева eduPersonScopedAffiliation."
 
-#: www/html/src/DatabaseTexts.php:79
-msgid "All the attributes required to fulfil Pseudonymous were sent"
-msgstr "Сви атрибути за Pseudonymous су послати"
+#: www/html/src/DatabaseTexts.php:75
+msgid "All the attributes required to fulfil Pseudonymous were sent."
+msgstr "Сви атрибути захтевани у оквиру Pseudonymous су послати"
 
-#: www/html/src/DatabaseTexts.php:81
+#: www/html/src/DatabaseTexts.php:77
 msgid "Pseudonymous attributes OK, Entity Category Support OK"
 msgstr "Pseudonymous атрибути ОК, Entity Category Support ОК"
 
-#: www/html/src/DatabaseTexts.php:83
+#: www/html/src/DatabaseTexts.php:79
 msgid "Pseudonymous attributes OK, Entity Category Support missing"
 msgstr "Pseudonymous атрибути ОК, недостаје Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:85
+#: www/html/src/DatabaseTexts.php:81
 msgid "The IdP supports Pseudonymous but doesn't announce it in its metadata."
 msgstr "IdP подржава Pseudonymous, али не објављује у метаподацима."
 
+#: www/html/src/DatabaseTexts.php:83
+msgid "Please add '[[EC_PANON]]' to the list of supported ECs in metadata"
+msgstr "Молимо додајте '[[EC_PANON]]' у листу подржаних категорија у метаподатке"
+
+#: www/html/src/DatabaseTexts.php:85
+msgid "Pseudonymous attributes missing, BUT Entity Category Support claimed"
+msgstr "Недостају Pseudonymous атрибути, али је декларисан Entity Category Support"
+
 #: www/html/src/DatabaseTexts.php:87
 msgid ""
-"Please add 'https://refeds.org/category/pseudonymous' to the list of "
-"supported ECs in Metadata"
-msgstr "Молимо додајте 'https://refeds.org/category/pseudonymous' у метаподатке"
+"The IdP does NOT support Pseudonymous but it claims that it does in its metadata!!"
+msgstr "IdP НЕ подржава Pseudonymous, али тврди да подржава у метаподацима"
 
 #: www/html/src/DatabaseTexts.php:89
-msgid "Pseudonymous attributes missing, BUT Entity Category Support claimed"
-msgstr "Недостају Pseudonymous атрибути, али је подржана категорија ентитета"
-
-#: www/html/src/DatabaseTexts.php:91
 msgid "Pseudonymous attribute missing, Entity Category Support missing"
 msgstr "Недостају Pseudonymous атрибути и Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:94
+#: www/html/src/DatabaseTexts.php:92
 msgid "Personalized requires eduPersonAssurance."
 msgstr "Personalized захтева eduPersonAssurance."
 
+#: www/html/src/DatabaseTexts.php:94
+msgid ""
+"Personalized requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]"
+msgstr "Personalized захтева да eduPersonAssurance садржи бар [[RAF_ASSURANCE]]"
+
 #: www/html/src/DatabaseTexts.php:96
-msgid ""
-"The IdP does NOT support Pseudonymous but it claims that it does in its "
-"metadata!!"
-msgstr "IdP НЕ подржава Pseudonymous, али тврди да подржава у метаподацима"
-
-#: www/html/src/DatabaseTexts.php:98
-msgid ""
-"Personalized requires that eduPersonAssurance at least contains https://"
-"refeds.org/assurance"
-msgstr "Personalized захтева да eduPersonAssurance садржи бар https://"
-"refeds.org/assurance"
-
-#: www/html/src/DatabaseTexts.php:100
 msgid "Personalized requires displayName, givenName and sn."
 msgstr "Personalized захтева displayName, givenName и sn."
 
-#: www/html/src/DatabaseTexts.php:102
+#: www/html/src/DatabaseTexts.php:98
 msgid "Personalized requires mail."
 msgstr "Personalized захтева mail."
 
-#: www/html/src/DatabaseTexts.php:104
+#: www/html/src/DatabaseTexts.php:100
 msgid "Personalized requires subject-id."
 msgstr "Personalized захтева subject-id."
 
-#: www/html/src/DatabaseTexts.php:106
+#: www/html/src/DatabaseTexts.php:102
 msgid "Personalized requires schacHomeOrganization."
 msgstr "Personalized захтева schacHomeOrganization."
 
-#: www/html/src/DatabaseTexts.php:108
+#: www/html/src/DatabaseTexts.php:104
 msgid "Personalized requires eduPersonScopedAffiliation."
 msgstr "Personalized захтева eduPersonScopedAffiliation."
 
-#: www/html/src/DatabaseTexts.php:110
-msgid "All the attributes required to fulfil Personalized were sent"
-msgstr "Сви атрибути за Personalized су послати"
+#: www/html/src/DatabaseTexts.php:106
+msgid "All the attributes required to fulfil Personalized were sent."
+msgstr "ССви атрибути захтевани у оквиру Personalized су послати."
 
-#: www/html/src/DatabaseTexts.php:112
+#: www/html/src/DatabaseTexts.php:108
 msgid "Personalized attributes OK, Entity Category Support OK"
 msgstr "Personalized атрибути ОК, Entity Category Support ОК"
 
-#: www/html/src/DatabaseTexts.php:114
+#: www/html/src/DatabaseTexts.php:110
 msgid "Personalized attributes OK, Entity Category Support missing"
 msgstr "Personalized атрибути ОК, недостаје Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:116
+#: www/html/src/DatabaseTexts.php:112
 msgid "The IdP supports Personalized but doesn't announce it in its metadata."
 msgstr "IdP подржава Personalized, али не објављује у метаподацима."
 
+#: www/html/src/DatabaseTexts.php:114
+msgid "Please add '[[EC_PERS]]' to the list of supported ECs in metadata"
+msgstr "молимо додајте '[[EC_PERS]]' у листу подржаних категорија у метаподатке"
+
+#: www/html/src/DatabaseTexts.php:116
+msgid "Personalized attributes missing, BUT Entity Category Support claimed"
+msgstr "Недостају Personalized атрибути, али је декларисан Entity Category Support"
+
 #: www/html/src/DatabaseTexts.php:118
 msgid ""
-"Please add 'https://refeds.org/category/personalized' to the list of "
-"supported ECs in Metadata"
-msgstr "молимо додајте 'https://refeds.org/category/personalized' у метаподатке"
+"The IdP does NOT support Personalized but it claims that it does in its metadata!!"
+msgstr "IdP НЕ подржава Personalized, али тврди да подржава у метаподацима."
 
 #: www/html/src/DatabaseTexts.php:120
-msgid "Personalized attributes missing, BUT Entity Category Support claimed"
-msgstr "Недостају Personalized атрибути, али је подржан Entity Category Support"
-
-#: www/html/src/DatabaseTexts.php:122
 msgid "Personalized attribute missing, Entity Category Support missing"
 msgstr "Недостају Personalized атрибути и Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:125
-msgid ""
-"The IdP does NOT support Personalized but it claims that it does in its "
-"metadata!!"
-msgstr "IdP НЕ подржава Personalized, али тврди да подржава у метаподацима."
-
-#: www/html/src/DatabaseTexts.php:127
+#: www/html/src/DatabaseTexts.php:123
 msgid "The IDP has not sent any attributes."
 msgstr "IdP није послао ниједан атрибут."
 
-#: www/html/src/DatabaseTexts.php:129
-#, php-format
-msgid "The IDP has only sent %d attributes."
-msgstr "IdP је послао само %d атрибута."
+#: www/html/src/DatabaseTexts.php:125
+msgid "The IDP has sent less than minumum numer of attributes for this test."
+msgstr "IdP је послао мање од захтеваног минимума атрибута за овај тест"
 
-#: www/html/src/DatabaseTexts.php:131
-msgid "Fulfils Code of Conduct<br>"
+#: www/html/src/DatabaseTexts.php:127
+msgid "Fulfils Code of Conduct"
 msgstr "Испуњава Code of Conduct"
 
-#: www/html/src/DatabaseTexts.php:133
+#: www/html/src/DatabaseTexts.php:129
 msgid "CoCo OK, Entity Category Support OK"
 msgstr "CoCo ОК, Entity Category Support ОК"
 
-#: www/html/src/DatabaseTexts.php:135
+#: www/html/src/DatabaseTexts.php:131
 msgid "CoCo OK, Entity Category Support missing"
 msgstr "CoCo ОК, недостаје Entity Category Support"
 
-#: www/html/src/DatabaseTexts.php:137
+#: www/html/src/DatabaseTexts.php:133
 msgid "The IdP supports CoCo but doesn't announce it in its metadata."
 msgstr "IdP подржава CoCo али не објављује у метаподацима."
 
-#: www/html/src/DatabaseTexts.php:139
-msgid ""
-"Please add 'http://www.geant.net/uri/dataprotection-code-of-conduct/v1' to "
-"the list of supported ECs in Metadata"
-msgstr "Молимо додајте 'https://refeds.org/category/code-of-conduct/v1' у метаподатке"
+#: www/html/src/DatabaseTexts.php:135
+msgid "Please add '[[EC_COCO1]]' to the list of supported ECs in metadata"
+msgstr "Молимо додајте '[[EC_COCO1]]' у листу подржаних категорија у метаподатке"
+
+#: www/html/src/DatabaseTexts.php:136
+msgid "Please add '[[EC_COCO2]]' to the list of supported ECs in metadata"
+msgstr "Молимо додајте '[[EC_COCO2]]' у листу подржаних категорија у метаподатке"
+
+#: www/html/src/DatabaseTexts.php:138
+msgid "CoCo is not supported, BUT Entity Category Support is claimed"
+msgstr "CoCo није подржан, али је декларисан Entity Category Support"
 
 #: www/html/src/DatabaseTexts.php:140
-msgid ""
-"Please add 'https://refeds.org/category/code-of-conduct/v2' to the list of "
-"supported ECs in Metadata"
-msgstr "Молимо додајте 'https://refeds.org/category/code-of-conduct/v2' у метаподатке"
+msgid "The IdP does NOT support CoCo but it claims that it does in its metadata!!"
+msgstr "IdP не подржава CoCo, али тврди да га подржава!"
 
 #: www/html/src/DatabaseTexts.php:142
-msgid "CoCo is not supported, BUT Entity Category Support is claimed"
-msgstr "CoCo није подржан, али је подржан Entity Category Support"
-
-#: www/html/src/DatabaseTexts.php:144
 msgid "Support for CoCo missing, Entity Category Support missing"
 msgstr "Недостаје CoCo подршка и Entity Category Support "
 
 #: www/html/src/DatabaseTexts.php:146
-msgid ""
-"The IdP does NOT support CoCo but it claims that it does in its metadata!!"
-msgstr "IdP не подржава CoCo, али тврди да га подржава!"
-
-#: www/html/src/DatabaseTexts.php:150
-msgid ""
-"schacPersonalUniqueCode in wrong case. Not "
-"urn:schac:personalUniqueCode:int:esi. Might create problem in some SP:s"
-msgstr "schacPersonalUniqueCode има погрешан формат слова"
-
-#: www/html/src/DatabaseTexts.php:152
-msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
-msgstr "schacPersonalUniqueCode треба да има само једну вредност"
-
-#: www/html/src/DatabaseTexts.php:154
 msgid "schacPersonalUniqueCode OK"
 msgstr "schacPersonalUniqueCode ОК"
 
-#: www/html/src/DatabaseTexts.php:156
+#: www/html/src/DatabaseTexts.php:149
+msgid ""
+"schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi. "
+"Might create problem in some SP's"
+msgstr ""
+"schacPersonalUniqueCode има погрешан формат. Треба да почиње префиксом urn:schac:personalUniqueCode:int:esi. "
+"Might create problem in some SP's"
+
+#: www/html/src/DatabaseTexts.php:151
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
-msgstr "schacPersonalUniqueCode ОК. Али погрешан формат слова"
+msgstr "schacPersonalUniqueCode ОК. Али погрешан формат"
 
-#: www/html/src/DatabaseTexts.php:158
+#: www/html/src/DatabaseTexts.php:153
 msgid ""
-"schacPersonalUniqueCode not starting with "
-"urn:schac:personalUniqueCode:int:esi:"
-msgstr "schacPersonalUniqueCode нема исправан префикс urn:schac:personalUniqueCode:int:esi:"
+"schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:"
+msgstr ""
+"schacPersonalUniqueCode треба да почиње префиксом urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:160 www/html/src/DatabaseTextsSWAMID.php:7
+#: www/html/src/DatabaseTexts.php:155
 msgid ""
-"schacPersonalUniqueCode should start with "
-"urn:schac:personalUniqueCode:int:esi:"
-msgstr "schacPersonalUniqueCode треба да почиње са urn:schac:personalUniqueCode:int:esi:"
+"schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:"
+msgstr ""
+"schacPersonalUniqueCode нема исправан префикс urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:162
+#: www/html/src/DatabaseTexts.php:157
+msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
+msgstr "schacPersonalUniqueCode треба да има само једну вредност"
+
+#: www/html/src/DatabaseTexts.php:159
 msgid "More than one schacPersonalUniqueCode"
 msgstr "Више од једне schacPersonalUniqueCode Вредности"
 
-#: www/html/src/DatabaseTexts.php:164
+#: www/html/src/DatabaseTexts.php:161
 msgid "Missing schacPersonalUniqueCode"
 msgstr "Недостаје schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:167
-msgid "Sends invalid Assurance information."
-msgstr "Шаље неважеће Assurance информације."
-
-#: www/html/src/DatabaseTexts.php:169
-msgid "Missing https://refeds.org/assurance for user."
-msgstr "Недостаје https://refeds.org/assurance за корисника."
-
-#: www/html/src/DatabaseTexts.php:172
-msgid "Missing some Assurance information."
-msgstr "Недостају неке Assurance информације."
-
-#: www/html/src/DatabaseTexts.php:174 www/html/src/DatabaseTextsSWAMID.php:17
+#: www/html/src/DatabaseTexts.php:164
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr "IdP шаље неважеће Assurance информације"
 
-#: www/html/src/DatabaseTexts.php:176
-msgid ""
-"Missing Assurance information. Expected at least https://refeds.org/assurance"
-msgstr "Недостају Assurance информације. Очекује се најмање https://refeds.org/assurance"
+#: www/html/src/DatabaseTexts.php:166
+msgid "Sends invalid Assurance information."
+msgstr "Шаље неважеће Assurance информације."
 
-#: www/html/src/DatabaseTexts.php:178
-msgid ""
-"Assurance attribute release for current user follows REFED's recommendations."
+#: www/html/src/DatabaseTexts.php:168
+msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
+msgstr "Недостају Assurance информације. Очекује се најмање [[RAF_ASSURANCE]]"
+
+#: www/html/src/DatabaseTexts.php:170
+msgid "Missing [[RAF_ASSURANCE]] for user."
+msgstr "Недостаје [[RAF_ASSURANCE]] за корисника."
+
+#: www/html/src/DatabaseTexts.php:173
+msgid "Missing some Assurance information."
+msgstr "Недостају неке Assurance информације."
+
+#: www/html/src/DatabaseTexts.php:175
+msgid "Assurance attribute release for current user follows REFED's recommendations."
 msgstr "Assurance атрибут је у складу са препорукама."
 
-#: www/html/src/DatabaseTexts.php:180
+#: www/html/src/DatabaseTexts.php:177
 msgid "Sends recommended Assurance information."
 msgstr "Шаље препоручене Assurance информације."
 
-#: www/html/src/DatabaseTexts.php:183
+#: www/html/src/DatabaseTexts.php:180
 msgid "Authentication-instant hasn't updated after forceAuthn was requested."
-msgstr "Authentication-instant није ажуриран након forceAuthn."
+msgstr "Authentication-instant није ажуриран након захтевања forceAuthn."
+
+#: www/html/src/DatabaseTexts.php:182
+msgid "Identity Provider supports requests with REFEDS MFA and ForceAuthn."
+msgstr "Давалац Идентитета Подржава requests with REFEDS MFA и ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:184
+msgid "Supports requests with no AuthnContextClassRef and ForceAuthn."
+msgstr "Подржава захтеве без AuthnContextClassRef и ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:185
-#, php-format
-msgid "Identity Provider supports %s and ForceAuthn."
-msgstr "Давалац Идентитета Подржава %s и ForceAuthn."
+msgid "Supports requests with PasswordProtectedTransport and ForceAuthn."
+msgstr "Подржава захтеве са PasswordProtectedTransport и ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:186
+msgid "Supports requests with REFEDS SFA and ForceAuthn."
+msgstr "Подржава захтеве са REFEDS SFA и ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:187
-msgid "Supports REFEDS MFA and ForceAuthn."
-msgstr "Подржава REFEDS MFA и ForceAuthn."
+msgid "Supports requests with REFEDS MFA and ForceAuthn."
+msgstr "Подржава захтеве са REFEDS MFA и ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:189
-msgid "Supports REFEDS MFA but not ForceAuthn."
-msgstr "Подржава REFEDS MFA али не ForceAuthn."
+msgid "Identity Provider supports requests with REFEDS MFA but not ForceAuthn."
+msgstr "Давалац Идентитета подржава захтеве са REFEDS MFA, али НЕ и ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:191
-#, php-format
-msgid "Identity Provider supports %s."
-msgstr "Давалац Идентитета Подржава %s."
+msgid "Supports requests with no AuthnContextClassRef but not ForceAuthn."
+msgstr "Подржава захтеве са AuthnContextClassRef, али не и са ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:192
+msgid "Supports requests with PasswordProtectedTransport but not ForceAuthn."
+msgstr "Подржава захтеве са PasswordProtectedTransport, али не и са ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:193
-msgid "Supports REFEDS MFA."
-msgstr "Подржава REFEDS MFA"
+msgid "Supports requests with REFEDS SFA but not ForceAuthn."
+msgstr "Подржава захтеве са REFEDS SFA, али не и са ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:195
-#, php-format
-msgid "Identity Provider supports %s but not ForceAuthn."
-msgstr "Давалац Идентитета подржава %s, али НЕ и ForceAuthn."
+#: www/html/src/DatabaseTexts.php:194
+msgid "Supports requests with REFEDS MFA but not ForceAuthn."
+msgstr "Подржава захтеве са REFEDS MFA, али не и са ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:196
+msgid "Identity Provider supports requests with no AuthnContextClassRef."
+msgstr "Давалац Идентитета подржава захтеве без AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:197
-msgid "Does support ForceAuthn but not REFEDS MFA."
-msgstr "Подржава ForceAuthn, али НЕ и REFEDS MFA."
+msgid "Identity Provider supports requests with PasswordProtectedTransport."
+msgstr "Давалац Идентитета подржава захтеве са PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Identity Provider supports requests with REFEDS SFA."
+msgstr "Давалац Идентитета подржава захтеве са REFEDS SFA."
 
 #: www/html/src/DatabaseTexts.php:199
-msgid "Does neither support REFEDS MFA or ForceAuthn."
-msgstr "Не подржава ни REFEDS MFA ни ForceAuthn."
+msgid "Identity Provider supports requests with REFEDS MFA."
+msgstr "Давалац Идентитета подржава захтеве са REFEDS MFA."
 
 #: www/html/src/DatabaseTexts.php:201
-msgid "Does not support REFEDS MFA."
-msgstr "Не подржава REFEDS MFA."
+msgid "Supports requests with no AuthnContextClassRef."
+msgstr "Подржава захтеве без AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:202
+msgid "Supports requests with PasswordProtectedTransport."
+msgstr "Подржава захтеве са PasswordProtectedTransport."
 
 #: www/html/src/DatabaseTexts.php:203
-#, php-format
-msgid "Identity Provider does support ForceAuthn but not %s."
-msgstr "Давалац Идентитета подржава ForceAuthn, али НЕ и %s."
+msgid "Supports requests with REFEDS SFA."
+msgstr "Подржава захтеве са REFEDS SFA."
 
-#: www/html/src/DatabaseTexts.php:205
-#, php-format
-msgid "Identity Provider does neither support %s or ForceAuthn."
-msgstr "Давалац Идентитета не подржава ни ForceAuthn ни %s."
+#: www/html/src/DatabaseTexts.php:204
+msgid "Supports requests with REFEDS MFA."
+msgstr "Подржава захтеве са REFEDS MFA"
 
-#: www/html/src/DatabaseTexts.php:207
-#, php-format
-msgid "Identity Provider does not support %s."
-msgstr "Давалац Идентитета не подржава %s."
+#: www/html/src/DatabaseTexts.php:206
+msgid "Identity Provider does support ForceAuthn but not requests with REFEDS MFA."
+msgstr "Давалац Идентитета подржава ForceAuthn, али НЕ и захтеве се REFEDS MFA."
 
-#: www/html/src/DatabaseTextsSWAMID.php:3
+#: www/html/src/DatabaseTexts.php:208
+msgid "Does support ForceAuthn but not requests with no AuthnContextClassRef."
+msgstr "Подржава ForceAuthn, али не и захтеве без AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:209
+msgid "Does support ForceAuthn but not requests with PasswordProtectedTransport."
+msgstr "Подржава ForceAuthn, али не и захтеве са PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:210
+msgid "Does support ForceAuthn but not requests with REFEDS SFA."
+msgstr "Подржава ForceAuthn, али не и захтеве са REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:211
+msgid "Does support ForceAuthn but not requests with REFEDS MFA."
+msgstr "Подржава ForceAuthn, али не и захтеве са REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:213
 msgid ""
-"schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or "
-"&lt;sHO&gt;.se"
-msgstr ""
+"Identity Provider does neither support requests with REFEDS MFA or ForceAuthn."
+msgstr "Давалац Идентитета не подржава захтеве ни са ForceAuthn ни са REFEDS MFA."
 
-#: www/html/src/DatabaseTextsSWAMID.php:5
-msgid ""
-"schacPersonalUniqueCode starting with "
-"urn:schac:personalUniqueCode:int:esi:se:"
-msgstr ""
+#: www/html/src/DatabaseTexts.php:215
+msgid "Does neither support requests with no AuthnContextClassRef or ForceAuthn."
+msgstr "Не подржава ни захтеве без AuthnContextClassRef ни без ForceAuthn."
 
-#: www/html/src/DatabaseTextsSWAMID.php:9
-msgid ""
-"Identity Provider is not approved for any SWAMID Identity Assurance Profiles "
-"but sends Assurance information!."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:216
+msgid "Does neither support requests with PasswordProtectedTransport or ForceAuthn."
+msgstr "Не подржава ни захтеве са PasswordProtectedTransport ни са ForceAuthn."
 
-#: www/html/src/DatabaseTextsSWAMID.php:11
-msgid "Assurance Profile missing. Sends Assurance information!"
-msgstr ""
+#: www/html/src/DatabaseTexts.php:217
+msgid "Does neither support requests with REFEDS SFA or ForceAuthn."
+msgstr "Не подржава ни захтеве са PREFEDS SFA ни са ForceAuthn."
 
-#: www/html/src/DatabaseTextsSWAMID.php:13
-msgid ""
-"Identity Provider is not approved for any SWAMID Identity Assurance Profiles."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:218
+msgid "Does neither support requests with REFEDS MFA or ForceAuthn."
+msgstr "Не подржава ни захтеве са REFEDS MFA ни са ForceAuthn."
 
-#: www/html/src/DatabaseTextsSWAMID.php:15
-msgid "Assurance Profile missing."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:220
+msgid "Identity Provider does not support requests with REFEDS MFA."
+msgstr "Давалац Идентитета не подржава захтеве са REFEDS MFA."
 
-#: www/html/src/DatabaseTextsSWAMID.php:19
-msgid "Have Assurance Profile. Sends invalid Assurance information."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:222
+msgid "Does not support requests with no AuthnContextClassRef."
+msgstr "Не подржава ни захтеве без AuthnContextClassRef."
 
-#: www/html/src/DatabaseTextsSWAMID.php:21
-msgid ""
-"Missing Assurance information. Expected at least http://www.swamid.se/policy/"
-"assurance/al1"
-msgstr ""
+#: www/html/src/DatabaseTexts.php:223
+msgid "Does not support requests with PasswordProtectedTransport."
+msgstr "Не подржава ни захтеве са PasswordProtectedTransport."
 
-#: www/html/src/DatabaseTextsSWAMID.php:23
-msgid ""
-"Have Assurance Profile. Missing http://www.swamid.se/policy/assurance/al1 "
-"for user."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:224
+msgid "Does not support requests with REFEDS SFA."
+msgstr "Не подржава ни захтеве са REFEDS SFA."
 
-#: www/html/src/DatabaseTextsSWAMID.php:25
-msgid "Have Assurance Profile. Missing some Assurance information."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:225
+msgid "Does not support requests with REFEDS MFA."
+msgstr "Не подржава ни захтеве са REFEDS MFA."
 
-#: www/html/src/DatabaseTextsSWAMID.php:27
-msgid "Have Assurance Profile. Sends recommended Assurance information."
-msgstr ""
-
-#: www/html/src/DatabaseTextsSWAMID.php:30
-#: www/html/src/DatabaseTextsSWAMID.php:32
-#: www/html/src/DatabaseTextsSWAMID.php:34
-msgid ""
-"Identity Provider is approved for at least one SWAMID Identity Assurance "
-"Profiles."
-msgstr ""
-
-#: www/html/src/DatabaseTextsSWAMID.php:37
-msgid ""
-"Identity Provider is approved for at least one SWAMID Identity Assurance "
-"Profiles' and attribute release for current user follows SWAMID's "
-"recommendations."
-msgstr ""
+#: www/html/src/DatabaseTexts.php:228
+msgid "Test not run yet"
+msgstr "Тест још није покренут"
 
 #: www/html/src/Display.php:54 www/html/src/Display.php:74
 #: www/html/src/Display.php:121 www/html/src/IdPCheck.php:431
@@ -1076,14 +1078,14 @@ msgstr "Атрибути IdP-а у метаподацима"
 msgid "Identity Provider sessions attributes"
 msgstr "Атрибути сесије IdP-а"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214 www/html/src/IdPCheck.php:175
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216 www/html/src/IdPCheck.php:175
 #, php-format
 msgid "Test"
 msgstr "Тест"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216
 #, php-format
 msgid "Result"
 msgstr "Резултат"
@@ -1093,48 +1095,48 @@ msgstr "Резултат"
 msgid "Run test"
 msgstr "Покрени тест"
 
-#: www/html/src/Display.php:205
+#: www/html/src/Display.php:207
 msgid "European Student Identifier (student account)"
 msgstr "European Student Identifier (студентски налог)"
 
-#: www/html/src/Display.php:206
+#: www/html/src/Display.php:208
 msgid "European Student Identifier (any account)"
 msgstr "European Student Identifier (било који налог)"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Run NEW test"
 msgstr "Покрени НОВИ тест"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Rerun test"
 msgstr "Поново покрени тест"
 
-#: www/html/src/Display.php:281
+#: www/html/src/Display.php:299
 #, php-format
 msgid "Received"
 msgstr "Примљено"
 
-#: www/html/src/Display.php:291 www/html/src/IdPCheck.php:987
+#: www/html/src/Display.php:315 www/html/src/IdPCheck.php:978
 #, php-format
 msgid "Missing"
 msgstr "Недостаје"
 
-#: www/html/src/Display.php:299
+#: www/html/src/Display.php:329
 #, php-format
 msgid "Not expected"
 msgstr "Није очекивано"
 
-#: www/html/src/Display.php:307 www/html/src/IdPCheck.php:1060
+#: www/html/src/Display.php:343 www/html/src/IdPCheck.php:1051
 #, php-format
 msgid "Test result"
 msgstr "Резултат теста"
 
-#: www/html/src/Display.php:337
+#: www/html/src/Display.php:375
 #, php-format
 msgid "unknown tab"
 msgstr "непознату таб"
 
-#: www/html/src/Display.php:367
+#: www/html/src/Display.php:405
 msgid "Other results"
 msgstr "Остали резултати"
 
@@ -1142,16 +1144,20 @@ msgstr "Остали резултати"
 msgid "IdP home Federation"
 msgstr "Федерација IdP-а"
 
-#: www/html/src/HTML.php:43
+#: www/html/src/HTML.php:42
 msgid "Release check for"
 msgstr "Провера прослеђивања за"
 
-#: www/html/src/HTML.php:100
+#: www/html/src/HTML.php:79
+msgid "Language"
+msgstr "Језик"
+
+#: www/html/src/HTML.php:105
 #, php-format
 msgid "About %s"
 msgstr "О %s"
 
-#: www/html/src/HTML.php:113
+#: www/html/src/HTML.php:118
 msgid "Contact us"
 msgstr "Контактирајте нас"
 
@@ -1206,84 +1212,193 @@ msgstr "Атрибути који нису тражени/очекивани/п�
 msgid "AuthnContext-Class = %s was requested<br>but %s was revived."
 msgstr "Захтеван је AuthnContext-Class = %s али примљен је %s."
 
-#: www/html/src/IdPCheck.php:975
+#: www/html/src/IdPCheck.php:966
 #, php-format
 msgid "Assurance Levels"
 msgstr "Assurance нивои"
 
-#: www/html/src/IdPCheck.php:977
+#: www/html/src/IdPCheck.php:968
 #, php-format
 msgid "Assurance Level of user"
 msgstr "Assurance нивои за корисника"
 
-#: www/html/src/IdPCheck.php:979
+#: www/html/src/IdPCheck.php:970
 #, php-format
 msgid "Received Assurance Values"
 msgstr "Примљене Assurance вредности"
 
-#: www/html/src/IdPCheck.php:981
+#: www/html/src/IdPCheck.php:972
 msgid "None"
 msgstr "Ниједан"
 
-#: www/html/src/IdPCheck.php:1002
-msgid "No Assurance information recived"
-msgstr "Нема примљених Assurance информација"
+#: www/html/src/IdPCheck.php:993
+msgid "No Assurance information received"
+msgstr "Нису примљене вредности за Assurance"
 
-#: www/html/src/IdPCheck.php:1041
+#: www/html/src/IdPCheck.php:1032
 msgid "Failed missing old Authentication-Instant."
 msgstr "Недостаје стари Authentication-Instant"
 
-#: www/html/src/IdPCheck.php:1041
+#: www/html/src/IdPCheck.php:1032
 msgid "Please restart test"
 msgstr "Молимо поново покрените тест"
 
-#: www/html/src/IdPCheck.php:1046
+#: www/html/src/IdPCheck.php:1037
 #, php-format
 msgid "Not done within 10 minutes! Was done in %d seconds"
 msgstr "Није завршено у року од 10 минута (%d секунди)"
 
-#: www/html/src/IdPCheck.php:1049
+#: www/html/src/IdPCheck.php:1040
 msgid "Error"
 msgstr "Грешка"
 
-#: www/html/src/IdPCheck.php:1057
+#: www/html/src/IdPCheck.php:1048
 msgid "Not tested"
 msgstr "Није тестирано"
 
-#: www/html/src/IdPCheck.php:1062
+#: www/html/src/IdPCheck.php:1053
 #, php-format
 msgid "AuthnContextClassRef status"
 msgstr "AuthnContextClassRef статус"
 
-#: www/html/src/IdPCheck.php:1063
+#: www/html/src/IdPCheck.php:1054
 #, php-format
 msgid "ForceAuthn status"
 msgstr "ForceAuthn статус"
 
-#: www/html/src/IdPCheck.php:1065
+#: www/html/src/IdPCheck.php:1056
 msgid "AL1 status"
 msgstr "AL1 статус"
 
-#: www/html/src/IdPCheck.php:1066
+#: www/html/src/IdPCheck.php:1057
 msgid "AL2 status"
 msgstr "AL2 статус"
 
-#: www/html/src/IdPCheck.php:1067
+#: www/html/src/IdPCheck.php:1058
 msgid "AL3 status"
 msgstr "AL3 статус"
 
-#: www/html/src/IdPCheck.php:1068
+#: www/html/src/IdPCheck.php:1059
 msgid "RAF Low status"
 msgstr "RAF Low статус"
 
-#: www/html/src/IdPCheck.php:1069
+#: www/html/src/IdPCheck.php:1060
 msgid "RAF Medium status"
 msgstr "RAF Medium статус"
 
-#: www/html/src/IdPCheck.php:1070
+#: www/html/src/IdPCheck.php:1061
 msgid "RAF High status"
 msgstr "RAF High статус"
 
-#: www/html/src/IdPCheck.php:1075
+#: www/html/src/IdPCheck.php:1066
 msgid "Identity Provider approved Assurance"
 msgstr "IdP је одобрио Assurance"
+
+#: www/html/src/TestSuite.php:233
+msgid "No EC (shall not send any attributes!)"
+msgstr "Без категорије ентитета (не треба слати ниједан атрибут)"
+
+#: www/html/src/TestSuite.php:234
+msgid "ISO_COUNTRY_CODE (se)"
+msgstr "ISO_COUNTRY_CODE (rs)"
+
+#: www/html/src/TestSuite.php:235
+msgid "givenName + sn"
+msgstr "givenName + sn"
+
+#: www/html/src/TestSuite.php:236
+msgid "ISO_COUNTRY_NAME (Sweden)"
+msgstr "ISO_COUNTRY_NAME (Serbia)"
+
+#: www/html/src/TestSuite.php:237
+msgid ""
+"Specifies the person's relationship(s) to the institution in broad categories such "
+"as student, faculty, staff, alum, etc."
+msgstr "Специфицира однос са институцијом, нпр. student, faculty, staff, alum, etc."
+
+#: www/html/src/TestSuite.php:238
+msgid "User assurance information."
+msgstr "Аssurance информације о кориснику"
+
+#: www/html/src/TestSuite.php:239
+msgid ""
+"This attribute should only be released if and only if the IdP organization has "
+"retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs are "
+"persistent digital identifiers for individual researchers. Their primary purpose "
+"is to unambiguously and definitively link them with their scholarly work products. "
+"ORCID iDs are assigned, managed and maintained by the ORCID organization."
+msgstr ""
+"Овај атрибут треба прослеђивати искључиво ако је IdP организација преузела ORCID iD "
+"путем ORCID Collect & Connect услуге. ORCID ID су трајни дигитални идентификатори "
+"за појединачне истраживаче. Њихова основна сврха је да их недвосмислено и јасно повежу "
+"са њиховим научним радовима. ORCID ID додељује, управља и одржава ORCID организација."
+
+#: www/html/src/TestSuite.php:240
+msgid ""
+"A scoped identifier for a person. It should be represented in the form "
+"\"user@scope\" where 'user' is a name-based identifier for the person and where "
+"the \"scope\" portion MUST be the administrative domain of the identity system "
+"where the identifier was created and assigned."
+msgstr ""
+"Scoped идентификатор за особу. Треба да буде представљен у облику \"user@scope\", "
+"где је 'user' идентификатор особе заснован на имену, а део \"scope\" МОРА бити "
+"административни домен система идентитета у којем је идентификатор креиран и додељен."
+
+#: www/html/src/TestSuite.php:241
+msgid "eduPersonAffiliation, scoped"
+msgstr "eduPersonAffiliation, scoped"
+
+#: www/html/src/TestSuite.php:242
+msgid "Firstname"
+msgstr "Firstname"
+
+#: www/html/src/TestSuite.php:243
+msgid "Mailaddress (should only be one)"
+msgstr "Mailaddress (треба да буде само једна вредност)"
+
+#: www/html/src/TestSuite.php:244
+msgid "List of additional organizational mailaddresses for the person"
+msgstr "Листа додатних mailaddresses вредности за особу"
+
+#: www/html/src/TestSuite.php:245
+msgid "Shortform of organisation name"
+msgstr "Скраћени назив институције"
+
+#: www/html/src/TestSuite.php:246
+msgid "Organisation name"
+msgstr "Назив институције"
+
+#: www/html/src/TestSuite.php:247
+msgid ""
+"Its value for a given subject depends upon the relying party to whom it is given, "
+"thus preventing unrelated systems from using it as a basis for correlation."
+msgstr ""
+"Његова вредност за датог субјекта зависи од сервиса ком се шаље, "
+"чиме се спречава да га неодговарајући системи користе као основу за повезивање података."
+
+#: www/html/src/TestSuite.php:248
+msgid "8 digit date of birth (YYYYMMDD)"
+msgstr "Датум рођења (YYYYMMDD)"
+
+#: www/html/src/TestSuite.php:249
+msgid ""
+"Specifies a person's home organization using the domain name of the organization"
+msgstr "Специфицира матичну институцију на основу домена организације"
+
+#: www/html/src/TestSuite.php:250
+msgid "example urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+msgstr "пример urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+
+#: www/html/src/TestSuite.php:251
+msgid "Lastname"
+msgstr "Lastname"
+
+#: www/html/src/TestSuite.php:252
+msgid ""
+"Its value for a given subject is independent of the relying party to whom it is "
+"given."
+msgstr "Његова вредност за датог субјектане не зависи од сервиса ком се шаље"
+
+#: www/html/src/TestSuite.php:253
+msgid "Usually used for the European Student Identifier."
+msgstr "Углавном се користи за European Student Identifier."
