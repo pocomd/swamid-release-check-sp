@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-17 09:13+0200\n"
+"POT-Creation-Date: 2026-04-17 16:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,6 +215,14 @@ msgstr ""
 #: www/html/index.php:248 www/html/result/index.php:248
 #, php-format
 msgid "Received in Step 2"
+msgstr ""
+
+#: www/html/index.php:258 www/html/result/index.php:258
+msgid "Refresh/Reload is not allowed while testing forceAuthn."
+msgstr ""
+
+#: www/html/index.php:259 www/html/result/index.php:259
+msgid "Please rerun \"Test AuthnContextClassRef\""
 msgstr ""
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
@@ -461,57 +469,57 @@ msgstr ""
 msgid "IdPs not tested"
 msgstr ""
 
-#: www/html/src/Configuration.php:66
+#: www/html/src/Configuration.php:67
 msgid ""
 "Click on the green button to see what attributes your Identity Provider "
 "releases."
 msgstr ""
 
-#: www/html/src/Configuration.php:67
+#: www/html/src/Configuration.php:68
 #, php-format
 msgid "Description of all test available in the %s test suite"
 msgstr ""
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:70
 msgid ""
 "The Attributes tab shows all attributes the service release to the entityId"
 msgstr ""
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:70
 msgid "The entityId uses the entity categories"
 msgstr ""
 
-#: www/html/src/Configuration.php:70
+#: www/html/src/Configuration.php:71
 msgid "REFEDS Personalized Access Entity Category"
 msgstr ""
 
-#: www/html/src/Configuration.php:71
+#: www/html/src/Configuration.php:72
 msgid "REFEDS Research and Scholarship Entity Category, and"
 msgstr ""
 
-#: www/html/src/Configuration.php:72
+#: www/html/src/Configuration.php:73
 msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 msgstr ""
 
-#: www/html/src/Configuration.php:74
+#: www/html/src/Configuration.php:75
 msgid ""
 "The Authentication tab checks if an Identity Provider is correctly "
 "configured for handling request for different AuthnContextClassRef requests."
 msgstr ""
 
-#: www/html/src/Configuration.php:75
+#: www/html/src/Configuration.php:76
 msgid ""
 "The Entity category tab does an exetensive testing of that an Identity "
 "Provider follows Best Practice for attribute release via entity categories."
 msgstr ""
 
-#: www/html/src/Configuration.php:76
+#: www/html/src/Configuration.php:77
 msgid ""
 "The ESI tab verifies if the Identity Provider release the right attributes "
 "for the European Digital Student Service Infrastructure."
 msgstr ""
 
-#: www/html/src/Configuration.php:79
+#: www/html/src/Configuration.php:80
 #, php-format
 msgid ""
 "In order for %s to work as effectively as possible for students and "
@@ -520,7 +528,7 @@ msgid ""
 "attributes that they require."
 msgstr ""
 
-#: www/html/src/Configuration.php:80
+#: www/html/src/Configuration.php:81
 #, php-format
 msgid ""
 "In order for services within the %s federation to work as effectively as "
@@ -530,13 +538,13 @@ msgid ""
 "attributes."
 msgstr ""
 
-#: www/html/src/Configuration.php:81
+#: www/html/src/Configuration.php:82
 #, php-format
 msgid ""
 "The %s best practice attribute release check consists of the following tests"
 msgstr ""
 
-#: www/html/src/Configuration.php:82
+#: www/html/src/Configuration.php:83
 #, php-format
 msgid ""
 "Multiple Code of Conduct test require different attributes which the IdP "
@@ -909,135 +917,141 @@ msgid "Authentication-instant hasn't updated after forceAuthn was requested."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:182
-msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
+msgid "Identity Provider supports requests with REFEDS MFA and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:184
-msgid "Supports no AuthnContextClassRef and ForceAuthn."
+msgid "Supports requests with no AuthnContextClassRef and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:185
-msgid "Supports PasswordProtectedTransport and ForceAuthn."
+msgid "Supports requests with PasswordProtectedTransport and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:186
-msgid "Supports REFEDS SFA and ForceAuthn."
+msgid "Supports requests with REFEDS SFA and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:187
-msgid "Supports REFEDS MFA and ForceAuthn."
+msgid "Supports requests with REFEDS MFA and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:189
-msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
+msgid "Identity Provider supports requests with REFEDS MFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports no AuthnContextClassRef but not ForceAuthn."
+msgid "Supports requests with no AuthnContextClassRef but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:192
-msgid "Supports PasswordProtectedTransport but not ForceAuthn."
+msgid "Supports requests with PasswordProtectedTransport but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:193
-msgid "Supports REFEDS SFA but not ForceAuthn."
+msgid "Supports requests with REFEDS SFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:194
-msgid "Supports REFEDS MFA but not ForceAuthn."
+msgid "Supports requests with REFEDS MFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:196
-msgid "Identity Provider supports no AuthnContextClassRef."
+msgid "Identity Provider supports requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:197
-msgid "Identity Provider supports PasswordProtectedTransport."
+msgid "Identity Provider supports requests with PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:198
-msgid "Identity Provider supports REFEDS SFA."
+msgid "Identity Provider supports requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:199
-msgid "Identity Provider supports REFEDS MFA."
+msgid "Identity Provider supports requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:201
-msgid "Supports no AuthnContextClassRef."
+msgid "Supports requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:202
-msgid "Supports PasswordProtectedTransport."
+msgid "Supports requests with PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:203
-msgid "Supports REFEDS SFA."
+msgid "Supports requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:204
-msgid "Supports REFEDS MFA."
+msgid "Supports requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:206
-msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
+msgid ""
+"Identity Provider does support ForceAuthn but not requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:208
-msgid "Does support ForceAuthn but not no AuthnContextClassRef."
+msgid "Does support ForceAuthn but not requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:209
-msgid "Does support ForceAuthn but not PasswordProtectedTransport."
+msgid ""
+"Does support ForceAuthn but not requests with PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:210
-msgid "Does support ForceAuthn but not REFEDS SFA."
+msgid "Does support ForceAuthn but not requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:211
-msgid "Does support ForceAuthn but not REFEDS MFA."
+msgid "Does support ForceAuthn but not requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:213
-msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
+msgid ""
+"Identity Provider does neither support requests with REFEDS MFA or "
+"ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:215
-msgid "Does neither support no AuthnContextClassRef or ForceAuthn."
+msgid ""
+"Does neither support requests with no AuthnContextClassRef or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:216
-msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
+msgid ""
+"Does neither support requests with PasswordProtectedTransport or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:217
-msgid "Does neither support REFEDS SFA or ForceAuthn."
+msgid "Does neither support requests with REFEDS SFA or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:218
-msgid "Does neither support REFEDS MFA or ForceAuthn."
+msgid "Does neither support requests with REFEDS MFA or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:220
-msgid "Identity Provider does not support REFEDS MFA."
+msgid "Identity Provider does not support requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:222
-msgid "Does not support no AuthnContextClassRef."
+msgid "Does not support requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:223
-msgid "Does not support PasswordProtectedTransport."
+msgid "Does not support requests with PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:224
-msgid "Does not support REFEDS SFA."
+msgid "Does not support requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:225
-msgid "Does not support REFEDS MFA."
+msgid "Does not support requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:228
@@ -1198,16 +1212,16 @@ msgstr ""
 msgid "Release check for"
 msgstr ""
 
-#: www/html/src/HTML.php:73
+#: www/html/src/HTML.php:79
 msgid "Language"
 msgstr ""
 
-#: www/html/src/HTML.php:99
+#: www/html/src/HTML.php:105
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: www/html/src/HTML.php:112
+#: www/html/src/HTML.php:118
 msgid "Contact us"
 msgstr ""
 

@@ -60,7 +60,7 @@ if (isset($_GET['tab'])) {
       $tab = 'acc';
       if (isset($_POST['accr'])) {
         createRedirect($_POST, $result, $idp);
-      } elseif ($_GET['accr'] && isset($_GET['testForceAuthn'])) {
+      } elseif (isset($_GET['accr']) && isset($_GET['testForceAuthn'])) {
         createRedirect(array('accr' => $_GET['accr'], 'force' => true), $result, $idp);
       }
       break;
@@ -254,9 +254,9 @@ if ($result) {
     $_SERVER['Shib-AuthnContext-Class'], $_SERVER['Shib-Authentication-Instant'], "\n");
   } elseif (isset($_GET['forceAuthn'])) {
     # Step 2 after refresh. Should not be done!!
-    printf('            <br>
-            Refresh/Reload is not allowed while testing forceAuthn.<br>
-            Please rerun "Test AuthnContextClassRef"%s', "\n");
+    print '            <br>
+            ' . _('Refresh/Reload is not allowed while testing forceAuthn.') . '<br>
+            ' . _('Please rerun "Test AuthnContextClassRef"') . "\n";
   } else {
     #Step 1
     printf('            <br>

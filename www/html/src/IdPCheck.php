@@ -1073,25 +1073,25 @@ class IdPCheck {
 
     if ($accrCorrect) {
       if ($forceAuthnSuccess) {
-        $this->status['ok'][] = sprintf('Identity Provider supports %s and ForceAuthn.', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s and ForceAuthn.', $accrName);
+        $this->status['ok'][] = sprintf('Identity Provider supports requests with %s and ForceAuthn.', $accrName);
+        $this->status['testResult'] = sprintf('Supports requests with %s and ForceAuthn.', $accrName);
       } elseif ($step2) {
-        $this->status['error'][] = sprintf('Identity Provider supports %s but not ForceAuthn.', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s but not ForceAuthn.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider supports requests with %s but not ForceAuthn.', $accrName);
+        $this->status['testResult'] = sprintf('Supports requests with %s but not ForceAuthn.', $accrName);
       } else {
-        $this->status['ok'][] = sprintf('Identity Provider supports %s.', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s.', $accrName);
+        $this->status['ok'][] = sprintf('Identity Provider supports requests with %s.', $accrName);
+        $this->status['testResult'] = sprintf('Supports requests with %s.', $accrName);
       }
     } else {
       if ($forceAuthnSuccess) {
-        $this->status['error'][] = sprintf('Identity Provider does support ForceAuthn but not %s.', $accrName);
-        $this->status['testResult'] = sprintf('Does support ForceAuthn but not %s.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does support ForceAuthn but not requests with %s.', $accrName);
+        $this->status['testResult'] = sprintf('Does support ForceAuthn but not requests with %s.', $accrName);
       } elseif ($step2) {
-        $this->status['error'][] = sprintf('Identity Provider does neither support %s or ForceAuthn.', $accrName);
-        $this->status['testResult'] = sprintf('Does neither support %s or ForceAuthn.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does neither support requests with %s or ForceAuthn.', $accrName);
+        $this->status['testResult'] = sprintf('Does neither support requests with %s or ForceAuthn.', $accrName);
       } else {
-        $this->status['error'][] = sprintf('Identity Provider does not support %s.', $accrName);
-        $this->status['testResult'] = sprintf('Does not support %s.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does not support requests with %s.', $accrName);
+        $this->status['testResult'] = sprintf('Does not support requests with %s.', $accrName);
       }
     }
   }
