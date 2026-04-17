@@ -1237,3 +1237,239 @@ msgstr "Status RAF High"
 #: www/html/src/IdPCheck.php:1066
 msgid "Identity Provider approved Assurance"
 msgstr "Asigurare aprobată de furnizorul de identitate"
+
+#: www/html/index.php:201 www/html/result/index.php:201
+#, php-format
+msgid "Step 1"
+msgstr "Etapa 1"
+
+#: www/html/index.php:202 www/html/result/index.php:202
+#, php-format
+msgid "Choose AuthnContextClassRef to test"
+msgstr "Alegeți AuthnContextClassRef pentru testare"
+
+#: www/html/index.php:223 www/html/result/index.php:223
+#, php-format
+msgid "Step 2"
+msgstr "Etapa 2"
+
+#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
+#: www/html/result/index.php:263
+#, php-format
+msgid "Recieved in Step 1"
+msgstr "Primit în Etapa 1"
+
+#: www/html/index.php:248 www/html/result/index.php:248
+#, php-format
+msgid "Recieved in Step 2"
+msgstr "Primit în Etapa 2"
+
+#: www/html/src/DatabaseTexts.php:184
+msgid "Supports no ACCR and ForceAuthn."
+msgstr "Suportă lipsa ACCR și ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:185
+msgid "Supports PasswordProtectedTransport and ForceAuthn."
+msgstr "Suportă PasswordProtectedTransport și ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:186
+msgid "Supports REFEDS SFA and ForceAuthn."
+msgstr "Suportă REFEDS SFA și ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:191
+msgid "Supports no ACCR but not ForceAuthn."
+msgstr "Suportă lipsa ACCR dar nu ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:192
+msgid "Supports PasswordProtectedTransport but not ForceAuthn."
+msgstr "Suportă PasswordProtectedTransport dar nu ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:193
+msgid "Supports REFEDS SFA but not ForceAuthn."
+msgstr "Suportă REFEDS SFA dar nu ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Supports no ACCR."
+msgstr "Suportă lipsa ACCR."
+
+#: www/html/src/DatabaseTexts.php:199
+msgid "Supports PasswordProtectedTransport."
+msgstr "Suportă PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:200
+msgid "Supports REFEDS SFA."
+msgstr "Suportă REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:205
+msgid "Does support ForceAuthn but not no ACCR."
+msgstr "Suportă ForceAuthn dar nu lipsa ACCR."
+
+#: www/html/src/DatabaseTexts.php:206
+msgid "Does support ForceAuthn but not PasswordProtectedTransport."
+msgstr "Suportă ForceAuthn dar nu PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:207
+msgid "Does support ForceAuthn but not REFEDS SFA."
+msgstr "Suportă ForceAuthn dar nu REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:212
+msgid "Does neither support no ACCR or ForceAuthn."
+msgstr "Nu suportă nici lipsa ACCR și nici ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:213
+msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
+msgstr "Nu suportă nici PasswordProtectedTransport și nici ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:214
+msgid "Does neither support REFEDS SFA or ForceAuthn."
+msgstr "Nu suportă nici REFEDS SFA și nici ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:219
+msgid "Does not support no ACCR."
+msgstr "Nu suportă lipsa ACCR."
+
+#: www/html/src/DatabaseTexts.php:220
+msgid "Does not support PasswordProtectedTransport."
+msgstr "Nu suportă PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:221
+msgid "Does not support REFEDS SFA."
+msgstr "Nu suportă REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:225
+msgid "Test not run yet"
+msgstr "Testul nu a fost rulat încă"
+
+#: www/html/src/TestSuite.php:233
+msgid "No EC (shall not send any attributes!)"
+msgstr "Niciun EC (nu trebuie să trimită niciun atribut!)"
+
+#: www/html/src/TestSuite.php:234
+msgid "ISO_COUNTRY_CODE (se)"
+msgstr "ISO_COUNTRY_CODE (se)"
+
+#: www/html/src/TestSuite.php:235
+msgid "givenName + sn"
+msgstr "givenName + sn"
+
+#: www/html/src/TestSuite.php:236
+msgid "ISO_COUNTRY_NAME (Sweden)"
+msgstr "ISO_COUNTRY_NAME (Sweden)"
+
+#: www/html/src/TestSuite.php:237
+msgid ""
+"Specifies the person's relationship(s) to the institution in broad "
+"categories such as student, faculty, staff, alum, etc."
+msgstr ""
+"Specifică relația (relațiile) persoanei cu instituția în categorii generale "
+"precum student, cadru didactic, personal, absolvent etc."
+
+#: www/html/src/TestSuite.php:238
+msgid "User assurance information."
+msgstr "Informații de asigurare ale utilizatorului."
+
+#: www/html/src/TestSuite.php:239
+msgid ""
+"This attribute should only be released if and only if the IdP organization "
+"has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs"
+" are persistent digital identifiers for individual researchers. Their "
+"primary purpose is to unambiguously and definitively link them with their "
+"scholarly work products. ORCID iDs are assigned, managed and maintained by "
+"the ORCID organization."
+msgstr ""
+"Acest atribut trebuie eliberat dacă și numai dacă organizația IdP a obținut "
+"ORCID iD prin serviciul ORCID Collect & Connect. ORCID iD-urile sunt "
+"identificatori digitali persistenți pentru cercetători individuali. Scopul "
+"lor principal este de a-i lega neambiguu și definitiv de produsele lor "
+"științifice. ORCID iD-urile sunt atribuite, gestionate și întreținute de "
+"organizația ORCID."
+
+#: www/html/src/TestSuite.php:240
+msgid ""
+"A scoped identifier for a person. It should be represented in the form "
+"\"user@scope\" where 'user' is a name-based identifier for the person and "
+"where the \"scope\" portion MUST be the administrative domain of the "
+"identity system where the identifier was created and assigned."
+msgstr ""
+"Un identificator cu domeniu pentru o persoană. Trebuie reprezentat în forma "
+"\"user@scope\" unde 'user' este un identificator bazat pe nume al persoanei,"
+" iar porțiunea \"scope\" TREBUIE să fie domeniul administrativ al sistemului"
+" de identitate unde identificatorul a fost creat și atribuit."
+
+#: www/html/src/TestSuite.php:241
+msgid "eduPersonAffiliation, scoped"
+msgstr "eduPersonAffiliation, cu domeniu"
+
+#: www/html/src/TestSuite.php:242
+msgid "Firstname"
+msgstr "Prenume"
+
+#: www/html/src/TestSuite.php:243
+msgid "Mailaddress (should only be one)"
+msgstr "Adresă de e-mail (ar trebui să fie una singură)"
+
+#: www/html/src/TestSuite.php:244
+msgid "List of additional organizational mailaddresses for the person"
+msgstr "Listă de adrese de e-mail organizaționale suplimentare ale persoanei"
+
+#: www/html/src/TestSuite.php:245
+msgid "Shortform of organisation name"
+msgstr "Formă prescurtată a numelui organizației"
+
+#: www/html/src/TestSuite.php:246
+msgid "Organisation name"
+msgstr "Numele organizației"
+
+#: www/html/src/TestSuite.php:247
+msgid ""
+"Its value for a given subject depends upon the relying party to whom it is "
+"given, thus preventing unrelated systems from using it as a basis for "
+"correlation."
+msgstr ""
+"Valoarea sa pentru un subiect dat depinde de entitatea care o primește, "
+"împiedicând astfel sistemele necorelate să o folosească drept bază pentru "
+"corelare."
+
+#: www/html/src/TestSuite.php:248
+msgid "8 digit date of birth (YYYYMMDD)"
+msgstr "Data nașterii în 8 cifre (AAAALLZZ)"
+
+#: www/html/src/TestSuite.php:249
+msgid ""
+"Specifies a person's home organization using the domain name of the "
+"organization"
+msgstr ""
+"Specifică organizația de origine a unei persoane folosind numele de domeniu "
+"al organizației"
+
+#: www/html/src/TestSuite.php:250
+msgid "example urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+msgstr "exemplu urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+
+#: www/html/src/TestSuite.php:251
+msgid "Lastname"
+msgstr "Nume de familie"
+
+#: www/html/src/TestSuite.php:252
+msgid ""
+"Its value for a given subject is independent of the relying party to whom it"
+" is given."
+msgstr ""
+"Valoarea sa pentru un subiect dat este independentă de entitatea care o "
+"primește."
+
+#: www/html/src/TestSuite.php:253
+msgid "Usually used for the European Student Identifier."
+msgstr "Utilizat de obicei pentru European Student Identifier."
+
+#: www/html/src/DatabaseTexts.php:196
+msgid "Identity Provider supports no ACCR."
+msgstr "Furnizorul de identitate suportă lipsa ACCR."
+
+#: www/html/src/DatabaseTexts.php:197
+msgid "Identity Provider supports PasswordProtectedTransport."
+msgstr "Furnizorul de identitate suportă PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Identity Provider supports REFEDS SFA."
+msgstr "Furnizorul de identitate suportă REFEDS SFA."
