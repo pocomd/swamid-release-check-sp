@@ -4,9 +4,8 @@ msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
 "POT-Creation-Date: 2026-04-15 10:45+0200\n"
-"PO-Revision-Date: 2026-04-15 12:00+0300\n"
+"PO-Revision-Date: 2026-04-18 12:00+0300\n"
 "Last-Translator: Traducător <pvv@renam.md>\n"
-"Language-Team: Romanian <ro@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,6 +167,16 @@ msgstr ""
 "Rezultatele acestor teste NU sunt salvate, cu excepția testelor efectuate cu"
 " REFEDS MFA."
 
+#: www/html/index.php:201 www/html/result/index.php:201
+#, php-format
+msgid "Step 1"
+msgstr "Etapa 1"
+
+#: www/html/index.php:202 www/html/result/index.php:202
+#, php-format
+msgid "Choose AuthnContextClassRef to test"
+msgstr "Alegeți AuthnContextClassRef pentru testare"
+
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
 msgid "No AuthnContextClassRef"
@@ -177,6 +186,11 @@ msgstr "Niciun AuthnContextClassRef"
 #, php-format
 msgid "Test AuthnContextClassRef"
 msgstr "Testați AuthnContextClassRef"
+
+#: www/html/index.php:223 www/html/result/index.php:223
+#, php-format
+msgid "Step 2"
+msgstr "Etapa 2"
 
 #: www/html/index.php:227 www/html/result/index.php:227
 #, php-format
@@ -201,6 +215,25 @@ msgstr ""
 #, php-format
 msgid "Test forceAuthN"
 msgstr "Testați forceAuthN"
+
+#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
+#: www/html/result/index.php:263
+#, php-format
+msgid "Received in Step 1"
+msgstr "Primit în Etapa 1"
+
+#: www/html/index.php:248 www/html/result/index.php:248
+#, php-format
+msgid "Received in Step 2"
+msgstr "Primit în Etapa 2"
+
+#: www/html/index.php:258 www/html/result/index.php:258
+msgid "Refresh/Reload is not allowed while testing forceAuthn."
+msgstr "Reîncărcarea paginii nu este permisă în timpul testării forceAuthn."
+
+#: www/html/index.php:259 www/html/result/index.php:259
+msgid "Please rerun \"Test AuthnContextClassRef\""
+msgstr "Rulați din nou \"Test AuthnContextClassRef\""
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
 #: www/html/result/index.php:332
@@ -451,7 +484,7 @@ msgstr "Niciun test rulat ca student"
 msgid "IdPs not tested"
 msgstr "IdP-uri netestate"
 
-#: www/html/src/Configuration.php:65
+#: www/html/src/Configuration.php:67
 msgid ""
 "Click on the green button to see what attributes your Identity Provider "
 "releases."
@@ -459,35 +492,35 @@ msgstr ""
 "Faceți clic pe butonul verde pentru a vedea ce atribute eliberează "
 "furnizorul dvs. de identitate."
 
-#: www/html/src/Configuration.php:66
+#: www/html/src/Configuration.php:68
 #, php-format
 msgid "Description of all test available in the %s test suite"
 msgstr "Descrierea tuturor testelor disponibile în suita de teste %s"
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:70
 msgid ""
 "The Attributes tab shows all attributes the service release to the entityId"
 msgstr ""
 "Fila Atribute afișează toate atributele pe care serviciul le eliberează "
 "pentru entityId"
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:70
 msgid "The entityId uses the entity categories"
 msgstr "EntityId utilizează categoriile de entitate"
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:71
 msgid "REFEDS Personalized Access Entity Category"
 msgstr "REFEDS Personalized Access Entity Category"
 
-#: www/html/src/Configuration.php:70
+#: www/html/src/Configuration.php:72
 msgid "REFEDS Research and Scholarship Entity Category, and"
 msgstr "REFEDS Research and Scholarship Entity Category, și"
 
-#: www/html/src/Configuration.php:71
+#: www/html/src/Configuration.php:73
 msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 msgstr "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 
-#: www/html/src/Configuration.php:73
+#: www/html/src/Configuration.php:75
 msgid ""
 "The Authentication tab checks if an Identity Provider is correctly "
 "configured for handling request for different AuthnContextClassRef requests."
@@ -495,7 +528,7 @@ msgstr ""
 "Fila Autentificare verifică dacă un furnizor de identitate este configurat "
 "corect pentru gestionarea cererilor cu diferite AuthnContextClassRef."
 
-#: www/html/src/Configuration.php:74
+#: www/html/src/Configuration.php:76
 msgid ""
 "The Entity category tab does an exetensive testing of that an Identity "
 "Provider follows Best Practice for attribute release via entity categories."
@@ -504,7 +537,7 @@ msgstr ""
 "furnizor de identitate respectă bunele practici pentru eliberarea "
 "atributelor prin categorii de entitate."
 
-#: www/html/src/Configuration.php:75
+#: www/html/src/Configuration.php:77
 msgid ""
 "The ESI tab verifies if the Identity Provider release the right attributes "
 "for the European Digital Student Service Infrastructure."
@@ -512,7 +545,7 @@ msgstr ""
 "Fila ESI verifică dacă furnizorul de identitate eliberează atributele "
 "corecte pentru European Digital Student Service Infrastructure."
 
-#: www/html/src/Configuration.php:78
+#: www/html/src/Configuration.php:80
 #, php-format
 msgid ""
 "In order for %s to work as effectively as possible for students and "
@@ -525,7 +558,7 @@ msgstr ""
 " de servicii să utilizeze categorii de entitate pentru a obține atributele "
 "necesare."
 
-#: www/html/src/Configuration.php:79
+#: www/html/src/Configuration.php:81
 #, php-format
 msgid ""
 "In order for services within the %s federation to work as effectively as "
@@ -540,7 +573,7 @@ msgstr ""
 "furnizorilor de servicii și de identitate, oferind un cadru stabil pentru "
 "eliberarea atributelor."
 
-#: www/html/src/Configuration.php:80
+#: www/html/src/Configuration.php:82
 #, php-format
 msgid ""
 "The %s best practice attribute release check consists of the following tests"
@@ -548,7 +581,7 @@ msgstr ""
 "Verificarea eliberării atributelor conform bunelor practici %s constă în "
 "următoarele teste"
 
-#: www/html/src/Configuration.php:81
+#: www/html/src/Configuration.php:83
 #, php-format
 msgid ""
 "Multiple Code of Conduct test require different attributes which the IdP "
@@ -878,7 +911,7 @@ msgstr "Suport pentru CoCo lipsește, Entity Category Support lipsește"
 msgid "schacPersonalUniqueCode OK"
 msgstr "schacPersonalUniqueCode OK"
 
-#: www/html/src/DatabaseTexts.php:148
+#: www/html/src/DatabaseTexts.php:149
 msgid ""
 "schacPersonalUniqueCode in wrong case. Not "
 "urn:schac:personalUniqueCode:int:esi. Might create problem in some SP's"
@@ -886,11 +919,11 @@ msgstr ""
 "schacPersonalUniqueCode în format incorect. Nu este "
 "urn:schac:personalUniqueCode:int:esi. Poate crea probleme în unele SP-uri"
 
-#: www/html/src/DatabaseTexts.php:150
+#: www/html/src/DatabaseTexts.php:151
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
 msgstr "schacPersonalUniqueCode OK. DAR format incorect"
 
-#: www/html/src/DatabaseTexts.php:152
+#: www/html/src/DatabaseTexts.php:153
 msgid ""
 "schacPersonalUniqueCode should start with "
 "urn:schac:personalUniqueCode:int:esi:"
@@ -898,48 +931,48 @@ msgstr ""
 "schacPersonalUniqueCode ar trebui să înceapă cu "
 "urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:154
+#: www/html/src/DatabaseTexts.php:155
 msgid ""
 "schacPersonalUniqueCode not starting with "
 "urn:schac:personalUniqueCode:int:esi:"
 msgstr ""
 "schacPersonalUniqueCode nu începe cu urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:156
+#: www/html/src/DatabaseTexts.php:157
 msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
 msgstr ""
 "schacPersonalUniqueCode ar trebui să conțină doar <b>o singură</b> valoare."
 
-#: www/html/src/DatabaseTexts.php:158
+#: www/html/src/DatabaseTexts.php:159
 msgid "More than one schacPersonalUniqueCode"
 msgstr "Mai mult de un schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:160
+#: www/html/src/DatabaseTexts.php:161
 msgid "Missing schacPersonalUniqueCode"
 msgstr "Lipsește schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:163
+#: www/html/src/DatabaseTexts.php:164
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr "Furnizorul de identitate trimite informații de asigurare invalide."
 
-#: www/html/src/DatabaseTexts.php:165
+#: www/html/src/DatabaseTexts.php:166
 msgid "Sends invalid Assurance information."
 msgstr "Trimite informații de asigurare invalide."
 
-#: www/html/src/DatabaseTexts.php:167
+#: www/html/src/DatabaseTexts.php:168
 msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr ""
 "Lipsesc informațiile de asigurare. Se așteptau cel puțin [[RAF_ASSURANCE]]"
 
-#: www/html/src/DatabaseTexts.php:169
+#: www/html/src/DatabaseTexts.php:170
 msgid "Missing [[RAF_ASSURANCE]] for user."
 msgstr "Lipsește [[RAF_ASSURANCE]] pentru utilizator."
 
-#: www/html/src/DatabaseTexts.php:172
+#: www/html/src/DatabaseTexts.php:173
 msgid "Missing some Assurance information."
 msgstr "Lipsesc unele informații de asigurare."
 
-#: www/html/src/DatabaseTexts.php:174
+#: www/html/src/DatabaseTexts.php:175
 msgid ""
 "Assurance attribute release for current user follows REFED's "
 "recommendations."
@@ -947,11 +980,11 @@ msgstr ""
 "Eliberarea atributului de asigurare pentru utilizatorul curent respectă "
 "recomandările REFEDS."
 
-#: www/html/src/DatabaseTexts.php:176
+#: www/html/src/DatabaseTexts.php:177
 msgid "Sends recommended Assurance information."
 msgstr "Trimite informațiile de asigurare recomandate."
 
-#: www/html/src/DatabaseTexts.php:179
+#: www/html/src/DatabaseTexts.php:180
 msgid "Authentication-instant hasn't updated after forceAuthn was requested."
 msgstr ""
 "Authentication-instant nu s-a actualizat după ce a fost solicitat "
@@ -960,6 +993,18 @@ msgstr ""
 #: www/html/src/DatabaseTexts.php:182
 msgid "Identity Provider supports requests with REFEDS MFA and ForceAuthn."
 msgstr "Furnizorul de identitate suportă cereri cu REFEDS MFA și ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:184
+msgid "Supports requests with no AuthnContextClassRef and ForceAuthn."
+msgstr "Suportă cereri fără AuthnContextClassRef și ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:185
+msgid "Supports requests with PasswordProtectedTransport and ForceAuthn."
+msgstr "Suportă cereri cu PasswordProtectedTransport și ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:186
+msgid "Supports requests with REFEDS SFA and ForceAuthn."
+msgstr "Suportă cereri cu REFEDS SFA și ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:187
 msgid "Supports requests with REFEDS MFA and ForceAuthn."
@@ -971,13 +1016,50 @@ msgid ""
 msgstr ""
 "Furnizorul de identitate suportă cereri cu REFEDS MFA dar nu ForceAuthn."
 
+#: www/html/src/DatabaseTexts.php:191
+msgid "Supports requests with no AuthnContextClassRef but not ForceAuthn."
+msgstr "Suportă cereri fără AuthnContextClassRef dar nu ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:192
+msgid "Supports requests with PasswordProtectedTransport but not ForceAuthn."
+msgstr "Suportă cereri cu PasswordProtectedTransport dar nu ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:193
+msgid "Supports requests with REFEDS SFA but not ForceAuthn."
+msgstr "Suportă cereri cu REFEDS SFA dar nu ForceAuthn."
+
 #: www/html/src/DatabaseTexts.php:194
 msgid "Supports requests with REFEDS MFA but not ForceAuthn."
 msgstr "Suportă cereri cu REFEDS MFA dar nu ForceAuthn."
 
+#: www/html/src/DatabaseTexts.php:196
+msgid "Identity Provider supports requests with no AuthnContextClassRef."
+msgstr "Furnizorul de identitate suportă cereri fără AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:197
+msgid "Identity Provider supports requests with PasswordProtectedTransport."
+msgstr ""
+"Furnizorul de identitate suportă cereri cu PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Identity Provider supports requests with REFEDS SFA."
+msgstr "Furnizorul de identitate suportă cereri cu REFEDS SFA."
+
 #: www/html/src/DatabaseTexts.php:199
 msgid "Identity Provider supports requests with REFEDS MFA."
 msgstr "Furnizorul de identitate suportă cereri cu REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:201
+msgid "Supports requests with no AuthnContextClassRef."
+msgstr "Suportă cereri fără AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:202
+msgid "Supports requests with PasswordProtectedTransport."
+msgstr "Suportă cereri cu PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:203
+msgid "Supports requests with REFEDS SFA."
+msgstr "Suportă cereri cu REFEDS SFA."
 
 #: www/html/src/DatabaseTexts.php:204
 msgid "Supports requests with REFEDS MFA."
@@ -988,6 +1070,19 @@ msgid ""
 "Identity Provider does support ForceAuthn but not requests with REFEDS MFA."
 msgstr ""
 "Furnizorul de identitate suportă ForceAuthn dar nu cereri cu REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:208
+msgid "Does support ForceAuthn but not requests with no AuthnContextClassRef."
+msgstr "Suportă ForceAuthn dar nu cereri fără AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:209
+msgid ""
+"Does support ForceAuthn but not requests with PasswordProtectedTransport."
+msgstr "Suportă ForceAuthn dar nu cereri cu PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:210
+msgid "Does support ForceAuthn but not requests with REFEDS SFA."
+msgstr "Suportă ForceAuthn dar nu cereri cu REFEDS SFA."
 
 #: www/html/src/DatabaseTexts.php:211
 msgid "Does support ForceAuthn but not requests with REFEDS MFA."
@@ -1001,6 +1096,21 @@ msgstr ""
 "Furnizorul de identitate nu suportă nici cereri cu REFEDS MFA și nici "
 "ForceAuthn."
 
+#: www/html/src/DatabaseTexts.php:215
+msgid ""
+"Does neither support requests with no AuthnContextClassRef or ForceAuthn."
+msgstr "Nu suportă nici cereri fără AuthnContextClassRef și nici ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:216
+msgid ""
+"Does neither support requests with PasswordProtectedTransport or ForceAuthn."
+msgstr ""
+"Nu suportă nici cereri cu PasswordProtectedTransport și nici ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:217
+msgid "Does neither support requests with REFEDS SFA or ForceAuthn."
+msgstr "Nu suportă nici cereri cu REFEDS SFA și nici ForceAuthn."
+
 #: www/html/src/DatabaseTexts.php:218
 msgid "Does neither support requests with REFEDS MFA or ForceAuthn."
 msgstr "Nu suportă nici cereri cu REFEDS MFA și nici ForceAuthn."
@@ -1009,9 +1119,25 @@ msgstr "Nu suportă nici cereri cu REFEDS MFA și nici ForceAuthn."
 msgid "Identity Provider does not support requests with REFEDS MFA."
 msgstr "Furnizorul de identitate nu suportă cereri cu REFEDS MFA."
 
+#: www/html/src/DatabaseTexts.php:222
+msgid "Does not support requests with no AuthnContextClassRef."
+msgstr "Nu suportă cereri fără AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:223
+msgid "Does not support requests with PasswordProtectedTransport."
+msgstr "Nu suportă cereri cu PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:224
+msgid "Does not support requests with REFEDS SFA."
+msgstr "Nu suportă cereri cu REFEDS SFA."
+
 #: www/html/src/DatabaseTexts.php:225
 msgid "Does not support requests with REFEDS MFA."
 msgstr "Nu suportă cereri cu REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:228
+msgid "Test not run yet"
+msgstr "Testul nu a fost rulat încă"
 
 #: www/html/src/Display.php:54 www/html/src/Display.php:74
 #: www/html/src/Display.php:121 www/html/src/IdPCheck.php:431
@@ -1029,14 +1155,14 @@ msgstr "Atributele furnizorului de identitate în metadate"
 msgid "Identity Provider sessions attributes"
 msgstr "Atributele sesiunii furnizorului de identitate"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214 www/html/src/IdPCheck.php:175
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216 www/html/src/IdPCheck.php:175
 #, php-format
 msgid "Test"
 msgstr "Test"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216
 #, php-format
 msgid "Result"
 msgstr "Rezultat"
@@ -1046,48 +1172,48 @@ msgstr "Rezultat"
 msgid "Run test"
 msgstr "Rulați testul"
 
-#: www/html/src/Display.php:205
+#: www/html/src/Display.php:207
 msgid "European Student Identifier (student account)"
 msgstr "European Student Identifier (cont student)"
 
-#: www/html/src/Display.php:206
+#: www/html/src/Display.php:208
 msgid "European Student Identifier (any account)"
 msgstr "European Student Identifier (orice cont)"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Run NEW test"
 msgstr "Rulați test NOU"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Rerun test"
 msgstr "Reluați testul"
 
-#: www/html/src/Display.php:281
+#: www/html/src/Display.php:299
 #, php-format
 msgid "Received"
 msgstr "Primit"
 
-#: www/html/src/Display.php:291 www/html/src/IdPCheck.php:978
+#: www/html/src/Display.php:315 www/html/src/IdPCheck.php:978
 #, php-format
 msgid "Missing"
 msgstr "Lipsește"
 
-#: www/html/src/Display.php:299
+#: www/html/src/Display.php:329
 #, php-format
 msgid "Not expected"
 msgstr "Neașteptat"
 
-#: www/html/src/Display.php:307 www/html/src/IdPCheck.php:1051
+#: www/html/src/Display.php:343 www/html/src/IdPCheck.php:1051
 #, php-format
 msgid "Test result"
 msgstr "Rezultatul testului"
 
-#: www/html/src/Display.php:337
+#: www/html/src/Display.php:375
 #, php-format
 msgid "unknown tab"
 msgstr "filă necunoscută"
 
-#: www/html/src/Display.php:367
+#: www/html/src/Display.php:405
 msgid "Other results"
 msgstr "Alte rezultate"
 
@@ -1095,20 +1221,20 @@ msgstr "Alte rezultate"
 msgid "IdP home Federation"
 msgstr "Federația de origine a IdP"
 
-#: www/html/src/HTML.php:43
+#: www/html/src/HTML.php:42
 msgid "Release check for"
 msgstr "Verificare eliberare pentru"
 
-#: www/html/src/HTML.php:74
+#: www/html/src/HTML.php:79
 msgid "Language"
 msgstr "Limbă"
 
-#: www/html/src/HTML.php:100
+#: www/html/src/HTML.php:105
 #, php-format
 msgid "About %s"
 msgstr "Despre %s"
 
-#: www/html/src/HTML.php:113
+#: www/html/src/HTML.php:118
 msgid "Contact us"
 msgstr "Contactați-ne"
 
@@ -1245,112 +1371,6 @@ msgstr "Status RAF High"
 msgid "Identity Provider approved Assurance"
 msgstr "Asigurare aprobată de furnizorul de identitate"
 
-#: www/html/index.php:201 www/html/result/index.php:201
-#, php-format
-msgid "Step 1"
-msgstr "Etapa 1"
-
-#: www/html/index.php:202 www/html/result/index.php:202
-#, php-format
-msgid "Choose AuthnContextClassRef to test"
-msgstr "Alegeți AuthnContextClassRef pentru testare"
-
-#: www/html/index.php:223 www/html/result/index.php:223
-#, php-format
-msgid "Step 2"
-msgstr "Etapa 2"
-
-#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
-#: www/html/result/index.php:263
-#, php-format
-msgid "Received in Step 1"
-msgstr "Primit în Etapa 1"
-
-#: www/html/index.php:248 www/html/result/index.php:248
-#, php-format
-msgid "Received in Step 2"
-msgstr "Primit în Etapa 2"
-
-#: www/html/src/DatabaseTexts.php:184
-msgid "Supports requests with no AuthnContextClassRef and ForceAuthn."
-msgstr "Suportă cereri fără AuthnContextClassRef și ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:185
-msgid "Supports requests with PasswordProtectedTransport and ForceAuthn."
-msgstr "Suportă cereri cu PasswordProtectedTransport și ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:186
-msgid "Supports requests with REFEDS SFA and ForceAuthn."
-msgstr "Suportă cereri cu REFEDS SFA și ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:191
-msgid "Supports requests with no AuthnContextClassRef but not ForceAuthn."
-msgstr "Suportă cereri fără AuthnContextClassRef dar nu ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:192
-msgid "Supports requests with PasswordProtectedTransport but not ForceAuthn."
-msgstr "Suportă cereri cu PasswordProtectedTransport dar nu ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:193
-msgid "Supports requests with REFEDS SFA but not ForceAuthn."
-msgstr "Suportă cereri cu REFEDS SFA dar nu ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:201
-msgid "Supports requests with no AuthnContextClassRef."
-msgstr "Suportă cereri fără AuthnContextClassRef."
-
-#: www/html/src/DatabaseTexts.php:202
-msgid "Supports requests with PasswordProtectedTransport."
-msgstr "Suportă cereri cu PasswordProtectedTransport."
-
-#: www/html/src/DatabaseTexts.php:203
-msgid "Supports requests with REFEDS SFA."
-msgstr "Suportă cereri cu REFEDS SFA."
-
-#: www/html/src/DatabaseTexts.php:208
-msgid "Does support ForceAuthn but not requests with no AuthnContextClassRef."
-msgstr "Suportă ForceAuthn dar nu cereri fără AuthnContextClassRef."
-
-#: www/html/src/DatabaseTexts.php:209
-msgid ""
-"Does support ForceAuthn but not requests with PasswordProtectedTransport."
-msgstr "Suportă ForceAuthn dar nu cereri cu PasswordProtectedTransport."
-
-#: www/html/src/DatabaseTexts.php:210
-msgid "Does support ForceAuthn but not requests with REFEDS SFA."
-msgstr "Suportă ForceAuthn dar nu cereri cu REFEDS SFA."
-
-#: www/html/src/DatabaseTexts.php:215
-msgid ""
-"Does neither support requests with no AuthnContextClassRef or ForceAuthn."
-msgstr "Nu suportă nici cereri fără AuthnContextClassRef și nici ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:216
-msgid ""
-"Does neither support requests with PasswordProtectedTransport or ForceAuthn."
-msgstr ""
-"Nu suportă nici cereri cu PasswordProtectedTransport și nici ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:217
-msgid "Does neither support requests with REFEDS SFA or ForceAuthn."
-msgstr "Nu suportă nici cereri cu REFEDS SFA și nici ForceAuthn."
-
-#: www/html/src/DatabaseTexts.php:222
-msgid "Does not support requests with no AuthnContextClassRef."
-msgstr "Nu suportă cereri fără AuthnContextClassRef."
-
-#: www/html/src/DatabaseTexts.php:223
-msgid "Does not support requests with PasswordProtectedTransport."
-msgstr "Nu suportă cereri cu PasswordProtectedTransport."
-
-#: www/html/src/DatabaseTexts.php:224
-msgid "Does not support requests with REFEDS SFA."
-msgstr "Nu suportă cereri cu REFEDS SFA."
-
-#: www/html/src/DatabaseTexts.php:225
-msgid "Test not run yet"
-msgstr "Testul nu a fost rulat încă"
-
 #: www/html/src/TestSuite.php:233
 msgid "No EC (shall not send any attributes!)"
 msgstr "Niciun EC (nu trebuie să trimită niciun atribut!)"
@@ -1472,24 +1492,3 @@ msgstr ""
 #: www/html/src/TestSuite.php:253
 msgid "Usually used for the European Student Identifier."
 msgstr "Utilizat de obicei pentru European Student Identifier."
-
-#: www/html/src/DatabaseTexts.php:196
-msgid "Identity Provider supports requests with no AuthnContextClassRef."
-msgstr "Furnizorul de identitate suportă cereri fără AuthnContextClassRef."
-
-#: www/html/src/DatabaseTexts.php:197
-msgid "Identity Provider supports requests with PasswordProtectedTransport."
-msgstr ""
-"Furnizorul de identitate suportă cereri cu PasswordProtectedTransport."
-
-#: www/html/src/DatabaseTexts.php:198
-msgid "Identity Provider supports requests with REFEDS SFA."
-msgstr "Furnizorul de identitate suportă cereri cu REFEDS SFA."
-
-#: www/html/index.php:258 www/html/result/index.php:258
-msgid "Refresh/Reload is not allowed while testing forceAuthn."
-msgstr "Reîncărcarea paginii nu este permisă în timpul testării forceAuthn."
-
-#: www/html/index.php:259 www/html/result/index.php:259
-msgid "Please rerun \"Test AuthnContextClassRef\""
-msgstr "Rulați din nou \"Test AuthnContextClassRef\""
