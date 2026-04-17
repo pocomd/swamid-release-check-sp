@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-16 19:18+0200\n"
-"PO-Revision-Date: 2026-04-16 19:21+0200\n"
+"POT-Creation-Date: 2026-04-17 09:13+0200\n"
+"PO-Revision-Date: 2026-04-17 09:27+0200\n"
 "Last-Translator: Björn Mattsson <Bjorn@sunet.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -160,8 +160,7 @@ msgstr ""
 
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
-msgid ""
-"The restults from this tests are NOT saved exept for tests done with REFEDS MFA."
+msgid "The results from this tests are NOT saved exept for tests done with REFEDS MFA."
 msgstr ""
 "Resultaten från denna test är INTE sparad förutom de som är gjorda med REFEDS MFA."
 
@@ -177,8 +176,8 @@ msgstr "Välj authnContextClassRef att testa"
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
-msgid "No authnContextClassRef"
-msgstr "Ingen authnContextClassRef"
+msgid "No AuthnContextClassRef"
+msgstr "Ingen AuthnContextClassRef"
 
 #: www/html/index.php:215 www/html/result/index.php:215
 #, php-format
@@ -216,12 +215,12 @@ msgstr "Testa forceAuthN"
 #: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
 #: www/html/result/index.php:263
 #, php-format
-msgid "Recieved in Step 1"
+msgid "Received in Step 1"
 msgstr "Mottaget i Steg 1"
 
 #: www/html/index.php:248 www/html/result/index.php:248
 #, php-format
-msgid "Recieved in Step 2"
+msgid "Received in Step 2"
 msgstr "Mottaget i Steg 2"
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
@@ -307,7 +306,7 @@ msgstr "Skickar enbart begärd info eller mindre"
 
 #: www/html/src/Admin.php:253
 #, php-format
-msgid "Send to much data"
+msgid "Send too much data"
 msgstr "Skickar för mycket info"
 
 #: www/html/src/Admin.php:256
@@ -317,7 +316,7 @@ msgstr "Skickar enbart efterfrågad info"
 
 #: www/html/src/Admin.php:257
 #, php-format
-msgid "Send to much/less data"
+msgid "Send too much/less data"
 msgstr "Skickar för mycket/lite info"
 
 #: www/html/src/Admin.php:264
@@ -332,7 +331,7 @@ msgstr "Saknar ECS för %s"
 
 #: www/html/src/Admin.php:266
 #, php-format
-msgid "Have ECS for %s but sends to much data > not %s"
+msgid "Have ECS for %s but sends too much data > not %s"
 msgstr "Har ECS för %s men skickar för mycket info > ej %s"
 
 #: www/html/src/Admin.php:272
@@ -422,7 +421,7 @@ msgstr "Data baserad på IdPer som har kört ESI testet"
 
 #: www/html/src/Admin.php:524
 #, php-format
-msgid "Missing schacPersonalUniqueCode or to many"
+msgid "Missing schacPersonalUniqueCode or too many"
 msgstr "Saknar schacPersonalUniqueCode eller för många"
 
 #: www/html/src/Admin.php:525
@@ -923,8 +922,8 @@ msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
 msgstr "Identitetsutfärdaren supportar REFEDS MFA och ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:184
-msgid "Supports no ACCR and ForceAuthn."
-msgstr "Supportar förfrågan utan någon ACCR samt ForceAuthn."
+msgid "Supports no AuthnContextClassRef and ForceAuthn."
+msgstr "Supportar förfrågan utan någon AuthnContextClassRef samt ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:185
 msgid "Supports PasswordProtectedTransport and ForceAuthn."
@@ -943,8 +942,8 @@ msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
 msgstr "Identitetsutfärdaren supportar REFEDS MFA men inte ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports no ACCR but not ForceAuthn."
-msgstr "Supportar förfrågan utan någon ACCR men inte ForceAuthn."
+msgid "Supports no AuthnContextClassRef but not ForceAuthn."
+msgstr "Supportar förfrågan utan någon AuthnContextClassRef men inte ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:192
 msgid "Supports PasswordProtectedTransport but not ForceAuthn."
@@ -959,8 +958,8 @@ msgid "Supports REFEDS MFA but not ForceAuthn."
 msgstr "Supportar REFEDS MFA men inte ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:196
-msgid "Identity Provider supports no ACCR."
-msgstr "Identitetsutfärdaren supportar förfrågan utan någon ACCR."
+msgid "Identity Provider supports no AuthnContextClassRef."
+msgstr "Identitetsutfärdaren supportar förfrågan utan någon AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:197
 msgid "Identity Provider supports PasswordProtectedTransport."
@@ -975,8 +974,8 @@ msgid "Identity Provider supports REFEDS MFA."
 msgstr "Identitetsutfärdaren supportar REFEDS MFA."
 
 #: www/html/src/DatabaseTexts.php:201
-msgid "Supports no ACCR."
-msgstr "Supportar förfrågan utan någon ACCR."
+msgid "Supports no AuthnContextClassRef."
+msgstr "Supportar förfrågan utan någon AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:202
 msgid "Supports PasswordProtectedTransport."
@@ -995,8 +994,8 @@ msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
 msgstr "Identitetsutfärdaren supportar ForceAuthn men inte REFEDS MFA."
 
 #: www/html/src/DatabaseTexts.php:208
-msgid "Does support ForceAuthn but not no ACCR."
-msgstr "Supportar ForceAuthn men inte förfrågan utan någon ACCR."
+msgid "Does support ForceAuthn but not no AuthnContextClassRef."
+msgstr "Supportar ForceAuthn men inte förfrågan utan någon AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:209
 msgid "Does support ForceAuthn but not PasswordProtectedTransport."
@@ -1015,8 +1014,8 @@ msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
 msgstr "Identitetsutfärdaren supportar varken REFEDS MFA eller ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:215
-msgid "Does neither support no ACCR or ForceAuthn."
-msgstr "Supportar varken förfrågan utan någon ACCR eller ForceAuthn."
+msgid "Does neither support no AuthnContextClassRef or ForceAuthn."
+msgstr "Supportar varken förfrågan utan någon AuthnContextClassRef eller ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:216
 msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
@@ -1035,8 +1034,8 @@ msgid "Identity Provider does not support REFEDS MFA."
 msgstr "Identitetsutfärdaren supportar inte REFEDS MFA."
 
 #: www/html/src/DatabaseTexts.php:222
-msgid "Does not support no ACCR."
-msgstr "Supportar ej förfrågan utan någon ACCR."
+msgid "Does not support no AuthnContextClassRef."
+msgstr "Supportar ej förfrågan utan någon AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:223
 msgid "Does not support PasswordProtectedTransport."
@@ -1171,33 +1170,33 @@ msgstr "Kör NY test"
 msgid "Rerun test"
 msgstr "Kör om testet"
 
-#: www/html/src/Display.php:290
+#: www/html/src/Display.php:299
 #, php-format
 msgid "Received"
 msgstr "Mottaget"
 
-#: www/html/src/Display.php:306 www/html/src/IdPCheck.php:978
+#: www/html/src/Display.php:315 www/html/src/IdPCheck.php:978
 #: www/html/src/IdPCheckSWAMID.php:213
 #, php-format
 msgid "Missing"
 msgstr "Saknas"
 
-#: www/html/src/Display.php:320
+#: www/html/src/Display.php:329
 #, php-format
 msgid "Not expected"
 msgstr "Ej förväntat"
 
-#: www/html/src/Display.php:334 www/html/src/IdPCheck.php:1051
+#: www/html/src/Display.php:343 www/html/src/IdPCheck.php:1051
 #, php-format
 msgid "Test result"
 msgstr "Test resultat"
 
-#: www/html/src/Display.php:366
+#: www/html/src/Display.php:375
 #, php-format
 msgid "unknown tab"
 msgstr "okänd tab"
 
-#: www/html/src/Display.php:396
+#: www/html/src/Display.php:405
 msgid "Other results"
 msgstr "Andra resultat"
 
@@ -1293,7 +1292,7 @@ msgid "None"
 msgstr "Inga"
 
 #: www/html/src/IdPCheck.php:993 www/html/src/IdPCheckSWAMID.php:228
-msgid "No Assurance information recived"
+msgid "No Assurance information received"
 msgstr "Ingen Assurance information mottagen"
 
 #: www/html/src/IdPCheck.php:1032
@@ -1319,8 +1318,8 @@ msgstr "Ej testat"
 
 #: www/html/src/IdPCheck.php:1053
 #, php-format
-msgid "ACCR status"
-msgstr "ACCR status"
+msgid "AuthnContextClassRef status"
+msgstr "AuthnContextClassRef status"
 
 #: www/html/src/IdPCheck.php:1054
 #, php-format

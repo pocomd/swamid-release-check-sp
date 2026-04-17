@@ -165,15 +165,13 @@ msgstr ""
 
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
-msgid ""
-"The restults from this tests are NOT saved exept for tests done with REFEDS "
-"MFA."
+msgid "The results from this tests are NOT saved exept for tests done with REFEDS MFA."
 msgstr "Резултати ових тестова се НЕ чувају осим за REFEDS MFA тестове."
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
-msgid "No authnContextClassRef"
-msgstr "Нема authnContextClassRef"
+msgid "No AuthnContextClassRef"
+msgstr "Нема AuthnContextClassRef"
 
 #: www/html/index.php:215 www/html/result/index.php:215
 #, php-format
@@ -288,7 +286,7 @@ msgstr "Шаље само тражене податке или мање"
 
 #: www/html/src/Admin.php:253
 #, php-format
-msgid "Send to much data"
+msgid "Send too much data"
 msgstr "Шаље превише података"
 
 #: www/html/src/Admin.php:256
@@ -298,7 +296,7 @@ msgstr "Шаље само тражене податке"
 
 #: www/html/src/Admin.php:257
 #, php-format
-msgid "Send to much/less data"
+msgid "Send too much/less data"
 msgstr "Шаље превише/премало података"
 
 #: www/html/src/Admin.php:264
@@ -313,7 +311,7 @@ msgstr "Недостаје ECS за %s"
 
 #: www/html/src/Admin.php:266
 #, php-format
-msgid "Have ECS for %s but sends to much data > not %s"
+msgid "Have ECS for %s but sends too much data > not %s"
 msgstr "Има ECS за %s али шаље превише података > није %s"
 
 #: www/html/src/Admin.php:272
@@ -405,7 +403,7 @@ msgstr "Подаци засновани на IdP-овима који су пок
 
 #: www/html/src/Admin.php:524
 #, php-format
-msgid "Missing schacPersonalUniqueCode or to many"
+msgid "Missing schacPersonalUniqueCode or too many"
 msgstr "Недостаје schacPersonalUniqueCode или их има превише"
 
 #: www/html/src/Admin.php:525
@@ -1254,8 +1252,8 @@ msgstr "Није тестирано"
 
 #: www/html/src/IdPCheck.php:1062
 #, php-format
-msgid "ACCR status"
-msgstr "ACCR статус"
+msgid "AuthnContextClassRef status"
+msgstr "AuthnContextClassRef статус"
 
 #: www/html/src/IdPCheck.php:1063
 #, php-format

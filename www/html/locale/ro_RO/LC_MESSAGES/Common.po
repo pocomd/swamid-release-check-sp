@@ -162,7 +162,7 @@ msgstr ""
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
 msgid ""
-"The restults from this tests are NOT saved exept for tests done with REFEDS "
+"The results from this tests are NOT saved exept for tests done with REFEDS "
 "MFA."
 msgstr ""
 "Rezultatele acestor teste NU sunt salvate, cu excepția testelor efectuate cu"
@@ -170,8 +170,8 @@ msgstr ""
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
-msgid "No authnContextClassRef"
-msgstr "Niciun authnContextClassRef"
+msgid "No AuthnContextClassRef"
+msgstr "Niciun AuthnContextClassRef"
 
 #: www/html/index.php:215 www/html/result/index.php:215
 #, php-format
@@ -290,7 +290,7 @@ msgstr "Trimite doar datele solicitate sau mai puține"
 
 #: www/html/src/Admin.php:253
 #, php-format
-msgid "Send to much data"
+msgid "Send too much data"
 msgstr "Trimite prea multe date"
 
 #: www/html/src/Admin.php:256
@@ -300,7 +300,7 @@ msgstr "Trimite doar datele solicitate"
 
 #: www/html/src/Admin.php:257
 #, php-format
-msgid "Send to much/less data"
+msgid "Send too much/less data"
 msgstr "Trimite prea multe/puține date"
 
 #: www/html/src/Admin.php:264
@@ -315,7 +315,7 @@ msgstr "Lipsește ECS pentru %s"
 
 #: www/html/src/Admin.php:266
 #, php-format
-msgid "Have ECS for %s but sends to much data > not %s"
+msgid "Have ECS for %s but sends too much data > not %s"
 msgstr "Are ECS pentru %s dar trimite prea multe date > nu %s"
 
 #: www/html/src/Admin.php:272
@@ -408,7 +408,7 @@ msgstr "Date bazate pe IdP-urile care au rulat testul ESI"
 
 #: www/html/src/Admin.php:524
 #, php-format
-msgid "Missing schacPersonalUniqueCode or to many"
+msgid "Missing schacPersonalUniqueCode or too many"
 msgstr "schacPersonalUniqueCode lipsește sau există prea multe"
 
 #: www/html/src/Admin.php:525
@@ -1176,7 +1176,7 @@ msgid "None"
 msgstr "Niciunul"
 
 #: www/html/src/IdPCheck.php:993
-msgid "No Assurance information recived"
+msgid "No Assurance information received"
 msgstr "Nicio informație de asigurare primită"
 
 #: www/html/src/IdPCheck.php:1032
@@ -1202,8 +1202,8 @@ msgstr "Netestat"
 
 #: www/html/src/IdPCheck.php:1053
 #, php-format
-msgid "ACCR status"
-msgstr "Status ACCR"
+msgid "AuthnContextClassRef status"
+msgstr "Status AuthnContextClassRef"
 
 #: www/html/src/IdPCheck.php:1054
 #, php-format
@@ -1256,17 +1256,17 @@ msgstr "Etapa 2"
 #: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
 #: www/html/result/index.php:263
 #, php-format
-msgid "Recieved in Step 1"
+msgid "Received in Step 1"
 msgstr "Primit în Etapa 1"
 
 #: www/html/index.php:248 www/html/result/index.php:248
 #, php-format
-msgid "Recieved in Step 2"
+msgid "Received in Step 2"
 msgstr "Primit în Etapa 2"
 
 #: www/html/src/DatabaseTexts.php:184
-msgid "Supports no ACCR and ForceAuthn."
-msgstr "Suportă lipsa ACCR și ForceAuthn."
+msgid "Supports no AuthnContextClassRef and ForceAuthn."
+msgstr "Suportă lipsa AuthnContextClassRef și ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:185
 msgid "Supports PasswordProtectedTransport and ForceAuthn."
@@ -1277,8 +1277,8 @@ msgid "Supports REFEDS SFA and ForceAuthn."
 msgstr "Suportă REFEDS SFA și ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports no ACCR but not ForceAuthn."
-msgstr "Suportă lipsa ACCR dar nu ForceAuthn."
+msgid "Supports no AuthnContextClassRef but not ForceAuthn."
+msgstr "Suportă lipsa AuthnContextClassRef dar nu ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:192
 msgid "Supports PasswordProtectedTransport but not ForceAuthn."
@@ -1289,8 +1289,8 @@ msgid "Supports REFEDS SFA but not ForceAuthn."
 msgstr "Suportă REFEDS SFA dar nu ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:198
-msgid "Supports no ACCR."
-msgstr "Suportă lipsa ACCR."
+msgid "Supports no AuthnContextClassRef."
+msgstr "Suportă lipsa AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:199
 msgid "Supports PasswordProtectedTransport."
@@ -1301,8 +1301,8 @@ msgid "Supports REFEDS SFA."
 msgstr "Suportă REFEDS SFA."
 
 #: www/html/src/DatabaseTexts.php:205
-msgid "Does support ForceAuthn but not no ACCR."
-msgstr "Suportă ForceAuthn dar nu lipsa ACCR."
+msgid "Does support ForceAuthn but not no AuthnContextClassRef."
+msgstr "Suportă ForceAuthn dar nu lipsa AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:206
 msgid "Does support ForceAuthn but not PasswordProtectedTransport."
@@ -1313,8 +1313,8 @@ msgid "Does support ForceAuthn but not REFEDS SFA."
 msgstr "Suportă ForceAuthn dar nu REFEDS SFA."
 
 #: www/html/src/DatabaseTexts.php:212
-msgid "Does neither support no ACCR or ForceAuthn."
-msgstr "Nu suportă nici lipsa ACCR și nici ForceAuthn."
+msgid "Does neither support no AuthnContextClassRef or ForceAuthn."
+msgstr "Nu suportă nici lipsa AuthnContextClassRef și nici ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:213
 msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
@@ -1325,8 +1325,8 @@ msgid "Does neither support REFEDS SFA or ForceAuthn."
 msgstr "Nu suportă nici REFEDS SFA și nici ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:219
-msgid "Does not support no ACCR."
-msgstr "Nu suportă lipsa ACCR."
+msgid "Does not support no AuthnContextClassRef."
+msgstr "Nu suportă lipsa AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:220
 msgid "Does not support PasswordProtectedTransport."
@@ -1463,8 +1463,8 @@ msgid "Usually used for the European Student Identifier."
 msgstr "Utilizat de obicei pentru European Student Identifier."
 
 #: www/html/src/DatabaseTexts.php:196
-msgid "Identity Provider supports no ACCR."
-msgstr "Furnizorul de identitate suportă lipsa ACCR."
+msgid "Identity Provider supports no AuthnContextClassRef."
+msgstr "Furnizorul de identitate suportă lipsa AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:197
 msgid "Identity Provider supports PasswordProtectedTransport."

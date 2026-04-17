@@ -228,7 +228,7 @@ class IdPCheck {
 
     list ($ac,$ecs,$ec) = $this->getMetaInfo();
 
-    # Goes thru all recived attribues and warn for extra attributes
+    # Goes thru all received attribues and warn for extra attributes
     foreach ( $_SERVER as $key => $value ) {
       if ( substr($key,0,5) == 'saml_' ) {
         $nkey=substr($key,5);
@@ -444,11 +444,11 @@ class IdPCheck {
   /**
    * Save into SQL
    *
-   * @param array $okValues List of recived expected attributes
+   * @param array $okValues List of received expected attributes
    *
    * @param array $missingValues List of missing attributes
    *
-   * @param array $extraValues List of attributes recived that was NOT expected
+   * @param array $extraValues List of attributes received that was NOT expected
    *
    * @return void
    */
@@ -800,7 +800,7 @@ class IdPCheck {
    * Check if any attributes are sent / enough attributes are sent
    * updates status['error'] on error
    *
-   * @param int $nrOfAttributes Numer of attributes recived
+   * @param int $nrOfAttributes Numer of attributes received
    *
    * @param int $minimum Minimun number of attributes needed to pass test
    *
@@ -990,7 +990,7 @@ class IdPCheck {
       }
     }
     if ($this->userAL == '') {
-      $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information recived") . "</th></tr>\n";
+      $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information received") . "</th></tr>\n";
     }
     $this->status['infoText'] .="    </table>\n";
 
@@ -1023,7 +1023,7 @@ class IdPCheck {
   protected function checkMFA(array &$attributes, array &$ac, string $requestedAccr = 'refeds-mfa') {
     $this->setupAssurance($attributes, $ac);
     $accrCorrect = $requestedAccr == 'none' || $_SERVER['Shib-AuthnContext-Class'] == $this->accrOptions[$requestedAccr]['value'];
-    $accrName = $requestedAccr == 'none' ? 'no ACCR' : $this->accrOptions[$requestedAccr]['description'];
+    $accrName = $requestedAccr == 'none' ? 'no AuthnContextClassRef' : $this->accrOptions[$requestedAccr]['description'];
     $forceAuthnSuccess = false;
     $step2 = false;
     if (isset($_GET['forceAuthn'])) {
@@ -1050,7 +1050,7 @@ class IdPCheck {
 
     $this->status['infoText'] = sprintf('        <h3>' . _('Test result') . '</h3>%s        <table class="table table-striped table-bordered">%s',
       "\n", "\n");
-    $this->status['infoText'] .= sprintf('          <tr><th>' . _('ACCR status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
+    $this->status['infoText'] .= sprintf('          <tr><th>' . _('AuthnContextClassRef status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
     $this->status['infoText'] .= sprintf('          <tr><th>' . _('ForceAuthn status') . '</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
 
     $this->showRAFAttributeStatus(_('AL1 status'),'http://www.swamid.se/policy/assurance/al1'); # NOSONAR Should be http://

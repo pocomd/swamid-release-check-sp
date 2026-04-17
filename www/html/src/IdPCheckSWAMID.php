@@ -225,7 +225,7 @@ class IdPCheckSWAMID extends IdPCheck {
         }
       }
       if ($this->userAL == '') {
-        $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information recived") . "</th></tr>\n";
+        $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information received") . "</th></tr>\n";
       }
       $this->status['infoText'] .="    </table>\n";
 
