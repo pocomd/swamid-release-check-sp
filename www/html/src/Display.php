@@ -51,7 +51,7 @@ class Display {
    */
   public function showAttributeList() {
     printf ('        <table class="table table-striped table-bordered">
-          <tr><th>' . _("Attribute") . '</th><th>' . _("Value") . '</th></tr>%s', "\n");
+          <tr><th>' . _('Attribute') . '</th><th>' . _('Value') . '</th></tr>%s', "\n");
 
     foreach ( $_SERVER as $key => $value ) {
       if ( substr($key,0,5) == 'saml_' ) {
@@ -69,23 +69,23 @@ class Display {
    */
   public function showIdpMetadataInfo() {
     printf('        </table>
-        <h4>' . _("Identity Provider attributes in metadata") . '</h4>
+        <h4>' . _('Identity Provider attributes in metadata') . '</h4>
         <table class="table table-striped table-bordered">
-          <tr><th>' . _("Attribute") . '</th><th>' . _("Value") . '</th></tr>%s', "\n");
+          <tr><th>' . _('Attribute') . '</th><th>' . _('Value') . '</th></tr>%s', "\n");
 
     if ( isset($_SERVER['Meta-Assurance-Certification']) ) {
       printf('          <tr><th>Assurance-Certification</th><td>%s</td></tr>%s',
-        str_ireplace(";", "<br>", $_SERVER['Meta-Assurance-Certification']), "\n");
+        str_ireplace(';', '<br>', $_SERVER['Meta-Assurance-Certification']), "\n");
     }
 
     if ( isset($_SERVER['Meta-Entity-Category-Support']) ) {
       printf('          <tr><th>Entity-Category-Support</th><td>%s</td></tr>%s',
-        str_ireplace(";", "<br>", $_SERVER['Meta-Entity-Category-Support']), "\n");
+        str_ireplace(';', '<br>', $_SERVER['Meta-Entity-Category-Support']), "\n");
     }
 
     if ( isset($_SERVER['Meta-Entity-Category']) ) {
       printf('          <tr><th>Entity-Category</th><td>%s</td></tr>%s',
-        str_ireplace(";", "<br>", $_SERVER['Meta-Entity-Category']), "\n");
+        str_ireplace(';', '<br>', $_SERVER['Meta-Entity-Category']), "\n");
     }
     printf('          <tr><th>registrationAuthority</th><td>%s</td></tr>
           <tr><th>errorURL</th><td>%s</td></tr>
@@ -116,9 +116,9 @@ class Display {
    * @return void
    */
   public function showIdpSessionInfo() {
-    printf('          <h4>' . _("Identity Provider sessions attributes") . '</h4>
+    printf('          <h4>' . _('Identity Provider sessions attributes') . '</h4>
         <table class="table table-striped table-bordered">
-          <tr><th>' . _("Attribute") . '</th><th>' . _("Value") . '</th></tr>%s', "\n");
+          <tr><th>' . _('Attribute') . '</th><th>' . _('Value') . '</th></tr>%s', "\n");
     foreach (array('Shib-Identity-Provider','Shib-Authentication-Instant','Shib-Authentication-Method','Shib-AuthnContext-Class') as $name) {
       if ( isset ($_SERVER[$name])) {
         printf ("          <tr><th>%s</th><td>%s</td></tr>\n", substr($name,5), $_SERVER[$name]);
@@ -144,22 +144,24 @@ class Display {
     $testHandler->bindParam('test',$test);
 
     printf('          <table class="table table-striped table-bordered">
-            <tr><th>' . _("Test") . '</th><th>' . _("Result") . '</th></tr>%s', "\n");
+            <tr><th>' . _('Test') . '</th><th>' . _('Result') . '</th></tr>%s', "\n");
     foreach ( $this->testSuite->getECTests() as $test) {
       $testHandler->execute();
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
-        $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
+        $this->printRow($row, $idp, _($this->testSuite->getTestName($test)), $testrun['session']);
       } else {
         printf ('            <tr>
               <td>' . _(self::HTML_NOT_RUN_YET) . '<br>
                 <a href="https://%s.%s/Shibboleth.sso/Login?entityID=%s&target=%s">
-                  <button type="button" class="btn btn-link">' . _("Run test") . '</button>
+                  <button type="button" class="btn btn-link">' . _('Run test') . '</button>
                 </a>
               </td>
               <td><h5>%s</h5></td>
             </tr>%s',
           $test, $this->config->basename(), urlencode($idp), urlencode(sprintf('https://%s.%s/?singleTest%s',$test, $this->config->basename(), $testrun['session'] == '' ? '' : sprintf('&session=%s', $testrun['session']))),
-          $this->testSuite->getTestName($test), "\n");
+          _($this->testSuite->getTestName($test)),
+          "\n"
+        );
       }
     }
     print "          </table>\n";
@@ -180,13 +182,13 @@ class Display {
     $testHandler->bindParam('test',$test);
 
     printf ('          <table class="table table-striped table-bordered">
-            <tr><th>' . _("Test") . '</th><th>' . _("Result") . '</th></tr>', "\n");
+            <tr><th>' . _('Test') . '</th><th>' . _('Result') . '</th></tr>', "\n");
     $test = 'mfa';
     $testHandler->execute();
     if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
-      $this->printRow($row, $idp, $this->testSuite->getTestName($test), $testrun['session']);
+      $this->printRow($row, $idp, _($this->testSuite->getTestName($test)), $testrun['session']);
     } else {
-      printf ("            <tr><td>" . _(self::HTML_NOT_RUN_YET) . "</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
+      printf ('            <tr><td>' . _(self::HTML_NOT_RUN_YET) . "</td><td><h5>%s</h5></td></tr>\n", $this->testSuite->getTestName($test));
     }
     print "          </table>\n";
   }
@@ -211,13 +213,13 @@ class Display {
     $testHandler->bindParam('test',$test);
 
     printf ('          <table class="table table-striped table-bordered">
-            <tr><th>' . _("Test") . '</th><th>' . _("Result") . '</th></tr>', "\n");
+            <tr><th>' . _('Test') . '</th><th>' . _('Result') . '</th></tr>', "\n");
     foreach ($tests as $test => $name) {
       $testHandler->execute();
       if ($row = $testHandler->fetch(PDO::FETCH_ASSOC)) {
         $this->printRow($row, $idp, $name, $testrun['session']);
       } else {
-        printf ("            <tr><td>" . _(self::HTML_NOT_RUN_YET) . "</td><td><h5>%s</h5></td></tr>\n", $name);
+        printf ('            <tr><td>' . _(self::HTML_NOT_RUN_YET) . "</td><td><h5>%s</h5></td></tr>\n", $name);
       }
     }
     print "          </table>\n";
@@ -234,7 +236,7 @@ class Display {
    *
    * @return void
    */
-  private function printRow($row, $idp, $desc='', $session = '') {
+  private function printRow($row, $idp, $desc = '', $session = '') {
     $baseTest = $row['test'] == 'esi-stud' ? 'esi' : $row['test'];
     $singleTest = sprintf('?singleTest%s', $session == '' ? '' : sprintf('&session=%s', $session));
     $target = sprintf('https://%s.%s/%s',
@@ -245,67 +247,102 @@ class Display {
       $baseTest, $this->config->basename(), urlencode($idp),
       urlencode($target), $session == '' ? _('Run NEW test') : _('Rerun test'));
     if ($desc == '') {
-      printf ("            <tr>
+      printf ('            <tr>
               <td>%s<br>
                 %s<br>
                 %s
               </td>
-              <td>", $row['test'], $row['time'], $button);
+              <td>',
+        $row['test'],
+        $row['time'],
+        $button
+      );
     } else {
       printf ('            <tr>
               <td>%s<br>
                 %s
               </td>
-              <td><h5 id="%s">%s</h5>', $row['time'], $button, $row['test'], $desc);
+              <td><h5 id="%s">%s</h5>',
+        $row['time'],
+        $button,
+        $row['test'],
+        $desc
+      );
     }
-    if ( $row['status_OK'] ) {
-      printf ("
-                <i class=\"fas fa-check\"></i>
+    if ( $row['status_OK'] != '[]' ) {
+      printf ('
+                <i class="fas fa-check"></i>
                 <div>%s</div>
-                <div class=\"clear\"></div><br>", $this->helper->getStatusTranslated($row['status_OK']));
+                <div class="clear"></div><br>',
+        $this->helper->getStatusTranslated($row['status_OK'])
+      );
     }
-    if ( $row['status_WARNING'] ) {
-      printf ("
-                <i class=\"fas fa-exclamation-triangle\"></i>
+    if ( $row['status_WARNING'] != '[]' ) {
+      printf ('
+                <i class="fas fa-exclamation-triangle"></i>
                 <div>%s</div>
-                <div class=\"clear\"></div><br>", $this->helper->getStatusTranslated($row['status_WARNING']));
+                <div class="clear"></div><br>',
+        $this->helper->getStatusTranslated($row['status_WARNING'])
+      );
+
     }
-    if ( $row['status_ERROR'] ) {
-      printf ("
-                <i class=\"fas fa-exclamation\"></i>
+    if ( $row['status_ERROR'] != '[]' ) {
+      printf ('
+                <i class="fas fa-exclamation"></i>
           <div>%s</div>
-          <div class=\"clear\"></div><br>", $this->helper->getStatusTranslated($row['status_ERROR']));
+          <div class="clear"></div><br>',
+        $this->helper->getStatusTranslated($row['status_ERROR'])
+      );
     }
     if ( $row['attr_OK'] ) {
-      printf ("
-                <div>" . _("Received") . " :
+      printf ('
+                <div>' . _('Received') . ' :
                   <ul>
                     <li>%s</li>
                   </ul>
-                </div><br>", str_replace(',',"</li>\n                    <li>",$this->helper->getStatusTranslated($row['attr_OK'])));
+                </div><br>',
+        str_replace(
+          ',',
+          "</li>\n                    <li>",
+          $this->helper->getStatusTranslated($row['attr_OK'])
+        )
+      );
     }
     if ( $row['attr_Missing'] ) {
-      $temp= preg_replace('/(\S),(\S)/', '$1#$2', $row['attr_Missing']);
-      $temp= $this->helper->getMissingAttributesTranslated($temp);
-      $temp= str_replace('# ',',',$temp);
-      printf ("
-                <div>" . _("Missing") . " :
+      $temp = preg_replace('/(\S),(\S)/', '$1#$2', $row['attr_Missing']);
+      $temp = $this->helper->getMissingAttributesTranslated($temp);
+      printf ('
+                <div>' . _('Missing') . ' :
                   <ul>
                     <li>%s</li>
                   </ul>
-                </div><br>", str_replace('#',"</li>\n                    <li>",$temp));
+                </div><br>',
+        str_replace(
+          '#',
+          "</li>\n                    <li>",
+          $temp
+        )
+      );
     }
     if ( $row['attr_Extra'] )  {
-      printf ("
-                <div>" . _("Not expected") . " :
+      printf ('
+                <div>' . _('Not expected') . ' :
                   <ul>
                     <li>%s</li>
                   </ul>
-                </div><br>", str_replace(',',"</li>\n                    <li>",$row['attr_Extra']));
+                </div><br>',
+        str_replace(
+          ',',
+          "</li>\n                    <li>",
+          $row['attr_Extra']
+        )
+      );
     }
     if ( $row['testResult'] ) {
-      printf ("
-                <div>" . _("Test result") . "  : %s</div>", _($row['testResult']));
+      printf ('
+                <div>' . _('Test result') . '  : %s</div>',
+        _($row['testResult'])
+      );
     }
     print "
               </td>
@@ -332,7 +369,7 @@ class Display {
         $tests = "esi','esi-stud";
         break;
       case 'mfa' :
-        $tests = "mfa";
+        $tests = 'mfa';
         break;
       default:
         printf (_('unknown tab') . ' : %s',  $tab);
@@ -365,7 +402,7 @@ class Display {
         $urlBase = sprintf('%s?tab=%s%s',
           $base, $tab,
           $base == './' ? '' : sprintf('&idp=%s', urlencode($idp)));
-        print "          <h4>" . _("Other results") . "</h4>
+        print '          <h4>' . _('Other results') . "</h4>
             <ul>\n";
         foreach($testruns as $run) {
           # Check if this run is requested run. In that case save this run

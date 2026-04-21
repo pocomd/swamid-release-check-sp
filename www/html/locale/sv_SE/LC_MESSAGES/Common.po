@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-15 10:54+0200\n"
-"PO-Revision-Date: 2026-04-15 11:48+0200\n"
+"POT-Creation-Date: 2026-04-17 16:37+0200\n"
+"PO-Revision-Date: 2026-04-17 17:02+0200\n"
 "Last-Translator: Björn Mattsson <Bjorn@sunet.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -48,10 +48,12 @@ msgid "Unusable Identity Provider"
 msgstr "Oanvändbar Identitetsutfärdare"
 
 #: www/html/error.php:61
-msgid "The identity provider supplying your login credentials does not support the necessary capabilities."
+msgid ""
+"The identity provider supplying your login credentials does not support the "
+"necessary capabilities."
 msgstr ""
-"Identitetsleverantören som tillhandahåller dina inloggningsuppgifter har inte stöd för de nödvändiga "
-"funktionerna."
+"Identitetsleverantören som tillhandahåller dina inloggningsuppgifter har inte stöd "
+"för de nödvändiga funktionerna."
 
 #: www/html/error.php:62
 msgid "To report this problem, please contact the IdP administrator."
@@ -119,9 +121,9 @@ msgstr "Släppta attribut från IdPn"
 msgid "%s and show attributes"
 msgstr "%s och visa attributen"
 
-#: www/html/index.php:162 www/html/index.php:187 www/html/index.php:309 www/html/index.php:354
-#: www/html/result/index.php:162 www/html/result/index.php:187 www/html/result/index.php:309
-#: www/html/result/index.php:354
+#: www/html/index.php:162 www/html/index.php:187 www/html/index.php:309
+#: www/html/index.php:354 www/html/result/index.php:162 www/html/result/index.php:187
+#: www/html/result/index.php:309 www/html/result/index.php:354
 #, php-format
 msgid "Instructions"
 msgstr "Instruktioner"
@@ -150,49 +152,84 @@ msgstr "Authentication testet är en 2 stegs precess."
 #: www/html/index.php:192 www/html/result/index.php:192
 #, php-format
 msgid ""
-"The first step is to test an AuthnContextClassRef and the second step is to verify that forceAuthn works "
-"as expected for that AuthnContextClassRef."
+"The first step is to test an AuthnContextClassRef and the second step is to verify "
+"that forceAuthn works as expected for that AuthnContextClassRef."
 msgstr ""
-"Första steget är att testa en AuthnContextClassRef och det andra steget är att verifiera att forceAuthn "
-"fungerar som förväntat med denna authnContextClassRef."
+"Första steget är att testa en AuthnContextClassRef och det andra steget är att "
+"verifiera att forceAuthn fungerar som förväntat med denna authnContextClassRef."
 
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
-msgid "The restults from this tests are NOT saved exept for tests done with REFEDS MFA."
-msgstr "Resultaten från denna test är INTE sparad förutom de som är gjorda med REFEDS MFA."
+msgid "The results from this tests are NOT saved exept for tests done with REFEDS MFA."
+msgstr ""
+"Resultaten från denna test är INTE sparad förutom de som är gjorda med REFEDS MFA."
+
+#: www/html/index.php:201 www/html/result/index.php:201
+#, php-format
+msgid "Step 1"
+msgstr "Steg 1"
+
+#: www/html/index.php:202 www/html/result/index.php:202
+#, php-format
+msgid "Choose AuthnContextClassRef to test"
+msgstr "Välj authnContextClassRef att testa"
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
-msgid "No authnContextClassRef"
-msgstr "Ingen authnContextClassRef"
+msgid "No AuthnContextClassRef"
+msgstr "Ingen AuthnContextClassRef"
 
 #: www/html/index.php:215 www/html/result/index.php:215
 #, php-format
 msgid "Test AuthnContextClassRef"
 msgstr "Testa authnContextClassRef"
 
+#: www/html/index.php:223 www/html/result/index.php:223
+#, php-format
+msgid "Step 2"
+msgstr "Steg 2"
+
 #: www/html/index.php:227 www/html/result/index.php:227
 #, php-format
 msgid ""
-"Rerun \"Test AuthnContextClassRef\" to get a fresh Authentication-Instant to be able to run \"Test "
-"forceAuthN\" again."
+"Rerun \"Test AuthnContextClassRef\" to get a fresh Authentication-Instant to be able "
+"to run \"Test forceAuthN\" again."
 msgstr ""
-"Kör om “Testa authnContextClassRef” för att få en fräsch Authentication-Instant för att kunna köra "
-"“Testa forceAuthN” igen."
+"Kör om “Testa authnContextClassRef” för att få en fräsch Authentication-Instant för "
+"att kunna köra “Testa forceAuthN” igen."
 
 #: www/html/index.php:229 www/html/result/index.php:229
 #, php-format
 msgid ""
-"Test that forceAuthn return a newer Authentication-Instant than in step 1. The same AuthnContextClassRef "
-"is used as in step 1."
+"Test that forceAuthn return a newer Authentication-Instant than in step 1. The same "
+"AuthnContextClassRef is used as in step 1."
 msgstr ""
-"Testar att forceAuthn returerar en nyare Authentication-Instant än den i steg 1. Samma "
-"AuthnContextClassRef är används som i steg 1."
+"Testar att forceAuthn returerar en nyare Authentication-Instant än den i steg 1. "
+"Samma AuthnContextClassRef är används som i steg 1."
 
 #: www/html/index.php:230 www/html/result/index.php:230
 #, php-format
 msgid "Test forceAuthN"
 msgstr "Testa forceAuthN"
+
+#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
+#: www/html/result/index.php:263
+#, php-format
+msgid "Received in Step 1"
+msgstr "Mottaget i Steg 1"
+
+#: www/html/index.php:248 www/html/result/index.php:248
+#, php-format
+msgid "Received in Step 2"
+msgstr "Mottaget i Steg 2"
+
+#: www/html/index.php:258 www/html/result/index.php:258
+msgid "Refresh/Reload is not allowed while testing forceAuthn."
+msgstr "Refresh/Reload är inte tillåtet under testet av forceAuthn."
+
+#: www/html/index.php:259 www/html/result/index.php:259
+msgid "Please rerun \"Test AuthnContextClassRef\""
+msgstr "Vänligen kör om \"Testa authnContextClassRef\""
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
 #: www/html/result/index.php:332
@@ -277,7 +314,7 @@ msgstr "Skickar enbart begärd info eller mindre"
 
 #: www/html/src/Admin.php:253
 #, php-format
-msgid "Send to much data"
+msgid "Send too much data"
 msgstr "Skickar för mycket info"
 
 #: www/html/src/Admin.php:256
@@ -287,7 +324,7 @@ msgstr "Skickar enbart efterfrågad info"
 
 #: www/html/src/Admin.php:257
 #, php-format
-msgid "Send to much/less data"
+msgid "Send too much/less data"
 msgstr "Skickar för mycket/lite info"
 
 #: www/html/src/Admin.php:264
@@ -302,7 +339,7 @@ msgstr "Saknar ECS för %s"
 
 #: www/html/src/Admin.php:266
 #, php-format
-msgid "Have ECS for %s but sends to much data > not %s"
+msgid "Have ECS for %s but sends too much data > not %s"
 msgstr "Har ECS för %s men skickar för mycket info > ej %s"
 
 #: www/html/src/Admin.php:272
@@ -392,7 +429,7 @@ msgstr "Data baserad på IdPer som har kört ESI testet"
 
 #: www/html/src/Admin.php:524
 #, php-format
-msgid "Missing schacPersonalUniqueCode or to many"
+msgid "Missing schacPersonalUniqueCode or too many"
 msgstr "Saknar schacPersonalUniqueCode eller för många"
 
 #: www/html/src/Admin.php:525
@@ -435,95 +472,100 @@ msgstr "Ingen test körd som student"
 msgid "IdPs not tested"
 msgstr "IdPen inte testad"
 
-#: www/html/src/Configuration.php:65
-msgid "Click on the green button to see what attributes your Identity Provider releases."
-msgstr "Klicka på den gröna knappen för att se vilka attribut din Identitetsutfärdare släpper."
+#: www/html/src/Configuration.php:67
+msgid ""
+"Click on the green button to see what attributes your Identity Provider releases."
+msgstr ""
+"Klicka på den gröna knappen för att se vilka attribut din Identitetsutfärdare "
+"släpper."
 
-#: www/html/src/Configuration.php:66
+#: www/html/src/Configuration.php:68
 #, php-format
 msgid "Description of all test available in the %s test suite"
 msgstr "Beskrivning av alla test i testsviten för %s"
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:70
 msgid "The Attributes tab shows all attributes the service release to the entityId"
 msgstr "Attribut fliken visar alla attribut som släpps till entityId"
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:70
 msgid "The entityId uses the entity categories"
 msgstr "SPn med detta entityId använder följande entitets kategorier"
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:71
 msgid "REFEDS Personalized Access Entity Category"
 msgstr "REFEDS Personalized Access Entity Category"
 
-#: www/html/src/Configuration.php:70
+#: www/html/src/Configuration.php:72
 msgid "REFEDS Research and Scholarship Entity Category, and"
 msgstr "REFEDS Research and Scholarship Entity Category, och"
 
-#: www/html/src/Configuration.php:71
+#: www/html/src/Configuration.php:73
 msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 msgstr "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 
-#: www/html/src/Configuration.php:73
-msgid ""
-"The Authentication tab checks if an Identity Provider is correctly configured for handling request for "
-"different AuthnContextClassRef requests."
-msgstr ""
-"Autentisering fliken kontrollerar om en Identitetsutfärdare är korrekt konfigurerad för att hantera "
-"förfrågningar med olika AuthnContextClassRef."
-
-#: www/html/src/Configuration.php:74
-msgid ""
-"The Entity category tab does an exetensive testing of that an Identity Provider follows Best Practice "
-"for attribute release via entity categories."
-msgstr ""
-"Entitetskategorifliken gör en utförlig test av att en Identitetsutfärdare följer Best Practice för att "
-"släppa attribut via entitetskategorier."
-
 #: www/html/src/Configuration.php:75
 msgid ""
-"The ESI tab verifies if the Identity Provider release the right attributes for the European Digital "
-"Student Service Infrastructure."
+"The Authentication tab checks if an Identity Provider is correctly configured for "
+"handling request for different AuthnContextClassRef requests."
 msgstr ""
-"ESI fliken verifierar om en Identitetsutfärdare släpper korrekta attribut till Infrastrukturen kring "
-"European Digital Student Service."
+"Autentisering fliken kontrollerar om en Identitetsutfärdare är korrekt konfigurerad "
+"för att hantera förfrågningar med olika AuthnContextClassRef."
 
-#: www/html/src/Configuration.php:78
-#, php-format
+#: www/html/src/Configuration.php:76
 msgid ""
-"In order for %s to work as effectively as possible for students and employees as well as for service "
-"providers and identity providers, %s recommends that service providers use entity categories to get the "
-"attributes that they require."
+"The Entity category tab does an exetensive testing of that an Identity Provider "
+"follows Best Practice for attribute release via entity categories."
 msgstr ""
-"För att %s skall fungera så bra som möjligt för studenter och personal samt för tjänsteleverantörer och "
-"Identitetsutfärdare, %s rekommenderar att tjänsten använder entitetskategorier för att få nödvändiga "
-"attribut."
+"Entitetskategorifliken gör en utförlig test av att en Identitetsutfärdare följer "
+"Best Practice för att släppa attribut via entitetskategorier."
 
-#: www/html/src/Configuration.php:79
-#, php-format
+#: www/html/src/Configuration.php:77
 msgid ""
-"In order for services within the %s federation to work as effectively as possible, %s recommends the use "
-"of entity categories. Entity categories benefits not only students and employees but also administrators "
-"of relying and identity providers by providing a stable framework for the release of attributes."
+"The ESI tab verifies if the Identity Provider release the right attributes for the "
+"European Digital Student Service Infrastructure."
 msgstr ""
-"För att tjänster inom %s federationen skall fungera så bra som möjligt, rekommenderar %s att "
-"entitetskategorier används. Entitetskategorier förenklar inte enbart för studenter och personal utan "
-"även administratörerna av tjänster och Identitetsutfärdare genom att stödja ett väletablerat framverk "
-"för att släppa attribut."
+"ESI fliken verifierar om en Identitetsutfärdare släpper korrekta attribut till "
+"Infrastrukturen kring European Digital Student Service."
 
 #: www/html/src/Configuration.php:80
 #, php-format
-msgid "The %s best practice attribute release check consists of the following tests"
-msgstr "%s best practice attribute release check består av följande tester"
+msgid ""
+"In order for %s to work as effectively as possible for students and employees as "
+"well as for service providers and identity providers, %s recommends that service "
+"providers use entity categories to get the attributes that they require."
+msgstr ""
+"För att %s skall fungera så bra som möjligt för studenter och personal samt för "
+"tjänsteleverantörer och Identitetsutfärdare, %s rekommenderar att tjänsten använder "
+"entitetskategorier för att få nödvändiga attribut."
 
 #: www/html/src/Configuration.php:81
 #, php-format
 msgid ""
-"Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT "
-"release in accordance REFEDS/%s Code of Conduct."
+"In order for services within the %s federation to work as effectively as possible, "
+"%s recommends the use of entity categories. Entity categories benefits not only "
+"students and employees but also administrators of relying and identity providers by "
+"providing a stable framework for the release of attributes."
 msgstr ""
-"Multipla Code of Conduct tester som begär olika attribut som IdPn SKALL eller INTE SKALL släppa enligt "
-"REFEDS/%s Code of Conduct."
+"För att tjänster inom %s federationen skall fungera så bra som möjligt, "
+"rekommenderar %s att entitetskategorier används. Entitetskategorier förenklar inte "
+"enbart för studenter och personal utan även administratörerna av tjänster och "
+"Identitetsutfärdare genom att stödja ett väletablerat framverk för att släppa "
+"attribut."
+
+#: www/html/src/Configuration.php:82
+#, php-format
+msgid "The %s best practice attribute release check consists of the following tests"
+msgstr "%s best practice attribute release check består av följande tester"
+
+#: www/html/src/Configuration.php:83
+#, php-format
+msgid ""
+"Multiple Code of Conduct test require different attributes which the IdP either "
+"SHOULD or SHOULD NOT release in accordance REFEDS/%s Code of Conduct."
+msgstr ""
+"Multipla Code of Conduct tester som begär olika attribut som IdPn SKALL eller INTE "
+"SKALL släppa enligt REFEDS/%s Code of Conduct."
 
 #: www/html/src/DatabaseTexts.php:3
 msgid "The IDP has sent too many attributes."
@@ -631,25 +673,37 @@ msgid "Pseudonymous requires eduPersonAssurance."
 msgstr "Pseudonymous kräver eduPersonAssurance."
 
 #: www/html/src/DatabaseTexts.php:62
-msgid "[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/IAP/low"
-msgstr "[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/IAP/low"
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/IAP/low"
+msgstr ""
+"[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/IAP/"
+"low"
 
 #: www/html/src/DatabaseTexts.php:63
-msgid "[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/unique"
-msgstr "[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/ID/unique"
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/unique"
+msgstr ""
+"[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/ID/"
+"unique"
 
 #: www/html/src/DatabaseTexts.php:64
 msgid ""
-"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/eppn-unique-no-reassign"
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ID/eppn-"
+"unique-no-reassign"
 msgstr ""
-"[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/ID/eppn-unique-no-reassign"
+"[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/ID/"
+"eppn-unique-no-reassign"
 
 #: www/html/src/DatabaseTexts.php:65
-msgid "[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ATP/ePA-1m"
-msgstr "[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/ATP/ePA-1m"
+msgid ""
+"[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/ATP/ePA-1m"
+msgstr ""
+"[[FED_NAME]] rekommenderar att eduPersonAssurance innehåller [[RAF_ASSURANCE]]/ATP/"
+"ePA-1m"
 
 #: www/html/src/DatabaseTexts.php:67
-msgid "Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]"
+msgid ""
+"Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]"
 msgstr "Pseudonymous kräver att eduPersonAssurance minst innehåller [[RAF_ASSURANCE]]"
 
 #: www/html/src/DatabaseTexts.php:69
@@ -689,7 +743,8 @@ msgid "Pseudonymous attributes missing, BUT Entity Category Support claimed"
 msgstr "Pseudonymous attributes saknas, MEN Entity Category Support är annonserad"
 
 #: www/html/src/DatabaseTexts.php:87
-msgid "The IdP does NOT support Pseudonymous but it claims that it does in its metadata!!"
+msgid ""
+"The IdP does NOT support Pseudonymous but it claims that it does in its metadata!!"
 msgstr "IdPn stödjer inte Pseudonymous men utger sig för att göra det i metadata!!"
 
 #: www/html/src/DatabaseTexts.php:89
@@ -701,7 +756,8 @@ msgid "Personalized requires eduPersonAssurance."
 msgstr "Personalized kräver eduPersonAssurance."
 
 #: www/html/src/DatabaseTexts.php:94
-msgid "Personalized requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]"
+msgid ""
+"Personalized requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]"
 msgstr "Personalized kräver att eduPersonAssurance minst innehåller [[RAF_ASSURANCE]]"
 
 #: www/html/src/DatabaseTexts.php:96
@@ -749,7 +805,8 @@ msgid "Personalized attributes missing, BUT Entity Category Support claimed"
 msgstr "Personalized attributes saknas, MEN Entity Category Support är annonserad"
 
 #: www/html/src/DatabaseTexts.php:118
-msgid "The IdP does NOT support Personalized but it claims that it does in its metadata!!"
+msgid ""
+"The IdP does NOT support Personalized but it claims that it does in its metadata!!"
 msgstr "IdPn stödjer inte Personalized men utger sig för att göra det i metadata!!"
 
 #: www/html/src/DatabaseTexts.php:120
@@ -804,121 +861,214 @@ msgstr "Support för CoCo saknas, Entity Category Support saknas"
 msgid "schacPersonalUniqueCode OK"
 msgstr "schacPersonalUniqueCode OK"
 
-#: www/html/src/DatabaseTexts.php:148
+#: www/html/src/DatabaseTexts.php:149
 msgid ""
-"schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi. Might create problem in "
-"some SP's"
+"schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi. "
+"Might create problem in some SP's"
 msgstr ""
-"schacPersonalUniqueCode har fel versaler/gemener i värdet. Är inte urn:schac:personalUniqueCode:int:esi. "
-"Kan skapa problem i vissa SP:er"
+"schacPersonalUniqueCode har fel versaler/gemener i värdet. Är inte "
+"urn:schac:personalUniqueCode:int:esi. Kan skapa problem i vissa SP:er"
 
-#: www/html/src/DatabaseTexts.php:150
+#: www/html/src/DatabaseTexts.php:151
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
 msgstr "schacPersonalUniqueCode OK. Men fel versaler/gemener"
 
-#: www/html/src/DatabaseTexts.php:152 www/html/src/DatabaseTextsSWAMID.php:7
+#: www/html/src/DatabaseTexts.php:153 www/html/src/DatabaseTextsSWAMID.php:7
 msgid "schacPersonalUniqueCode should start with urn:schac:personalUniqueCode:int:esi:"
 msgstr "schacPersonalUniqueCode skall börja med urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:154
+#: www/html/src/DatabaseTexts.php:155
 msgid "schacPersonalUniqueCode not starting with urn:schac:personalUniqueCode:int:esi:"
 msgstr "schacPersonalUniqueCode börjar inte med urn:schac:personalUniqueCode:int:esi:"
 
-#: www/html/src/DatabaseTexts.php:156
+#: www/html/src/DatabaseTexts.php:157
 msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
 msgstr "schacPersonalUniqueCode skall enbart innehålla <b>ett</b> värde."
 
-#: www/html/src/DatabaseTexts.php:158
+#: www/html/src/DatabaseTexts.php:159
 msgid "More than one schacPersonalUniqueCode"
 msgstr "Mer än en schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:160
+#: www/html/src/DatabaseTexts.php:161
 msgid "Missing schacPersonalUniqueCode"
 msgstr "Saknar schacPersonalUniqueCode"
 
-#: www/html/src/DatabaseTexts.php:163 www/html/src/DatabaseTextsSWAMID.php:17
+#: www/html/src/DatabaseTexts.php:164 www/html/src/DatabaseTextsSWAMID.php:17
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr "Identitetsutfärdaren skickar felaktig Assurance information."
 
-#: www/html/src/DatabaseTexts.php:165
+#: www/html/src/DatabaseTexts.php:166
 msgid "Sends invalid Assurance information."
 msgstr "Skickar felaktig Assurance information."
 
-#: www/html/src/DatabaseTexts.php:167
+#: www/html/src/DatabaseTexts.php:168
 msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr "Saknar Assurance information. Förvänatade minst [[RAF_ASSURANCE]]"
 
-#: www/html/src/DatabaseTexts.php:169
+#: www/html/src/DatabaseTexts.php:170
 msgid "Missing [[RAF_ASSURANCE]] for user."
 msgstr "Saknar [[RAF_ASSURANCE]] för användaren."
 
-#: www/html/src/DatabaseTexts.php:172
+#: www/html/src/DatabaseTexts.php:173
 msgid "Missing some Assurance information."
 msgstr "Saknar viss Assurance information."
 
-#: www/html/src/DatabaseTexts.php:174
+#: www/html/src/DatabaseTexts.php:175
 msgid "Assurance attribute release for current user follows REFED's recommendations."
 msgstr "Assurance attribut som släpps för användaren följer REFED's rekommendationer."
 
-#: www/html/src/DatabaseTexts.php:176
+#: www/html/src/DatabaseTexts.php:177
 msgid "Sends recommended Assurance information."
 msgstr "Skickar rekommenderad Assurance information."
 
-#: www/html/src/DatabaseTexts.php:179
+#: www/html/src/DatabaseTexts.php:180
 msgid "Authentication-instant hasn't updated after forceAuthn was requested."
 msgstr "Authentication-instant har inte uppdaterats efter att forceAuthn begärdes."
 
-#: www/html/src/DatabaseTexts.php:181
-msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
-msgstr "Identitetsutfärdaren supportar REFEDS MFA och ForceAuthn."
+#: www/html/src/DatabaseTexts.php:182
+msgid "Identity Provider supports requests with REFEDS MFA and ForceAuthn."
+msgstr "Identitetsutfärdaren supportar förfrågan med REFEDS MFA och ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:183
-msgid "Supports REFEDS MFA and ForceAuthn."
-msgstr "Supportar REFEDS MFA samt ForceAuthn."
+#: www/html/src/DatabaseTexts.php:184
+msgid "Supports requests with no AuthnContextClassRef and ForceAuthn."
+msgstr "Supportar förfrågan utan någon AuthnContextClassRef samt ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:185
-msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
-msgstr "Identitetsutfärdaren supportar REFEDS MFA men inte ForceAuthn."
+msgid "Supports requests with PasswordProtectedTransport and ForceAuthn."
+msgstr "Supportar förfrågan med PasswordProtectedTransport samt ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:186
+msgid "Supports requests with REFEDS SFA and ForceAuthn."
+msgstr "Supportar förfrågan med REFEDS SFA samt ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:187
-msgid "Supports REFEDS MFA but not ForceAuthn."
-msgstr "Identitetsutfärdaren supportar REFEDS MFA men inte ForceAuthn."
+msgid "Supports requests with REFEDS MFA and ForceAuthn."
+msgstr "Supportar förfrågan med REFEDS MFA samt ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:189
-msgid "Identity Provider supports REFEDS MFA."
-msgstr "Identitetsutfärdaren supportar REFEDS MFA."
+msgid "Identity Provider supports requests with REFEDS MFA but not ForceAuthn."
+msgstr "Identitetsutfärdaren supportar förfrågan med REFEDS MFA men inte ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports REFEDS MFA."
-msgstr "Supportar REFEDS MFA."
+msgid "Supports requests with no AuthnContextClassRef but not ForceAuthn."
+msgstr "Supportar förfrågan utan någon AuthnContextClassRef men inte ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:192
+msgid "Supports requests with PasswordProtectedTransport but not ForceAuthn."
+msgstr "Supportar förfrågan med PasswordProtectedTransport men inte ForceAuthn."
 
 #: www/html/src/DatabaseTexts.php:193
-msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
-msgstr "Identitetsutfärdaren supportar ForceAuthn men inte REFEDS MFA."
+msgid "Supports requests with REFEDS SFA but not ForceAuthn."
+msgstr "Supportar förfrågan med REFEDS SFA men inte ForceAuthn."
 
-#: www/html/src/DatabaseTexts.php:195
-msgid "Does support ForceAuthn but not REFEDS MFA."
-msgstr "Supportar ForceAuthn men inte REFEDS MFA."
+#: www/html/src/DatabaseTexts.php:194
+msgid "Supports requests with REFEDS MFA but not ForceAuthn."
+msgstr "Supportar förfrågan med REFEDS MFA men inte ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:196
+msgid "Identity Provider supports requests with no AuthnContextClassRef."
+msgstr "Identitetsutfärdaren supportar förfrågan utan någon AuthnContextClassRef."
 
 #: www/html/src/DatabaseTexts.php:197
-msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
-msgstr "Identitetsutfärdaren supportar varken REFEDS MFA eller ForceAuthn."
+msgid "Identity Provider supports requests with PasswordProtectedTransport."
+msgstr "Identitetsutfärdaren supportar förfrågan med PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:198
+msgid "Identity Provider supports requests with REFEDS SFA."
+msgstr "Identitetsutfärdaren supportar förfrågan med REFEDS SFA."
 
 #: www/html/src/DatabaseTexts.php:199
-msgid "Does neither support REFEDS MFA or ForceAuthn."
-msgstr "Supportar varken REFEDS MFA eller ForceAuthn."
+msgid "Identity Provider supports requests with REFEDS MFA."
+msgstr "Identitetsutfärdaren supportar förfrågan med REFEDS MFA."
 
 #: www/html/src/DatabaseTexts.php:201
-msgid "Identity Provider does not support REFEDS MFA."
-msgstr "Identitetsutfärdaren supportar inte REFEDS MFA."
+msgid "Supports requests with no AuthnContextClassRef."
+msgstr "Supportar förfrågan utan någon AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:202
+msgid "Supports requests with PasswordProtectedTransport."
+msgstr "Supportar förfrågan med PasswordProtectedTransport."
 
 #: www/html/src/DatabaseTexts.php:203
-msgid "Does not support REFEDS MFA."
-msgstr "Supportar ej REFEDS MFA."
+msgid "Supports requests with REFEDS SFA."
+msgstr "Supportar förfrågan med REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:204
+msgid "Supports requests with REFEDS MFA."
+msgstr "Supportar förfrågan med REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:206
+msgid "Identity Provider does support ForceAuthn but not requests with REFEDS MFA."
+msgstr "Identitetsutfärdaren supportar ForceAuthn men inte förfrågan med REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:208
+msgid "Does support ForceAuthn but not requests with no AuthnContextClassRef."
+msgstr "Supportar ForceAuthn men inte förfrågan utan någon AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:209
+msgid "Does support ForceAuthn but not requests with PasswordProtectedTransport."
+msgstr "Supportar ForceAuthn men inte förfrågan med PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:210
+msgid "Does support ForceAuthn but not requests with REFEDS SFA."
+msgstr "Supportar ForceAuthn men inte förfrågan med REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:211
+msgid "Does support ForceAuthn but not requests with REFEDS MFA."
+msgstr "Supportar ForceAuthn men inte förfrågan med REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:213
+msgid "Identity Provider does neither support requests with REFEDS MFA or ForceAuthn."
+msgstr ""
+"Identitetsutfärdaren supportar varken förfrågan med REFEDS MFA eller ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:215
+msgid "Does neither support requests with no AuthnContextClassRef or ForceAuthn."
+msgstr "Supportar varken förfrågan utan någon AuthnContextClassRef eller ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:216
+msgid "Does neither support requests with PasswordProtectedTransport or ForceAuthn."
+msgstr "Supportar varken förfrågan med PasswordProtectedTransport eller ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:217
+msgid "Does neither support requests with REFEDS SFA or ForceAuthn."
+msgstr "Supportar varken förfrågan med REFEDS SFA eller ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:218
+msgid "Does neither support requests with REFEDS MFA or ForceAuthn."
+msgstr "Supportar varken förfrågan med REFEDS MFA eller ForceAuthn."
+
+#: www/html/src/DatabaseTexts.php:220
+msgid "Identity Provider does not support requests with REFEDS MFA."
+msgstr "Identitetsutfärdaren supportar inte förfrågan med REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:222
+msgid "Does not support requests with no AuthnContextClassRef."
+msgstr "Supportar ej förfrågan utan någon AuthnContextClassRef."
+
+#: www/html/src/DatabaseTexts.php:223
+msgid "Does not support requests with PasswordProtectedTransport."
+msgstr "Supportar ej förfrågan med PasswordProtectedTransport."
+
+#: www/html/src/DatabaseTexts.php:224
+msgid "Does not support requests with REFEDS SFA."
+msgstr "Supportar ej förfrågan med REFEDS SFA."
+
+#: www/html/src/DatabaseTexts.php:225
+msgid "Does not support requests with REFEDS MFA."
+msgstr "Supportar ej förfrågan med REFEDS MFA."
+
+#: www/html/src/DatabaseTexts.php:228
+msgid "Test not run yet"
+msgstr "Testet ännu ej kört"
 
 #: www/html/src/DatabaseTextsSWAMID.php:3
-msgid "schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or &lt;sHO&gt;.se"
-msgstr "schacPersonalUniqueCode skall inte annonsera SE. Använd ladok.se / eduid.se eller &lt;sHO&gt;.se"
+msgid ""
+"schacPersonalUniqueCode should not announce SE. Use ladok.se / eduid.se or "
+"&lt;sHO&gt;.se"
+msgstr ""
+"schacPersonalUniqueCode skall inte annonsera SE. Använd ladok.se / eduid.se eller "
+"&lt;sHO&gt;.se"
 
 #: www/html/src/DatabaseTextsSWAMID.php:5
 msgid "schacPersonalUniqueCode starting with urn:schac:personalUniqueCode:int:esi:se:"
@@ -926,20 +1076,20 @@ msgstr "schacPersonalUniqueCode börjar med urn:schac:personalUniqueCode:int:esi
 
 #: www/html/src/DatabaseTextsSWAMID.php:9
 msgid ""
-"Identity Provider is not approved for any SWAMID Identity Assurance Profiles but sends Assurance "
-"information!."
+"Identity Provider is not approved for any SWAMID Identity Assurance Profiles but "
+"sends Assurance information!."
 msgstr ""
-"Identitetsutfärdaren är inte godkänd för någon SWAMID Identity Assurance Profil men skickar Assurance "
-"information!."
+"Identitetsutfärdaren är inte godkänd för någon SWAMID Identity Assurance Profil men "
+"skickar Assurance information!."
 
 #: www/html/src/DatabaseTextsSWAMID.php:11
-#| msgid "Identity Provider is sending invalid Assurance information."
 msgid "Assurance Profile missing. Sends Assurance information!"
 msgstr "Assurance Profil saknas. Skickar Assurance information!"
 
 #: www/html/src/DatabaseTextsSWAMID.php:13
 msgid "Identity Provider is not approved for any SWAMID Identity Assurance Profiles."
-msgstr "Identitetsutfärdaren är inte godkänd för någon SWAMID Identity Assurance Profil."
+msgstr ""
+"Identitetsutfärdaren är inte godkänd för någon SWAMID Identity Assurance Profil."
 
 #: www/html/src/DatabaseTextsSWAMID.php:15
 msgid "Assurance Profile missing."
@@ -967,16 +1117,18 @@ msgstr "Har en Assurance Profil. Skickar rekommenderad Assurance information."
 
 #: www/html/src/DatabaseTextsSWAMID.php:30 www/html/src/DatabaseTextsSWAMID.php:32
 #: www/html/src/DatabaseTextsSWAMID.php:34
-msgid "Identity Provider is approved for at least one SWAMID Identity Assurance Profiles."
-msgstr "Identitetsutfärdarens är godkänd för minst en SWAMID Identity Assurance Profil."
+msgid ""
+"Identity Provider is approved for at least one SWAMID Identity Assurance Profiles."
+msgstr ""
+"Identitetsutfärdarens är godkänd för minst en SWAMID Identity Assurance Profil."
 
 #: www/html/src/DatabaseTextsSWAMID.php:37
 msgid ""
-"Identity Provider is approved for at least one SWAMID Identity Assurance Profiles' and attribute release "
-"for current user follows SWAMID's recommendations."
+"Identity Provider is approved for at least one SWAMID Identity Assurance Profiles' "
+"and attribute release for current user follows SWAMID's recommendations."
 msgstr ""
-"Identitetsutfärdarens är godkänd för minst en SWAMID Identity Assurance Profil och and Assurance "
-"attribut som släpps för användaren följer SWAMID's rekommendationer."
+"Identitetsutfärdarens är godkänd för minst en SWAMID Identity Assurance Profil och "
+"and Assurance attribut som släpps för användaren följer SWAMID's rekommendationer."
 
 #: www/html/src/Display.php:54 www/html/src/Display.php:74 www/html/src/Display.php:121
 #: www/html/src/IdPCheck.php:431
@@ -994,13 +1146,14 @@ msgstr "Identitetsutfärdarens attribut i metadatan"
 msgid "Identity Provider sessions attributes"
 msgstr "Identitetsutfärdarens sessions attribut"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183 www/html/src/Display.php:214
-#: www/html/src/IdPCheck.php:175
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216 www/html/src/IdPCheck.php:175
 #, php-format
 msgid "Test"
 msgstr "Test"
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183 www/html/src/Display.php:214
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216
 #, php-format
 msgid "Result"
 msgstr "Resultat"
@@ -1010,48 +1163,49 @@ msgstr "Resultat"
 msgid "Run test"
 msgstr "Kör test"
 
-#: www/html/src/Display.php:205
+#: www/html/src/Display.php:207
 msgid "European Student Identifier (student account)"
 msgstr "European Student Identifier (student konto)"
 
-#: www/html/src/Display.php:206
+#: www/html/src/Display.php:208
 msgid "European Student Identifier (any account)"
 msgstr "European Student Identifier (något konto)"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Run NEW test"
 msgstr "Kör NY test"
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Rerun test"
 msgstr "Kör om testet"
 
-#: www/html/src/Display.php:281
+#: www/html/src/Display.php:299
 #, php-format
 msgid "Received"
 msgstr "Mottaget"
 
-#: www/html/src/Display.php:291 www/html/src/IdPCheck.php:978 www/html/src/IdPCheckSWAMID.php:213
+#: www/html/src/Display.php:315 www/html/src/IdPCheck.php:978
+#: www/html/src/IdPCheckSWAMID.php:213
 #, php-format
 msgid "Missing"
 msgstr "Saknas"
 
-#: www/html/src/Display.php:299
+#: www/html/src/Display.php:329
 #, php-format
 msgid "Not expected"
 msgstr "Ej förväntat"
 
-#: www/html/src/Display.php:307 www/html/src/IdPCheck.php:1051
+#: www/html/src/Display.php:343 www/html/src/IdPCheck.php:1051
 #, php-format
 msgid "Test result"
 msgstr "Test resultat"
 
-#: www/html/src/Display.php:337
+#: www/html/src/Display.php:375
 #, php-format
 msgid "unknown tab"
 msgstr "okänd tab"
 
-#: www/html/src/Display.php:367
+#: www/html/src/Display.php:405
 msgid "Other results"
 msgstr "Andra resultat"
 
@@ -1059,20 +1213,20 @@ msgstr "Andra resultat"
 msgid "IdP home Federation"
 msgstr "IdP:ns hemma Federation"
 
-#: www/html/src/HTML.php:43
+#: www/html/src/HTML.php:42
 msgid "Release check for"
 msgstr "Releasecheck för"
 
-#: www/html/src/HTML.php:74
+#: www/html/src/HTML.php:79
 msgid "Language"
 msgstr "Språk"
 
-#: www/html/src/HTML.php:100
+#: www/html/src/HTML.php:105
 #, php-format
 msgid "About %s"
 msgstr "Om %s"
 
-#: www/html/src/HTML.php:113
+#: www/html/src/HTML.php:118
 msgid "Contact us"
 msgstr "Kontakta oss"
 
@@ -1147,7 +1301,7 @@ msgid "None"
 msgstr "Inga"
 
 #: www/html/src/IdPCheck.php:993 www/html/src/IdPCheckSWAMID.php:228
-msgid "No Assurance information recived"
+msgid "No Assurance information received"
 msgstr "Ingen Assurance information mottagen"
 
 #: www/html/src/IdPCheck.php:1032
@@ -1173,8 +1327,8 @@ msgstr "Ej testat"
 
 #: www/html/src/IdPCheck.php:1053
 #, php-format
-msgid "ACCR status"
-msgstr "ACCR status"
+msgid "AuthnContextClassRef status"
+msgstr "AuthnContextClassRef status"
 
 #: www/html/src/IdPCheck.php:1054
 #, php-format
@@ -1213,3 +1367,132 @@ msgstr "Identitetsutfärdarens är godänd för"
 #, php-format
 msgid "IdP approved Assurance Level"
 msgstr "Identitetsutfärdarens godkända Assurance nivå"
+
+#: www/html/src/TestSuite.php:233
+msgid "No EC (shall not send any attributes!)"
+msgstr "Ingen EC (skall ej skicka några attribut!)"
+
+#: www/html/src/TestSuite.php:234
+msgid "ISO_COUNTRY_CODE (se)"
+msgstr "ISO_COUNTRY_CODE (se)"
+
+#: www/html/src/TestSuite.php:235
+msgid "givenName + sn"
+msgstr "givenName + sn"
+
+#: www/html/src/TestSuite.php:236
+msgid "ISO_COUNTRY_NAME (Sweden)"
+msgstr "ISO_COUNTRY_NAME (Sweden)"
+
+#: www/html/src/TestSuite.php:237
+msgid ""
+"Specifies the person's relationship(s) to the institution in broad categories such "
+"as student, faculty, staff, alum, etc."
+msgstr ""
+"Beskriver personen’s relation(er) till lärosätet i breda kategorier såsom student, "
+"faculty, staff, alum, etc."
+
+#: www/html/src/TestSuite.php:238
+msgid "User assurance information."
+msgstr "Assurance information om användaren."
+
+#: www/html/src/TestSuite.php:239
+msgid ""
+"This attribute should only be released if and only if the IdP organization has "
+"retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs are "
+"persistent digital identifiers for individual researchers. Their primary purpose is "
+"to unambiguously and definitively link them with their scholarly work products. "
+"ORCID iDs are assigned, managed and maintained by the ORCID organization."
+msgstr ""
+"Detta attribut skall enbart släppas om lärosätet har fått ORCID iD via ORCID Collect "
+"& Connect tjänsten. ORCID iDs är en persistent digital identifierare för individulla "
+"forskare. Deras primära syfte är att unikt och definitivt länkar dem till deras "
+"vetenskapliga arbeten. ORCID-iD:er tilldelas, hanteras och underhålls av ORCID-"
+"organisationen."
+
+#: www/html/src/TestSuite.php:240
+msgid ""
+"A scoped identifier for a person. It should be represented in the form "
+"\"user@scope\" where 'user' is a name-based identifier for the person and where the "
+"\"scope\" portion MUST be the administrative domain of the identity system where the "
+"identifier was created and assigned."
+msgstr ""
+"En identifierar med ett scope för en person. Den ska representeras i formen "
+"\"användare@scope\" där 'användare' är en identifierare för personen och där “scope”-"
+"delen MÅSTE vara den administrativa domänen för identitetssystemet där "
+"identifieraren skapades och tilldelades."
+
+#: www/html/src/TestSuite.php:241
+msgid "eduPersonAffiliation, scoped"
+msgstr "eduPersonAffiliation, scoped"
+
+#: www/html/src/TestSuite.php:242
+msgid "Firstname"
+msgstr "Förnamn"
+
+#: www/html/src/TestSuite.php:243
+msgid "Mailaddress (should only be one)"
+msgstr "Mailadress (skall enbart vara en)"
+
+#: www/html/src/TestSuite.php:244
+msgid "List of additional organizational mailaddresses for the person"
+msgstr "Lista med ytterligare lärosätes-mailadresser för personen"
+
+#: www/html/src/TestSuite.php:245
+msgid "Shortform of organisation name"
+msgstr "Förkortning av organisationsnamn"
+
+#: www/html/src/TestSuite.php:246
+msgid "Organisation name"
+msgstr "Organisationens namn"
+
+#: www/html/src/TestSuite.php:247
+msgid ""
+"Its value for a given subject depends upon the relying party to whom it is given, "
+"thus preventing unrelated systems from using it as a basis for correlation."
+msgstr ""
+"Värde för en användare beror på den tjänsten som det ges till, vilket förhindrar att "
+"orelaterade system använder det som grund för korrelation."
+
+#: www/html/src/TestSuite.php:248
+msgid "8 digit date of birth (YYYYMMDD)"
+msgstr "Födelsedag med 8 siffror (YYYYMMDD)"
+
+#: www/html/src/TestSuite.php:249
+msgid ""
+"Specifies a person's home organization using the domain name of the organization"
+msgstr "Anger en persons hemorganisation genom att ange organisationens domännamn"
+
+#: www/html/src/TestSuite.php:250
+msgid "example urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+msgstr "exampelvis urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+
+#: www/html/src/TestSuite.php:251
+msgid "Lastname"
+msgstr "Efternamn"
+
+#: www/html/src/TestSuite.php:252
+msgid ""
+"Its value for a given subject is independent of the relying party to whom it is "
+"given."
+msgstr "Värde för en användare som skickas till alla tjänster."
+
+#: www/html/src/TestSuite.php:253
+msgid "Usually used for the European Student Identifier."
+msgstr "Vanligtvis använt för European Student Identifier."
+
+#: www/html/src/TestSuiteSWAMID.php:84
+msgid ""
+"User assurance information. SWAMID Identity Assurance Profiles can only be asserted "
+"for a user if and only if both the organisation and the user is validated for the "
+"assurance level. Furthermore, REFEDS Assurance Framework information should be "
+"released based on SWAMID Assurance level for the user."
+msgstr ""
+"Användar assuarnce. SWAMID Identity Assurance Profiler kan endast signaleras för en "
+"användare om och endast om både organisationen och användaren är validerade för "
+"denna profil. Dessutom bör information från REFEDS Assurance Framework släppas "
+"baserat på SWAMID-assuarnce för användaren."
+
+#: www/html/src/TestSuiteSWAMID.php:92
+msgid "Usually used within SWAMID for the European Student Identifier."
+msgstr "Vanligtvis använt inom SWAMID för European Student Identifier."

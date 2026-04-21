@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Release check 1\n"
 "Report-Msgid-Bugs-To: bjorn@sunet.se\n"
-"POT-Creation-Date: 2026-04-15 22:28+0200\n"
+"POT-Creation-Date: 2026-04-17 16:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,18 +158,33 @@ msgstr ""
 #: www/html/index.php:193 www/html/result/index.php:193
 #, php-format
 msgid ""
-"The restults from this tests are NOT saved exept for tests done with REFEDS "
+"The results from this tests are NOT saved exept for tests done with REFEDS "
 "MFA."
+msgstr ""
+
+#: www/html/index.php:201 www/html/result/index.php:201
+#, php-format
+msgid "Step 1"
+msgstr ""
+
+#: www/html/index.php:202 www/html/result/index.php:202
+#, php-format
+msgid "Choose AuthnContextClassRef to test"
 msgstr ""
 
 #: www/html/index.php:205 www/html/result/index.php:205
 #, php-format
-msgid "No authnContextClassRef"
+msgid "No AuthnContextClassRef"
 msgstr ""
 
 #: www/html/index.php:215 www/html/result/index.php:215
 #, php-format
 msgid "Test AuthnContextClassRef"
+msgstr ""
+
+#: www/html/index.php:223 www/html/result/index.php:223
+#, php-format
+msgid "Step 2"
 msgstr ""
 
 #: www/html/index.php:227 www/html/result/index.php:227
@@ -189,6 +204,25 @@ msgstr ""
 #: www/html/index.php:230 www/html/result/index.php:230
 #, php-format
 msgid "Test forceAuthN"
+msgstr ""
+
+#: www/html/index.php:241 www/html/index.php:263 www/html/result/index.php:241
+#: www/html/result/index.php:263
+#, php-format
+msgid "Received in Step 1"
+msgstr ""
+
+#: www/html/index.php:248 www/html/result/index.php:248
+#, php-format
+msgid "Received in Step 2"
+msgstr ""
+
+#: www/html/index.php:258 www/html/result/index.php:258
+msgid "Refresh/Reload is not allowed while testing forceAuthn."
+msgstr ""
+
+#: www/html/index.php:259 www/html/result/index.php:259
+msgid "Please rerun \"Test AuthnContextClassRef\""
 msgstr ""
 
 #: www/html/index.php:279 www/html/index.php:332 www/html/result/index.php:279
@@ -275,7 +309,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:253
 #, php-format
-msgid "Send to much data"
+msgid "Send too much data"
 msgstr ""
 
 #: www/html/src/Admin.php:256
@@ -285,7 +319,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:257
 #, php-format
-msgid "Send to much/less data"
+msgid "Send too much/less data"
 msgstr ""
 
 #: www/html/src/Admin.php:264
@@ -300,7 +334,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:266
 #, php-format
-msgid "Have ECS for %s but sends to much data > not %s"
+msgid "Have ECS for %s but sends too much data > not %s"
 msgstr ""
 
 #: www/html/src/Admin.php:272
@@ -392,7 +426,7 @@ msgstr ""
 
 #: www/html/src/Admin.php:524
 #, php-format
-msgid "Missing schacPersonalUniqueCode or to many"
+msgid "Missing schacPersonalUniqueCode or too many"
 msgstr ""
 
 #: www/html/src/Admin.php:525
@@ -435,57 +469,57 @@ msgstr ""
 msgid "IdPs not tested"
 msgstr ""
 
-#: www/html/src/Configuration.php:65
+#: www/html/src/Configuration.php:67
 msgid ""
 "Click on the green button to see what attributes your Identity Provider "
 "releases."
 msgstr ""
 
-#: www/html/src/Configuration.php:66
+#: www/html/src/Configuration.php:68
 #, php-format
 msgid "Description of all test available in the %s test suite"
 msgstr ""
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:70
 msgid ""
 "The Attributes tab shows all attributes the service release to the entityId"
 msgstr ""
 
-#: www/html/src/Configuration.php:68
+#: www/html/src/Configuration.php:70
 msgid "The entityId uses the entity categories"
 msgstr ""
 
-#: www/html/src/Configuration.php:69
+#: www/html/src/Configuration.php:71
 msgid "REFEDS Personalized Access Entity Category"
 msgstr ""
 
-#: www/html/src/Configuration.php:70
+#: www/html/src/Configuration.php:72
 msgid "REFEDS Research and Scholarship Entity Category, and"
 msgstr ""
 
-#: www/html/src/Configuration.php:71
+#: www/html/src/Configuration.php:73
 msgid "REFEDS Data Protection Code of Conduct ver 2.0 Entity Category"
 msgstr ""
 
-#: www/html/src/Configuration.php:73
+#: www/html/src/Configuration.php:75
 msgid ""
 "The Authentication tab checks if an Identity Provider is correctly "
 "configured for handling request for different AuthnContextClassRef requests."
 msgstr ""
 
-#: www/html/src/Configuration.php:74
+#: www/html/src/Configuration.php:76
 msgid ""
 "The Entity category tab does an exetensive testing of that an Identity "
 "Provider follows Best Practice for attribute release via entity categories."
 msgstr ""
 
-#: www/html/src/Configuration.php:75
+#: www/html/src/Configuration.php:77
 msgid ""
 "The ESI tab verifies if the Identity Provider release the right attributes "
 "for the European Digital Student Service Infrastructure."
 msgstr ""
 
-#: www/html/src/Configuration.php:78
+#: www/html/src/Configuration.php:80
 #, php-format
 msgid ""
 "In order for %s to work as effectively as possible for students and "
@@ -494,7 +528,7 @@ msgid ""
 "attributes that they require."
 msgstr ""
 
-#: www/html/src/Configuration.php:79
+#: www/html/src/Configuration.php:81
 #, php-format
 msgid ""
 "In order for services within the %s federation to work as effectively as "
@@ -504,13 +538,13 @@ msgid ""
 "attributes."
 msgstr ""
 
-#: www/html/src/Configuration.php:80
+#: www/html/src/Configuration.php:82
 #, php-format
 msgid ""
 "The %s best practice attribute release check consists of the following tests"
 msgstr ""
 
-#: www/html/src/Configuration.php:81
+#: www/html/src/Configuration.php:83
 #, php-format
 msgid ""
 "Multiple Code of Conduct test require different attributes which the IdP "
@@ -815,194 +849,212 @@ msgstr ""
 msgid "schacPersonalUniqueCode OK"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:148
+#: www/html/src/DatabaseTexts.php:149
 msgid ""
 "schacPersonalUniqueCode in wrong case. Not "
 "urn:schac:personalUniqueCode:int:esi. Might create problem in some SP's"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:150
+#: www/html/src/DatabaseTexts.php:151
 msgid "schacPersonalUniqueCode OK. BUT wrong case"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:152 www/html/src/DatabaseTextsSWAMID.php:7
+#: www/html/src/DatabaseTexts.php:153 www/html/src/DatabaseTextsSWAMID.php:7
 msgid ""
 "schacPersonalUniqueCode should start with "
 "urn:schac:personalUniqueCode:int:esi:"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:154
+#: www/html/src/DatabaseTexts.php:155
 msgid ""
 "schacPersonalUniqueCode not starting with "
 "urn:schac:personalUniqueCode:int:esi:"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:156
+#: www/html/src/DatabaseTexts.php:157
 msgid "schacPersonalUniqueCode should only contain <b>one</b> value."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:158
+#: www/html/src/DatabaseTexts.php:159
 msgid "More than one schacPersonalUniqueCode"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:160
+#: www/html/src/DatabaseTexts.php:161
 msgid "Missing schacPersonalUniqueCode"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:163 www/html/src/DatabaseTextsSWAMID.php:17
+#: www/html/src/DatabaseTexts.php:164 www/html/src/DatabaseTextsSWAMID.php:17
 msgid "Identity Provider is sending invalid Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:165
+#: www/html/src/DatabaseTexts.php:166
 msgid "Sends invalid Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:167
+#: www/html/src/DatabaseTexts.php:168
 msgid "Missing Assurance information. Expected at least [[RAF_ASSURANCE]]"
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:169
+#: www/html/src/DatabaseTexts.php:170
 msgid "Missing [[RAF_ASSURANCE]] for user."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:172
+#: www/html/src/DatabaseTexts.php:173
 msgid "Missing some Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:174
+#: www/html/src/DatabaseTexts.php:175
 msgid ""
 "Assurance attribute release for current user follows REFED's recommendations."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:176
+#: www/html/src/DatabaseTexts.php:177
 msgid "Sends recommended Assurance information."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:179
+#: www/html/src/DatabaseTexts.php:180
 msgid "Authentication-instant hasn't updated after forceAuthn was requested."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:181
-msgid "Identity Provider supports REFEDS MFA and ForceAuthn."
-msgstr ""
-
-#: www/html/src/DatabaseTexts.php:183
-msgid "Supports no ACCR and ForceAuthn."
+#: www/html/src/DatabaseTexts.php:182
+msgid "Identity Provider supports requests with REFEDS MFA and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:184
-msgid "Supports PasswordProtectedTransport and ForceAuthn."
+msgid "Supports requests with no AuthnContextClassRef and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:185
-msgid "Supports REFEDS SFA and ForceAuthn."
+msgid "Supports requests with PasswordProtectedTransport and ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:186
-msgid "Supports REFEDS MFA and ForceAuthn."
+msgid "Supports requests with REFEDS SFA and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:188
-msgid "Identity Provider supports REFEDS MFA but not ForceAuthn."
+#: www/html/src/DatabaseTexts.php:187
+msgid "Supports requests with REFEDS MFA and ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:190
-msgid "Supports no ACCR but not ForceAuthn."
+#: www/html/src/DatabaseTexts.php:189
+msgid "Identity Provider supports requests with REFEDS MFA but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:191
-msgid "Supports PasswordProtectedTransport but not ForceAuthn."
+msgid "Supports requests with no AuthnContextClassRef but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:192
-msgid "Supports REFEDS SFA but not ForceAuthn."
+msgid "Supports requests with PasswordProtectedTransport but not ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:193
-msgid "Supports REFEDS MFA but not ForceAuthn."
+msgid "Supports requests with REFEDS SFA but not ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:195
-msgid "Identity Provider supports REFEDS MFA."
+#: www/html/src/DatabaseTexts.php:194
+msgid "Supports requests with REFEDS MFA but not ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:196
+msgid "Identity Provider supports requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:197
-msgid "Supports no ACCR."
+msgid "Identity Provider supports requests with PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:198
-msgid "Supports PasswordProtectedTransport."
+msgid "Identity Provider supports requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:199
-msgid "Supports REFEDS SFA."
+msgid "Identity Provider supports requests with REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:200
-msgid "Supports REFEDS MFA."
+#: www/html/src/DatabaseTexts.php:201
+msgid "Supports requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:202
-msgid "Identity Provider does support ForceAuthn but not REFEDS MFA."
+msgid "Supports requests with PasswordProtectedTransport."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:203
+msgid "Supports requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:204
-msgid "Does support ForceAuthn but not no ACCR."
-msgstr ""
-
-#: www/html/src/DatabaseTexts.php:205
-msgid "Does support ForceAuthn but not PasswordProtectedTransport."
+msgid "Supports requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:206
-msgid "Does support ForceAuthn but not REFEDS SFA."
+msgid ""
+"Identity Provider does support ForceAuthn but not requests with REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:207
-msgid "Does support ForceAuthn but not REFEDS MFA."
+#: www/html/src/DatabaseTexts.php:208
+msgid "Does support ForceAuthn but not requests with no AuthnContextClassRef."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:209
-msgid "Identity Provider does neither support REFEDS MFA or ForceAuthn."
+msgid ""
+"Does support ForceAuthn but not requests with PasswordProtectedTransport."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:210
+msgid "Does support ForceAuthn but not requests with REFEDS SFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:211
-msgid "Does neither support no ACCR or ForceAuthn."
-msgstr ""
-
-#: www/html/src/DatabaseTexts.php:212
-msgid "Does neither support PasswordProtectedTransport or ForceAuthn."
+msgid "Does support ForceAuthn but not requests with REFEDS MFA."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:213
-msgid "Does neither support REFEDS SFA or ForceAuthn."
+msgid ""
+"Identity Provider does neither support requests with REFEDS MFA or "
+"ForceAuthn."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:214
-msgid "Does neither support REFEDS MFA or ForceAuthn."
+#: www/html/src/DatabaseTexts.php:215
+msgid ""
+"Does neither support requests with no AuthnContextClassRef or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:216
-msgid "Identity Provider does not support REFEDS MFA."
+msgid ""
+"Does neither support requests with PasswordProtectedTransport or ForceAuthn."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:217
+msgid "Does neither support requests with REFEDS SFA or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:218
-msgid "Does not support no ACCR."
-msgstr ""
-
-#: www/html/src/DatabaseTexts.php:219
-msgid "Does not support PasswordProtectedTransport."
+msgid "Does neither support requests with REFEDS MFA or ForceAuthn."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:220
-msgid "Does not support REFEDS SFA."
+msgid "Identity Provider does not support requests with REFEDS MFA."
 msgstr ""
 
-#: www/html/src/DatabaseTexts.php:221
-msgid "Does not support REFEDS MFA."
+#: www/html/src/DatabaseTexts.php:222
+msgid "Does not support requests with no AuthnContextClassRef."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:223
+msgid "Does not support requests with PasswordProtectedTransport."
 msgstr ""
 
 #: www/html/src/DatabaseTexts.php:224
+msgid "Does not support requests with REFEDS SFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:225
+msgid "Does not support requests with REFEDS MFA."
+msgstr ""
+
+#: www/html/src/DatabaseTexts.php:228
 msgid "Test not run yet"
 msgstr ""
 
@@ -1089,14 +1141,14 @@ msgstr ""
 msgid "Identity Provider sessions attributes"
 msgstr ""
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214 www/html/src/IdPCheck.php:175
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216 www/html/src/IdPCheck.php:175
 #, php-format
 msgid "Test"
 msgstr ""
 
-#: www/html/src/Display.php:147 www/html/src/Display.php:183
-#: www/html/src/Display.php:214
+#: www/html/src/Display.php:147 www/html/src/Display.php:185
+#: www/html/src/Display.php:216
 #, php-format
 msgid "Result"
 msgstr ""
@@ -1106,49 +1158,49 @@ msgstr ""
 msgid "Run test"
 msgstr ""
 
-#: www/html/src/Display.php:205
+#: www/html/src/Display.php:207
 msgid "European Student Identifier (student account)"
 msgstr ""
 
-#: www/html/src/Display.php:206
+#: www/html/src/Display.php:208
 msgid "European Student Identifier (any account)"
 msgstr ""
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Run NEW test"
 msgstr ""
 
-#: www/html/src/Display.php:246
+#: www/html/src/Display.php:248
 msgid "Rerun test"
 msgstr ""
 
-#: www/html/src/Display.php:281
+#: www/html/src/Display.php:299
 #, php-format
 msgid "Received"
 msgstr ""
 
-#: www/html/src/Display.php:291 www/html/src/IdPCheck.php:978
+#: www/html/src/Display.php:315 www/html/src/IdPCheck.php:978
 #: www/html/src/IdPCheckSWAMID.php:213
 #, php-format
 msgid "Missing"
 msgstr ""
 
-#: www/html/src/Display.php:299
+#: www/html/src/Display.php:329
 #, php-format
 msgid "Not expected"
 msgstr ""
 
-#: www/html/src/Display.php:307 www/html/src/IdPCheck.php:1051
+#: www/html/src/Display.php:343 www/html/src/IdPCheck.php:1051
 #, php-format
 msgid "Test result"
 msgstr ""
 
-#: www/html/src/Display.php:337
+#: www/html/src/Display.php:375
 #, php-format
 msgid "unknown tab"
 msgstr ""
 
-#: www/html/src/Display.php:367
+#: www/html/src/Display.php:405
 msgid "Other results"
 msgstr ""
 
@@ -1156,20 +1208,20 @@ msgstr ""
 msgid "IdP home Federation"
 msgstr ""
 
-#: www/html/src/HTML.php:43
+#: www/html/src/HTML.php:42
 msgid "Release check for"
 msgstr ""
 
-#: www/html/src/HTML.php:74
+#: www/html/src/HTML.php:79
 msgid "Language"
 msgstr ""
 
-#: www/html/src/HTML.php:100
+#: www/html/src/HTML.php:105
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: www/html/src/HTML.php:113
+#: www/html/src/HTML.php:118
 msgid "Contact us"
 msgstr ""
 
@@ -1244,7 +1296,7 @@ msgid "None"
 msgstr ""
 
 #: www/html/src/IdPCheck.php:993 www/html/src/IdPCheckSWAMID.php:228
-msgid "No Assurance information recived"
+msgid "No Assurance information received"
 msgstr ""
 
 #: www/html/src/IdPCheck.php:1032
@@ -1270,7 +1322,7 @@ msgstr ""
 
 #: www/html/src/IdPCheck.php:1053
 #, php-format
-msgid "ACCR status"
+msgid "AuthnContextClassRef status"
 msgstr ""
 
 #: www/html/src/IdPCheck.php:1054
@@ -1311,6 +1363,117 @@ msgstr ""
 msgid "IdP approved Assurance Level"
 msgstr ""
 
-#: www/html/src/TestSuite.php:146
+#: www/html/src/TestSuite.php:233
 msgid "No EC (shall not send any attributes!)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:234
+msgid "ISO_COUNTRY_CODE (se)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:235
+msgid "givenName + sn"
+msgstr ""
+
+#: www/html/src/TestSuite.php:236
+msgid "ISO_COUNTRY_NAME (Sweden)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:237
+msgid ""
+"Specifies the person's relationship(s) to the institution in broad "
+"categories such as student, faculty, staff, alum, etc."
+msgstr ""
+
+#: www/html/src/TestSuite.php:238
+msgid "User assurance information."
+msgstr ""
+
+#: www/html/src/TestSuite.php:239
+msgid ""
+"This attribute should only be released if and only if the IdP organization "
+"has retrived the ORCID iD via the ORCID Collect & Connect service. ORCID iDs "
+"are persistent digital identifiers for individual researchers. Their primary "
+"purpose is to unambiguously and definitively link them with their scholarly "
+"work products. ORCID iDs are assigned, managed and maintained by the ORCID "
+"organization."
+msgstr ""
+
+#: www/html/src/TestSuite.php:240
+msgid ""
+"A scoped identifier for a person. It should be represented in the form "
+"\"user@scope\" where 'user' is a name-based identifier for the person and "
+"where the \"scope\" portion MUST be the administrative domain of the "
+"identity system where the identifier was created and assigned."
+msgstr ""
+
+#: www/html/src/TestSuite.php:241
+msgid "eduPersonAffiliation, scoped"
+msgstr ""
+
+#: www/html/src/TestSuite.php:242
+msgid "Firstname"
+msgstr ""
+
+#: www/html/src/TestSuite.php:243
+msgid "Mailaddress (should only be one)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:244
+msgid "List of additional organizational mailaddresses for the person"
+msgstr ""
+
+#: www/html/src/TestSuite.php:245
+msgid "Shortform of organisation name"
+msgstr ""
+
+#: www/html/src/TestSuite.php:246
+msgid "Organisation name"
+msgstr ""
+
+#: www/html/src/TestSuite.php:247
+msgid ""
+"Its value for a given subject depends upon the relying party to whom it is "
+"given, thus preventing unrelated systems from using it as a basis for "
+"correlation."
+msgstr ""
+
+#: www/html/src/TestSuite.php:248
+msgid "8 digit date of birth (YYYYMMDD)"
+msgstr ""
+
+#: www/html/src/TestSuite.php:249
+msgid ""
+"Specifies a person's home organization using the domain name of the "
+"organization"
+msgstr ""
+
+#: www/html/src/TestSuite.php:250
+msgid "example urn:schac:homeOrganizationType:eu:higherEducationInstitution"
+msgstr ""
+
+#: www/html/src/TestSuite.php:251
+msgid "Lastname"
+msgstr ""
+
+#: www/html/src/TestSuite.php:252
+msgid ""
+"Its value for a given subject is independent of the relying party to whom it "
+"is given."
+msgstr ""
+
+#: www/html/src/TestSuite.php:253
+msgid "Usually used for the European Student Identifier."
+msgstr ""
+
+#: www/html/src/TestSuiteSWAMID.php:84
+msgid ""
+"User assurance information. SWAMID Identity Assurance Profiles can only be "
+"asserted for a user if and only if both the organisation and the user is "
+"validated for the assurance level. Furthermore, REFEDS Assurance Framework "
+"information should be released based on SWAMID Assurance level for the user."
+msgstr ""
+
+#: www/html/src/TestSuiteSWAMID.php:92
+msgid "Usually used within SWAMID for the European Student Identifier."
 msgstr ""

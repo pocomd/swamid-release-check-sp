@@ -23,11 +23,12 @@ $basename = 'release-check.<org>.<tld>';
 # Other options for flags see https://flagcdn.com/en/codes.json
 $languages = array(
   'en' => array('name' => 'English', 'flag' => 'gb'),
-  'sv' => array('name' => 'Svenska', 'flag' => 'se'),
   'fr' => array('name' => 'Français', 'flag' => 'fr'),
   #'fr' => array('name' => 'French', 'flag' => 'ca'),
-  'sr' => array('name' => 'Cpпcки језик', 'flag' => 'rs'),
   'it' => array('name' => 'Italiano', 'flag' => 'it'),
+  'ro' => array('name' => 'Română', 'flag' => 'ro'),
+  'sv' => array('name' => 'Svenska', 'flag' => 'se'),
+  'sr' => array('name' => 'Cpпcки', 'flag' => 'rs'),
 );
 
 $federation = array(
@@ -96,6 +97,8 @@ $federation = array(
   # Optional instructions at end of EntityCategory tab. Default text below
   #'instructionsEntityCategoryEnd' => '<p>Multiple Code of Conduct test require different attributes which the IdP either SHOULD or SHOULD NOT
   #          release in accordance REFEDS/GÉANT Code of Conduct.</p>',
+  # If you only use one / no Code of Conduct test. Change this into
+  # 'instructionsEntityCategoryEnd' => '',
 );
 
 $template = array(

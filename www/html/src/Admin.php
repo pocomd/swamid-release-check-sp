@@ -250,11 +250,11 @@ class Admin {
       case 'CoCov1' :
       case 'CoCov2' :
         printf('              <i class="fas fa-check"> = ' . _('Only send reqested data or less') . '</i><br>
-              <i class="fas fa-exclamation"> = ' . _('Send to much data') . '</i>%s', "\n");
+              <i class="fas fa-exclamation"> = ' . _('Send too much data') . '</i>%s', "\n");
         break;
       default :
         printf('              <i class="fas fa-check"> = ' . _('Only send reqested data') . '</i><br>
-              <i class="fas fa-exclamation"> = '. _('Send to much/less data') . '</i>%s', "\n");
+              <i class="fas fa-exclamation"> = '. _('Send too much/less data') . '</i>%s', "\n");
     }
     printf('            </td>
           </tr>
@@ -263,7 +263,7 @@ class Admin {
             <td>
               <i class="fas fa-check"> = ' . _('Have ECS for %s') . '</i><br>
               <i class="fas fa-exclamation-triangle"> = ' . _('Missing ECS for %s') . '</i><br>
-              <i class="fas fa-exclamation"> = ' . _('Have ECS for %s but sends to much data > not %s') . '</i>
+              <i class="fas fa-exclamation"> = ' . _('Have ECS for %s but sends too much data > not %s') . '</i>
             </td>
           </tr>
           <tr>
@@ -521,7 +521,7 @@ class Admin {
         "\n");
     }
     printf('        <i class="fas fa-check"> = ' . ('Correct schacPersonalUniqueCode') . '</i><br>
-        <i class="fas fa-exclamation-triangle"> = ' . _('Missing schacPersonalUniqueCode or to many') . '</i><br>
+        <i class="fas fa-exclamation-triangle"> = ' . _('Missing schacPersonalUniqueCode or too many') . '</i><br>
         <i class="fas fa-exclamation"> = ' . _('Error in schacPersonalUniqueCode') . '</i>
         <br>
         <br>

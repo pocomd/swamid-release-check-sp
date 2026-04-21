@@ -60,7 +60,7 @@ if (isset($_GET['tab'])) {
       $tab = 'acc';
       if (isset($_POST['accr'])) {
         createRedirect($_POST, $result, $idp);
-      } elseif ($_GET['accr'] && isset($_GET['testForceAuthn'])) {
+      } elseif (isset($_GET['accr']) && isset($_GET['testForceAuthn'])) {
         createRedirect(array('accr' => $_GET['accr'], 'force' => true), $result, $idp);
       }
       break;
@@ -188,9 +188,9 @@ printf('      </div><!-- End tab-pane attributes -->
           </a>
         </h3>
         <div class="collapse%s multi-collapse" id="acc-instructions">
-          <p>' . _('The Authentication test is a two step process.')
-               . _('The first step is to test an AuthnContextClassRef and the second step is to verify that forceAuthn works as expected for that AuthnContextClassRef.')
-               . _('The restults from this tests are NOT saved exept for tests done with REFEDS MFA.') . '</p>
+          <p>' . _('The Authentication test is a two step process.') . ' '
+               . _('The first step is to test an AuthnContextClassRef and the second step is to verify that forceAuthn works as expected for that AuthnContextClassRef.') . ' '
+               . _('The results from this tests are NOT saved exept for tests done with REFEDS MFA.') . '</p>
         </div><!-- end collapse -->%s',
   $accShow, $accActive, $federation['displayName'],
   $result ? "right" : "down", $instructionsSelected, $instructionsShow, "\n");
@@ -202,7 +202,7 @@ printf('        <div class="row">
             ' . _('Choose AuthnContextClassRef to test') . ':
             <form action="./?tab=acc" method="POST">
               <input type="radio" id="none" name="accr" value="none"%s>
-              <label for="none">' . _('No authnContextClassRef') . '</label><br>%s',
+              <label for="none">' . _('No AuthnContextClassRef') . '</label><br>%s',
   $accr == 'none' ? HTML_CHECKED : '',
   "\n");
 foreach ($idpCheck->getAccrOptions() as $key => $accrArray) {
@@ -238,14 +238,14 @@ if ($result) {
           <div class="col">%s', "\n");
   if (isset($_GET['forceAuthn']) && isset($_SESSION['ts'])) {
     #Step 2 OK
-    printf('            ' . _('Recieved in Step 1') . ':
+    printf('            ' . _('Received in Step 1') . ':
             <ul>
               <li>AuthnContext-Class: %s</li>
               <li>Authentication-Instant: %s</li>
             </ul>
           </div>
           <div class="col">
-            ' . _('Recieved in Step 2') . ':
+            ' . _('Received in Step 2') . ':
             <ul>
               <li>AuthnContext-Class: %s</li>
               <li>Authentication-Instant: %s</li>
@@ -254,13 +254,13 @@ if ($result) {
     $_SERVER['Shib-AuthnContext-Class'], $_SERVER['Shib-Authentication-Instant'], "\n");
   } elseif (isset($_GET['forceAuthn'])) {
     # Step 2 after refresh. Should not be done!!
-    printf('            <br>
-            Refresh/Reload is not allowed while testing forceAuthn.<br>
-            Please rerun "Test AuthnContextClassRef"%s', "\n");
+    print '            <br>
+            ' . _('Refresh/Reload is not allowed while testing forceAuthn.') . '<br>
+            ' . _('Please rerun "Test AuthnContextClassRef"') . "\n";
   } else {
     #Step 1
     printf('            <br>
-            ' . _('Recieved in Step 1') . ':<ul>
+            ' . _('Received in Step 1') . ':<ul>
               <li>AuthnContext-Class: %s</li>
               <li>Authentication-Instant: %s</li>
             </ul>%s',

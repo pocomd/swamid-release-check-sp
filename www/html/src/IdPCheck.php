@@ -228,7 +228,7 @@ class IdPCheck {
 
     list ($ac,$ecs,$ec) = $this->getMetaInfo();
 
-    # Goes thru all recived attribues and warn for extra attributes
+    # Goes thru all received attribues and warn for extra attributes
     foreach ( $_SERVER as $key => $value ) {
       if ( substr($key,0,5) == 'saml_' ) {
         $nkey=substr($key,5);
@@ -444,11 +444,11 @@ class IdPCheck {
   /**
    * Save into SQL
    *
-   * @param array $okValues List of recived expected attributes
+   * @param array $okValues List of received expected attributes
    *
    * @param array $missingValues List of missing attributes
    *
-   * @param array $extraValues List of attributes recived that was NOT expected
+   * @param array $extraValues List of attributes received that was NOT expected
    *
    * @return void
    */
@@ -586,7 +586,7 @@ class IdPCheck {
       } else {
         $this->status['testResult'] = 'R&S attributes OK, Entity Category Support missing';
         $this->status['warning'][] = "The IdP supports R&S but doesn't announce it in its metadata.";
-        $this->status['warning'][] = "Please add [[EC_RANDS]] " . $this->toListStr;
+        $this->status['warning'][] = "Please add '[[EC_RANDS]]' " . $this->toListStr;
       }
     } else {
       if ( isset($ecs['http://refeds.org/category/research-and-scholarship']) ) { # NOSONAR Should be http://
@@ -670,11 +670,11 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
+            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/' . $part;
           }
         }
       } else {
-        $this->status['warning'][] = 'Pseudonymous requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
+        $this->status['warning'][] = 'Pseudonymous requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]';
       }
     }
     if (! isset($attributes['pairwise-id']) ) {
@@ -742,11 +742,11 @@ class IdPCheck {
       if ($checkIsOK) {
         foreach ($checkArray as $part) {
           if (! isset($checkOKArray[$part])) {
-            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains ' . self::RAF_BASE . '/' . $part;
+            $this->status['warning'][] = '[[FED_NAME]] recommends that eduPersonAssurance contains [[RAF_ASSURANCE]]/' . $part;
           }
         }
       } else {
-        $this->status['warning'][] = 'Personalized requires that eduPersonAssurance at least contains ' . self::RAF_BASE;
+        $this->status['warning'][] = 'Personalized requires that eduPersonAssurance at least contains [[RAF_ASSURANCE]]';
       }
     }
     # displayName, givenName and sn must exist for Personalized
@@ -800,7 +800,7 @@ class IdPCheck {
    * Check if any attributes are sent / enough attributes are sent
    * updates status['error'] on error
    *
-   * @param int $nrOfAttributes Numer of attributes recived
+   * @param int $nrOfAttributes Numer of attributes received
    *
    * @param int $minimum Minimun number of attributes needed to pass test
    *
@@ -990,7 +990,7 @@ class IdPCheck {
       }
     }
     if ($this->userAL == '') {
-      $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information recived") . "</th></tr>\n";
+      $this->status['infoText'] .= "    <tr><th>" . _("No Assurance information received") . "</th></tr>\n";
     }
     $this->status['infoText'] .="    </table>\n";
 
@@ -998,10 +998,10 @@ class IdPCheck {
       $this->status['error'][] = 'Identity Provider is sending invalid Assurance information.';
       $this->status['testResult'] = 'Sends invalid Assurance information.';
     } elseif ($this->userAL == '') {
-      $this->status['error'][] = 'Missing Assurance information. Expected at least ' . self::RAF_BASE;
-      $this->status['testResult'] = sprintf('Missing %s for user.', self::RAF_BASE);
+      $this->status['error'][] = 'Missing Assurance information. Expected at least [[RAF_ASSURANCE]]';
+      $this->status['testResult'] = 'Missing [[RAF_ASSURANCE]] for user.';
     } elseif ($missing) {
-      $this->status['warning'][]= 'Missing some Assurance information.';
+      $this->status['warning'][] = 'Missing some Assurance information.';
       $this->status['testResult'] = 'Missing some Assurance information.';
     } else {
       $this->status['ok'][] = "Assurance attribute release for current user follows REFED's recommendations.";
@@ -1023,7 +1023,7 @@ class IdPCheck {
   protected function checkMFA(array &$attributes, array &$ac, string $requestedAccr = 'refeds-mfa') {
     $this->setupAssurance($attributes, $ac);
     $accrCorrect = $requestedAccr == 'none' || $_SERVER['Shib-AuthnContext-Class'] == $this->accrOptions[$requestedAccr]['value'];
-    $accrName = $requestedAccr == 'none' ? 'no ACCR' : $this->accrOptions[$requestedAccr]['description'];
+    $accrName = $requestedAccr == 'none' ? 'no AuthnContextClassRef' : $this->accrOptions[$requestedAccr]['description'];
     $forceAuthnSuccess = false;
     $step2 = false;
     if (isset($_GET['forceAuthn'])) {
@@ -1050,7 +1050,7 @@ class IdPCheck {
 
     $this->status['infoText'] = sprintf('        <h3>' . _('Test result') . '</h3>%s        <table class="table table-striped table-bordered">%s',
       "\n", "\n");
-    $this->status['infoText'] .= sprintf('          <tr><th>' . _('ACCR status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
+    $this->status['infoText'] .= sprintf('          <tr><th>' . _('AuthnContextClassRef status') . '</th><td>%s</td></tr>%s', $accrCorrect ? "OK" : "Error", "\n");
     $this->status['infoText'] .= sprintf('          <tr><th>' . _('ForceAuthn status') . '</th><td>%s</td></tr>%s', $forceAuthnResult, "\n");
 
     $this->showRAFAttributeStatus(_('AL1 status'),'http://www.swamid.se/policy/assurance/al1'); # NOSONAR Should be http://
@@ -1073,25 +1073,25 @@ class IdPCheck {
 
     if ($accrCorrect) {
       if ($forceAuthnSuccess) {
-        $this->status['ok'][] = sprintf('Identity Provider supports %s and ForceAuthn.', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s and ForceAuthn.', $accrName);
+        $this->status['ok'][] = sprintf('Identity Provider supports requests with %s and ForceAuthn.', $accrName);
+        $this->status['testResult'] = sprintf('Supports requests with %s and ForceAuthn.', $accrName);
       } elseif ($step2) {
-        $this->status['error'][] = sprintf('Identity Provider supports %s but not ForceAuthn.', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s but not ForceAuthn.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider supports requests with %s but not ForceAuthn.', $accrName);
+        $this->status['testResult'] = sprintf('Supports requests with %s but not ForceAuthn.', $accrName);
       } else {
-        $this->status['ok'][] = sprintf('Identity Provider supports %s.', $accrName);
-        $this->status['testResult'] = sprintf('Supports %s.', $accrName);
+        $this->status['ok'][] = sprintf('Identity Provider supports requests with %s.', $accrName);
+        $this->status['testResult'] = sprintf('Supports requests with %s.', $accrName);
       }
     } else {
       if ($forceAuthnSuccess) {
-        $this->status['error'][] = sprintf('Identity Provider does support ForceAuthn but not %s.', $accrName);
-        $this->status['testResult'] = sprintf('Does support ForceAuthn but not %s.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does support ForceAuthn but not requests with %s.', $accrName);
+        $this->status['testResult'] = sprintf('Does support ForceAuthn but not requests with %s.', $accrName);
       } elseif ($step2) {
-        $this->status['error'][] = sprintf('Identity Provider does neither support %s or ForceAuthn.', $accrName);
-        $this->status['testResult'] = sprintf('Does neither support %s or ForceAuthn.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does neither support requests with %s or ForceAuthn.', $accrName);
+        $this->status['testResult'] = sprintf('Does neither support requests with %s or ForceAuthn.', $accrName);
       } else {
-        $this->status['error'][] = sprintf('Identity Provider does not support %s.', $accrName);
-        $this->status['testResult'] = sprintf('Does not support %s.', $accrName);
+        $this->status['error'][] = sprintf('Identity Provider does not support requests with %s.', $accrName);
+        $this->status['testResult'] = sprintf('Does not support requests with %s.', $accrName);
       }
     }
   }

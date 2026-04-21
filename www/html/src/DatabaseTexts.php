@@ -145,6 +145,7 @@ _('Support for CoCo missing, Entity Category Support missing');
 #IdPCheck.php:882: #testResult
 _('schacPersonalUniqueCode OK');
 #IdPCheck.php:865: #status_WARNING
+#IdPCheck.php:866: #status_WARNING
 _("schacPersonalUniqueCode in wrong case. Not urn:schac:personalUniqueCode:int:esi. Might create problem in some SP's");
 #IdPCheck.php:867: #testResult
 _('schacPersonalUniqueCode OK. BUT wrong case');
@@ -178,47 +179,50 @@ _('Sends recommended Assurance information.');
 #IdPCheck.php:1039: #status_ERROR
 _("Authentication-instant hasn't updated after forceAuthn was requested.");
 #IdPCheck.php:1076: #status_OK
-_('Identity Provider supports REFEDS MFA and ForceAuthn.');
+_('Identity Provider supports requests with REFEDS MFA and ForceAuthn.');
 #IdPCheck.php:1077: #testResult
-_('Supports no ACCR and ForceAuthn.');
-_('Supports PasswordProtectedTransport and ForceAuthn.');
-_('Supports REFEDS SFA and ForceAuthn.');
-_('Supports REFEDS MFA and ForceAuthn.');
+_('Supports requests with no AuthnContextClassRef and ForceAuthn.');
+_('Supports requests with PasswordProtectedTransport and ForceAuthn.');
+_('Supports requests with REFEDS SFA and ForceAuthn.');
+_('Supports requests with REFEDS MFA and ForceAuthn.');
 #IdPCheck.php:1079: #status_ERROR
-_('Identity Provider supports REFEDS MFA but not ForceAuthn.');
+_('Identity Provider supports requests with REFEDS MFA but not ForceAuthn.');
 #IdPCheck.php:1080: #testResult
-_('Supports no ACCR but not ForceAuthn.');
-_('Supports PasswordProtectedTransport but not ForceAuthn.');
-_('Supports REFEDS SFA but not ForceAuthn.');
-_('Supports REFEDS MFA but not ForceAuthn.');
+_('Supports requests with no AuthnContextClassRef but not ForceAuthn.');
+_('Supports requests with PasswordProtectedTransport but not ForceAuthn.');
+_('Supports requests with REFEDS SFA but not ForceAuthn.');
+_('Supports requests with REFEDS MFA but not ForceAuthn.');
 #IdPCheck.php:1082: #status_OK
-_('Identity Provider supports REFEDS MFA.');
+_('Identity Provider supports requests with no AuthnContextClassRef.');
+_('Identity Provider supports requests with PasswordProtectedTransport.');
+_('Identity Provider supports requests with REFEDS SFA.');
+_('Identity Provider supports requests with REFEDS MFA.');
 #IdPCheck.php:1083: #testResult
-_('Supports no ACCR.');
-_('Supports PasswordProtectedTransport.');
-_('Supports REFEDS SFA.');
-_('Supports REFEDS MFA.');
+_('Supports requests with no AuthnContextClassRef.');
+_('Supports requests with PasswordProtectedTransport.');
+_('Supports requests with REFEDS SFA.');
+_('Supports requests with REFEDS MFA.');
 #IdPCheck.php:1087: #status_ERROR
-_('Identity Provider does support ForceAuthn but not REFEDS MFA.');
+_('Identity Provider does support ForceAuthn but not requests with REFEDS MFA.');
 #IdPCheck.php:1088: #testResult
-_('Does support ForceAuthn but not no ACCR.');
-_('Does support ForceAuthn but not PasswordProtectedTransport.');
-_('Does support ForceAuthn but not REFEDS SFA.');
-_('Does support ForceAuthn but not REFEDS MFA.');
+_('Does support ForceAuthn but not requests with no AuthnContextClassRef.');
+_('Does support ForceAuthn but not requests with PasswordProtectedTransport.');
+_('Does support ForceAuthn but not requests with REFEDS SFA.');
+_('Does support ForceAuthn but not requests with REFEDS MFA.');
 #IdPCheck.php:1090: #status_ERROR
-_('Identity Provider does neither support REFEDS MFA or ForceAuthn.');
+_('Identity Provider does neither support requests with REFEDS MFA or ForceAuthn.');
 #IdPCheck.php:1091: #testResult
-_('Does neither support no ACCR or ForceAuthn.');
-_('Does neither support PasswordProtectedTransport or ForceAuthn.');
-_('Does neither support REFEDS SFA or ForceAuthn.');
-_('Does neither support REFEDS MFA or ForceAuthn.');
+_('Does neither support requests with no AuthnContextClassRef or ForceAuthn.');
+_('Does neither support requests with PasswordProtectedTransport or ForceAuthn.');
+_('Does neither support requests with REFEDS SFA or ForceAuthn.');
+_('Does neither support requests with REFEDS MFA or ForceAuthn.');
 #IdPCheck.php:1093: #status_ERROR
-_('Identity Provider does not support REFEDS MFA.');
+_('Identity Provider does not support requests with REFEDS MFA.');
 #IdPCheck.php:1094: #testResult
-_('Does not support no ACCR.');
-_('Does not support PasswordProtectedTransport.');
-_('Does not support REFEDS SFA.');
-_('Does not support REFEDS MFA.');
+_('Does not support requests with no AuthnContextClassRef.');
+_('Does not support requests with PasswordProtectedTransport.');
+_('Does not support requests with REFEDS SFA.');
+_('Does not support requests with REFEDS MFA.');
 # Other texts
 # Display.php:28
 _('Test not run yet');
