@@ -58,7 +58,7 @@ $usageSelected = 'false';
 $usageShow = '';
 
 if (isset($_GET["show"]) && $_GET["show"] == "usage") {
-  include "usage.php";
+  include_once "usage.php";
   exit;
 }
 
