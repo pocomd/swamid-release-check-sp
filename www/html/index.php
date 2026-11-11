@@ -57,6 +57,11 @@ $usageActive = '';
 $usageSelected = 'false';
 $usageShow = '';
 
+if (isset($_GET["show"]) && $_GET["show"] == "usage") {
+  include "usage.php";
+  exit;
+}
+
 if (isset($_GET['tab'])) {
   switch ($_GET['tab']) {
     case 'acc':
@@ -144,17 +149,7 @@ if (!$config->getFederation()['hideTest']['esi']) {
     "\n"
   );
 }
-if ($result) {
-  printf(
-    '          <li class="nav-item">
-            <a class="nav-link%s" id="usage-tab" data-toggle="tab" href="#usage"
-              role="tab" aria-controls="usage" aria-selected="%s">' . _('Usage') . '</a>
-          </li>%s',
-    $usageActive,
-    $usageSelected,
-    "\n"
-  );
-}
+
 printf(
   '        </ul>
       </div>
@@ -530,22 +525,6 @@ printf(
   "      </div><!-- End tab-pane %s -->\n",
   $config->getFederation()['hideTest']['esi'] ? 'entityCategory' : 'esi'
 );
-
-if ($result) {
-  printf(
-    '      <div class="tab-pane fade%s%s" id="usage" role="tabpanel" aria-labelledby="usage-tab">%s',
-    $usageShow,
-    $usageActive,
-    "\n"
-  );
-  $admin->showUsageStats();
-  printf('      </div><!-- End tab-pane usage -->%s', "\n");
-
-  $collapseIcons[] = "idpList";
-  $collapseIcons[] = "regAuthList";
-  $html->addTableSort('idpTable');
-  $html->addTableSort('regAuthTable');
-}
 
 if ($federation['DSType'] == 'thiss.io') {
   printf(

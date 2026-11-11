@@ -128,6 +128,9 @@ class HTML
               <a href="%s" class="nav-link">' . _('About %s') . '</a>
             </li>
             <li role="presentation" class="nav-item">
+              <a href="https://%s" class="nav-link">' . _('Usage') . '</a>
+            </li>
+            <li role="presentation" class="nav-item">
               <a href="%s" class="nav-link">%s</a>
             </li>
           </ul>
@@ -139,6 +142,7 @@ class HTML
         </h3>%s',
       $this->federation['aboutURL'],
       $this->federation['displayName'],
+      $this->appendGetparam($this->config->basename(), "show=usage"),
       $this->federation['contactURL'],
       _('Contact us'),
       $this->config->basename(),
@@ -269,5 +273,12 @@ class HTML
   public function addTableSort($tableId)
   {
     $this->tableToSort[] = $tableId;
+  }
+
+  public function appendGetparam(string $url, string $paramString): string
+  {
+    $sep  = str_contains($url, '?') ? '&' : '?';
+
+    return $url . $sep . $paramString;
   }
 }
